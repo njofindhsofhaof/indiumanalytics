@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import KPICard from "@/components/KPICard";
 
-const PriceChart = dynamic(() => import("@/components/PriceChart"), {
+const SectorTable = dynamic(() => import("@/components/SectorTable"), {
   ssr: false,
   loading: () => (
     <div className="bg-surface border border-border rounded-lg p-4 h-[262px] flex items-center justify-center">
-      <span className="text-muted text-sm">Loading chart…</span>
+      <span className="text-muted text-sm">Loading sector data…</span>
     </div>
   ),
 });
@@ -168,7 +168,7 @@ export default async function DashboardPage() {
       {/* Price Chart + Top Movers */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <PriceChart symbol="AVGO" defaultRange="3M" />
+          <SectorTable />
         </div>
 
         {/* Top Movers */}

@@ -94,6 +94,72 @@ const COMPANY_NEWS = [
   },
 ];
 
+const COMMERCIAL_NEWS = [
+  {
+    title: "Reuters — Silicon Photonics",
+    description: "Reuters coverage of silicon photonics, AI optical infrastructure, and photonic semiconductor news.",
+    url: "https://www.reuters.com/search/news?blob=silicon+photonics",
+    source: { name: "Reuters" },
+    publishedAt: new Date(Date.now() - 11 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "Bloomberg — AI Optical Infrastructure",
+    description: "Bloomberg Technology coverage of co-packaged optics, AI datacenter networking, and photonic stocks.",
+    url: "https://www.bloomberg.com/search?query=silicon+photonics",
+    source: { name: "Bloomberg" },
+    publishedAt: new Date(Date.now() - 13 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "IEEE Spectrum — Silicon Photonics",
+    description: "IEEE Spectrum technical coverage of silicon photonics research, CPO advances, and photonic IC integration.",
+    url: "https://spectrum.ieee.org/search?q=silicon+photonics",
+    source: { name: "IEEE Spectrum" },
+    publishedAt: new Date(Date.now() - 15 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "Light Reading — Optical Networking",
+    description: "Telecom and datacenter optical networking news — 400G/800G/1.6T deployments and CPO market coverage.",
+    url: "https://www.lightreading.com/optical-networking",
+    source: { name: "Light Reading" },
+    publishedAt: new Date(Date.now() - 17 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "EE Times — Photonic Integration",
+    description: "Electronics Engineering Times coverage of silicon photonics IC design, packaging, and manufacturing.",
+    url: "https://www.eetimes.com/category/photonics/",
+    source: { name: "EE Times" },
+    publishedAt: new Date(Date.now() - 19 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "Photonics.com — Industry News",
+    description: "Photonics industry news covering lasers, fiber optics, imaging, and silicon photonics components.",
+    url: "https://www.photonics.com/Articles/Silicon_Photonics/a66966",
+    source: { name: "Photonics.com" },
+    publishedAt: new Date(Date.now() - 21 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+  {
+    title: "WSJ — Optical Networking",
+    description: "Wall Street Journal tech coverage of optical networking, hyperscaler capex, and photonic semiconductor stocks.",
+    url: "https://www.wsj.com/search?query=co-packaged+optics",
+    source: { name: "WSJ" },
+    publishedAt: new Date(Date.now() - 23 * 3600000).toISOString(),
+    urlToImage: null,
+    commercial: true,
+  },
+];
+
 const SECTOR_NEWS = [
   {
     title: "Broadcom's CPO Technology Advances Silicon Photonics Adoption in AI Datacenters",
@@ -153,8 +219,8 @@ const SECTOR_NEWS = [
   },
 ];
 
-// Combined: company IR links first, then sector news
-const MOCK_ARTICLES = [...COMPANY_NEWS, ...SECTOR_NEWS];
+// Combined: company IR links first, then commercial sources, then sector news
+const MOCK_ARTICLES = [...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...SECTOR_NEWS];
 
 export async function GET() {
   const key = process.env.NEWSAPI_KEY;
@@ -175,8 +241,8 @@ export async function GET() {
 
     if (data.status !== "ok") throw new Error(data.message);
 
-    // Merge real news with company IR links
-    return NextResponse.json([...COMPANY_NEWS, ...data.articles]);
+    // Merge real news with company IR and commercial links
+    return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...data.articles]);
   } catch {
     return NextResponse.json(MOCK_ARTICLES);
   }

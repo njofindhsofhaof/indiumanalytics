@@ -10,6 +10,7 @@ const LAYERS = [
       { name: "LiNbO₃", note: "Modulator material · High risk" },
       { name: "Germanium", note: "Photodetector · High risk" },
       { name: "GaAs", note: "VCSEL substrate · Medium risk" },
+      { name: "Si₃N₄", note: "Passive waveguide · Low risk" },
     ],
   },
   {
@@ -37,16 +38,26 @@ const LAYERS = [
     ],
   },
   {
-    id: "integration",
-    label: "Photonic Integration & Packaging",
+    id: "integration-photonic",
+    label: "Photonic Integration",
     color: "border-purple-500/40 bg-purple-500/5",
     labelColor: "text-purple-400",
     items: [
       { name: "Coherent Corp (COHR)", note: "InP lasers + transceivers" },
       { name: "Lumentum (LITE)", note: "EML lasers, ROADMs" },
       { name: "MACOM (MTSI)", note: "III-V analog photonics" },
-      { name: "POET Technologies (POET)", note: "Optical interposer" },
-      { name: "Fabrinet (FN)", note: "Optical contract mfg." },
+      { name: "POET Technologies (POET)", note: "Optical interposer platform" },
+    ],
+  },
+  {
+    id: "integration-cpo",
+    label: "CPO Packaging",
+    color: "border-pink-500/40 bg-pink-500/5",
+    labelColor: "text-pink-400",
+    items: [
+      { name: "Fabrinet (FN)", note: "Optical contract manufacturing" },
+      { name: "TSMC COUPE", note: "Co-packaged optics platform" },
+      { name: "Ayar Labs", note: "TeraPHY optical I/O chiplet" },
     ],
   },
   {
@@ -57,8 +68,8 @@ const LAYERS = [
     items: [
       { name: "Broadcom (AVGO)", note: "CPO switch ASICs" },
       { name: "Marvell (MRVL)", note: "CPO + custom AI silicon" },
+      { name: "Ciena / Infinera", note: "Optical transport systems" },
       { name: "Google / AWS / Azure", note: "AI datacenter deployment" },
-      { name: "Cisco / Juniper", note: "Network systems" },
     ],
   },
 ];

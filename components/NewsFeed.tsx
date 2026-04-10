@@ -12,6 +12,7 @@ type Article = {
   publishedAt: string;
   urlToImage?: string | null;
   tag?: string; // company ticker e.g. "AVGO"
+  commercial?: boolean; // commercial news source
 };
 
 async function fetchNews(): Promise<Article[]> {
@@ -44,7 +45,8 @@ export default function NewsFeed() {
   }
 
   const companyNews = articles.filter((a) => a.tag);
-  const sectorNews = articles.filter((a) => !a.tag);
+  const commercialNews = articles.filter((a) => a.commercial && !a.tag);
+  const sectorNews = articles.filter((a) => !a.tag && !a.commercial);
 
   return (
     <div className="space-y-6">
@@ -74,6 +76,34 @@ export default function NewsFeed() {
                   <p className="text-muted text-xs truncate">{article.description?.split(".")[0]}</p>
                 </div>
                 <ExternalLink size={12} className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Commercial News Sources */}
+      {commercialNews.length > 0 && (
+        <div>
+          <h2 className="text-white font-semibold text-sm mb-3">
+            News Sources
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            {commercialNews.map((article, i) => (
+              <a
+                key={i}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-surface border border-border rounded-lg px-3 py-2 hover:border-accent/40 transition-colors group"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-white text-xs font-medium truncate group-hover:text-accent transition-colors">
+                    {article.source.name}
+                  </p>
+                  <p className="text-muted text-xs truncate">{article.title.split("—")[0].trim()}</p>
+                </div>
+                <ExternalLink size={11} className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
           </div>
