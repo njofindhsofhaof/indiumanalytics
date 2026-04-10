@@ -1,101 +1,249 @@
-import Image from "next/image";
+import { Metadata } from "next";
+import KPICard from "@/components/KPICard";
+import PriceChart from "@/components/PriceChart";
+import {
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  FileText,
+  Activity,
+} from "lucide-react";
+import { UPCOMING_CATALYSTS } from "@/data/thesis";
+import clsx from "clsx";
 
-export default function Home() {
+export const metadata: Metadata = { title: "Dashboard" };
+export const revalidate = 300;
+
+type QuoteNorm = {
+  symbol: string;
+  price: number;
+  changePct: number;
+  longName: string;
+};
+
+async function getDashboardData(): Promise<{
+  quotes: QuoteNorm[];
+  edgarCount: number;
+}> {
+  const TICKERS =
+    "AVGO,MRVL,COHR,LITE,FN,MTSI,AAOI,AXTI,POET,LWLG,TSEM,GFS";
+
+  try {
+    const [sparkRes, edgarRes] = await Promise.allSettled([
+      fetch(
+        `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${TICKERS}&range=1mo&interval=1d`,
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+            Accept: "application/json",
+          },
+          next: { revalidate: 300 },
+        }
+      ),
+      fetch(
+        "https://efts.sec.gov/LATEST/search-index?q=%22silicon+photonics%22&forms=8-K&dateRange=custom&startdt=2024-01-01",
+        {
+          headers: { "User-Agent": "PhotonicAnalytics research@photonic.ai" },
+          next: { revalidate: 3600 },
+        }
+      ),
+    ]);
+
+    let quotes: QuoteNorm[] = [];
+    if (sparkRes.status === "fulfilled" && sparkRes.value.ok) {
+      const data = await sparkRes.value.json();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const results: any[] = data.spark?.result ?? [];
+      quotes = results
+        .filter((r) => r?.response?.[0])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .map((r: any) => {
+          const resp = r.response[0];
+          const closes = (resp.indicators?.quote?.[0]?.close ?? []).filter(
+            Boolean
+          );
+          const price = resp.meta.regularMarketPrice ?? 0;
+          const prevClose = closes[0] ?? resp.meta.chartPreviousClose ?? price;
+          return {
+            symbol: r.symbol,
+            price,
+            changePct:
+              prevClose > 0
+                ? +((price / prevClose - 1) * 100).toFixed(2)
+                : 0,
+            longName: resp.meta.longName ?? r.symbol,
+          };
+        });
+    }
+
+    let edgarCount = 0;
+    if (edgarRes.status === "fulfilled" && edgarRes.value.ok) {
+      const edgarData = await edgarRes.value.json();
+      edgarCount = edgarData.hits?.total?.value ?? 0;
+    }
+
+    return { quotes, edgarCount };
+  } catch {
+    return { quotes: [], edgarCount: 0 };
+  }
+}
+
+export default async function DashboardPage() {
+  const { quotes, edgarCount } = await getDashboardData();
+
+  const sorted = [...quotes].sort((a, b) => b.changePct - a.changePct);
+  const topGainer = sorted[0];
+  const topLoser = sorted[sorted.length - 1];
+  const gainers = quotes.filter((q) => q.changePct > 0).length;
+  const losers = quotes.filter((q) => q.changePct < 0).length;
+  const sentiment =
+    gainers > losers ? "Bullish" : losers > gainers ? "Bearish" : "Neutral";
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        <p className="text-muted text-sm mt-1">
+          Silicon Photonics &amp; Photonic AI investment tracker
+        </p>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* KPI Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <KPICard
+          title="Top Gainer (1M)"
+          value={topGainer ? topGainer.symbol : "—"}
+          subtext={
+            topGainer
+              ? `+${topGainer.changePct.toFixed(2)}% · ${topGainer.longName}`
+              : "Loading…"
+          }
+          trend="up"
+          icon={TrendingUp}
+        />
+        <KPICard
+          title="Top Loser (1M)"
+          value={topLoser ? topLoser.symbol : "—"}
+          subtext={
+            topLoser
+              ? `${topLoser.changePct.toFixed(2)}% · ${topLoser.longName}`
+              : "Loading…"
+          }
+          trend="down"
+          icon={TrendingDown}
+        />
+        <KPICard
+          title="Market Sentiment"
+          value={sentiment}
+          subtext={`${gainers} up · ${losers} down · ${quotes.length - gainers - losers} flat`}
+          trend={
+            sentiment === "Bullish"
+              ? "up"
+              : sentiment === "Bearish"
+              ? "down"
+              : "neutral"
+          }
+          icon={Activity}
+        />
+        <KPICard
+          title="SEC Filings (SiPh)"
+          value={edgarCount > 0 ? edgarCount.toString() : "—"}
+          subtext="8-K filings since Jan 2024"
+          trend="neutral"
+          icon={FileText}
+        />
+      </div>
+
+      {/* Price Chart + Top Movers */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <PriceChart symbol="AVGO" defaultRange="3M" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Top Movers */}
+        <div className="bg-surface border border-border rounded-lg p-4">
+          <h2 className="text-white font-semibold text-sm mb-3">
+            Top Movers (1M)
+          </h2>
+          {sorted.length === 0 ? (
+            <p className="text-muted text-sm">Loading market data…</p>
+          ) : (
+            <div className="space-y-0">
+              <p className="text-xs text-muted mb-1 font-medium">Leaders</p>
+              {sorted.slice(0, 4).map((q) => (
+                <div
+                  key={q.symbol}
+                  className="flex items-center justify-between py-1.5 border-b border-border/50 last:border-0"
+                >
+                  <div>
+                    <span className="font-mono text-accent text-sm font-bold">
+                      {q.symbol}
+                    </span>
+                    <p className="text-muted text-xs">${q.price.toFixed(2)}</p>
+                  </div>
+                  <span className="font-mono text-sm font-semibold text-positive">
+                    +{q.changePct.toFixed(2)}%
+                  </span>
+                </div>
+              ))}
+              <p className="text-xs text-muted mt-2 mb-1 font-medium">Laggards</p>
+              {sorted
+                .slice(-3)
+                .reverse()
+                .map((q) => (
+                  <div
+                    key={q.symbol}
+                    className="flex items-center justify-between py-1.5 border-b border-border/50 last:border-0"
+                  >
+                    <div>
+                      <span className="font-mono text-accent text-sm font-bold">
+                        {q.symbol}
+                      </span>
+                      <p className="text-muted text-xs">${q.price.toFixed(2)}</p>
+                    </div>
+                    <span className="font-mono text-sm font-semibold text-negative">
+                      {q.changePct.toFixed(2)}%
+                    </span>
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Upcoming Catalysts */}
+      <div className="bg-surface border border-border rounded-lg p-4">
+        <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
+          <AlertTriangle size={14} className="text-yellow-400" />
+          Upcoming Catalysts
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {UPCOMING_CATALYSTS.map((c, i) => (
+            <div
+              key={i}
+              className="border border-border/60 rounded p-3 hover:border-accent/30 transition-colors"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <span
+                  className={clsx("text-xs px-1.5 py-0.5 rounded font-medium", {
+                    "bg-accent/10 text-accent": c.type === "milestone",
+                    "bg-yellow-500/10 text-yellow-400": c.type === "earnings",
+                    "bg-purple-500/10 text-purple-400":
+                      c.type === "conference",
+                  })}
+                >
+                  {c.type}
+                </span>
+                <span className="text-muted text-xs">{c.date}</span>
+              </div>
+              <p className="text-white text-sm font-medium">{c.event}</p>
+              <p className="text-muted text-xs mt-1">{c.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
