@@ -178,7 +178,6 @@ export default async function DashboardPage() {
           subtext="8-K filings since Jan 2024"
           trend="neutral"
           icon={FileText}
-          href="https://efts.sec.gov/LATEST/search-index?q=%22silicon+photonics%22&forms=8-K&dateRange=custom&startdt=2024-01-01"
         />
       </div>
 
@@ -239,15 +238,6 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* SEC Filings Table */}
-      <div className="bg-surface border border-border rounded-lg p-4">
-        <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
-          <FileText size={14} className="text-accent" />
-          Recent SEC 8-K Filings — Silicon Photonics
-        </h2>
-        <EdgarFilings />
-      </div>
-
       {/* Upcoming Catalysts */}
       <div className="bg-surface border border-border rounded-lg p-4">
         <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
@@ -278,6 +268,14 @@ export default async function DashboardPage() {
             </div>
           ))}
         </div>
+      </div>
+      {/* SEC Filings Table */}
+      <div className="bg-surface border border-border rounded-lg p-4">
+        <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
+          <FileText size={14} className="text-accent" />
+          Recent SEC 8-K Filings — Silicon Photonics
+        </h2>
+        <EdgarFilings />
       </div>
     </div>
   );
