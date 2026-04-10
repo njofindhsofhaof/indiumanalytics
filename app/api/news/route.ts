@@ -5,7 +5,7 @@ const COMPANY_NEWS = [
   {
     title: "Broadcom (AVGO) — Latest News & Press Releases",
     description: "Co-packaged optics, custom AI silicon, and photonic switch news from Broadcom investor relations.",
-    url: "https://investors.broadcom.com/news-releases",
+    url: "https://investors.broadcom.com/financial-information/financial-news-releases",
     source: { name: "Broadcom IR" },
     publishedAt: new Date(Date.now() - 1 * 3600000).toISOString(),
     urlToImage: null,
