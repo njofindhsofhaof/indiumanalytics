@@ -21,6 +21,7 @@ type Props = {
   defaultRange?: RangeKey;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (

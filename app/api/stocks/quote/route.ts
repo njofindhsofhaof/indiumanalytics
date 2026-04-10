@@ -38,12 +38,15 @@ export async function GET() {
     const results = data.spark?.result ?? [];
 
     const normalized = results
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .filter((r: any) => r?.response?.[0])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((r: any) => {
         const resp = r.response[0];
         const meta = resp.meta ?? {};
         const closes: number[] = (
           resp.indicators?.quote?.[0]?.close ?? []
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ).filter((v: any) => v != null);
 
         const price: number = meta.regularMarketPrice ?? closes[closes.length - 1] ?? 0;

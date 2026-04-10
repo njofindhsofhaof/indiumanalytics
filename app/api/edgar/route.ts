@@ -20,6 +20,7 @@ export async function GET() {
     const data = await res.json();
     const hits = data.hits?.hits ?? [];
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const filings = hits.slice(0, 10).map((h: any) => ({
       id: h._id,
       company: h._source?.display_names?.[0] ?? "Unknown",

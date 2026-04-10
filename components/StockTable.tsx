@@ -2,9 +2,11 @@
 
 import useSWR from "swr";
 import { fetchAllQuotes, type StockQuote } from "@/lib/stocks";
-import { STOCK_METADATA } from "@/data/stocks";
+import { STOCK_METADATA, type StockMeta } from "@/data/stocks";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import clsx from "clsx";
+
+type Row = StockMeta & Partial<StockQuote>;
 
 export default function StockTable() {
   const { data: quotes, isLoading } = useSWR("all-quotes", fetchAllQuotes, {
@@ -12,7 +14,7 @@ export default function StockTable() {
     refreshInterval: 300000,
   });
 
-  const rows = STOCK_METADATA.map((meta) => {
+  const rows: Row[] = STOCK_METADATA.map((meta) => {
     const live = quotes?.find((q: StockQuote) => q.symbol === meta.symbol);
     return { ...meta, ...live };
   });
@@ -35,9 +37,9 @@ export default function StockTable() {
           </thead>
           <tbody className="divide-y divide-border">
             {rows.map((row) => {
-              const chg = (row as any).changePct;
-              const isUp = chg > 0;
-              const isDown = chg < 0;
+              const chg = row.changePct;
+              const isUp = (chg ?? 0) > 0;
+              const isDown = (chg ?? 0) < 0;
               return (
                 <tr
                   key={row.symbol}
@@ -60,8 +62,8 @@ export default function StockTable() {
                   <td className="px-4 py-3 text-right font-mono text-white">
                     {isLoading ? (
                       <span className="text-muted">—</span>
-                    ) : (row as any).price ? (
-                      `$${((row as any).price as number).toFixed(2)}`
+                    ) : row.price ? (
+                      `$${row.price.toFixed(2)}`
                     ) : (
                       <span className="text-muted">—</span>
                     )}
@@ -92,18 +94,18 @@ export default function StockTable() {
                     )}
                   </td>
                   <td className="px-4 py-3 text-right text-muted font-mono hidden lg:table-cell">
-                    {(row as any).volume
-                      ? `${(((row as any).volume as number) / 1e6).toFixed(1)}M`
+                    {row.volume
+                      ? `${(row.volume / 1e6).toFixed(1)}M`
                       : "—"}
                   </td>
                   <td className="px-4 py-3 text-right text-muted font-mono hidden lg:table-cell">
-                    {(row as any).high52w
-                      ? `$${((row as any).high52w as number).toFixed(2)}`
+                    {row.high52w
+                      ? `$${row.high52w.toFixed(2)}`
                       : "—"}
                   </td>
                   <td className="px-4 py-3 text-right text-muted font-mono hidden lg:table-cell">
-                    {(row as any).low52w
-                      ? `$${((row as any).low52w as number).toFixed(2)}`
+                    {row.low52w
+                      ? `$${row.low52w.toFixed(2)}`
                       : "—"}
                   </td>
                 </tr>
