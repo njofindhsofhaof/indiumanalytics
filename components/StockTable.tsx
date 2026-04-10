@@ -37,7 +37,8 @@ export default function StockTable() {
           </thead>
           <tbody className="divide-y divide-border">
             {rows.map((row) => {
-              const chg = row.changePct;
+              // Force number — API might return string from .toFixed()
+              const chg = row.changePct !== undefined ? Number(row.changePct) : undefined;
               const isUp = (chg ?? 0) > 0;
               const isDown = (chg ?? 0) < 0;
               return (
