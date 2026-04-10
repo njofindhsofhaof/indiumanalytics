@@ -1,41 +1,19 @@
 import { Metadata } from "next";
 import MaterialsTable from "@/components/MaterialsTable";
-import { ExternalLink } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const MaterialNews = dynamic(() => import("@/components/MaterialNews"), {
+  ssr: false,
+  loading: () => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="bg-surface border border-border rounded-lg p-4 animate-pulse h-28" />
+      ))}
+    </div>
+  ),
+});
 
 export const metadata: Metadata = { title: "Materials" };
-
-const MATERIAL_NEWS = [
-  {
-    material: "InP",
-    title: "InP Supply Chain & Shortage Updates",
-    url: "https://news.google.com/search?q=indium+phosphide+supply+shortage",
-  },
-  {
-    material: "Ge",
-    title: "Germanium Export Controls (China 2023+)",
-    url: "https://news.google.com/search?q=germanium+export+controls+China",
-  },
-  {
-    material: "LiNbO₃",
-    title: "Thin-Film LiNbO₃ Scale-Up Progress",
-    url: "https://news.google.com/search?q=thin+film+lithium+niobate+production",
-  },
-  {
-    material: "GaAs",
-    title: "Gallium Export Restrictions & Photonics",
-    url: "https://news.google.com/search?q=gallium+export+restriction+photonics",
-  },
-  {
-    material: "Si₃N₄",
-    title: "Silicon Nitride Photonics Platform",
-    url: "https://news.google.com/search?q=silicon+nitride+photonics+waveguide",
-  },
-  {
-    material: "EOP",
-    title: "EO Polymer Commercial Progress (LWLG)",
-    url: "https://news.google.com/search?q=electro+optic+polymer+Lightwave+Logic",
-  },
-];
 
 export default function MaterialsPage() {
   return (
@@ -52,33 +30,12 @@ export default function MaterialsPage() {
 
       <MaterialsTable />
 
-      {/* Material News Grid */}
+      {/* Material News */}
       <div className="bg-surface border border-border rounded-lg p-4">
-        <h2 className="text-white font-semibold text-sm mb-3">
+        <h2 className="text-white font-semibold text-sm mb-4">
           Material News &amp; Updates
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {MATERIAL_NEWS.map((item) => (
-            <a
-              key={item.material}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 border border-border rounded-lg px-3 py-2.5 hover:border-accent/40 transition-colors group"
-            >
-              <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded flex-shrink-0">
-                {item.material}
-              </span>
-              <p className="text-white text-xs flex-1 min-w-0 truncate group-hover:text-accent transition-colors">
-                {item.title}
-              </p>
-              <ExternalLink
-                size={11}
-                className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
-              />
-            </a>
-          ))}
-        </div>
+        <MaterialNews />
       </div>
 
       <div className="bg-surface border border-border rounded-lg p-4">

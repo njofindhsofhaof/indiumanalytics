@@ -160,6 +160,29 @@ const COMMERCIAL_NEWS = [
   },
 ];
 
+const TICKER_KEYWORDS: Record<string, string[]> = {
+  AVGO: ["Broadcom", "AVGO", "Tomahawk"],
+  MRVL: ["Marvell", "MRVL", "Teralynx"],
+  COHR: ["Coherent Corp", "COHR"],
+  LITE: ["Lumentum", "LITE"],
+  FN: ["Fabrinet"],
+  MTSI: ["MACOM", "MTSI"],
+  AAOI: ["Applied Optoelectronics", "AAOI"],
+  AXTI: ["AXT Inc", "AXTI"],
+  POET: ["POET Technologies", "POET"],
+  LWLG: ["Lightwave Logic", "LWLG"],
+  TSEM: ["Tower Semiconductor", "Tower Semi", "TSEM"],
+  GFS: ["GlobalFoundries", "GFS"],
+};
+
+function detectTickers(text: string): string[] {
+  return Object.entries(TICKER_KEYWORDS)
+    .filter(([, kws]) =>
+      kws.some((kw) => text.toLowerCase().includes(kw.toLowerCase()))
+    )
+    .map(([ticker]) => ticker);
+}
+
 const SECTOR_NEWS = [
   {
     title: "Broadcom's CPO Technology Advances Silicon Photonics Adoption in AI Datacenters",
@@ -217,7 +240,10 @@ const SECTOR_NEWS = [
     publishedAt: new Date(Date.now() - 60 * 3600000).toISOString(),
     urlToImage: null,
   },
-];
+].map((article) => ({
+  ...article,
+  tickers: detectTickers(article.title + " " + article.description),
+}));
 
 // Combined: company IR links first, then commercial sources, then sector news
 const MOCK_ARTICLES = [...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...SECTOR_NEWS];
@@ -236,13 +262,18 @@ export async function GET() {
   const url = `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=30&apiKey=${key}`;
 
   try {
-    const res = await fetch(url, { next: { revalidate: 1800 } });
+    const res = await fetch(url, { next: { revalidate: 43200 } });
     const data = await res.json();
 
     if (data.status !== "ok") throw new Error(data.message);
 
-    // Merge real news with company IR and commercial links
-    return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...data.articles]);
+    // Tag real articles with tickers, merge with IR and commercial links
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const taggedArticles = (data.articles as any[]).map((a) => ({
+      ...a,
+      tickers: detectTickers((a.title ?? "") + " " + (a.description ?? "")),
+    }));
+    return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...taggedArticles]);
   } catch {
     return NextResponse.json(MOCK_ARTICLES);
   }

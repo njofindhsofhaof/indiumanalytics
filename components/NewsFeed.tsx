@@ -13,6 +13,7 @@ type Article = {
   urlToImage?: string | null;
   tag?: string; // company ticker e.g. "AVGO"
   commercial?: boolean; // commercial news source
+  tickers?: string[]; // detected related stock tickers
 };
 
 async function fetchNews(): Promise<Article[]> {
@@ -24,7 +25,7 @@ async function fetchNews(): Promise<Article[]> {
 export default function NewsFeed() {
   const { data: articles, isLoading } = useSWR("news", fetchNews, {
     revalidateOnFocus: false,
-    refreshInterval: 1800000,
+    refreshInterval: 43200000,
   });
 
   if (isLoading) {
@@ -134,6 +135,18 @@ export default function NewsFeed() {
                       <p className="text-muted text-xs mt-1.5 line-clamp-2">
                         {article.description}
                       </p>
+                    )}
+                    {article.tickers && article.tickers.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-1.5">
+                        {article.tickers.map((t) => (
+                          <span
+                            key={t}
+                            className="font-mono text-xs text-accent bg-accent/10 px-1.5 py-0.5 rounded"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     )}
                     <div className="flex items-center gap-2 mt-2 text-xs text-muted">
                       <span className="bg-border/60 px-1.5 py-0.5 rounded text-white/60">

@@ -10,6 +10,22 @@ const SectorTable = dynamic(() => import("@/components/SectorTable"), {
     </div>
   ),
 });
+
+const EdgarFilings = dynamic(() => import("@/components/EdgarFilings"), {
+  ssr: false,
+  loading: () => (
+    <div className="space-y-2">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className="flex items-center gap-4 border border-border rounded p-3 animate-pulse">
+          <div className="h-4 w-24 bg-border rounded flex-shrink-0" />
+          <div className="h-4 w-10 bg-border rounded flex-shrink-0" />
+          <div className="h-4 w-20 bg-border rounded flex-shrink-0" />
+          <div className="h-4 bg-border rounded flex-1" />
+        </div>
+      ))}
+    </div>
+  ),
+});
 import {
   TrendingUp,
   TrendingDown,
@@ -162,10 +178,20 @@ export default async function DashboardPage() {
           subtext="8-K filings since Jan 2024"
           trend="neutral"
           icon={FileText}
+          href="https://www.sec.gov/cgi-bin/srqsb?text=form-type%3D8-K+%22silicon+photonics%22&first=1&last=40"
         />
       </div>
 
-      {/* Price Chart + Top Movers */}
+      {/* SEC Filings Table */}
+      <div className="bg-surface border border-border rounded-lg p-4">
+        <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
+          <FileText size={14} className="text-accent" />
+          Recent SEC 8-K Filings — Silicon Photonics
+        </h2>
+        <EdgarFilings />
+      </div>
+
+      {/* Sector Table + Top Movers */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <SectorTable />
