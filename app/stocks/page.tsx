@@ -1,8 +1,18 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import StockTable from "@/components/StockTable";
-import PriceChart from "@/components/PriceChart";
 
 export const metadata: Metadata = { title: "Stock Tracker" };
+
+// Recharts uses browser APIs (ResizeObserver, window) — must load client-side only
+const PriceChart = dynamic(() => import("@/components/PriceChart"), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-surface border border-border rounded-lg p-4 h-[262px] flex items-center justify-center">
+      <span className="text-muted text-sm">Loading chart…</span>
+    </div>
+  ),
+});
 
 export default function StocksPage() {
   return (
