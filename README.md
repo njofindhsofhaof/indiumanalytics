@@ -6,7 +6,7 @@ Investment analytics dashboard for Silicon Photonics & Photonic AI — built wit
 
 ## Pages
 
-**Dashboard** — Real-time KPI cards (top gainer/loser, market sentiment, SEC filing count), sector performance table grouped by supply chain role with 1M/3M/1Y returns, top movers panel, and a SEC 8-K filings table updated daily.
+**Dashboard** — Photonic AI development stages panel (3 layers: Interconnect TRL 8–9, Photonic Switch TRL 5–7, Photonic Processor TRL 3–5) with TRL progress bars, milestone timelines, and technical challenges. Top movers panel (1M leaders/laggards).
 
 **Stocks** — Tracks 12 silicon photonics tickers with live price data, % change, volume, 52-week range, and interactive price charts across multiple timeframes.
 
@@ -30,11 +30,12 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
-### 2026-04-16 — Dashboard: Photonic AI development stages panel
-- Added 3-layer development status section to dashboard (Interconnect TRL 8–9, Photonic Switch TRL 5–7, Photonic Processor TRL 3–5)
-- Each layer shows TRL progress bars by sub-segment, timeline milestones with dates, and technical challenges (Layer 3)
+### 2026-04-16 — Dashboard: Photonic AI stages panel, remove Sector Performance table
+- Added PhotonicStages component (3-layer development status: Interconnect TRL 8–9, Photonic Switch TRL 5–7, Photonic Processor TRL 3–5) with TRL progress bars, milestone timelines, and technical challenges (Layer 3)
+- Removed Sector Performance table from dashboard
 - Removed KPI cards row (Top Gainer, Top Loser, Market Sentiment, SEC Filings)
 - Removed SEC 8-K filings table from dashboard
+- Top Movers expanded to 2-column grid (Leaders + Laggards)
 
 ### 2026-04-12 — Supply chain deep content
 - Added 6 expandable layer cards with detailed descriptions, key actor grids, and concentration bars
