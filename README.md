@@ -30,6 +30,9 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-04-16 — Dashboard: remove Top Movers panel
+- Removed Top Movers (1M) panel from dashboard
+
 ### 2026-04-16 — Dashboard: Photonic AI stages panel, remove Sector Performance table
 - Added PhotonicStages component (3-layer development status: Interconnect TRL 8–9, Photonic Switch TRL 5–7, Photonic Processor TRL 3–5) with TRL progress bars, milestone timelines, and technical challenges (Layer 3)
 - Removed Sector Performance table from dashboard
