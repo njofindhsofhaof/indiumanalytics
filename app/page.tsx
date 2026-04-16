@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-import KPICard from "@/components/KPICard";
+import PhotonicStages from "@/components/PhotonicStages";
+import { AlertTriangle } from "lucide-react";
+import { UPCOMING_CATALYSTS } from "@/data/thesis";
+import clsx from "clsx";
 
 const SectorTable = dynamic(() => import("@/components/SectorTable"), {
   ssr: false,
@@ -10,31 +13,6 @@ const SectorTable = dynamic(() => import("@/components/SectorTable"), {
     </div>
   ),
 });
-
-const EdgarFilings = dynamic(() => import("@/components/EdgarFilings"), {
-  ssr: false,
-  loading: () => (
-    <div className="space-y-2">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className="flex items-center gap-4 border border-border rounded p-3 animate-pulse">
-          <div className="h-4 w-24 bg-border rounded flex-shrink-0" />
-          <div className="h-4 w-10 bg-border rounded flex-shrink-0" />
-          <div className="h-4 w-20 bg-border rounded flex-shrink-0" />
-          <div className="h-4 bg-border rounded flex-1" />
-        </div>
-      ))}
-    </div>
-  ),
-});
-import {
-  TrendingUp,
-  TrendingDown,
-  AlertTriangle,
-  FileText,
-  Activity,
-} from "lucide-react";
-import { UPCOMING_CATALYSTS } from "@/data/thesis";
-import clsx from "clsx";
 
 export const metadata: Metadata = { title: "Dashboard" };
 export const revalidate = 300;
@@ -46,84 +24,48 @@ type QuoteNorm = {
   longName: string;
 };
 
-async function getDashboardData(): Promise<{
-  quotes: QuoteNorm[];
-  edgarCount: number;
-}> {
+async function getTopMovers(): Promise<QuoteNorm[]> {
   const TICKERS =
     "AVGO,MRVL,COHR,LITE,FN,MTSI,AAOI,AXTI,POET,LWLG,TSEM,GFS";
-
   try {
-    const [sparkRes, edgarRes] = await Promise.allSettled([
-      fetch(
-        `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${TICKERS}&range=1mo&interval=1d`,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-            Accept: "application/json",
-          },
-          next: { revalidate: 300 },
-        }
-      ),
-      fetch(
-        "https://efts.sec.gov/LATEST/search-index?q=%22silicon+photonics%22&forms=8-K&dateRange=custom&startdt=2024-01-01",
-        {
-          headers: { "User-Agent": "PhotonicAnalytics research@photonic.ai" },
-          next: { revalidate: 3600 },
-        }
-      ),
-    ]);
-
-    let quotes: QuoteNorm[] = [];
-    if (sparkRes.status === "fulfilled" && sparkRes.value.ok) {
-      const data = await sparkRes.value.json();
+    const res = await fetch(
+      `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${TICKERS}&range=1mo&interval=1d`,
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+          Accept: "application/json",
+        },
+        next: { revalidate: 300 },
+      }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const results: any[] = data.spark?.result ?? [];
+    return results
+      .filter((r) => r?.response?.[0])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const results: any[] = data.spark?.result ?? [];
-      quotes = results
-        .filter((r) => r?.response?.[0])
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .map((r: any) => {
-          const resp = r.response[0];
-          const closes = (resp.indicators?.quote?.[0]?.close ?? []).filter(
-            Boolean
-          );
-          const price = resp.meta.regularMarketPrice ?? 0;
-          const prevClose = closes[0] ?? resp.meta.chartPreviousClose ?? price;
-          return {
-            symbol: r.symbol,
-            price,
-            changePct:
-              prevClose > 0
-                ? +((price / prevClose - 1) * 100).toFixed(2)
-                : 0,
-            longName: resp.meta.longName ?? r.symbol,
-          };
-        });
-    }
-
-    let edgarCount = 0;
-    if (edgarRes.status === "fulfilled" && edgarRes.value.ok) {
-      const edgarData = await edgarRes.value.json();
-      edgarCount = edgarData.hits?.total?.value ?? 0;
-    }
-
-    return { quotes, edgarCount };
+      .map((r: any) => {
+        const resp = r.response[0];
+        const closes = (resp.indicators?.quote?.[0]?.close ?? []).filter(Boolean);
+        const price = resp.meta.regularMarketPrice ?? 0;
+        const prevClose = closes[0] ?? resp.meta.chartPreviousClose ?? price;
+        return {
+          symbol: r.symbol,
+          price,
+          changePct: prevClose > 0 ? +((price / prevClose - 1) * 100).toFixed(2) : 0,
+          longName: resp.meta.longName ?? r.symbol,
+        };
+      });
   } catch {
-    return { quotes: [], edgarCount: 0 };
+    return [];
   }
 }
 
 export default async function DashboardPage() {
-  const { quotes, edgarCount } = await getDashboardData();
-
+  const quotes = await getTopMovers();
   const sorted = [...quotes].sort((a, b) => b.changePct - a.changePct);
-  const topGainer = sorted[0];
-  const topLoser = sorted[sorted.length - 1];
-  const gainers = quotes.filter((q) => q.changePct > 0).length;
-  const losers = quotes.filter((q) => q.changePct < 0).length;
-  const sentiment =
-    gainers > losers ? "Bullish" : losers > gainers ? "Bearish" : "Neutral";
 
   return (
     <div className="space-y-6">
@@ -135,51 +77,8 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <KPICard
-          title="Top Gainer (1M)"
-          value={topGainer ? topGainer.symbol : "—"}
-          subtext={
-            topGainer
-              ? `+${topGainer.changePct.toFixed(2)}% · ${topGainer.longName}`
-              : "Loading…"
-          }
-          trend="up"
-          icon={TrendingUp}
-        />
-        <KPICard
-          title="Top Loser (1M)"
-          value={topLoser ? topLoser.symbol : "—"}
-          subtext={
-            topLoser
-              ? `${topLoser.changePct.toFixed(2)}% · ${topLoser.longName}`
-              : "Loading…"
-          }
-          trend="down"
-          icon={TrendingDown}
-        />
-        <KPICard
-          title="Market Sentiment"
-          value={sentiment}
-          subtext={`${gainers} up · ${losers} down · ${quotes.length - gainers - losers} flat`}
-          trend={
-            sentiment === "Bullish"
-              ? "up"
-              : sentiment === "Bearish"
-              ? "down"
-              : "neutral"
-          }
-          icon={Activity}
-        />
-        <KPICard
-          title="SEC Filings (SiPh)"
-          value={edgarCount > 0 ? edgarCount.toString() : "—"}
-          subtext="8-K filings since Jan 2024"
-          trend="neutral"
-          icon={FileText}
-        />
-      </div>
+      {/* Photonic AI Development Stages */}
+      <PhotonicStages />
 
       {/* Sector Table + Top Movers */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -255,8 +154,7 @@ export default async function DashboardPage() {
                   className={clsx("text-xs px-1.5 py-0.5 rounded font-medium", {
                     "bg-accent/10 text-accent": c.type === "milestone",
                     "bg-yellow-500/10 text-yellow-400": c.type === "earnings",
-                    "bg-purple-500/10 text-purple-400":
-                      c.type === "conference",
+                    "bg-purple-500/10 text-purple-400": c.type === "conference",
                   })}
                 >
                   {c.type}
@@ -268,14 +166,6 @@ export default async function DashboardPage() {
             </div>
           ))}
         </div>
-      </div>
-      {/* SEC Filings Table */}
-      <div className="bg-surface border border-border rounded-lg p-4">
-        <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
-          <FileText size={14} className="text-accent" />
-          Recent SEC 8-K Filings — Silicon Photonics
-        </h2>
-        <EdgarFilings />
       </div>
     </div>
   );

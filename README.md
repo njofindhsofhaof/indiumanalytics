@@ -30,6 +30,12 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-04-16 — Dashboard: Photonic AI development stages panel
+- Added 3-layer development status section to dashboard (Interconnect TRL 8–9, Photonic Switch TRL 5–7, Photonic Processor TRL 3–5)
+- Each layer shows TRL progress bars by sub-segment, timeline milestones with dates, and technical challenges (Layer 3)
+- Removed KPI cards row (Top Gainer, Top Loser, Market Sentiment, SEC Filings)
+- Removed SEC 8-K filings table from dashboard
+
 ### 2026-04-12 — Supply chain deep content
 - Added 6 expandable layer cards with detailed descriptions, key actor grids, and concentration bars
 - Added 5 structural bottlenecks section (InP duopoly, Ge export controls, CoWoS capacity, SOI monoculture, PDK fragmentation)
