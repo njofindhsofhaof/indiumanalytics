@@ -1,18 +1,8 @@
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
 import PhotonicStages from "@/components/PhotonicStages";
 import { AlertTriangle } from "lucide-react";
 import { UPCOMING_CATALYSTS } from "@/data/thesis";
 import clsx from "clsx";
-
-const SectorTable = dynamic(() => import("@/components/SectorTable"), {
-  ssr: false,
-  loading: () => (
-    <div className="bg-surface border border-border rounded-lg p-4 h-[262px] flex items-center justify-center">
-      <span className="text-muted text-sm">Loading sector data…</span>
-    </div>
-  ),
-});
 
 export const metadata: Metadata = { title: "Dashboard" };
 export const revalidate = 300;
@@ -80,21 +70,16 @@ export default async function DashboardPage() {
       {/* Photonic AI Development Stages */}
       <PhotonicStages />
 
-      {/* Sector Table + Top Movers */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <SectorTable />
-        </div>
-
-        {/* Top Movers */}
-        <div className="bg-surface border border-border rounded-lg p-4">
-          <h2 className="text-white font-semibold text-sm mb-3">
-            Top Movers (1M)
-          </h2>
-          {sorted.length === 0 ? (
-            <p className="text-muted text-sm">Loading market data…</p>
-          ) : (
-            <div className="space-y-0">
+      {/* Top Movers */}
+      <div className="bg-surface border border-border rounded-lg p-4">
+        <h2 className="text-white font-semibold text-sm mb-3">
+          Top Movers (1M)
+        </h2>
+        {sorted.length === 0 ? (
+          <p className="text-muted text-sm">Loading market data…</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div>
               <p className="text-xs text-muted mb-1 font-medium">Leaders</p>
               {sorted.slice(0, 4).map((q) => (
                 <div
@@ -112,9 +97,11 @@ export default async function DashboardPage() {
                   </span>
                 </div>
               ))}
-              <p className="text-xs text-muted mt-2 mb-1 font-medium">Laggards</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted mb-1 font-medium">Laggards</p>
               {sorted
-                .slice(-3)
+                .slice(-4)
                 .reverse()
                 .map((q) => (
                   <div
@@ -133,8 +120,8 @@ export default async function DashboardPage() {
                   </div>
                 ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Upcoming Catalysts */}
