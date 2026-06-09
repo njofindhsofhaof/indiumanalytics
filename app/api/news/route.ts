@@ -92,7 +92,7 @@ async function fetchGoogleNewsRSS(): Promise<Article[]> {
   if (!res.ok) throw new Error(`RSS ${res.status}`);
 
   const xml = await res.text();
-  const blocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+  const blocks = Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/g)).map((m) => m[1]);
 
   return blocks
     .slice(0, 25)
