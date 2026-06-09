@@ -26,51 +26,51 @@ const LAYERS: Layer[] = [
     status: "Commercial · At scale",
     segments: [
       { label: "Rack-to-rack fiber optic",  trl: "TRL 9",   pct: 100 },
-      { label: "Co-packaged optics (CPO)",  trl: "TRL 7–8", pct: 83  },
-      { label: "Chip-to-chip optical",      trl: "TRL 6–7", pct: 72  },
-      { label: "Board-level optical",       trl: "TRL 5–6", pct: 61  },
+      { label: "Co-packaged optics (CPO)",  trl: "TRL 8–9", pct: 92  },
+      { label: "Chip-to-chip optical",      trl: "TRL 7–8", pct: 83  },
+      { label: "Board-level optical",       trl: "TRL 6–7", pct: 72  },
     ],
     milestones: [
       {
-        date: "Today",
-        desc: "Tens of millions of SiPh transceivers deployed per year across hyperscaler data centers (NVIDIA, Google, Amazon). Optical I/O reaches 4 Tb/s, 5 ns latency, 5 pJ/bit — 10× more efficient than electronics at the same speed.",
+        date: "2026 (Now)",
+        desc: "1.6T transceivers entering volume deployment at hyperscalers. CPO at 51.2 Tb/s switches now standard in new datacenter builds. NVIDIA, Google, Amazon, and Microsoft committed to optical I/O-first architectures through 2028 capex cycles.",
       },
       {
         date: "Mar 2025",
-        desc: "NVIDIA Spectrum-X Co-Packaged Optics launch (TSMC, Coherent, Corning, Lumentum consortium). Direct photonic connection to chipset — 3.5× electrical efficiency, 4× fewer lasers, 63× better signal integrity.",
+        desc: "NVIDIA Spectrum-X Co-Packaged Optics launched (TSMC, Coherent, Corning, Lumentum consortium). Direct photonic connection to chipset — 3.5× electrical efficiency, 4× fewer lasers, 63× better signal integrity.",
       },
       {
-        date: "2025–2027",
-        desc: "Lightmatter Passage + Celestial AI photonic fabric. Photonic interposer connects GPU clusters, solving bandwidth bottleneck between compute nodes.",
+        date: "2026–2027",
+        desc: "Lightmatter Passage M1000 and Celestial AI photonic fabric entering customer evaluation. Photonic interposer connecting GPU clusters at rack scale — targeting 1 Pb/s aggregate bandwidth.",
       },
       {
         date: "2027–2030",
-        desc: "Board-to-board optical inside servers — not just between servers. CPU/GPU boards connected directly via fiber, eliminating electrical signaling at board level.",
+        desc: "Board-to-board optical inside servers — CPU/GPU boards connected directly via fiber, eliminating electrical signaling at board level. Si₃N₄ optical backplanes targeted.",
       },
     ],
   },
   {
     color: "blue",
     title: "Layer 2 — Photonic Switch",
-    trlRange: "5–7 / 9",
-    status: "Pilot · Early commercial",
+    trlRange: "6–8 / 9",
+    status: "Early commercial · Scaling",
     segments: [
-      { label: "ASIC + CPO switch",             trl: "TRL 7",   pct: 78 },
-      { label: "Fully photonic switch",          trl: "TRL 5–6", pct: 61 },
-      { label: "Photonic AI-optimised switch",   trl: "TRL 3–4", pct: 39 },
+      { label: "ASIC + CPO switch",             trl: "TRL 8",   pct: 89 },
+      { label: "Fully photonic switch",          trl: "TRL 6–7", pct: 72 },
+      { label: "Photonic AI-optimised switch",   trl: "TRL 4–5", pct: 50 },
     ],
     milestones: [
       {
-        date: "Today",
-        desc: "Electronic switch + CPO (ASIC + optics). The switching ASIC still computes with electrons — photons handle data in/out only. NVIDIA, Arista, and Cisco are at this stage.",
+        date: "2026 (Now)",
+        desc: "ASIC + CPO switches (Broadcom Tomahawk 5, Marvell Teralynx 10) in production deployments. 51.2 Tb/s ports with CPO now economically preferred over pluggables at hyperscale density. AMD acquired ENOSEMI (May 2025) to accelerate photonic interconnect manufacturing.",
       },
       {
         date: "2025–2026",
-        desc: "IPRONICS ONE — fully photonic switch. Both chip and connections are a photonic integrated circuit (PIC). IPRONICS (Spain) and Lumentum (US) shipping product. Photon routing instead of electron routing — much lower latency and power.",
+        desc: "IPRONICS ONE and Lumentum fully photonic switch PICs sampling to Tier 1 OEMs. Photon routing instead of electron routing — sub-nanosecond switching latency demonstrated in lab.",
       },
       {
         date: "2027–2030",
-        desc: "Photonic AI switch becomes standard in hyperscale data centers, replacing all spine/leaf electronic switches. Major reduction in inter-server latency and network power consumption.",
+        desc: "Photonic AI switch becomes standard in hyperscale spine/leaf architecture. AI-optimised optical flow steering — major reduction in inter-server latency and network power consumption.",
       },
     ],
   },
@@ -78,12 +78,12 @@ const LAYERS: Layer[] = [
     color: "amber",
     title: "Layer 3 — Photonic Processor",
     trlRange: "3–5 / 9",
-    status: "Research · No production chip yet",
+    status: "Research · Pre-production",
     segments: [
-      { label: "Matrix multiply (ONN)",   trl: "TRL 4–5", pct: 50 },
-      { label: "Full DNN on single chip", trl: "TRL 3–4", pct: 39 },
+      { label: "Matrix multiply (ONN)",   trl: "TRL 5",   pct: 56 },
+      { label: "Full DNN on single chip", trl: "TRL 4–5", pct: 50 },
       { label: "Programmable processor",  trl: "TRL 3–4", pct: 39 },
-      { label: "Production-ready chip",   trl: "TRL 1–2", pct: 17 },
+      { label: "Production-ready chip",   trl: "TRL 2–3", pct: 25 },
     ],
     milestones: [
       {
@@ -96,19 +96,23 @@ const LAYERS: Layer[] = [
       },
       {
         date: "2025",
-        desc: "LightIn — programmable photonic processor (arXiv 2025). 40 MZI programmable unit cells, 3.8×3 mm². Runs matrix multiply, image recognition, channel switching, and PUF security on one chip.",
+        desc: "LightIn — programmable photonic processor (arXiv). 40 MZI programmable unit cells, 3.8×3 mm². Runs matrix multiply, image recognition, channel switching, and PUF security on one chip.",
       },
       {
         date: "2025",
         desc: "64×64 photonic accelerator — 1 GHz MAC, 7.61-bit precision (Nature). 65nm SiPh + 28nm CMOS co-packaged, 16,000+ photonic components. Runs max-cut optimization.",
       },
       {
+        date: "2026 (Now)",
+        desc: "Lightmatter and Celestial AI in A/B customer tape-outs. No production silicon yet — still pre-revenue. EO polymer modulators (LWLG) and TFLN platforms at pilot-scale validation for 200Gbaud+ applications.",
+      },
+      {
         date: "2027–2030",
-        desc: "First production photonic AI accelerators for niche workloads. Inference-specific first, training later. Lightmatter and Celestial AI are targeting this phase.",
+        desc: "First production photonic AI accelerators for inference-specific niche workloads. Lightmatter Passage and Celestial AI targeting early revenue at specialized HPC/AI deployments.",
       },
       {
         date: "2030+",
-        desc: "Photonic TPU in AI data centers — the ultimate goal. Silicon-photonic AI accelerators become standard in hyperscale, especially for bandwidth-bound training and inference.",
+        desc: "Photonic TPU in hyperscale AI datacenters — the ultimate goal. Silicon-photonic AI accelerators standard for bandwidth-bound training and inference at scale.",
       },
     ],
     challenges: [
