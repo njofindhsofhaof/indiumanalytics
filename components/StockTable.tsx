@@ -29,7 +29,7 @@ export default function StockTable() {
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide">Company</th>
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide hidden md:table-cell">Sector</th>
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right">Price</th>
-              <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right">1M Chg</th>
+              <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right">1D Chg</th>
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right hidden lg:table-cell">Volume</th>
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right hidden lg:table-cell">52W High</th>
               <th className="px-4 py-3 font-medium text-xs uppercase tracking-wide text-right hidden lg:table-cell">52W Low</th>
