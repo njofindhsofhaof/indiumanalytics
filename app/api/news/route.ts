@@ -59,9 +59,9 @@ function detectTickers(text: string): string[] {
 
 function stripHtml(html: string): string {
   return html
-    .replace(/<[^>]+>/g, "")
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/<[^>]+>/g, "")
     .trim();
 }
 
