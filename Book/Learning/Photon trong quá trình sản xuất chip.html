@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///Users/macbookairm1/Downloads/photon_in_chip_manufacturing.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photon trong quá trình sản xuất chip</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f4ef;
+    --color-background-tertiary: #eeede8;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #5a5955;
+    --color-text-tertiary: #8a8880;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.25);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-primary: #1e1e1c;
+      --color-background-secondary: #2a2a27;
+      --color-background-tertiary: #333330;
+      --color-text-primary: #e8e6de;
+      --color-text-secondary: #a8a69e;
+      --color-text-tertiary: #706e67;
+      --color-border-tertiary: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.2);
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 2rem;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+  }
+  .page-sub {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  /* SVG theme classes — matching the claude.ai widget system */
+  svg .t  { font-family: var(--font-sans); font-size: 14px; font-weight: 400; fill: var(--color-text-primary); }
+  svg .ts { font-family: var(--font-sans); font-size: 12px; font-weight: 400; fill: var(--color-text-secondary); }
+  svg .th { font-family: var(--font-sans); font-size: 14px; font-weight: 500; fill: var(--color-text-primary); }
+
+  /* c-amber */
+  svg .c-amber > rect, svg .c-amber > ellipse, svg .c-amber > circle { fill: #FAEEDA; stroke: #BA7517; }
+  svg .c-amber > text.th { fill: #633806; }
+  svg .c-amber > text.ts { fill: #854F0B; }
+  svg .c-amber > text.t  { fill: #633806; }
+
+  /* c-gray */
+  svg .c-gray > rect, svg .c-gray > ellipse, svg .c-gray > circle { fill: #F1EFE8; stroke: #888780; }
+  svg .c-gray > text.th { fill: #2C2C2A; }
+  svg .c-gray > text.ts { fill: #5F5E5A; }
+
+  /* c-teal */
+  svg .c-teal > rect, svg .c-teal > ellipse, svg .c-teal > circle { fill: #E1F5EE; stroke: #1D9E75; }
+  svg .c-teal > text.th { fill: #085041; }
+  svg .c-teal > text.ts { fill: #0F6E56; }
+
+  /* c-purple */
+  svg .c-purple > rect, svg .c-purple > ellipse, svg .c-purple > circle { fill: #EEEDFE; stroke: #534AB7; }
+  svg .c-purple > text.th { fill: #3C3489; }
+  svg .c-purple > text.ts { fill: #534AB7; }
+
+  @media (prefers-color-scheme: dark) {
+    svg .t  { fill: #e8e6de; }
+    svg .ts { fill: #a8a69e; }
+    svg .th { fill: #e8e6de; }
+
+    svg .c-amber > rect, svg .c-amber > ellipse, svg .c-amber > circle { fill: #633806; stroke: #EF9F27; }
+    svg .c-amber > text.th { fill: #FAC775; }
+    svg .c-amber > text.ts { fill: #EF9F27; }
+    svg .c-amber > text.t  { fill: #FAC775; }
+
+    svg .c-gray > rect, svg .c-gray > ellipse, svg .c-gray > circle { fill: #2C2C2A; stroke: #5F5E5A; }
+    svg .c-gray > text.th { fill: #D3D1C7; }
+    svg .c-gray > text.ts { fill: #B4B2A9; }
+
+    svg .c-teal > rect, svg .c-teal > ellipse, svg .c-teal > circle { fill: #085041; stroke: #1D9E75; }
+    svg .c-teal > text.th { fill: #9FE1CB; }
+    svg .c-teal > text.ts { fill: #5DCAA5; }
+
+    svg .c-purple > rect, svg .c-purple > ellipse, svg .c-purple > circle { fill: #26215C; stroke: #7F77DD; }
+    svg .c-purple > text.th { fill: #CECBF6; }
+    svg .c-purple > text.ts { fill: #AFA9EC; }
+  }
+
+  .arr {
+    stroke: var(--color-text-secondary);
+    stroke-width: 1.5px;
+    fill: none;
+  }
+  .leader {
+    stroke: var(--color-text-tertiary);
+    stroke-width: 0.5px;
+    stroke-dasharray: 4 3;
+    fill: none;
+  }
+
+  /* Insight cards below diagram */
+  .insight-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 1.5rem; }
+  @media (max-width: 600px) { .insight-grid { grid-template-columns: 1fr; } }
+  .insight-card { padding: 12px 14px; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+  .insight-card.role1 { border-color: #BA7517; }
+  .insight-card.role2 { border-color: #534AB7; }
+  .insight-card.role3 { border-color: #0F6E56; }
+  .insight-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px; }
+  .insight-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+
+  .source-note { margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="page-title">Photon trong quá trình sản xuất chip</div>
+  <div class="page-sub">3 vai trò — 2 đã thực tế ngay hôm nay, 1 đang đến · Nguồn: OECD 2025, China Semiconductors 2024 (ITIF), IPSR-I 2024</div>
+
+  <svg width="100%" viewBox="0 0 680 820" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>Photon xuất hiện ở đâu trong quá trình làm chip? — 3 vai trò</title>
+    <desc>Sơ đồ cho thấy photon xuất hiện ở 3 giai đoạn: lithography (in mạch), metrology (kiểm tra chất lượng), và silicon photonics chip (tương lai)</desc>
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </marker>
+    </defs>
+
+    <!-- ── TITLE ── -->
+    <text class="th" x="340" y="32" text-anchor="middle">Photon xuất hiện ở đâu trong quá trình làm chip?</text>
+    <text class="ts" x="340" y="50" text-anchor="middle">3 vai trò — 2 đã thực tế, 1 đang đến</text>
+
+    <!-- ══ ROLE 1: LITHOGRAPHY ══ -->
+    <g class="c-amber">
+      <rect x="40" y="68" width="300" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="190" y="91" text-anchor="middle" dominant-baseline="central">Vai trò 1 — Công cụ in mạch (ngay hôm nay)</text>
+    </g>
+    <text class="ts" x="360" y="82" text-anchor="start">EUV = 13.5nm · DUV = 193nm</text>
+    <text class="ts" x="360" y="97" text-anchor="start">Ánh sáng "khắc" transistor lên wafer</text>
+
+    <!-- Lithography: nguồn sáng -->
+    <g class="c-amber">
+      <rect x="50" y="120" width="120" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="110" y="138" text-anchor="middle" dominant-baseline="central">Nguồn sáng</text>
+      <text class="ts" x="110" y="155" text-anchor="middle" dominant-baseline="central">Laser / plasma tin</text>
+    </g>
+
+    <!-- Arrow + photon label -->
+    <line x1="170" y1="142" x2="218" y2="142" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+    <text class="ts" x="194" y="134" text-anchor="middle" fill="#BA7517">photon</text>
+
+    <!-- Photomask -->
+    <g class="c-gray">
+      <rect x="218" y="120" width="120" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="278" y="138" text-anchor="middle" dominant-baseline="central">Photomask</text>
+      <text class="ts" x="278" y="155" text-anchor="middle" dominant-baseline="central">Mặt nạ mạch</text>
+    </g>
+
+    <line x1="338" y1="142" x2="386" y2="142" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+    <text class="ts" x="362" y="134" text-anchor="middle" fill="#BA7517">chiếu qua</text>
+
+    <!-- Thấu kính -->
+    <g class="c-gray">
+      <rect x="386" y="120" width="100" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="436" y="138" text-anchor="middle" dominant-baseline="central">Thấu kính</text>
+      <text class="ts" x="436" y="155" text-anchor="middle" dominant-baseline="central">Thu nhỏ 4×</text>
+    </g>
+
+    <line x1="436" y1="164" x2="436" y2="198" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+
+    <!-- Wafer + photoresist -->
+    <g class="c-teal">
+      <rect x="330" y="198" width="210" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="435" y="216" text-anchor="middle" dominant-baseline="central">Wafer + photoresist</text>
+      <text class="ts" x="435" y="233" text-anchor="middle" dominant-baseline="central">Hóa chất phản ứng với photon</text>
+    </g>
+
+    <text class="ts" x="330" y="262" text-anchor="start" fill="#0F6E56">→ Sau khi rửa: pattern mạch hiện ra trên bề mặt wafer</text>
+
+    <!-- Role 1 key insight -->
+    <rect x="40" y="274" width="600" height="36" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="291" text-anchor="middle" fill="#854F0B">EUV (13.5nm) — ASML là công ty duy nhất làm được. Bước sóng càng ngắn</text>
+    <text class="ts" x="340" y="304" text-anchor="middle" fill="#854F0B">→ in transistor càng nhỏ → chip càng mạnh. Không có photon, không có chip.</text>
+
+    <!-- ══ ROLE 2: METROLOGY ══ -->
+    <g class="c-purple">
+      <rect x="40" y="328" width="300" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="190" y="351" text-anchor="middle" dominant-baseline="central">Vai trò 2 — Kiểm tra &amp; đo lường (ngay hôm nay)</text>
+    </g>
+    <text class="ts" x="360" y="342" text-anchor="start">KLA dùng laser để soi lỗi</text>
+    <text class="ts" x="360" y="357" text-anchor="start">Không thể dùng mắt hay điện</text>
+
+    <!-- Three inspection types -->
+    <g class="c-purple">
+      <rect x="50" y="382" width="168" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="134" y="403" text-anchor="middle" dominant-baseline="central">Defect inspection</text>
+      <text class="ts" x="134" y="424" text-anchor="middle" dominant-baseline="central">Laser tìm hạt bụi, vết nứt</text>
+    </g>
+
+    <g class="c-purple">
+      <rect x="238" y="382" width="168" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="322" y="403" text-anchor="middle" dominant-baseline="central">Overlay metrology</text>
+      <text class="ts" x="322" y="424" text-anchor="middle" dominant-baseline="central">Đo sai lệch giữa các lớp</text>
+    </g>
+
+    <g class="c-purple">
+      <rect x="426" y="382" width="194" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="523" y="403" text-anchor="middle" dominant-baseline="central">CD-SEM inspection</text>
+      <text class="ts" x="523" y="424" text-anchor="middle" dominant-baseline="central">Đo chiều rộng transistor</text>
+    </g>
+
+    <!-- Role 2 key insight -->
+    <rect x="40" y="452" width="600" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="469" text-anchor="middle" fill="#3C3489">KLA Corporation (Mỹ) kiểm soát 76% phân khúc này. Mỗi wafer được quét hàng trăm lần</text>
+    <text class="ts" x="340" y="482" text-anchor="middle" fill="#3C3489">— không có bước này, fab không biết chip có lỗi không.</text>
+
+    <!-- ══ ROLE 3: SILICON PHOTONICS ══ -->
+    <g class="c-teal">
+      <rect x="40" y="506" width="340" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="210" y="529" text-anchor="middle" dominant-baseline="central">Vai trò 3 — Photon LÀ chip (đang đến, 2025–2030+)</text>
+    </g>
+    <text class="ts" x="400" y="520" text-anchor="start">Chip silicon photonics</text>
+    <text class="ts" x="400" y="535" text-anchor="start">Photon = tín hiệu xử lý thông tin</text>
+
+    <!-- SiPh chip cross-section -->
+    <rect x="50" y="558" width="580" height="180" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"></rect>
+    <text class="ts" x="340" y="576" text-anchor="middle" fill="#085041">Silicon Photonics chip — cross-section</text>
+
+    <!-- Layer: SiN waveguide -->
+    <rect x="70" y="586" width="540" height="28" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="605" text-anchor="middle" fill="#085041">SiN waveguide — dẫn ánh sáng thụ động</text>
+
+    <!-- Layer: Si active -->
+    <rect x="70" y="622" width="540" height="28" rx="4" fill="#5DCAA5" stroke="#0F6E56" stroke-width="0.5"></rect>
+    <text class="ts" x="200" y="641" text-anchor="middle" fill="#04342C">Si waveguide · Modulator · Ge photodetector</text>
+
+    <!-- Photon arrows inside chip -->
+    <line x1="82" y1="636" x2="160" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+    <line x1="230" y1="636" x2="310" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+    <line x1="380" y1="636" x2="460" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+
+    <!-- Layer: BOX -->
+    <rect x="70" y="658" width="540" height="28" rx="4" fill="#FAC775" stroke="#854F0B" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="677" text-anchor="middle" fill="#633806">BOX — Buried Oxide ~2µm (Soitec SOI wafer)</text>
+
+    <!-- Layer: Handle -->
+    <rect x="70" y="694" width="540" height="28" rx="4" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="713" text-anchor="middle" fill="#444441">Silicon handle wafer ~800µm</text>
+
+    <!-- Role 3 key insight -->
+    <rect x="40" y="750" width="600" height="50" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="770" text-anchor="middle" fill="#085041">Trong chip này, photon CHẠY qua waveguide và THỰC HIỆN tính toán —</text>
+    <text class="ts" x="340" y="788" text-anchor="middle" fill="#085041">thay vì electron chạy qua transistor. Chip Taichi đạt 160 TOPS/W nhờ cơ chế này.</text>
+  </svg>
+
+  <!-- Insight cards -->
+  <div class="insight-grid">
+    <div class="insight-card role1">
+      <div class="insight-title">Vai trò 1: Bút khắc mạch</div>
+      <div class="insight-body">Lithography dùng photon EUV (13.5nm) hoặc DUV (193nm) để "in" pattern transistor lên wafer qua photomask. Bước sóng ngắn hơn → transistor nhỏ hơn → chip mạnh hơn. ASML là công ty duy nhất làm được máy EUV.</div>
+    </div>
+    <div class="insight-card role2">
+      <div class="insight-title">Vai trò 2: Mắt kiểm tra</div>
+      <div class="insight-body">Sau mỗi lớp trong 500+ bước fab, laser quét toàn bộ wafer tìm lỗi nanometer. KLA Corporation (Mỹ) kiểm soát 76% thị trường này. Không thể dùng điện để đo — ánh sáng là cách duy nhất đọc bề mặt nanometer.</div>
+    </div>
+    <div class="insight-card role3">
+      <div class="insight-title">Vai trò 3: Bản thân chip</div>
+      <div class="insight-body">Silicon photonics chip dùng photon thay electron để xử lý thông tin. Photon chạy qua waveguide, modulator mã hóa data, photodetector đọc ra. Chip Taichi: 160 TOPS/W — gấp 50–160 lần GPU thông thường.</div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> OECD "Mapping the Semiconductor Value Chain" (2025) · ITIF "China Semiconductors" (2024) · IPSR-I Silicon Photonics Roadmap (2024) · BCG/SIA Emerging Resilience (2024) · arXiv 2504.01463 (LightIn, 2025)
+  </div>
+</div>
+
+
+</body></html>

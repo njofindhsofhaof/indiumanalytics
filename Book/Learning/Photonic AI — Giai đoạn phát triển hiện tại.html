@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///Users/macbookairm1/Downloads/photonic_ai_development_stage.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photonic AI — Giai đoạn phát triển hiện tại</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f4ef;
+  --color-background-tertiary: #eeede8;
+  --color-text-primary: #1a1a18;
+  --color-text-secondary: #5a5955;
+  --color-text-tertiary: #8a8880;
+  --color-border-tertiary: rgba(0,0,0,0.12);
+  --color-border-secondary: rgba(0,0,0,0.25);
+  --color-border-primary: rgba(0,0,0,0.35);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #1e1e1c;
+    --color-background-secondary: #2a2a27;
+    --color-background-tertiary: #333330;
+    --color-text-primary: #e8e6de;
+    --color-text-secondary: #a8a69e;
+    --color-text-tertiary: #706e67;
+    --color-border-tertiary: rgba(255,255,255,0.1);
+    --color-border-secondary: rgba(255,255,255,0.2);
+    --color-border-primary: rgba(255,255,255,0.3);
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+}
+.page-title { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.page-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+
+/* TABS */
+.layer-tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.lt { padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s; }
+.lt:hover:not(.on) { border-color: var(--color-border-secondary); color: var(--color-text-primary); }
+.lt.on { color: var(--color-text-primary); border-color: var(--color-border-primary); background: var(--color-background-primary); }
+.lt.on.l1 { border-color: #1D9E75; color: #0F6E56; }
+.lt.on.l2 { border-color: #185FA5; color: #185FA5; }
+.lt.on.l3 { border-color: #854F0B; color: #854F0B; }
+@media (prefers-color-scheme: dark) {
+  .lt.on.l1 { color: #5DCAA5; }
+  .lt.on.l2 { color: #85B7EB; }
+  .lt.on.l3 { color: #FAC775; }
+}
+
+/* LAYER VIEWS */
+.layer-view { display: none; }
+.layer-view.on { display: block; }
+
+/* STATUS GRID */
+.status-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+@media (max-width: 500px) { .status-grid { grid-template-columns: 1fr; } }
+.sc { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; border: 0.5px solid var(--color-border-tertiary); }
+.sc-label { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px; }
+.sc-val { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.sc-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.4; }
+
+/* TRL BARS */
+.trl-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.trl-label { font-size: 11px; color: var(--color-text-tertiary); white-space: nowrap; min-width: 170px; }
+.trl-track { flex: 1; height: 10px; background: var(--color-background-secondary); border-radius: 5px; position: relative; border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.trl-fill { height: 100%; border-radius: 5px; }
+.trl-fill.teal { background: #1D9E75; }
+.trl-fill.blue { background: #185FA5; }
+.trl-fill.amber { background: #EF9F27; }
+.trl-val { font-size: 12px; font-weight: 500; min-width: 60px; text-align: right; color: var(--color-text-secondary); }
+
+.trl-section-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin: 1rem 0 10px; }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+.tl-item { display: grid; grid-template-columns: 110px 20px 1fr; gap: 0 12px; align-items: start; }
+.tl-year { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-align: right; padding-top: 10px; line-height: 1.3; }
+.tl-spine { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+.tl-line { width: 2px; flex: 1; min-height: 24px; }
+.tl-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; margin-bottom: 8px; }
+.tl-card-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.tl-card-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+
+/* STATUS TAGS */
+.tl-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-right: 6px; margin-bottom: 4px; font-weight: 500; }
+.tag-done  { background: #E1F5EE; color: #0F6E56; }
+.tag-wip   { background: #E6F1FB; color: #185FA5; }
+.tag-soon  { background: #FAEEDA; color: #854F0B; }
+.tag-future{ background: #F1EFE8; color: #5F5E5A; }
+@media (prefers-color-scheme: dark) {
+  .tag-done  { background: #085041; color: #9FE1CB; }
+  .tag-wip   { background: #0C447C; color: #B5D4F4; }
+  .tag-soon  { background: #633806; color: #FAC775; }
+  .tag-future{ background: #2C2C2A; color: #B4B2A9; }
+}
+
+/* CHALLENGE BOX */
+.challenge-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-top: 1.25rem; border-left: 3px solid #BA7517; }
+.challenge-box strong { color: var(--color-text-primary); font-weight: 500; }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 1rem 0 1.5rem; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-secondary); }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* SOURCE */
+.source-note { margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-title">Photonic AI — Đang ở giai đoạn nào rồi?</div>
+  <div class="page-sub">Ba lớp phát triển song song với TRL và timeline khác nhau · Nguồn: TEMATYS, IPSR-I, arXiv 2025, Nature 2024–2025</div>
+
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div> Tầng 1: Interconnect</div>
+    <div class="leg"><div class="leg-dot" style="background:#185FA5"></div> Tầng 2: Photonic switch</div>
+    <div class="leg"><div class="leg-dot" style="background:#EF9F27"></div> Tầng 3: Photonic processor</div>
+    <span class="tl-tag tag-done">Thực tế</span>
+    <span class="tl-tag tag-wip">Đang triển khai</span>
+    <span class="tl-tag tag-soon">Sắp đến</span>
+    <span class="tl-tag tag-future">Tương lai</span>
+  </div>
+
+  <div class="layer-tabs">
+    <div class="lt on l1" onclick="showL(&#39;l1&#39;,this)">Tầng 1: Interconnect</div>
+    <div class="lt l2" onclick="showL(&#39;l2&#39;,this)">Tầng 2: Photonic switch</div>
+    <div class="lt l3" onclick="showL(&#39;l3&#39;,this)">Tầng 3: Photonic processor</div>
+  </div>
+
+  <!-- ═══ LAYER 1 ═══ -->
+  <div id="l1" class="layer-view on">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#1D9E75">8–9 / 9</div><div class="sc-sub">Đang triển khai thương mại đại trà</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Commercial</div><div class="sc-sub">Hàng chục triệu transceiver/năm</div></div>
+      <div class="sc"><div class="sc-label">Đột phá gần nhất</div><div class="sc-val" style="font-size:13px">NVIDIA CPO</div><div class="sc-sub">3/2025 — 3.5× hiệu quả điện</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">Cáp quang rack-to-rack</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:100%"></div></div>
+      <span class="trl-val">TRL 9 ✓</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Co-packaged optics (CPO)</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:82%"></div></div>
+      <span class="trl-val">TRL 7–8</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Chip-to-chip optical</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:65%"></div></div>
+      <span class="trl-val">TRL 6–7</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Board-level optical</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:50%"></div></div>
+      <span class="trl-val">TRL 5–6</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Hôm nay</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#1D9E75"></div><div class="tl-line" style="background:#9FE1CB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Thực tế</span>Hàng chục triệu SiPh transceiver mỗi năm</div>
+          <div class="tl-card-body">Toàn bộ data center AI (NVIDIA, Google, Amazon) đã kết nối bằng sợi quang silicon photonics. Optical I/O đạt 4 Tb/s, 5ns latency, 5pJ/bit — hiệu quả gấp 10× điện tử cùng tốc độ.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">3/2025</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#1D9E75"></div><div class="tl-line" style="background:#9FE1CB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Đang triển khai</span>NVIDIA Spectrum-X Co-Packaged Optics</div>
+          <div class="tl-card-body">Ra mắt 18/3/2025 với consortium TSMC, Coherent, Corning, Foxconn, Lumentum, SENKO. Quang học kết nối thẳng vào chipset — 3.5× hiệu quả điện, 4× ít laser, 63× signal integrity tốt hơn.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025–2027</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-soon">Sắp đến</span>Lightmatter Passage + Celestial AI photonic fabric</div>
+          <div class="tl-card-body">Photonic interposer kết nối GPU clusters, giải quyết bandwidth bottleneck. Lightmatter tuyên bố Passage có thể thay thế majority of AI-class GPU interconnect "trong vài năm tới".</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Board-to-board optical inside servers</div>
+          <div class="tl-card-body">Quang học thay thế dây điện ngay bên trong server — không chỉ giữa các server. Mỗi CPU/GPU board kết nối trực tiếp bằng sợi quang.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LAYER 2 ═══ -->
+  <div id="l2" class="layer-view">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#185FA5">5–7 / 9</div><div class="sc-sub">Prototype → pilot thương mại</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Pilot</div><div class="sc-sub">Một số đang đến thị trường</div></div>
+      <div class="sc"><div class="sc-label">Công ty dẫn đầu</div><div class="sc-val" style="font-size:13px">IPRONICS, Lumentum</div><div class="sc-sub">Spain, US — photonic-only switch</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">ASIC + CPO switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:78%"></div></div>
+      <span class="trl-val">TRL 7</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Fully photonic switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:55%"></div></div>
+      <span class="trl-val">TRL 5–6</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Photonic AI-optimized switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:33%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Hôm nay</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#185FA5"></div><div class="tl-line" style="background:#85B7EB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Thực tế</span>Electronic switch + CPO (ASIC + quang)</div>
+          <div class="tl-card-body">Chip điện tử (ASIC) kết nối qua co-packaged optics. Switch hiện tại vẫn tính toán bằng electron — photon chỉ dùng để truyền dữ liệu ra/vào. NVIDIA, Arista, Cisco đang ở đây.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025–2026</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#185FA5"></div><div class="tl-line" style="background:#85B7EB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Đang phát triển</span>IPRONICS ONE — fully photonic switch</div>
+          <div class="tl-card-body">Switch mà cả chip lẫn kết nối đều là photonic integrated circuit (PIC). IPRONICS (Tây Ban Nha) và Lumentum (Mỹ) đang ra sản phẩm. Photon routing thay vì electron routing — latency và năng lượng thấp hơn nhiều.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Photonic AI switch tiêu chuẩn trong hyperscale data center</div>
+          <div class="tl-card-body">Thay thế toàn bộ spine/leaf switch điện tử trong data center AI. Đây là bước đột phá làm giảm mạnh latency giữa các server và tiêu thụ điện của tầng network.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LAYER 3 ═══ -->
+  <div id="l3" class="layer-view">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#854F0B">3–5 / 9</div><div class="sc-sub">Lab demo → early prototype</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Research</div><div class="sc-sub">Chưa có production chip</div></div>
+      <div class="sc"><div class="sc-label">Hiệu suất tốt nhất</div><div class="sc-val">160 TOPS/W</div><div class="sc-sub">Chip Taichi (Science 2024)</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">Matrix multiply (ONN)</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:55%"></div></div>
+      <span class="trl-val">TRL 4–5</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Full DNN on single chip</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:40%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Programmable processor</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:35%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Production-ready chip</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:10%"></div></div>
+      <span class="trl-val">TRL 1–2</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">12/2024</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Lab milestone</span>MIT — DNN hoàn toàn trong miền quang</div>
+          <div class="tl-card-body">Lần đầu chip đơn thực hiện deep neural network hoàn toàn bằng ánh sáng, không chuyển đổi sang điện ở giữa. Công bố Nature Photonics (Bandyopadhyay et al., 2024). Quy mô nhỏ nhưng là proof-of-concept quan trọng nhất thập kỷ.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Lab milestone</span>Chip Taichi — 160 TOPS/W (Science 2024)</div>
+          <div class="tl-card-body">Large-scale photonic chiplet đạt 160 TOPS/W — gấp 50–160× GPU hiện tại. Chạy được image recognition. Vẫn là lab chip nhưng con số hiệu suất peer-reviewed và thực sự đáng kể.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Prototype</span>LightIn (arXiv 2025) — programmable photonic processor</div>
+          <div class="tl-card-body">40 MZI programmable unit cells, 3.8×3mm². Chạy được matrix multiply, image recognition, channel switching, và PUF security — tất cả trong một chip. Bước tiến về tính đa năng, nhưng vẫn cần điều chỉnh thủ công và hệ thống còn cồng kềnh.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025 (Nature)</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Prototype</span>64×64 photonic accelerator — 1 GHz MAC, 7.61-bit precision</div>
+          <div class="tl-card-body">Nature 2025: chip 65nm SiPh + 28nm CMOS co-packaged, 16,000+ photonic components. Chạy max-cut optimization. Minh chứng hướng hybrid optoelectronic — không thuần quang nhưng tận dụng lợi thế photon cho phép tính nặng nhất.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div><div class="tl-line" style="background:#D3D1C7"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-soon">Kỳ vọng</span>First production photonic AI accelerators cho niche workloads</div>
+          <div class="tl-card-body">Inference-specific trước, training sau. Các task như image recognition và matrix multiply ở inference stage có thể thương mại hóa trước. Lightmatter và Celestial AI đang target giai đoạn này.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2030+</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Photonic TPU trong AI data center — mục tiêu cuối cùng</div>
+          <div class="tl-card-body">Thay thế GPU/TPU hiện tại ở tầng compute. Silicon-photonics AI accelerators dự báo trở thành lựa chọn tiêu chuẩn trong hyperscale data center, đặc biệt cho bandwidth-bound training và inference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="challenge-box">
+      <strong>3 thách thức kỹ thuật còn lại chưa giải được ở production scale:</strong><br>
+      (1) <strong>Precision chỉ 7–8 bit</strong> so với GPU 16–32 bit — đủ cho inference, chưa đủ cho training LLM lớn.<br>
+      (2) <strong>Noise tích lũy</strong> qua nhiều lớp waveguide — cần calibration liên tục, khó tự động hóa.<br>
+      (3) <strong>Analog-digital conversion overhead</strong> — mỗi lần convert quang–điện tốn năng lượng, làm giảm lợi thế hiệu suất. Nhiều con số benchmark chỉ đo phần quang, không tính ADC, laser nguồn và điều khiển điện tử.
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> Photonics for AI — TEMATYS/Photonics21 (2025) · IPSR-I Silicon Photonics Roadmap (2024) · Nature Photonics: Bandyopadhyay et al. (12/2024) · Science: Taichi chip (2024) · arXiv 2504.01463 LightIn (2025) · Nature: 64×64 photonic accelerator (2025) · Quantum Photonic vs Classical Photonic AI (2024–2025)
+  </div>
+
+</div>
+
+<script>
+function showL(id, el) {
+  document.querySelectorAll('.layer-view').forEach(v => v.classList.remove('on'));
+  document.querySelectorAll('.lt').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+</script>
+
+
+</body></html>

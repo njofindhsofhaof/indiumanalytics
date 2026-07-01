@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///Users/macbookairm1/Downloads/sme_market_share_analysis.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SME Market Share Analysis — Semiconductor Manufacturing Equipment</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f4ef;
+    --color-background-tertiary: #eeede8;
+    --color-background-info: #e6f1fb;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #5a5955;
+    --color-text-tertiary: #8a8880;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.25);
+    --color-border-primary: rgba(0,0,0,0.35);
+    --color-text-info: #185FA5;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-primary: #1e1e1c;
+      --color-background-secondary: #2a2a27;
+      --color-background-tertiary: #333330;
+      --color-background-info: #042C53;
+      --color-text-primary: #e8e6de;
+      --color-text-secondary: #a8a69e;
+      --color-text-tertiary: #706e67;
+      --color-border-tertiary: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.2);
+      --color-border-primary: rgba(255,255,255,0.3);
+      --color-text-info: #85B7EB;
+    }
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 2rem;
+  }
+  .page-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+  }
+  .page-sub {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .tab { padding: 5px 14px; border-radius: var(--border-radius-md); font-size: 12px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s; }
+  .tab.active { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+  .tab:hover:not(.active) { border-color: var(--color-border-secondary); color: var(--color-text-primary); }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* KPI */
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+  .kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; }
+  .kpi-label { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px; }
+  .kpi-val { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .kpi-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+  /* STACKED BARS */
+  .bar-section { margin-bottom: 1.25rem; }
+  .bar-title { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .bar-row { margin-bottom: 10px; }
+  .bar-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .bar-label span { font-size: 11px; color: var(--color-text-tertiary); }
+  .bar-track { display: flex; height: 26px; border-radius: 4px; overflow: hidden; }
+  .seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; overflow: hidden; white-space: nowrap; }
+  .seg-us { background: #185FA5; color: #E6F1FB; }
+  .seg-eu { background: #0F6E56; color: #E1F5EE; }
+  .seg-jp { background: #854F0B; color: #FAEEDA; }
+  .seg-kr { background: #993556; color: #FBEAF0; }
+  .seg-cn { background: #888780; color: #F1EFE8; }
+  .seg-ot { background: #D3D1C7; color: #2C2C2A; }
+  @media (prefers-color-scheme: dark) {
+    .seg-us { background: #378ADD; color: #042C53; }
+    .seg-eu { background: #1D9E75; color: #04342C; }
+    .seg-jp { background: #EF9F27; color: #412402; }
+    .seg-kr { background: #D4537E; color: #4B1528; }
+    .seg-cn { background: #5F5E5A; color: #F1EFE8; }
+    .seg-ot { background: #444441; color: #F1EFE8; }
+  }
+
+  /* LEGEND */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.25rem; }
+  .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary); }
+  .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* HEATMAP TABLE */
+  .heat-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .heat-table th { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); padding: 6px 8px; text-align: left; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .heat-table th.right { text-align: right; }
+  .heat-table td { padding: 7px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: middle; }
+  .heat-table td.right { text-align: right; }
+  .heat-table tr:last-child td { border-bottom: none; }
+  .heat-cell { border-radius: 3px; padding: 3px 6px; font-size: 11px; font-weight: 500; text-align: center; display: inline-block; min-width: 36px; }
+  .heat-vhi { background: #185FA5; color: #E6F1FB; }
+  .heat-hi  { background: #378ADD; color: #042C53; }
+  .heat-mid { background: #B5D4F4; color: #0C447C; }
+  .heat-lo  { background: #E6F1FB; color: #185FA5; }
+  .heat-vlo { background: var(--color-background-secondary); color: var(--color-text-tertiary); }
+  @media (prefers-color-scheme: dark) {
+    .heat-vhi { background: #0C447C; color: #B5D4F4; }
+    .heat-hi  { background: #185FA5; color: #E6F1FB; }
+    .heat-mid { background: #042C53; color: #85B7EB; }
+    .heat-lo  { background: #02192e; color: #85B7EB; }
+  }
+
+  /* FLOW */
+  .flow-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .flow-box { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; }
+  .flow-box-label { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 2px; }
+  .flow-box-val { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .flow-arrow { font-size: 16px; color: var(--color-text-tertiary); text-align: center; }
+  .flow-amount { font-size: 11px; color: var(--color-text-secondary); text-align: center; }
+
+  /* INSIGHT CARDS */
+  .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .insight-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 12px 14px; }
+  .insight-card.warn { border-color: #BA7517; }
+  .insight-card.info { border-color: #185FA5; }
+  .insight-card.good { border-color: #0F6E56; }
+  .insight-icon { font-size: 13px; margin-bottom: 6px; }
+  .insight-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .insight-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+  .section-sep { height: 0.5px; background: var(--color-border-tertiary); margin: 1.25rem 0; }
+
+  /* SOURCE NOTE */
+  .source-note {
+    margin-top: 1.5rem;
+    padding: 10px 14px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    border-left: 3px solid var(--color-border-secondary);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="page-title">Phân tích thị phần thiết bị sản xuất bán dẫn (SME)</div>
+  <div class="page-sub">Semiconductor Manufacturing Equipment · Nguồn: BCG/SIA Emerging Resilience + CSIS Mapping Semiconductor Supply Chain · Dữ liệu 2021</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="show(&#39;overview&#39;,this)">Tổng quan SME</div>
+    <div class="tab" onclick="show(&#39;bycat&#39;,this)">Phân tích theo phân khúc</div>
+    <div class="tab" onclick="show(&#39;heatmap&#39;,this)">Heatmap BCG theo quy trình</div>
+    <div class="tab" onclick="show(&#39;flow&#39;,this)">Luồng mua bán</div>
+    <div class="tab" onclick="show(&#39;insights&#39;,this)">Phân tích chiến lược</div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="overview" class="view active">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Tổng thị trường SME 2021</div><div class="kpi-val">$108.5B</div><div class="kpi-sub">Tăng mạnh từ $60B (2019)</div></div>
+      <div class="kpi"><div class="kpi-label">Mỹ + Nhật + Hà Lan</div><div class="kpi-val">~73%</div><div class="kpi-sub">Ba nước kiểm soát phần lớn</div></div>
+      <div class="kpi"><div class="kpi-label">Trung Quốc sản xuất</div><div class="kpi-val">2%</div><div class="kpi-sub">Dù mua 28% toàn cầu</div></div>
+    </div>
+
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot seg-us"></div> Mỹ</div>
+      <div class="leg-item"><div class="leg-dot seg-eu"></div> EU (Hà Lan chủ yếu)</div>
+      <div class="leg-item"><div class="leg-dot seg-jp"></div> Nhật Bản</div>
+      <div class="leg-item"><div class="leg-dot seg-kr"></div> Hàn Quốc</div>
+      <div class="leg-item"><div class="leg-dot seg-cn"></div> Trung Quốc</div>
+      <div class="leg-item"><div class="leg-dot seg-ot"></div> Rest of World</div>
+    </div>
+
+    <div class="bar-section">
+      <div class="bar-title">Thị phần SME tổng thể (theo HQ công ty, 2021) — Nguồn: CSIS / TechInsights</div>
+      <div class="bar-row">
+        <div class="bar-label">Toàn thị trường ($108.5B) <span>Mỹ 40.9% | Nhật 29.4% | HQ 4.8% | CN 2% | TW 0.4% | Rest 22.5%</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:40.9%" title="Mỹ 40.9%">40.9%</div>
+          <div class="seg seg-jp" style="width:29.4%" title="Nhật 29.4%">29.4%</div>
+          <div class="seg seg-kr" style="width:4.8%" title="HQ 4.8%">4.8</div>
+          <div class="seg seg-cn" style="width:2%" title="CN 2%">2</div>
+          <div class="seg seg-eu" style="width:0.4%; min-width:4px" title="TW 0.4%"></div>
+          <div class="seg seg-ot" style="width:22.5%" title="Rest 22.5%">22.5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-section">
+      <div class="bar-title">Phân tích theo 4 phân khúc — Nguồn: CSIS / TechInsights</div>
+      <div class="bar-row">
+        <div class="bar-label">Wafer Fabrication Equipment — $90.8B (lớn nhất, 84% tổng) <span>Phân khúc chiến lược nhất</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:44%">44%</div>
+          <div class="seg seg-jp" style="width:27.6%">27.6%</div>
+          <div class="seg seg-kr" style="width:4.2%">4.2</div>
+          <div class="seg seg-cn" style="width:0.1%; min-width:3px"></div>
+          <div class="seg seg-ot" style="width:22.5%">22.5%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Assembly Equipment — $6.5B <span>Nhật + EU thống trị</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:5%">5</div>
+          <div class="seg seg-jp" style="width:35%">35%</div>
+          <div class="seg seg-eu" style="width:6.4%">6.4</div>
+          <div class="seg seg-ot" style="width:50.6%">Rest 50.6%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Advanced Packaging — $2.5B <span>Mỹ dẫn đầu</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:40.4%">40.4%</div>
+          <div class="seg seg-jp" style="width:32.9%">32.9%</div>
+          <div class="seg seg-kr" style="width:1.3%; min-width:4px"></div>
+          <div class="seg seg-cn" style="width:1.5%; min-width:4px"></div>
+          <div class="seg seg-ot" style="width:16.3%">16.3%</div>
+          <div class="seg seg-eu" style="width:3.7%">3.7</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Test Equipment — $8.6B <span>Nhật dẫn đầu mạnh nhất</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:35.3%">35.3%</div>
+          <div class="seg seg-jp" style="width:43.3%">43.3%</div>
+          <div class="seg seg-kr" style="width:10.8%">10.8</div>
+          <div class="seg seg-cn" style="width:2.7%">2.7</div>
+          <div class="seg seg-ot" style="width:4.3%">4.3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BY CATEGORY -->
+  <div id="bycat" class="view">
+    <div class="bar-section">
+      <div class="bar-title">Phân tích từng quốc gia — điểm mạnh và điểm yếu theo phân khúc</div>
+      <div class="bar-row">
+        <div class="bar-label">🇺🇸 Mỹ — WFE $40B | Adv. Packaging $1B | Test $3B</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-us" style="width:44%; border-radius:0">WFE 44%</div>
+          <div class="seg" style="width:40.4%; background:var(--color-background-secondary); color:var(--color-text-secondary); border-radius:0;">Pkg 40%</div>
+          <div class="seg" style="width:5%; background:var(--color-background-tertiary); color:var(--color-text-tertiary); border-radius:0;">5%</div>
+          <div class="seg" style="width:10%; background:var(--color-background-secondary); color:var(--color-text-secondary); border-radius:0;">T35%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇯🇵 Nhật Bản — đều đặn mạnh TOÀN bộ 4 phân khúc</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-jp" style="width:27.6%; border-radius:0">WFE 28%</div>
+          <div class="seg" style="width:35%; background:#FAEEDA; color:#854F0B; border-radius:0;">Assy 35%</div>
+          <div class="seg" style="width:20%; background:#FAC775; color:#412402; border-radius:0;">Pkg 33%</div>
+          <div class="seg" style="width:17%; background:#EF9F27; color:#412402; border-radius:0;">T43%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇨🇳 Trung Quốc — gần như không có gì trong WFE tiên tiến</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-cn" style="width:0.1%; min-width:6px; border-radius:0"></div>
+          <div class="seg" style="width:94%; background:var(--color-background-secondary); color:var(--color-text-tertiary); font-size:11px; justify-content:flex-start; padding-left:10px; border-radius:0;">⚠ Mua 28% toàn cầu — sản xuất chỉ ~2% (chủ yếu phân khúc thấp)</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇳🇱 Hà Lan (EU) — nhỏ nhưng là nút thắt số 1: ASML EUV</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-eu" style="width:89%; border-radius:0">Lithography: 89% thị phần toàn cầu (ASML EUV — độc quyền tuyệt đối)</div>
+          <div class="seg seg-ot" style="width:11%; border-radius:0">JP 10%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEATMAP -->
+  <div id="heatmap" class="view">
+    <div class="bar-section">
+      <div class="bar-title">BCG Exhibit 10 — Phân bổ thiết bị theo từng bước quy trình wafer fab (nguồn: Gartner + BCG)</div>
+    </div>
+    <table class="heat-table">
+      <thead>
+        <tr>
+          <th>Bước quy trình</th>
+          <th class="right">Mỹ</th>
+          <th class="right">EU (HÀ LAN)</th>
+          <th class="right">Nhật</th>
+          <th class="right">Hàn</th>
+          <th class="right">TQ</th>
+          <th class="right">Market $B</th>
+          <th>Đánh giá rủi ro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lithography</strong></td>
+          <td class="right"><span class="heat-cell heat-vlo">1%</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">89%</span></td>
+          <td class="right"><span class="heat-cell heat-lo">10%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$17.5B</td>
+          <td style="color:#D85A30; font-size:12px; font-weight:500;">ASML độc quyền EUV</td>
+        </tr>
+        <tr>
+          <td>Photoresist processing</td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">92%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">3%</span></td>
+          <td class="right">$3.7B</td>
+          <td style="color:#D85A30; font-size:12px; font-weight:500;">Nhật độc quyền 92%</td>
+        </tr>
+        <tr>
+          <td>Ion implant &amp; doping</td>
+          <td class="right"><span class="heat-cell heat-vhi">83%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-lo">17%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$2.5B</td>
+          <td style="color:#BA7517; font-size:12px;">Mỹ kiểm soát 83%</td>
+        </tr>
+        <tr>
+          <td>Thermal processes</td>
+          <td class="right"><span class="heat-cell heat-hi">57%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">4%</span></td>
+          <td class="right"><span class="heat-cell heat-mid">37%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">1%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">2%</span></td>
+          <td class="right">$2.9B</td>
+          <td style="color:#3B6D11; font-size:12px;">Mỹ + Nhật — phân tán tốt</td>
+        </tr>
+        <tr>
+          <td><strong>Deposition</strong></td>
+          <td class="right"><span class="heat-cell heat-vhi">67%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">15%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">2%</span></td>
+          <td class="right">$22.8B</td>
+          <td style="color:#BA7517; font-size:12px;">Lớn nhất, Mỹ 67%</td>
+        </tr>
+        <tr>
+          <td>Material removal &amp; cleaning</td>
+          <td class="right"><span class="heat-cell heat-hi">56%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">0%</span></td>
+          <td class="right"><span class="heat-cell heat-mid">35%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">4%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right">$30.5B</td>
+          <td style="color:#3B6D11; font-size:12px;">Lớn nhất, phân tán 2 nước</td>
+        </tr>
+        <tr>
+          <td>Manufacturing automation</td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">64%</span></td>
+          <td class="right"><span class="heat-cell heat-lo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$4.2B</td>
+          <td style="color:#BA7517; font-size:12px;">Nhật 64% — đáng chú ý</td>
+        </tr>
+        <tr>
+          <td><strong>Process control</strong></td>
+          <td class="right"><span class="heat-cell heat-vhi">76%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">7%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">6%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$13.5B</td>
+          <td style="color:#BA7517; font-size:12px;">KLA/AMAT Mỹ 76%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; font-size:11px; color:var(--color-text-tertiary);">
+      <span>Thang màu:</span>
+      <span class="heat-cell heat-vhi" style="font-size:10px;">75–100%</span>
+      <span class="heat-cell heat-hi" style="font-size:10px;">51–75%</span>
+      <span class="heat-cell heat-mid" style="font-size:10px;">26–50%</span>
+      <span class="heat-cell heat-lo" style="font-size:10px;">11–25%</span>
+      <span class="heat-cell heat-vlo" style="font-size:10px;">&lt;11%</span>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div id="flow" class="view">
+    <div class="bar-title" style="margin-bottom:14px; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--color-text-tertiary);">Luồng mua bán SME 2021 — Nguồn: CSIS/TechInsights ($104B, không gồm advanced packaging)</div>
+    <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:14px;">→ Mỹ và Nhật bán cho toàn thế giới. Trung Quốc mua nhiều nhất nhưng hầu như không có khả năng bán.</div>
+
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Người bán lớn nhất</div><div class="flow-box-val">🇺🇸 Bắc Mỹ</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$43.5B (41.8%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua lớn nhất</div><div class="flow-box-val">🇨🇳 Trung Quốc</div><div style="font-size:11px;color:var(--color-text-tertiary);">$29B — 28% tổng mua</div></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Người bán lớn thứ 2</div><div class="flow-box-val">🇯🇵 Nhật Bản</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$28B (26.9%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua thứ 2</div><div class="flow-box-val">🇰🇷 Hàn Quốc</div><div style="font-size:11px;color:var(--color-text-tertiary);">$24.5B — 23.6%</div></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Rest of World (bán)</div><div class="flow-box-val">Rest</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$9.3B (9%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua thứ 3</div><div class="flow-box-val">🇹🇼 Đài Loan</div><div style="font-size:11px;color:var(--color-text-tertiary);">$24B — 23.2% (TSMC)</div></div>
+    </div>
+
+    <div class="section-sep"></div>
+
+    <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:10px 14px; margin-top:4px;">
+      <div style="font-size:12px; font-weight:500; color:var(--color-text-primary); margin-bottom:6px;">Nghịch lý Trung Quốc</div>
+      <div style="font-size:12px; color:var(--color-text-secondary); line-height:1.6;">Trung Quốc là người mua thiết bị lớn nhất thế giới ($29B — 28%) nhưng chỉ sản xuất được 2% SME. Điều này tạo ra sự phụ thuộc cực kỳ lớn: 98% thiết bị chip của Trung Quốc phải nhập khẩu. Export controls của Mỹ–Nhật–Hà Lan nhắm chính xác vào điểm yếu này. Các thiết bị Trung Quốc tự sản xuất chủ yếu phục vụ nội địa (98% bán trong nước), chưa cạnh tranh được quốc tế.</div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div id="insights" class="view">
+    <div class="insight-grid">
+      <div class="insight-card warn">
+        <div class="insight-icon">⚠</div>
+        <div class="insight-title">Chokepoint #1: EUV Lithography</div>
+        <div class="insight-body">ASML (Hà Lan) chiếm 89% thị phần máy lithography và là công ty duy nhất trên thế giới sản xuất máy EUV. Không có EUV → không thể làm chip dưới 7nm. ASML phụ thuộc 5.000+ nhà cung ứng và tự làm chỉ 15% linh kiện.</div>
+      </div>
+      <div class="insight-card warn">
+        <div class="insight-icon">⚠</div>
+        <div class="insight-title">Chokepoint #2: Photoresist Nhật Bản</div>
+        <div class="insight-body">Nhật chiếm 92% thị trường photoresist processing. Tokyo Electron và Screen gần như độc chiếm phân khúc này. Đây là hóa chất cực kỳ tinh khiết để "in" mạch trên chip — thiếu photoresist đúng chuẩn, fab không thể hoạt động.</div>
+      </div>
+      <div class="insight-card info">
+        <div class="insight-icon">ℹ</div>
+        <div class="insight-title">Mỹ: bá chủ thiết bị wafer fab</div>
+        <div class="insight-body">Applied Materials + Lam Research + KLA kiểm soát deposition (67%), process control (76%), ion implant (83%). Tổng cộng Mỹ chiếm 40.9% toàn thị trường. Đây là lý do export controls Mỹ có sức mạnh cấm trực tiếp khả năng làm chip tiên tiến của đối thủ.</div>
+      </div>
+      <div class="insight-card info">
+        <div class="insight-icon">ℹ</div>
+        <div class="insight-title">Nhật Bản: thống trị âm thầm</div>
+        <div class="insight-body">29.4% tổng SME, nhưng ấn tượng hơn ở độ phân tán: mạnh đều cả 4 phân khúc. Đặc biệt test equipment (43%) và manufacturing automation (64%) — các phần ít được chú ý nhưng thiết yếu cho yield và throughput của fab.</div>
+      </div>
+      <div class="insight-card" style="border-color:var(--color-border-secondary);">
+        <div class="insight-icon">→</div>
+        <div class="insight-title">Trung Quốc: người mua, không phải người làm</div>
+        <div class="insight-body">Mua 28% tổng thiết bị toàn cầu nhưng chỉ sản xuất 2%. Gap này là điểm yếu chiến lược lớn nhất. Trung Quốc có thể tích trữ máy nhưng không thể bảo trì, nâng cấp, hay sản xuất mới khi bị cắt nguồn.</div>
+      </div>
+      <div class="insight-card good">
+        <div class="insight-icon">✓</div>
+        <div class="insight-title">Giới hạn của dữ liệu: HQ ≠ sản xuất thực</div>
+        <div class="insight-body">Số liệu dựa theo HQ công ty, không phải địa điểm sản xuất thực tế. ASML (Hà Lan) phụ thuộc 5.000+ suppliers toàn cầu. Khi tính theo chuỗi giá trị thực, "Made in USA" hay "Made in Netherlands" mờ nhạt hơn nhiều.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn dữ liệu:</strong> BCG/SIA "Emerging Resilience in the Semiconductor Supply Chain" (2024) · CSIS "Mapping the Semiconductor Supply Chain" (2023) · TechInsights Semiconductor Equipment Database (2023) · Gartner / BCG analysis · Dữ liệu tham chiếu năm 2021
+  </div>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+
+
+</body></html>

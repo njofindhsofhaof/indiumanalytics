@@ -1,0 +1,245 @@
+file_id,filename,title,type,publisher,year,pages,format,language,tier,tier_reason,topic_primary,topic_secondary,keywords,key_chapters_sections,key_figures_data,relevance_tags,source_path,notes,archive_summary
+F001,2024_ipsri_silicon_photonics_updated_v2.pdf,IPSR-I Enabling Technologies: Silicon Photonics (2024 Roadmap),Technical Roadmap,IPSR-I (Integrated Photonic Systems Roadmap - International),2024,35,PDF,English,CORE,"SiPh roadmap 2024 — tham chiếu thường xuyên cho tech specs, timelines",Silicon Photonics Roadmap & Manufacturing,"PDK, Workforce, Electronic-Photonic Integration",silicon photonics; photonic roadmap; waveguides; modulators; photodetectors; lasers; PDK; SOI; manufacturing; lithography; etching; packaging; electronic-photonic integration; workforce; IPSR-I; MZI; I/O coupler; isolator,Executive Summary; Infrastructure Analysis; Manufacturing Equipment; Wafer Materials; PDK & Design Automation; Quality/Reliability; TIM; Manufacturing Platforms; Roadmap of Key Attributes; Critical Infrastructure Issues; Workforce; Appendix,Roadmap tables for waveguides/modulators/photodetectors/lasers; Technology node forecasts to 2030+; Manufacturing cost trends,roadmap; manufacturing; platform; foundry; design,/mnt/project/2024_ipsri_silicon_photonics_updated_v2.pdf,"Zip-encoded PDF, contains jpeg+txt per page. Covers near-IR + emerging platforms. Authoritative roadmap for SiPh industry.",
+F002,2504_01463v2.pdf,Versatile Silicon Integrated Photonic Processor: A Reconfigurable Solution for Next-Generation AI Clusters,Research Paper (arXiv preprint),arXiv / NOEIC (CICT China) / Peng Cheng Laboratory,2025,21,PDF,English,CORE,SiPh AI processor — nghiên cứu chính trong project,AI + Silicon Photonics / Photonic Computing,Reconfigurable PIC; Matrix Multiplication; AI Accelerator,silicon photonics; AI computing cluster; photonic processor; reconfigurable chip; matrix multiplication; neural networks; optical switching; PUF encryption; MZI; microring modulator; AI cluster; GPU; PIC; software-defined hardware; test automation,"Abstract; Introduction; Chip Architecture (40 programmable cells, 160+ components); 4x4 unitary matrix multiplication; Image recognition NN; Wavelength locking; Channel switching; Physical Unclonable Functions; Software stack",Chip layout; 4x4 dual-direction unitary matrix; 3x3 non-unitary matrix; NN accuracy benchmarks; switching crosstalk; PUF uniqueness metrics,AI; photonic computing; reconfigurable; PIC; matrix; neural network,/mnt/project/2504_01463v2.pdf,"arXiv:2504.01463v2, published Sep 2025. First chip to demonstrate diverse AI cluster functions (compute + switch + encrypt) on a single SiPh processor.",
+F003,Photonics_for_AI_final.pdf,AI Desperately Needs Photonics,Industry White Paper,Photonics21 (European Technology Platform) / TEMATYS,2025,23,PDF,English,CORE,"Photonics21 white paper — chiến lược AI+photonics, policy analysis",AI + Photonics / Policy & European Industry Strategy,Optical interconnects; Energy efficiency; Data center; Market outlook,photonics for AI; AI infrastructure; optical interconnects; data center; energy efficiency; photonic computing; European photonics; Photonics21; LiDAR; sensing; co-packaged optics; CPO; transceiver; bandwidth; power consumption,Why AI needs photonics; Data center interconnects; Energy bottleneck; European photonics ecosystem; Policy recommendations; Market forecasts,AI power consumption trends; Data center bandwidth requirements; European photonics market size; Investment gaps vs. US/Asia,AI; policy; Europe; energy; data center; market,/mnt/project/Photonics_for_AI_final.pdf,"Published by Photonics21 (EU platform). Policy-oriented, targets European stakeholders and policymakers. Complements technical roadmaps with market/strategic view.",
+F004,pub_3709.pdf,Handbook of Silicon Photonics – Ch. 6: Long-Wavelength Photonic Circuits,Book Chapter (Handbook),CRC Press / Taylor & Francis – Handbook of Silicon Photonics,2013,38,PDF,English,ARCHIVE,"Handbook Ch6 Mid-IR — textbook reference, fundamental physics",Silicon Photonics Fundamentals – Mid-Infrared & Long-Wavelength,Nonlinear optics; SiGe lasers; Chalcogenide waveguides; Heterogeneous integration,mid-infrared photonics; silicon-on-insulator; SOI; silicon-on-sapphire; silicon-on-porous-silicon; chalcogenide waveguides; nonlinear optics; Raman amplification; two-photon absorption; quantum cascade laser; SiGe; THz laser; photodetectors; mid-IR; heterogeneous integration; group IV photonics,"6.1 Introduction; 6.2 Passive Devices (SOI/SOS/SiPS/Chalcogenide); 6.3 Nonlinear Effects in Si Mid-IR; 6.4 Long-Wavelength Sources & Detectors (QCL, THz, SiGe detectors); 6.5 Mid-IR Heterogeneous Integration",Waveguide loss vs wavelength; Two-photon absorption coefficient; Raman gain spectra; QCL threshold current; SiGe band structure,mid-IR; nonlinear; SOI; waveguide; laser; detector; fundamentals,/mnt/project/pub_3709.pdf,"Chapter 6 of the Handbook of Silicon Photonics (CRC Press, ~2013). Reference textbook content, not time-sensitive. Authors: Mashanovich, Milošević, Zlatanovic, Gholami, Roelkens et al.","## Handbook of Silicon Photonics — Chapter 6: Long-Wavelength Photonic Circuits (CRC Press, ~2013, 38pp)
+### Nguồn: Mashanovich, Milošević, Zlatanovic, Gholami, Radic, Ikonic, Kelsall, Roelkens
+
+### Chapter Structure:
+**6.1 Introduction** — Mid-IR silicon photonics rationale; applications: sensing, medical diagnostics, free-space comms, thermal imaging, IR countermeasures
+
+**6.2 Passive Devices for Mid-IR Silicon Photonics**
+- Silicon-on-Insulator (SOI): waveguide loss, 3.4–5.5 μm range
+- Silicon-on-Sapphire (SOS): better transparency window
+- Silicon-on-Porous Silicon: low-cost alternative
+- Chalcogenide waveguides: broadband transparency, high nonlinearity
+
+**6.3 Nonlinear Effects in Silicon Mid-IR**
+- Two-photon absorption (TPA) coefficient vs wavelength
+- Three-photon absorption above 2.2 μm
+- Free-carrier effects, plasma dispersion
+- Mid-IR Raman amplification
+- Self-phase modulation, four-wave mixing, parametric amplification
+
+**6.4 Long-Wavelength Sources & Detectors**
+- Quantum cascade lasers (QCL): threshold current density, wallplug efficiency
+- Intracenter THz lasers (Si:P, Si:B)
+- Si/SiGe quantum well infrared photodetectors (QWIP)
+- SiGe quantum dot detectors
+- Si/SiGe micro-bolometers
+
+**6.5 Mid-IR Heterogeneous Integration** (Roelkens)
+- III-V bonding on Si substrates
+- Similar approach to near-IR demonstrated platforms
+
+### Key Figures/Data:
+- Waveguide propagation loss: SOI @ 3.4–4.4 μm; SOS @ 5.5 μm; SiPS various
+- TPA coefficient β: ~0.5 cm/GW @ 1.55 μm → near zero @ 2.2+ μm
+- QCL threshold: ~1–5 kA/cm²; wallplug η <30% room temp
+
+### Lý do Archive: Textbook reference (2013), fundamental physics. Không query hàng ngày. Dùng khi cần lý thuyết cơ bản về mid-IR photonics."
+F005,s41467023390477.pdf,A Heterogeneously Integrated Lithium Niobate-on-Silicon Nitride Photonic Platform,Research Paper (Nature Communications),Nature Communications / EPFL / IBM Research Europe,2023,9,PDF,English,ARCHIVE,"LiNbO3-SiN Nature Comms — specific research ref, EO modulators",Photonic Platform Materials – LiNbO3 on Si3N4,Electro-optic modulator; Wafer bonding; Foundry-compatible process,lithium niobate; LiNbO3; silicon nitride; Si3N4; electro-optic modulator; heterogeneous integration; wafer bonding; PDK; low-loss waveguide; fiber-to-chip coupling; SmartCut; microresonator; frequency comb; EPFL; IBM; adiabatic mode converter; CMOS voltage,Abstract; Introduction; Platform design & fabrication; Adiabatic mode converter; Waveguide propagation loss; Fiber coupling; EO modulator performance; Nonlinear photonics applications; Methods,Propagation loss <0.1 dB/cm; Fiber coupling <2.5 dB/facet; Mode converter IL <0.1 dB; EO modulation bandwidth >100 GHz; Wafer-scale fabrication yield,LiNbO3; Si3N4; electro-optic; heterogeneous integration; wafer bonding; modulator; foundry,/mnt/project/s41467023390477.pdf,DOI: 10.1038/s41467-023-39047-7. Published Nature Communications 2023. Kippenberg group (EPFL) + IBM Zurich. Key paper for LiNbO3-on-SiN integration platform.,"## A Heterogeneously Integrated Lithium Niobate-on-Silicon Nitride Photonic Platform (Nature Comms, 2023)
+### DOI: 10.1038/s41467-023-39047-7 | EPFL (Kippenberg group) + IBM Research Zurich
+
+### Platform Architecture:
+- Wafer-scale bonding của thin-film LiNbO3 (LNOI) lên Si3N4 photonic circuits
+- SmartCut™ technique để transfer LiNbO3 thin-film
+- Standard strip waveguide geometry (vs ridge waveguides trong non-standard LNOI)
+- Adiabatic mode converters giữa Si3N4 passive và LiNbO3 EO sections
+
+### Key Performance Metrics:
+- Propagation loss: **<0.1 dB/cm** (inherit từ Si3N4)
+- Fiber-to-chip coupling: **<2.5 dB/facet**
+- Mode converter insertion loss: **<0.1 dB**
+- EO modulation bandwidth: **>100 GHz**
+- Resonator Q factor: consistent across wafer (không chỉ selected resonances)
+
+### Key Demonstrations:
+1. EO modulators tại CMOS voltage levels + high speed (>100 GHz)
+2. Efficient second-harmonic generation
+3. Optical squeezing potential
+4. Kerr comb generation
+5. Fiber-to-chip coupling với standard inverse taper
+
+### Significance:
+Giải quyết 3 problems của LNOI trước đây: (1) non-standard IBE etching → dùng Si3N4 foundry process, (2) high fiber coupling loss → <2.5dB, (3) inconsistent Q factors → wafer-scale uniformity. First foundry-ready PDK-compatible LiNbO3 platform.
+
+### Lý do Archive: Specific research paper 9pp. Dùng khi discuss LiNbO3 integration, EO modulators. Không cần query thường ngày."
+F006,soi_tsem_role_in_siph_stack.html,SOI vs TSEM — Role in Silicon Photonics Stack,Interactive Visualization (HTML),Custom / Internal,2025,1,HTML,English/Vietnamese,CORE,Visualization nội bộ — dùng để present,Technology Platform Comparison – SOI vs TSEM,Silicon Photonics Stack; Visual diagram,SOI; TSEM; silicon photonics stack; technology comparison; photonic platform; substrate; visualization; diagram,SVG diagram of SiPh stack layers; Cards: SOI properties vs TSEM properties; Flow diagram,Qualitative comparison of SOI and TSEM roles in silicon photonics manufacturing stack,SOI; TSEM; comparison; visualization; platform; stack,/mnt/project/soi_tsem_role_in_siph_stack.html,Single-page interactive HTML. Custom-made visualization. No quantitative data — qualitative/conceptual only.,
+F007,SIA_2024_StateofIndustryReport.pdf,State of the U.S. Semiconductor Industry 2024,Industry Report,SIA (Semiconductor Industry Association),2024,33,PDF,English,CORE,"SIA State of Industry 2024 — flagship report, query thường xuyên",U.S. Semiconductor Industry Overview 2024,CHIPS Act; Workforce; Geopolitics; Trade; Supply Chain Rebalancing,SIA; semiconductor industry; CHIPS Act; workforce; talent pipeline; sustainability; supply chain; geopolitics; trade; market share; demand drivers; global market; US competitiveness; fab investment; incentives,CHIPS Implementation; Semiconductor Workforce; Expanding Talent Pipeline; Sustainability; Supply Chain Rebalancing; Government Chip Strategies; Trade and Semiconductors; Geopolitics; Global Semiconductor Market; Demand Drivers; Global Market Data,"U.S. market share data; CHIPS Act investment tracking; Global fab capacity by region; Workforce demand/supply gap; Sales by end market (auto, mobile, AI, industrial)",SIA; CHIPS Act; geopolitics; workforce; US; market; supply chain; 2024,/mnt/project/SIA_StateofIndustryReport_2024_final_091124.pdf,Published Sep 2024. Flagship annual report from SIA. 33 pages. Comprehensive view of US semiconductor policy and industry health. [Renamed from _final_091124 — duplicate removed Apr 2026],
+F008,SIA2024Factbook.pdf,SIA 2024 Factbook,Industry Data Report,SIA (Semiconductor Industry Association),2024,27,PDF,English,ARCHIVE,Data charts — companion State of Industry; verify số liệu cụ thể,U.S. Semiconductor Industry – Data & Market Share,Sales trends; Manufacturing capacity; R&D investment; Exports,SIA; factbook; market share; US semiconductor sales; global sales; manufacturing capacity; R&D investment; exports; industry overview; employment; fabless; IDM; foundry; revenue; growth,Section 1: Industry Overview; Section 2: U.S. Competitiveness; Section 3: Manufacturing; Section 4: R&D; Section 5: Trade; Section 6: Workforce; Figures list (charts & graphs),US ~47% global market share; Annual sales figures; Capacity by geography; R&D spend as % of revenue; Export volumes; Employment numbers,SIA; factbook; market share; data; US; manufacturing; R&D; 2024,/mnt/project/SIA2024Factbook.pdf,Published May 2024. Data-heavy companion to State of Industry Report. 27 pages with charts and figures.,"## SIA 2024 Factbook (May 2024, 27pp)
+### Nguồn: SIA — data companion cho State of Industry Report
+
+### Key Data Points:
+- US semiconductor market share: ~47% của global market (gần $300B/năm)
+- US industry sales growth: steady YoY từ 2001–2023
+- Manufacturing: US chiếm ~12% global fab capacity (trước CHIPS Act)
+- R&D: US semicon firms chi ~20% revenue cho R&D (top globally)
+- Employment: ~277K direct jobs tại US; millions indirect
+- Exports: semiconductors = một trong những export lớn nhất của US
+
+### 6 Sections:
+1. Industry Overview — market size, growth
+2. U.S. Competitiveness — market share trends
+3. Manufacturing — capacity, capex by region
+4. R&D — investment trends
+5. Trade — export/import flows, top trading partners
+6. Workforce — employment, skills gap
+
+### Data Sources: WSTS, SEC 10K/10Q filings, USITC trade data (2001–2023)
+
+### Lý do Archive: Visual/chart-heavy, ít text. Core data đã được tóm tắt ở đây. Dùng khi cần verify số liệu cụ thể."
+F009,2024SIADatabook_tableofcontents.pdf,SIA 2024 Annual Databook – Table of Contents,Data Catalog (ToC only),SIA (Semiconductor Industry Association),2024,6,PDF,English,ARCHIVE,ToC only — index data series SIA có gì,Semiconductor Industry Historical Data Index,50+ data series; Sales; Capacity; Trade; Pricing,SIA; databook; table of contents; historical data; semiconductor data series; sales data; capacity data; trade data; pricing; market data; time series; annual data,ToC listing 50+ data series including: global sales by region/product/company; fab capacity; wafer shipments; equipment sales; R&D; employment; trade flows,Index only — references to full databook series (not included); covers data from 1990s to 2024,SIA; databook; data index; historical; time series; 2024,/mnt/project/2024SIADatabook_tableofcontents.pdf,ToC only — 6 pages. The actual databook data is purchased separately. Useful to know which data series SIA tracks.,"## SIA 2024 Annual Databook — Table of Contents (Dec 2024, 6pp)
+### Nguồn: SIA — index của 50+ data series lịch sử (full databook cần mua riêng)
+
+### Data Series Available (mua riêng):
+- Global semiconductor sales by region (Americas, Europe, Japan, Asia Pacific, China)
+- Sales by product type: Logic, Memory (DRAM/NAND), Analog, Micro, Sensors, Discrete, Opto
+- Sales by end market: Mobile, PC, Data Center, Auto, Industrial, Gov/Military
+- Manufacturing: wafer starts by region, fab capacity, equipment spending
+- Trade: US exports/imports by country, top trading partners
+- Company-level: top 10/20/50 firms by revenue, US vs non-US share
+- R&D: industry-wide investment as % of sales
+- Employment: US headcount by function
+- Data range: 2001–2023 (some series từ 1990s)
+- Source: WSTS + SIA Annual Financial Surveys + SEC filings
+
+### Lý do Archive: ToC only — 6 trang. Actual data phải truy cập qua SIA membership. Dùng như index để biết data nào SIA track."
+F010,Report_EmergingResilienceintheSemiconductorSupplyChain.pdf,Emerging Resilience in the Semiconductor Supply Chain (Full Report),Industry Report,BCG (Boston Consulting Group) + SIA,2024,38,PDF,English,CORE,"BCG+SIA Full Report — dữ liệu $2.3T, 38pp nghiên cứu chính",Semiconductor Supply Chain Resilience & Geographic Diversification,CHIPS Act impact; $2.3T investment forecast; EDA; Materials; Equipment; Manufacturing,semiconductor supply chain; resilience; BCG; SIA; CHIPS Act; geographic diversification; $2.3 trillion investment; 2032 forecast; EDA; IP; materials; equipment; front-end; back-end; packaging; OSAT; concentration risk; geopolitics; US; Taiwan; Korea; China; Europe; India,Executive Summary; Introduction; Expansion of Government Incentives; Resilience in the Semiconductor Supply Chain; Looking Ahead—Pathway to Greater Resilience; Future Needs of the Industry; Appendix,$2.3T cumulative investment by 2032; Cost efficiency $45B-$125B/year from global supply chain; 35%-65% lower prices vs localized; Manufacturing capacity share by region (2024 vs 2032 projections); EDA/IP diversification trends,BCG; SIA; supply chain; resilience; investment; 2032; geopolitics; CHIPS Act; diversification,/mnt/project/Report_EmergingResilienceintheSemiconductorSupplyChain.pdf,"May 2024. 5th in BCG×SIA series (prior: Mar2020, Sep2020, Mar2021, Nov2022). Most comprehensive supply chain forecast report. Authors: Varadarajan, Koch-Weser, Richard et al.",
+F011,EmergingResilienceintheSemiconductorSupplyChain_BCGBriefing.pdf,Emerging Resilience in the Semiconductor Supply Chain – BCG Briefing Deck,Presentation Slides (Executive Briefing),BCG (Boston Consulting Group) + SIA,2024,11,PDF,English,ARCHIVE,Slides tóm tắt BCG Full Report — dùng cho presentations,Semiconductor Supply Chain Resilience – Executive Summary Slides,Key findings; Investment projections; Geographic diversification,BCG; SIA; semiconductor supply chain; briefing deck; slides; resilience; investment; CHIPS Act; diversification; executive summary; 2024,5-report series overview; Key findings slides; Investment $2.3T visualization; Regional capacity charts; Policy implications,Same key metrics as full report but in visual slide format — regional capacity shifts; investment timelines; concentration risk reduction,BCG; SIA; slides; briefing; supply chain; resilience; 2024,/mnt/project/EmergingResilienceintheSemiconductorSupplyChain_BCGBriefing.pdf,June 2024. 11-page slide deck companion to full report. For executive/leadership presentations. Published Jun 2024 (report: May 2024).,"## Emerging Resilience – BCG Briefing Deck (Jun 2024, 11 slides)
+### Nguồn: BCG × SIA — bộ 5 báo cáo (2020→2024)
+
+### 4 Key Findings:
+1. Global integration tạo $900–1,225B CapEx/R&D tiết kiệm + $45–125B/yr operating cost reduction, nhưng tạo 50+ chokepoints
+2. $2.3T fab investment dự kiến đến 2032, CHIPS Act là catalyst chính
+3. Toàn bộ supply chain sẽ geo-diverse hơn 2032: US, Europe, Japan, Korea, India đều tăng share
+4. Talent pipeline và global connectedness là yếu tố then chốt dài hạn
+
+### Data Points Key:
+- US fab capacity: +203% đến 2032 (tăng từ 10% → 14% global share)
+- US advanced logic capacity: 0% (2022) → 28% (2032)
+- US capex 2024–2032: $646B (28% global, chỉ sau Taiwan)
+- Concentration risk: Taiwan vẫn chiếm >90% leading-edge logic manufacturing
+
+### Lý do Archive: Nội dung là subset trực quan của Full Report (F010). Dùng khi cần slide/visual nhanh cho presentation."
+F012,EmergingResilienceintheSemiconductorSupplyChain_SIASummary.pdf,Emerging Resilience in the Semiconductor Supply Chain – SIA Policy Summary,Policy Brief,SIA (Semiconductor Industry Association),2024,4,PDF,English,ARCHIVE,"Policy brief 4pp — subset Full Report, dùng cite nhanh cho legislators",Semiconductor Supply Chain – Policy Recommendations,CHIPS Act; U.S. domestic manufacturing; Supply chain strengthening,SIA; semiconductor supply chain; policy brief; CHIPS Act; domestic manufacturing; supply chain resilience; US semiconductor; investment; government incentives; policy recommendations,Key findings summary; CHIPS Act impact; Policy recommendations; Call to action,High-level metrics from full report; Domestic capacity growth projections; Investment figures,SIA; policy; CHIPS Act; supply chain; domestic; 2024,/mnt/project/EmergingResilienceintheSemiconductorSupplyChain_SIASummary.pdf,May 2024. 4-page policy summary for legislators/policymakers. Shorter companion to full BCG×SIA report.,"## Emerging Resilience – SIA Policy Summary (May 2024, 4pp)
+### Nguồn: SIA — tóm tắt chính sách cho legislators
+
+### Key Stats (trích từ BCG+SIA Full Report):
+- US fab capacity: +203% đến 2032, tripling capacity
+- US global fab share: 10% → 14% (lần đầu tăng trong decades)
+- US advanced logic (≤10nm): 0% → 28% by 2032
+- US capex 2024–2032: ~$646B (28% global)
+- Industry investments: ~$450B across 25 states (CHIPS Act-induced)
+
+### Policy Message:
+- CHIPS Act đang phát huy tác dụng nhưng ""challenges remain""
+- Cần tiếp tục đầu tư vào EDA, materials, advanced packaging
+- Workforce là bottleneck lớn nhất
+
+### Lý do Archive: Policy brief 4pp, là condensed version của Full Report. Dùng khi cần cite số liệu nhanh cho policymakers."
+F013,4154cdbfen.pdf,Mapping the Semiconductor Value Chain – Working Towards Identifying Dependencies and Vulnerabilities,Policy Paper,OECD (Organisation for Economic Co-operation and Development),2025,52,PDF,English,CORE,OECD Value Chain 2025 — vulnerability analysis toàn diện nhất,Semiconductor Value Chain – Vulnerability & Dependency Analysis,Bottlenecks; Geopolitics; Policy; EDA; Equipment; Materials; Fab; Packaging,OECD; semiconductor value chain; vulnerability; dependency; bottleneck; concentration risk; EDA; IP; materials; equipment; front-end fabrication; packaging; OSAT; geopolitics; policy; diversification; resilience; No.182; STI policy paper; 2025,Abstract; Introduction; Semiconductor Value Chain Overview; Segment-by-Segment Analysis (EDA/IP; Materials; Equipment; Front-end Fab; Back-end/Packaging); Vulnerability Assessment; Policy Recommendations; Annexes,Concentration metrics per segment; Country/company market share by layer; Dependency mapping; Vulnerability scorecards; Policy gap analysis,OECD; value chain; vulnerability; policy; 2025; geopolitics; concentration; mapping,/mnt/project/4154cdbfen.pdf,"DOI: 10.1787/4154cdbf-en. OECD STI Policy Paper No.182, June 2025. Approved Dec 2024. Authors: Kleinhans, Nieves, Romaniega Sancho, van de Put. Most comprehensive multilateral policy analysis of semiconductor dependencies.",
+F014,230530_Thadani_MappingSemiconductor_SupplyChain.pdf,Mapping the Semiconductor Supply Chain: The Critical Role of the Indo-Pacific Region,Policy Brief,CSIS (Center for Strategic and International Studies),2023,17,PDF,English,CORE,"CSIS Indo-Pacific — geopolitics, query thường",Semiconductor Supply Chain – Indo-Pacific Geopolitics,TSMC; Taiwan; Japan; Korea; India; US-China; Export controls,CSIS; semiconductor supply chain; Indo-Pacific; TSMC; Taiwan; Japan; South Korea; India; geopolitics; export controls; US-China; foreign policy; chip war; value chain; design; fabrication; materials; equipment; Thadani; Gregory Allen,The Issue; Semiconductor Sales by Country (2021 data); Simplified Value Chain Diagram (Design→Fab→Packaging); Indo-Pacific role analysis; Policy recommendations,"2021 global semiconductor sales by country: US $255.7B (46%), South Korea $116.7B (21%), Taiwan $44.5B (8%), Japan $50.0B (9%), China $38.9B (7%); Value chain map",CSIS; Indo-Pacific; TSMC; Taiwan; Korea; Japan; India; geopolitics; supply chain; export controls; 2023,/mnt/project/230530_Thadani_MappingSemiconductor_SupplyChain.pdf,May 2023. Authors: Akhil Thadani + Gregory C. Allen (CSIS). 17 pages. Key geopolitical analysis of Indo-Pacific semiconductor dependencies. Encrypted PDF (print only).,
+F015,Chuo__i_Cung_U__ng_Ba_n_Da__n_Toa_n_Ca__u_2024_2025.pdf,Chuỗi Cung Ứng Bán Dẫn Toàn Cầu 2024–2025: Phân Tích Toàn Diện,Analysis Report (Vietnamese),Internal / Custom (printed via Chromium),2025,8,PDF,Vietnamese,ARCHIVE,Tổng hợp nội bộ tiếng Việt — derived từ nguồn đã có,Chuỗi cung ứng bán dẫn toàn cầu 2024-2025,Doanh số $627.6B; AI/GPU; CHIPS Act; Dự báo 2025,bán dẫn; chuỗi cung ứng; semiconductor; 2024; 2025; doanh số; $627.6 tỷ; AI; GPU; data center; CHIPS Act; McKinsey; $775 tỷ; dự báo; phân tích; Việt Nam; toàn cầu,"Tóm Tắt; Chuỗi cung ứng; Doanh số 2024; Dự báo 2025; Động lực tăng trưởng (AI, memory recovery, CHIPS Act); Phân tích địa chính trị","Doanh số 2024: $627.6 tỷ (+19.1% YoY); Dự báo 2025: $697-755 tỷ; Quy mô thực (McKinsey): $775 tỷ; Ba động lực: AI GPU, memory recovery, CHIPS Act",Vietnamese; bán dẫn; supply chain; 2024; 2025; doanh số; AI; tổng hợp,/mnt/project/Chuo__i_Cung_U__ng_Ba_n_Da__n_Toa_n_Ca__u_2024_2025.pdf,"Tài liệu tiếng Việt, 8 trang. Tổng hợp nội bộ (in từ Chromium, Apr 2026). Tóm tắt dữ liệu từ SIA, McKinsey, BCG.","## Chuỗi Cung Ứng Bán Dẫn Toàn Cầu 2024–2025: Phân Tích Toàn Diện (Apr 2026, 8pp)
+### Nguồn: Tổng hợp nội bộ (in từ Chromium) — tiếng Việt
+
+### Số Liệu Tổng Hợp:
+- Doanh số 2024: **$627.6 tỷ** (+19.1% YoY từ $526.8 tỷ năm 2023) — lần đầu vượt $600B
+- Quy mô thực tế (McKinsey, tính thêm captive/integrated): **~$775 tỷ**
+- Dự báo 2025: **$697–755 tỷ** (base case ~$720B)
+- 3 động lực: AI GPU (data center), memory recovery cycle, CHIPS Act
+
+### Chuỗi Cung Ứng — Cấu Trúc:
+- Design (US dominant): Nvidia, AMD, Qualcomm, Apple
+- EDA/IP (US ~75%): Synopsys, Cadence, Arm
+- Equipment (US+Japan+NL ~90%): ASML, AMAT, Lam, KLA, TEL
+- Front-end Fab: TSMC (>90% advanced), Samsung, Intel
+- Back-end/OSAT: ASE, Amkor (Taiwan/Korea dominant)
+- Materials: Japan dominant (60-70% specialty chemicals)
+
+### Lý do Archive: Tài liệu nội bộ tiếng Việt, derived từ SIA/McKinsey/BCG data đã có. Dùng làm quick reference tiếng Việt, không cần trong project."
+F016,20240701_Branstetter_Sanctions.pdf,Export Controls and US-China Technology Competition in an Interdependent World,Policy Brief,Lee Branstetter / Carnegie Mellon University,2024,12,PDF,English,ARCHIVE,CMU policy brief 12pp — export controls debate từ góc nhìn học thuật,Export Controls – Semiconductor Technology,US-China tech competition; CHIPS Act; sanctions effectiveness,export controls; sanctions; semiconductor; US-China; CHIPS Act; Biden; technology competition; Branstetter; CMU; SEMATECH; Japan chip wars; STEM immigration; interdependence,Introduction; US-Japan Chip Wars 1980s (historical parallel); Current Export Control Architecture; Limitations of Sanctions; Alternative Approaches; Recommendations,Historical US market share loss to Japan; SEMATECH outcomes; China's current 5yr lag estimate; revenue loss to US firms from China market restrictions,export controls; sanctions; US-China; policy; CMU; 2024,/mnt/project/20240701_Branstetter_Sanctions.pdf,"July 2024. Argues current sanctions + CHIPS approach 'inadequate.' Suggests: more STEM immigration, deeper ally coordination. 12pp policy brief.","## Export Controls and US-China Technology Competition in an Interdependent World (Jul 2024, 12pp)
+### Nguồn: Lee Branstetter, Carnegie Mellon University — Policy Brief
+
+### Luận điểm chính:
+Export controls của Biden admin (Oct 2022, Oct 2023) là ""significant shift"" — designed to INHIBIT China's development (khác với past efforts chỉ để change behavior). Paired với CHIPS Act subsidies để reshore manufacturing. Tác giả argue rằng current approach sẽ ""prove inadequate.""
+
+### 4 Lập luận của Branstetter:
+1. **Historical parallel**: US-Japan chip wars 1980s → SEMATECH → Japan vẫn phục hồi mạnh. Lesson: sanctions alone không đủ.
+2. **Technology diffusion**: Trong thế giới interdependent, knowledge diffuses nhanh. China sẽ eventually develop alternatives.
+3. **Unintended consequences**: Mất China market → US firms mất revenue → mất R&D budget → mất competitive edge dài hạn.
+4. **Alternatives**: Tăng STEM immigration, deeper ally coordination, thay vì chặn exports.
+
+### Key Stats:
+- US-China bilateral chip trade: hàng chục tỷ USD bị ảnh hưởng
+- China: ~15% global semiconductor market, phụ thuộc US equipment cho advanced nodes
+
+### Lý do Archive: Policy brief 12pp, quan điểm học thuật từ 1 tác giả. Useful khi phân tích export control debate."
+F017,240221_Shivakumar_Balancing_Ledger.pdf,Balancing the Ledger: Export Controls on U.S. Chip Technology to China,Policy Brief,"CSIS — Sujai Shivakumar, Charles Wessner, Thomas Howell",2024,13,PDF,English,ARCHIVE,"CSIS brief 13pp — assessment hiệu quả export controls, mixed picture",Export Controls – Assessment & Effectiveness,US competitiveness; China domestic chip investment; Allied coordination,export controls; chip technology; China; CSIS; Shivakumar; Wessner; Howell; sanctions; supply chain; no way back; competitiveness; manufacturing; allied coordination; BIS; EAR,"Introduction — Mixed Picture; Positive Effects (equipment access limited); Negative Effects (US market share loss, compliance gaps); 3 Key Conclusions; Policy Recommendations",China still cannot mass-produce ≤7nm; US firms losing China revenue; Compliance gaps between US and allied companies,CSIS; export controls; China; assessment; 2024; policy,/mnt/project/240221_Shivakumar_Balancing_Ledger.pdf,Feb 2024. CSIS assessment. Conclusion: 'no way back' to pre-2022 supply chain. Calls for better allied coordination and government analytic capabilities.,"## Balancing the Ledger: Export Controls on U.S. Chip Technology to China (Feb 2024, 13pp)
+### Nguồn: Sujai Shivakumar, Charles Wessner, Thomas Howell — CSIS
+
+### Assessment chính — ""Mixed Picture"":
+**Tích cực:**
+- Export controls đã significantly limit China's access to advanced equipment
+- China chưa thể mass-produce chips ≤7nm without US/ally equipment
+- ""No way back"" — supply chain không thể revert to pre-2022 status quo
+
+**Tiêu cực:**
+- China đang intensify domestic investment để workaround restrictions
+- US firms mất China market share → mất revenue → mất R&D capacity
+- Gaps in compliance between US và ally companies
+- Technology evolves nhanh hơn export control frameworks
+
+### 3 Key Conclusions:
+1. US vẫn giữ lead trong chip design và certain equipment — nhưng bị thu hẹp
+2. Most advanced chips không còn manufactured bởi US-based firms (TSMC, Samsung)
+3. Cần cải thiện: government analytic capabilities, allied coordination, government-industry partnerships
+
+### Lý do Archive: 13pp policy assessment từ CSIS. Complement tốt cho Branstetter (F-Branstetter). Dùng khi analyze export control effectiveness."
+F018,SIACommentstoBISonAdvancedComputingIFR.pdf,SIA Comments to BIS on Advanced Computing Interim Final Rule,Regulatory Comment Letter,SIA (Semiconductor Industry Association) → BIS / US Dept of Commerce,2024,21,PDF,English,ARCHIVE,"Rulemaking/legal document — regulatory context, không query thường ngày",Export Controls – Regulatory / Industry Response,BIS; Advanced Computing IFR; EAR; SIA industry position,SIA; BIS; export controls; advanced computing; IFR; EAR; semiconductor manufacturing equipment; SME IFR; performance thresholds; licensing exceptions; allied countries; compliance; rulemaking; RIN 0694-AI94; 88 Fed. Reg. 73458,"Part I: Background — SIA & semiconductors; Part II: General Comments on AC/S IFR; Part III: Specific Provisions (performance thresholds, licensing, end-use verification, SME IFR overlap)",SIA represent 99%+ US semiconductor revenue; specific threshold proposals for compute density/interconnect bandwidth,SIA; BIS; export controls; regulatory; rulemaking; 2024,/mnt/project/SIACommentstoBISonAdvancedComputingIFR.pdf,"Submitted Jan 17, 2024. Response to Oct 2023 IFR. Shows industry's balance between national security support and commercial concern.","## SIA Comments to BIS on Advanced Computing IFR (Jan 2024, 21pp)
+### Nguồn: SIA → Bureau of Industry and Security (BIS), US Dept of Commerce
+### Re: 88 Fed. Reg. 73458 (Oct 25, 2023) — RIN 0694-AI94
+
+### Context:
+SIA formal regulatory comment letter phản hồi BIS Interim Final Rule về export controls on advanced computing chips và supercomputers (update của Oct 7, 2022 IFR).
+
+### SIA's Main Concerns (3 Parts):
+**Part I — Background:** SIA represent 99%+ US semiconductor revenue. Industry critical cho economic strength + national security.
+
+**Part II — General Comments on AC/S IFR:**
+- Support national security objectives nhưng rules cần balance với commercial viability
+- Broad controls gây collateral damage cho US firms' global competitiveness
+- Need clearer definitions để avoid ambiguity trong compliance
+- Request for phased implementation, industry consultation
+
+**Part III — Specific Provisions:**
+- Performance thresholds (compute density, interconnect bandwidth) cần recalibration
+- Licensing exceptions cần được mở rộng cho allied countries
+- End-use verification mechanisms cần practical implementation guidance
+- Semiconductor manufacturing equipment (SME IFR) có overlap cần reconcile
+
+### Lý do Archive: Rulemaking/legal document. Quan trọng cho regulatory context, không cần query thường ngày. Dùng khi analyze US export control policy từ industry perspective."
+F019,2024chinasemiconductors.pdf,How Innovative Is China in Semiconductors?,Research Report,ITIF (Information Technology and Innovation Foundation) — Stephen Ezell,2024,49,PDF,English,CORE,"ITIF deep-dive 49pp — data China capabilities, regularly queried cho competitive analysis",China Semiconductor Innovation & Capabilities,China fab lag; Design capabilities; Equipment; Memory; Logic; SMIC; Huawei,China semiconductors; innovation; ITIF; Ezell; SMIC; Huawei; HiSilicon; YMTC; CXMT; leading edge; 7nm; 5yr lag; design; EDA; equipment; memory; logic; analog; compound semiconductor; domestic substitution; Made in China 2025,"Executive Summary; China's Semiconductor Ecosystem Overview; Logic (SMIC status, 7nm claims); Memory (YMTC NAND, CXMT DRAM); Equipment (NAURA, AMEC progress); Design (HiSilicon, Alibaba T-Head); EDA/IP gaps; Policy implications",China ~5 years behind leading edge in high-volume logic manufacturing; YMTC 128-layer NAND; CXMT DDR5 progress; SMIC N+2 node (7nm-class); Equipment self-sufficiency: <15% of needs,China; innovation; semiconductor; ITIF; SMIC; Huawei; capabilities; 2024,/mnt/project/2024chinasemiconductors.pdf,August 2024. 49pp comprehensive assessment. Key finding: China ~5yr behind in advanced logic HVM; making progress in design and mature nodes.,
+F020,2024_Annual_Report_to_Congress.pdf,2024 Report to Congress of the U.S.-China Economic and Security Review Commission,Government Report,U.S.-China Economic and Security Review Commission (USCC),2024,~780,Text (disguised as PDF),English,CORE,"USCC 2024 Annual Report — US-China tech+security, ~414K words, truy cập Ch3 và thematic analysis",US-China Relations – Comprehensive Annual Assessment 2024,Economic/Trade; Security; Technology; Semiconductors; AI; Quantum; Taiwan; Military,USCC; US-China; annual report; 2024; Congress; technology competition; AI; semiconductors; quantum; Taiwan; military modernization; export controls; supply chain; biotech; 5G; AGI; Manhattan Project; economic security; Xi Jinping; CCP,Introduction; Executive Summary; Key Recommendations; Part I: Year in Review (Ch1: Economic/Trade; Ch2: Security/Foreign Affairs); Part II: Technology (Ch3: Emerging Technologies); Appendices,China GDP growth 2024 (slower than pre-pandemic); US-China bilateral trade volumes; Military modernization metrics; Tech competition benchmarks; 28 key recommendations to Congress,USCC; US-China; Congress; 2024; technology; security; annual report,/mnt/project/2024_Annual_Report_to_Congress.pdf,"Nov 2024. ~780pp, ~414K words. Text file format. Covers entire US-China relationship. Ch3 most relevant for semiconductor/tech analysis. Recommendation #1: AGI Manhattan Project.",
+F021,Chapter_3--U_S_-China_Competition_in_Emerging_Technologies.pdf,Chapter 3: U.S.-China Competition in Emerging Technologies (USCC 2024),Report Chapter (Text Extract),USCC (U.S.-China Economic and Security Review Commission),2024,~80,Text (disguised as PDF),English,ARCHIVE,Extract của USCC Ch3 — 100% overlap với F020 (full report). Dùng làm quick ref cho Ch3 specific.,US-China Technology Competition – Chapter 3 Extract,AI; Semiconductors; Quantum; Biotech; Space; 5G; Export controls,US-China; technology competition; USCC; Chapter 3; AI; AGI; semiconductors; quantum computing; biotech; space; 5G; export controls; first-mover advantage; Manhattan Project; Huawei; SMIC,Abstract; AI & Advanced Computing; Semiconductors & Export Controls; Quantum; Biotech; Space; 5G/6G; Commission Recommendations for Ch3,"Same as USCC full report Ch3 section; ~56,427 words in this extract",USCC; US-China; technology; Ch3; semiconductors; AI; 2024,/mnt/project/Chapter_3--U_S_-China_Competition_in_Emerging_Technologies.pdf,Text file (~56K words). Extract of Ch3 from USCC 2024 Annual Report (F020). Redundant with F020 but faster to query for Ch3 topics specifically.,"## USCC 2024 Annual Report — Chapter 3: U.S.-China Competition in Emerging Technologies (2024, ~56K words)
+### Nguồn: U.S.-China Economic and Security Review Commission — trích từ 2024 Annual Report
+
+### Abstract:
+US và China đang trong long-term strategic competition về emerging technologies. Quốc gia nào secure lead trong key tech — đặc biệt those với first-mover advantages — sẽ tip the balance of power và reap economic benefits.
+
+### Technology Areas Covered:
+- **AI & Advanced Computing**: US lead nhưng China catching up nhanh; LLM race; AI for military
+- **Semiconductors**: Export controls effectiveness; China domestic capacity buildup; SMIC, Huawei
+- **Quantum Computing**: Both nations investing heavily; quantum communications
+- **Biotech & Synthetic Biology**: China BGI, genomics data concerns
+- **Space Technology**: Satellite constellations, anti-satellite capabilities
+- **5G/6G**: Huawei market position; Open RAN alternatives
+
+### Key Commission Recommendations (Ch3):
+1. Establish Manhattan Project-like program for AGI development
+2. Strengthen CHIPS Act implementation, close loopholes
+3. Expand export controls coordination with allies (Japan, Netherlands, Korea)
+4. Restrict Chinese investment in US tech companies
+5. Increase STEM funding + immigration pathways
+
+### Lý do Archive: Full USCC report (F-USCC) đã có trong project. Chapter này là extract text, overlap 100% với USCC file. Keep as quick-reference cho Ch3 specific."

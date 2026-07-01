@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)file:///Users/macbookairm1/Downloads/semiconductor_ai_3month_curriculum.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lộ trình học Bán dẫn &amp; AI Photonics — 3 tháng</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f4ef;
+  --color-background-tertiary: #eeede8;
+  --color-background-info: #e6f1fb;
+  --color-text-primary: #1a1a18;
+  --color-text-secondary: #5a5955;
+  --color-text-tertiary: #8a8880;
+  --color-border-tertiary: rgba(0,0,0,0.12);
+  --color-border-secondary: rgba(0,0,0,0.25);
+  --color-border-primary: rgba(0,0,0,0.35);
+  --color-text-info: #185FA5;
+  --color-border-info: #185FA5;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #1e1e1c;
+    --color-background-secondary: #2a2a27;
+    --color-background-tertiary: #333330;
+    --color-background-info: #042C53;
+    --color-text-primary: #e8e6de;
+    --color-text-secondary: #a8a69e;
+    --color-text-tertiary: #706e67;
+    --color-border-tertiary: rgba(255,255,255,0.1);
+    --color-border-secondary: rgba(255,255,255,0.2);
+    --color-border-primary: rgba(255,255,255,0.3);
+    --color-text-info: #85B7EB;
+    --color-border-info: #378ADD;
+  }
+}
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+}
+
+/* HEADER */
+.header { padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+.header p { font-size: 13px; color: var(--color-text-secondary); margin-top: 6px; }
+
+/* TABS */
+.tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s; }
+.tab.active { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+.tab:hover:not(.active) { border-color: var(--color-border-secondary); color: var(--color-text-primary); }
+
+.phase { display: none; }
+.phase.active { display: block; }
+
+/* PHASE HEADER */
+.phase-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: var(--color-background-secondary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); }
+.phase-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 12px; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+.badge-m1 { background: #E1F5EE; color: #0F6E56; }
+.badge-m2 { background: #E6F1FB; color: #185FA5; }
+.badge-m3 { background: #FAEEDA; color: #854F0B; }
+@media (prefers-color-scheme: dark) {
+  .badge-m1 { background: #085041; color: #9FE1CB; }
+  .badge-m2 { background: #0C447C; color: #B5D4F4; }
+  .badge-m3 { background: #633806; color: #FAC775; }
+}
+.phase-info h2 { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.phase-info p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+
+/* WEEK CARDS */
+.week-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 1.5rem; }
+.week-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.week-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; border-bottom: 0.5px solid var(--color-border-tertiary); user-select: none; }
+.week-header:hover { background: var(--color-background-secondary); }
+.week-num { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); min-width: 52px; }
+.week-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); flex: 1; }
+.week-toggle { font-size: 13px; color: var(--color-text-tertiary); transition: transform 0.2s; flex-shrink: 0; }
+.week-toggle.open { transform: rotate(180deg); }
+.week-body { display: none; padding: 16px; }
+.week-body.open { display: block; }
+
+/* SECTION LABELS */
+.section-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; margin-top: 14px; }
+.section-label:first-child { margin-top: 0; }
+
+/* TOPIC LIST */
+.topic-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
+.topic-item { font-size: 13px; color: var(--color-text-secondary); padding-left: 14px; position: relative; line-height: 1.5; }
+.topic-item::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--color-border-secondary); }
+
+/* SOURCE CHIPS */
+.source-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 11px; padding: 3px 9px; border-radius: 6px; border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); background: var(--color-background-secondary); }
+.chip.doc { border-color: #9FE1CB; color: #0F6E56; background: #E1F5EE; }
+@media (prefers-color-scheme: dark) { .chip.doc { border-color: #085041; color: #5DCAA5; background: #04342C; } }
+
+/* OUTPUT BOX */
+.output-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; margin-top: 6px; }
+.output-box p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+/* ASK BUTTON */
+.ask-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 14px; font-size: 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: default; }
+
+/* MILESTONE */
+.milestone-bar { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+.milestone-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; }
+.milestone-list { display: flex; flex-direction: column; gap: 8px; }
+.milestone-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+.check { width: 18px; height: 18px; border-radius: 50%; background: var(--color-background-info); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.check-inner { width: 6px; height: 6px; border-radius: 50%; background: var(--color-text-info); }
+
+/* SOURCE NOTE */
+.source-note { margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Lộ trình nắm vững ngành Bán dẫn &amp; AI Photonics trong 3 tháng</h1>
+    <p>Biên soạn từ 16 tài liệu nguồn trong project · 12 tuần · 4 cấp độ tư duy</p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showPhase(&#39;m1&#39;, this)">Tháng 1 — Nền tảng</div>
+    <div class="tab" onclick="showPhase(&#39;m2&#39;, this)">Tháng 2 — Địa chính trị &amp; Kỹ thuật</div>
+    <div class="tab" onclick="showPhase(&#39;m3&#39;, this)">Tháng 3 — Tương lai &amp; Tổng hợp</div>
+  </div>
+
+  <!-- ═══ THÁNG 1 ═══ -->
+  <div id="m1" class="phase active">
+    <div class="phase-header">
+      <span class="phase-badge badge-m1">Tháng 1</span>
+      <div class="phase-info">
+        <h2>Nền tảng: Từ vật lý đến chuỗi cung ứng</h2>
+        <p>Xây dựng mental model từ dưới lên. Hiểu tại sao semiconductor quan trọng, ai đang kiểm soát ngành, và những con số thực sự có ý nghĩa gì. Đây là "từ điển" để đọc hiểu mọi báo cáo sau này.</p>
+      </div>
+    </div>
+
+    <div class="week-grid">
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 1</span>
+          <span class="week-title">Semiconductor là gì và tại sao nó chi phối mọi thứ</span>
+          <span class="week-toggle open">▾</span>
+        </div>
+        <div class="week-body open">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Vật lý bán dẫn cơ bản: silicon, doping N/P, transistor</div>
+            <div class="topic-item">Từ transistor → IC → chip hiện đại (hàng tỷ transistors)</div>
+            <div class="topic-item">Chuỗi giá trị: thiết kế → wafer → fab → packaging → test</div>
+            <div class="topic-item">Tại sao chip mất 4–6 tháng và vượt 70 biên giới quốc tế để ra đời</div>
+            <div class="topic-item">Phân biệt IDM (Intel), fabless (NVIDIA, AMD), foundry (TSMC, SMIC)</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">CSIS: Mapping Supply Chain</span>
+            <span class="chip doc">OECD Value Chain 2025</span>
+            <span class="chip doc">SIA 2024 Industry Report</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Vẽ tay sơ đồ chuỗi cung ứng từ cát → chip → smartphone. Gắn tên ít nhất 2 công ty vào mỗi bước. Giải thích: tại sao không một quốc gia nào có thể tự làm tất cả?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 2</span>
+          <span class="week-title">Định luật Moore, giới hạn vật lý và cuộc khủng hoảng điện năng AI</span>
+          <span class="week-toggle open">▾</span>
+        </div>
+        <div class="week-body open">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Moore's Law: lịch sử 60 năm, tại sao đang chậm lại</div>
+            <div class="topic-item">Von Neumann bottleneck: tại sao CPU/GPU không đủ cho AI</div>
+            <div class="topic-item">Yêu cầu tính toán AI tăng gấp đôi mỗi 6 tháng — tại sao đây là vấn đề</div>
+            <div class="topic-item">Tiêu thụ điện: 415 TWh năm 2024, dự báo 2× đến 2030</div>
+            <div class="topic-item">GPU vs TPU: tại sao Google tự làm chip riêng từ 2016</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Photonics for AI (TEMATYS)</span>
+            <span class="chip doc">IEA Energy &amp; AI 2025</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Tính: nếu AI compute tăng gấp đôi mỗi 6 tháng, và chip chỉ tăng hiệu suất theo Moore's Law (~2 năm), sau 5 năm "khoảng cách" lớn bao nhiêu lần? Đây là lý do photonics được nghiên cứu gấp.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 3</span>
+          <span class="week-title">Ai đang kiểm soát ngành: bản đồ quyền lực toàn cầu</span>
+          <span class="week-toggle open">▾</span>
+        </div>
+        <div class="week-body open">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">TSMC chiếm 90%+ chip tiên tiến: tại sao Taiwan là "điểm đau" toàn cầu</div>
+            <div class="topic-item">ASML và độc quyền máy in EUV: tại sao chỉ có 1 công ty trên thế giới làm được</div>
+            <div class="topic-item">Mỹ: fabless design (NVIDIA, AMD, Qualcomm) + thiết bị (Applied Materials, KLA)</div>
+            <div class="topic-item">Nhật Bản: vật liệu &amp; hóa chất (photoresist 92% thị phần)</div>
+            <div class="topic-item">US CHIPS Act: $39B + EU CHIPS Act + Big Fund 3.0 của Trung Quốc ($47.5B)</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">BCG/SIA Emerging Resilience</span>
+            <span class="chip doc">SIA 2024 State of Industry</span>
+            <span class="chip doc">OECD 2025 Trade Dependencies</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Lập bảng: 5 nút thắt (chokepoint) nguy hiểm nhất trong chuỗi cung ứng chip toàn cầu. Ghi rõ: ai kiểm soát, tỷ lệ tập trung, rủi ro nếu bị gián đoạn.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 4</span>
+          <span class="week-title">Photonics nhập môn: ánh sáng thay thế electron như thế nào</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Photon vs electron: tốc độ, năng lượng, và tại sao photon "lạnh hơn"</div>
+            <div class="topic-item">Silicon photonics: tận dụng hạ tầng CMOS sẵn có</div>
+            <div class="topic-item">Ứng dụng hiện tại: cáp quang, transceiver trong data center</div>
+            <div class="topic-item">Tại sao không thể thu nhỏ transistor quang học như transistor điện tử</div>
+            <div class="topic-item">4 lớp ứng dụng: telecom → rack-to-rack → chip-to-chip → on-chip</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Photonics for AI (TEMATYS)</span>
+            <span class="chip doc">IPSR-I Roadmap 2024</span>
+            <span class="chip doc">SOI/TSEM in SiPh Stack</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Viết 1 trang giải thích cho người không chuyên: "Tại sao ánh sáng có thể thay thế dây điện trong máy tính?" Dùng ví dụ cụ thể từ cuộc sống hàng ngày.</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- end week-grid -->
+
+    <div class="milestone-bar">
+      <div class="milestone-title">Kiểm tra cuối Tháng 1 — bạn có thể trả lời được không?</div>
+      <div class="milestone-list">
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Giải thích chuỗi cung ứng chip trong 5 phút không nhìn tài liệu</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Nêu 3 lý do tại sao Moore's Law đang chậm lại và hệ quả với AI</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Vẽ bản đồ quyền lực ngành chip: ai mạnh về gì, ai phụ thuộc ai</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Giải thích photonics là gì và tại sao nó khác với chip thông thường</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ THÁNG 2 ═══ -->
+  <div id="m2" class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-m2">Tháng 2</span>
+      <div class="phase-info">
+        <h2>Địa chính trị &amp; Kỹ thuật nâng cao</h2>
+        <p>Đi sâu vào cuộc chiến chip Mỹ–Trung, phân tích Huawei và chiến lược tự cường của Trung Quốc. Song song đó, nắm kỹ thuật: Co-packaged Optics, các loại processor AI, và so sánh các hướng đi công nghệ.</p>
+      </div>
+    </div>
+
+    <div class="week-grid">
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 5</span>
+          <span class="week-title">Chiến tranh chip: export controls và cuộc đua Mỹ–Trung</span>
+          <span class="week-toggle open">▾</span>
+        </div>
+        <div class="week-body open">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Lịch sử: Mỹ dẫn đầu thiết kế, Đông Á chiếm sản xuất từ 1980s</div>
+            <div class="topic-item">Entity List và FDPR: cơ chế pháp lý kiểm soát xuất khẩu chip</div>
+            <div class="topic-item">CHIPS Act ($39B) và European CHIPS Act: cuộc chạy đua subsidize</div>
+            <div class="topic-item">Trung Quốc phản ứng: Big Fund 3.0 ($47.5B), chiến lược chip legacy</div>
+            <div class="topic-item">"Small yard, high fence" approach: khoanh vùng hạn chế thông minh</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">US Congress Annual Report 2024</span>
+            <span class="chip doc">BCG Emerging Resilience</span>
+            <span class="chip doc">China Semiconductors 2024</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Phản biện: Export controls có thực sự hiệu quả không? Tìm 3 bằng chứng ủng hộ và 3 bằng chứng phản đối từ tài liệu trong project.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 6</span>
+          <span class="week-title">Case study Huawei: từ telecom đến chaebol bán dẫn</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Mate 60 Pro và chip Kirin 9000S trên SMIC 7nm: ý nghĩa và giới hạn</div>
+            <div class="topic-item">HiSilicon, Hubble Investment: Huawei xây dựng hệ sinh thái chip như thế nào</div>
+            <div class="topic-item">Huawei nhận $30B từ chính phủ để xây fab bí mật</div>
+            <div class="topic-item">RISC-V vs ARM: Trung Quốc tại sao chọn kiến trúc mở</div>
+            <div class="topic-item">Vấn đề "dual-use": phân biệt chip dân sự và quân sự ngày càng khó</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">IGCC/MERICS: Huawei Report</span>
+            <span class="chip doc">US Congress: Huawei Analysis</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Tư duy chiến lược: Nếu bạn là CEO Huawei, bước tiếp theo sẽ là gì? Xây dựng kịch bản 3 năm dựa trên thông tin thực từ tài liệu.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 7</span>
+          <span class="week-title">Co-packaged Optics và kiến trúc data center AI thế hệ mới</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Tại sao optical cable hiện tại không đủ: bandwidth, heat, latency</div>
+            <div class="topic-item">Co-Packaged Optics: đưa quang học vào thẳng chipset</div>
+            <div class="topic-item">NVIDIA Spectrum-X CPO (3/2025): 4x ít laser, 3.5x hiệu quả điện</div>
+            <div class="topic-item">Optical I/O: 4Tb/s, 5ns latency, 5pJ/bit — so với điện tử</div>
+            <div class="topic-item">Hệ sinh thái: TSMC, Coherent, Corning, Foxconn, Lumentum, SENKO</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Photonics for AI: CPO section</span>
+            <span class="chip doc">IPSR-I: Co-packaging roadmap</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Vẽ sơ đồ kiến trúc data center: so sánh giữa hệ thống hiện tại (dây điện + transceiver rời) và hệ thống CPO mới. Đánh dấu những điểm thay đổi và lợi ích cụ thể.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 8</span>
+          <span class="week-title">GPU vs TPU vs NPU vs PPU: bản đồ hardware AI</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">GPU: tại sao NVIDIA thống trị AI, giới hạn của von Neumann</div>
+            <div class="topic-item">TPU (Google 2016): tối ưu cho matrix multiply, hạn chế linh hoạt</div>
+            <div class="topic-item">NPU: edge AI, smartphone, tiết kiệm điện</div>
+            <div class="topic-item">Photonic Processing Unit: 160 TOPS/W (chip Taichi) vs GPU ~1-3 TOPS/W</div>
+            <div class="topic-item">Memory wall: bottleneck thực sự không phải compute mà là băng thông bộ nhớ</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">ArXiv AI Hardware Papers</span>
+            <span class="chip doc">LightIn Photonic Processor Paper</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Lập bảng so sánh: GPU H100 vs TPU v4 vs IBM NorthPole vs Photonic chip Taichi — theo 5 tiêu chí: TOPS/W, latency, workload phù hợp, TRL hiện tại, timeline thương mại.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone-bar">
+      <div class="milestone-title">Kiểm tra cuối Tháng 2 — bạn có thể phân tích được không?</div>
+      <div class="milestone-list">
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Giải thích tại sao export controls vừa hiệu quả vừa có lỗ hổng</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Phân tích chiến lược Huawei: tại sao họ gần giống Samsung chaebol hơn là một công ty telecom</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Mô tả Co-packaged Optics và lý do NVIDIA cần cả consortium 6 công ty để ra mắt nó</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Chọn đúng loại processor cho một use case AI cụ thể và giải thích lý do</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ THÁNG 3 ═══ -->
+  <div id="m3" class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-m3">Tháng 3</span>
+      <div class="phase-info">
+        <h2>Tương lai &amp; Tổng hợp: Neuromorphic, Quantum và tầm nhìn 10 năm</h2>
+        <p>Khám phá các hướng đi song song và cạnh tranh với photonics. Phát triển khả năng phân tích phản biện: cái gì thực sự sẽ thay đổi thế giới, cái gì chỉ là hype? Tổng hợp thành quan điểm riêng có cơ sở.</p>
+      </div>
+    </div>
+
+    <div class="week-grid">
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 9</span>
+          <span class="week-title">Neuromorphic computing: học từ não bộ</span>
+          <span class="week-toggle open">▾</span>
+        </div>
+        <div class="week-body open">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Spiking Neural Networks: cách não dùng xung điện thay vì floating point</div>
+            <div class="topic-item">Intel Loihi 2: 1M neurons, 100× ít điện hơn CPU trên edge workload</div>
+            <div class="topic-item">IBM NorthPole: 25× hiệu quả hơn GPU 12nm, giải quyết memory wall</div>
+            <div class="topic-item">BrainScaleS-2: analog neuromorphic, 1000× nhanh hơn sinh học thực</div>
+            <div class="topic-item">Giới hạn: chưa có tooling, khó lập trình, không phổ quát như GPU</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Neuromorphic vs Photonic 2024-25</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Phản biện: "Neuromorphic computing sẽ thay thế GPU trong 10 năm" — đúng hay sai? Xây dựng lập luận có cơ sở từ dữ liệu thực tế (TRL, benchmark, timeline).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 10</span>
+          <span class="week-title">Quantum photonics: con đường song song hay hội tụ?</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Quantum vs classical photonic: dùng photon đơn (quantum) vs dùng ánh sáng (classical)</div>
+            <div class="topic-item">PsiQuantum (Omega chipset, GlobalFoundries): kiến trúc FBQC tolerant với mất mát photon</div>
+            <div class="topic-item">Quandela (Ascella): quantum reservoir computing, lộ trình đến 2030</div>
+            <div class="topic-item">ORCA Computing: hybrid quantum-classical với NVIDIA CUDA-Q</div>
+            <div class="topic-item">Timeline: classical photonic AI accelerator chiếm lĩnh đến 2030+, quantum niche</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Quantum vs Classical Photonic 2024-25</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Đầu tư giả định: nếu có $10M, bạn sẽ phân bổ thế nào giữa classical silicon photonics startup vs quantum photonics startup? Giải thích lý luận đầu tư dựa trên dữ liệu TRL và timeline.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 11</span>
+          <span class="week-title">Photonic AI processors: hiện trạng và lộ trình đến 2035</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">MIT 12/2024: chip quang tích hợp chạy deep neural network hoàn toàn trong miền quang</div>
+            <div class="topic-item">LightIn (arXiv 2025): 40 MZI programmable, chạy matrix multiply, image recognition</div>
+            <div class="topic-item">Fully photonic switch: IPRONICS, Lumentum — thay thế ASIC switch</div>
+            <div class="topic-item">Hệ sinh thái startup: Lightmatter, Celestial AI, Luminous Computing</div>
+            <div class="topic-item">Thách thức còn lại: noise, precision (7-8 bit), calibration, analog-digital conversion</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">LightIn Paper (arXiv 2025)</span>
+            <span class="chip doc">Photonics for AI: full roadmap</span>
+          </div>
+          <div class="section-label">Bài tập cuối tuần</div>
+          <div class="output-box">
+            <p>Viết "Tech Brief" 1 trang (như kiểu đọc cho CEO): Photonic AI processor đang ở đâu, đến khi nào thì thực sự thay thế GPU được, và cơ hội nào cho doanh nghiệp Việt Nam hoặc Đông Nam Á?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <span class="week-num">Tuần 12</span>
+          <span class="week-title">Tổng hợp: Xây dựng quan điểm riêng có cơ sở</span>
+          <span class="week-toggle">▾</span>
+        </div>
+        <div class="week-body">
+          <div class="section-label">Chủ đề học</div>
+          <div class="topic-list">
+            <div class="topic-item">Lộ trình tổng hợp: cáp quang → CPO (2025) → photonic switch (2027) → photonic CPU (2030+)</div>
+            <div class="topic-item">Địa chính trị: ai sẽ dẫn đầu photonics? Mỹ/Á hay châu Âu có cơ hội?</div>
+            <div class="topic-item">Hội tụ: photonic + neuromorphic + quantum — không đối kháng mà bổ sung nhau</div>
+            <div class="topic-item">Năng lượng và bền vững: photonics là giải pháp duy nhất cho AI xanh</div>
+            <div class="topic-item">Phản biện cuối: cái gì trong 3 tháng vừa học bạn không đồng ý?</div>
+          </div>
+          <div class="section-label">Tài liệu nguồn</div>
+          <div class="source-chips">
+            <span class="chip doc">Tổng hợp toàn bộ project</span>
+          </div>
+          <div class="section-label">Bài tập cuối khoá</div>
+          <div class="output-box">
+            <p>Viết một luận điểm 500 từ: "Thứ gì sẽ thực sự phá vỡ thế thống trị của GPU trong AI computing trong 10 năm tới — và tại sao?" Dùng dữ liệu thực từ tối thiểu 5 nguồn trong project. Không được kết luận "tất cả đều quan trọng như nhau".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone-bar">
+      <div class="milestone-title">Sau 3 tháng — năng lực bạn đạt được</div>
+      <div class="milestone-list">
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Đọc hiểu báo cáo kỹ thuật và thị trường về chip/photonics mà không cần tra từng khái niệm</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Phân tích địa chính trị chip: ai lợi, ai thiệt, chính sách nào hiệu quả thực sự</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Phân biệt hype và thực chất trong các tuyên bố về AI hardware</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Xây dựng và bảo vệ quan điểm riêng có cơ sở về xu hướng công nghệ dài hạn</span></div>
+        <div class="milestone-item"><div class="check"><div class="check-inner"></div></div><span>Kết nối các mảnh: kỹ thuật ↔ kinh tế ↔ địa chính trị ↔ môi trường thành bức tranh tổng thể</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn tài liệu:</strong> OECD 2025 · BCG/SIA Emerging Resilience 2024 · CSIS Mapping Semiconductor Supply Chain · SIA 2024 State of Industry · IPSR-I Silicon Photonics Roadmap 2024 · Photonics for AI (TEMATYS) · US Annual Report to Congress 2024 · IGCC/MERICS Huawei Report 2024 · China Semiconductors 2024 (ITIF) · Neuromorphic vs Photonic Computing 2024-25 · Quantum Photonic Computing 2024-25 · LightIn arXiv 2504.01463 · McKinsey Semiconductor CaaS Q2 2025
+  </div>
+
+</div>
+
+<script>
+function showPhase(id, tab) {
+  document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+function toggleWeek(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.week-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (toggle) toggle.classList.toggle('open', !isOpen);
+}
+// Open first week of each phase by default on load
+document.querySelectorAll('.week-body').forEach((body, i) => {
+  if (i === 0 || i === 4 || i === 8) body.classList.add('open');
+});
+document.querySelectorAll('.week-toggle').forEach((t, i) => {
+  if (i === 0 || i === 4 || i === 8) t.classList.add('open');
+});
+</script>
+
+
+</body></html>

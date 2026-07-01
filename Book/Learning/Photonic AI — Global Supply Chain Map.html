@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)file:///Users/macbookairm1/Downloads/photonic_supply_chain_map_1.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photonic AI — Global Supply Chain Map</title>
+<link rel="stylesheet" href="./Photonic AI — Global Supply Chain Map_files/leaflet.min.css">
+<script src="./Photonic AI — Global Supply Chain Map_files/leaflet.min.js"></script>
+<link href="./Photonic AI — Global Supply Chain Map_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg:    #09090b;
+  --bg2:   #111116;
+  --bg3:   #18181f;
+  --line:  rgba(255,255,255,0.08);
+  --line2: rgba(255,255,255,0.15);
+  --text:  #e4e4f0;
+  --muted: #6b6b80;
+  --t0: #00e5a0; --t0d: rgba(0,229,160,0.15);
+  --t1: #a07df0; --t1d: rgba(160,125,240,0.15);
+  --t2: #f0a04a; --t2d: rgba(240,160,74,0.15);
+  --t3: #f06090; --t3d: rgba(240,96,144,0.15);
+  --t4: #4ab4f0; --t4d: rgba(74,180,240,0.15);
+  --t5: #80e050; --t5d: rgba(128,224,80,0.15);
+  --t6: #f0d840; --t6d: rgba(240,216,64,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* HEADER */
+.hd {
+  padding: 14px 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line2);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  z-index: 1000;
+}
+.hd-logo {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--t0);
+  text-transform: uppercase;
+}
+.hd h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.hd-sep { color: var(--muted); font-size: 12px; }
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: auto;
+}
+.f-btn {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 4px 11px;
+  border-radius: 4px;
+  border: 1px solid var(--line2);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.f-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+.f-btn.active { color: var(--text); border-color: var(--tier-col); background: var(--tier-bg); }
+.f-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: var(--tier-col);
+  vertical-align: middle;
+}
+.flow-toggle {
+  margin-left: 8px;
+  padding: 4px 14px;
+  background: transparent;
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.flow-toggle.on { color: var(--t0); border-color: var(--t0); background: var(--t0d); }
+
+/* MAP */
+#map {
+  flex: 1;
+  z-index: 1;
+}
+
+/* Leaflet dark tile override */
+.leaflet-tile { filter: brightness(0.18) saturate(0.3) hue-rotate(180deg); }
+.leaflet-container { background: #05050a; }
+
+/* CUSTOM MARKERS */
+.company-marker {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: transform 0.15s;
+  position: relative;
+  box-shadow: 0 0 12px var(--glow);
+  letter-spacing: -0.02em;
+}
+.company-marker:hover { transform: scale(1.3); z-index: 999 !important; }
+.company-marker.key-marker { border-color: rgba(255,255,255,0.6); border-width: 2.5px; width: 32px; height: 32px; font-size: 9px; }
+
+/* POPUP */
+.leaflet-popup-content-wrapper {
+  background: var(--bg2) !important;
+  border: 1px solid var(--line2) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-tip-container { display: none; }
+.leaflet-popup-content { margin: 0 !important; width: 260px !important; }
+.popup-inner { padding: 16px 18px; }
+.popup-tier {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.popup-ticker {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.popup-company {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.popup-role {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+  line-height: 1.4;
+}
+.popup-divider { border: none; border-top: 1px solid var(--line); margin: 10px 0; }
+.popup-flows-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.popup-flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line);
+}
+.popup-flow-item:last-child { border-bottom: none; }
+.popup-flow-dir {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.dir-out { background: rgba(0,229,160,0.15); color: #00e5a0; }
+.dir-in  { background: rgba(240,96,144,0.15); color: #f06090; }
+
+/* LEGEND */
+.map-legend {
+  position: absolute;
+  bottom: 28px; left: 12px;
+  z-index: 500;
+  background: rgba(9,9,11,0.92);
+  border: 1px solid var(--line2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  min-width: 180px;
+}
+.legend-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-flow-in  { width: 20px; height: 2px; background: var(--t0); flex-shrink: 0; }
+.legend-flow-out { width: 20px; height: 2px; background: var(--t3); flex-shrink: 0; border-style: dashed; }
+
+/* STATS BAR */
+.stats-bar {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stat-pill {
+  background: rgba(9,9,11,0.92);
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.stat-pill strong { color: var(--text); }
+
+/* FLOW LINES */
+.flow-line-out { stroke: var(--t0); stroke-opacity: 0.55; }
+.flow-line-in  { stroke: var(--t3); stroke-opacity: 0.45; }
+</style>
+</head>
+<body class="">
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-logo">Indium Analytic</div>
+  <div class="hd-sep">·</div>
+  <h1>Photonic AI — Global Supply Chain Map</h1>
+  <div class="filter-bar">
+    <button class="f-btn active" style="--tier-col:var(--t0);--tier-bg:var(--t0d)" onclick="filterTier(&#39;all&#39;,this)">
+      <span class="f-dot" style="--tier-col:#888"></span>Tất cả (22)
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t0);--tier-bg:var(--t0d)" onclick="filterTier(&#39;T0&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t0)"></span>T0 · Nguyên liệu
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t1);--tier-bg:var(--t1d)" onclick="filterTier(&#39;T1&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t1)"></span>T1 · Linh kiện
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t2);--tier-bg:var(--t2d)" onclick="filterTier(&#39;T2&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t2)"></span>T2 · Foundry
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t3);--tier-bg:var(--t3d)" onclick="filterTier(&#39;T3&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t3)"></span>T3 · Module
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t4);--tier-bg:var(--t4d)" onclick="filterTier(&#39;T4&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t4)"></span>T4 · DSP
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t5);--tier-bg:var(--t5d)" onclick="filterTier(&#39;T5&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t5)"></span>T5 · System
+    </button>
+    <button class="f-btn" style="--tier-col:var(--t6);--tier-bg:var(--t6d)" onclick="filterTier(&#39;T6&#39;,this)">
+      <span class="f-dot" style="--tier-col:var(--t6)"></span>T6 · Infra
+    </button>
+    <button class="flow-toggle on" id="flowBtn" onclick="toggleFlows()">■ Ẩn luồng hàng</button>
+  </div>
+</div>
+
+<div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative; outline-style: none;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(735px, 930px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(19px, -294px, 0px) scale(1);"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(8px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(8px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-248px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(264px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(8px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-248px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(264px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-248px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(264px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-504px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(520px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-504px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(520px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-504px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(520px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(8px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(264px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-248px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(520px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(776px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(776px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(776px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-504px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(776px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-760px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/1.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1032px, -401px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-760px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/2.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1032px, -145px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-760px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/0.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1032px, -657px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-760px, 111px, 0px); opacity: 1;"><img alt="" src="./Photonic AI — Global Supply Chain Map_files/3.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1032px, 111px, 0px); opacity: 1;"></div><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 17; transform: translate3d(0px, 0px, 0px) scale(0.5);"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none" class="leaflet-zoom-animated" width="2226" height="1026" viewBox="-920 -1015 2226 1026" style="transform: translate3d(-920px, -1015px, 0px);"><g><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-36 -561L-6 -566L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-12 -560L70 -566L145 -567L189 -565L242 -560L324 -548L383 -537"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M300 -584L335 -568L371 -546L383 -537"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M300 -584L247 -588L186 -588L153 -585L121 -580L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M64 -571L165 -565L266 -553L308 -546L443 -515L569 -479"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M64 -571L62 -571L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M64 -571L43 -572L0 -569L-26 -564L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-12 -565L10 -567L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L116 -553L168 -550L232 -544L305 -534L390 -519L538 -487L569 -479"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-26 -544L-6 -536L11 -527"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-56 -543L2 -560L26 -564L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-56 -543L-26 -539L-1 -532L11 -527"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M80 -573L71 -572L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M80 -573L59 -562L27 -540L11 -527"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M383 -537L351 -545L291 -557L220 -567L138 -570L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M383 -537L324 -548L257 -558L167 -566L100 -567L55 -565L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M383 -537L334 -543L284 -547L203 -549L116 -543L11 -527"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L94 -554L168 -550L242 -543L337 -529L390 -519L538 -487L569 -479"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-36 -561L-4 -566L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M56 -566L-4 -566L-30 -562L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M56 -566L-4 -566L-30 -562L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M11 -527L-6 -536L-26 -544L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M569 -479L441 -514L355 -534L313 -542L270 -549L184 -559L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M569 -479L538 -487L390 -519L305 -534L232 -544L168 -550L116 -553L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-40 -560L-4 -566L56 -566"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-64 -554"></path><path class="leaflet-interactive" stroke="#00e5a0" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" fill="none" d="M-64 -554L-64 -554"></path></g></svg></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(-64px, -554px, 0px); z-index: -454; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 229, 160, 0.133); border: 2px solid rgb(0, 229, 160); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(0, 229, 160, 0.4) 0px 0px 12px, rgba(0, 229, 160, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">AXTI</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(300px, -584px, 0px); z-index: -484; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 229, 160, 0.133); border: 2px solid rgb(0, 229, 160); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(0, 229, 160, 0.4) 0px 0px 12px, rgba(0, 229, 160, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">SOI</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(64px, -571px, 0px); z-index: -471; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 229, 160, 0.133); border: 2px solid rgb(0, 229, 160); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(0, 229, 160, 0.4) 0px 0px 12px, rgba(0, 229, 160, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">GLW</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(-64px, -554px, 0px); z-index: -454; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(160, 125, 240, 0.133); border: 2px solid rgb(160, 125, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(160, 125, 240, 0.4) 0px 0px 12px, rgba(160, 125, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">LITE</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-56px, -543px, 0px); z-index: -543; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(160, 125, 240, 0.133); border: 2px solid rgb(160, 125, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(160, 125, 240, 0.3) 0px 0px 12px, rgba(160, 125, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">SMTC</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(80px, -573px, 0px); z-index: -573; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(160, 125, 240, 0.133); border: 2px solid rgb(160, 125, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(160, 125, 240, 0.3) 0px 0px 12px, rgba(160, 125, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">MTSI</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-15px, -562px, 0px); z-index: -562; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(160, 125, 240, 0.133); border: 2px solid rgb(160, 125, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(160, 125, 240, 0.2) 0px 0px 12px, rgba(160, 125, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">LWLG</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(383px, -537px, 0px); z-index: -437; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(240, 160, 74, 0.133); border: 2px solid rgb(240, 160, 74); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 160, 74, 0.4) 0px 0px 12px, rgba(240, 160, 74, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">TSEM</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-58px, -543px, 0px); z-index: -543; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 160, 74, 0.133); border: 2px solid rgb(240, 160, 74); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 160, 74, 0.2) 0px 0px 12px, rgba(240, 160, 74, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">ALMU</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-64px, -554px, 0px); z-index: -554; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 160, 74, 0.133); border: 2px solid rgb(240, 160, 74); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 160, 74, 0.3) 0px 0px 12px, rgba(240, 160, 74, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">AEHR</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(56px, -566px, 0px); z-index: -466; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(240, 96, 144, 0.133); border: 2px solid rgb(240, 96, 144); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 96, 144, 0.4) 0px 0px 12px, rgba(240, 96, 144, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">COHR</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(11px, -527px, 0px); z-index: -527; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 96, 144, 0.133); border: 2px solid rgb(240, 96, 144); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 96, 144, 0.3) 0px 0px 12px, rgba(240, 96, 144, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">AAOI</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(569px, -479px, 0px); z-index: -379; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(240, 96, 144, 0.133); border: 2px solid rgb(240, 96, 144); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 96, 144, 0.4) 0px 0px 12px, rgba(240, 96, 144, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">FN</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(57px, -577px, 0px); z-index: -577; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 96, 144, 0.133); border: 2px solid rgb(240, 96, 144); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 96, 144, 0.2) 0px 0px 12px, rgba(240, 96, 144, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">POET</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(-64px, -554px, 0px); z-index: -454; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(74, 180, 240, 0.133); border: 2px solid rgb(74, 180, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(74, 180, 240, 0.4) 0px 0px 12px, rgba(74, 180, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">MRVL</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(-64px, -554px, 0px); z-index: -454; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(74, 180, 240, 0.133); border: 2px solid rgb(74, 180, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(74, 180, 240, 0.4) 0px 0px 12px, rgba(74, 180, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">AVGO</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-64px, -554px, 0px); z-index: -554; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(74, 180, 240, 0.133); border: 2px solid rgb(74, 180, 240); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(74, 180, 240, 0.3) 0px 0px 12px, rgba(74, 180, 240, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">CRDO</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(-64px, -554px, 0px); z-index: -454; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(128, 224, 80, 0.133); border: 2px solid rgb(128, 224, 80); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(128, 224, 80, 0.4) 0px 0px 12px, rgba(128, 224, 80, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">ANET</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(65px, -560px, 0px); z-index: -560; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(128, 224, 80, 0.133); border: 2px solid rgb(128, 224, 80); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(128, 224, 80, 0.3) 0px 0px 12px, rgba(128, 224, 80, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">CIEN</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -16px; margin-top: -16px; width: 32px; height: 32px; transform: translate3d(47px, -564px, 0px); z-index: -464; opacity: 1;"><div class="company-marker key-marker" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(240, 216, 64, 0.133); border: 2px solid rgb(240, 216, 64); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 9px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 216, 64, 0.4) 0px 0px 12px, rgba(240, 216, 64, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">VRT</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(-64px, -554px, 0px); z-index: -554; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 216, 64, 0.133); border: 2px solid rgb(240, 216, 64); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 216, 64, 0.3) 0px 0px 12px, rgba(240, 216, 64, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">VIAV</div></div><div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -13px; margin-top: -13px; width: 26px; height: 26px; transform: translate3d(334px, -650px, 0px); z-index: -650; opacity: 1;"><div class="company-marker" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(240, 216, 64, 0.133); border: 2px solid rgb(240, 216, 64); display: flex; align-items: center; justify-content: center; font-family: Syne, sans-serif; font-size: 8px; font-weight: 700; color: rgb(255, 255, 255); cursor: pointer; box-shadow: rgba(240, 216, 64, 0.2) 0px 0px 12px, rgba(240, 216, 64, 0.333) 0px 0px 4px; letter-spacing: -0.02em; white-space: nowrap;">SIVE</div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(421.5px, 448.5px, 0px) scale(2);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"><div class="leaflet-control">
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>22</strong> công ty · <strong>6</strong> quốc gia</div>
+      <div class="stat-pill"><strong>11</strong> KEY players · <strong>29</strong> luồng hàng</div>
+    </div>
+  </div></div><div class="leaflet-bottom leaflet-left"><div class="map-legend leaflet-control">
+    <div class="legend-title">Chú thích</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#00e5a0;box-shadow:0 0 6px rgba(0,229,160,0.5)"></span>T0 · Nguyên liệu</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#a07df0"></span>T1 · Linh kiện quang</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f0a04a"></span>T2 · Foundry &amp; Fab</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f06090"></span>T3 · Module / Assembly</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#4ab4f0"></span>T4 · DSP / ASIC</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#80e050"></span>T5 · System / Network</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f0d840"></span>T6 · Infrastructure</div>
+    <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px">
+    <div class="legend-item"><span style="display:inline-block;width:20px;height:2.5px;background:#00e5a0;margin-right:8px;border-radius:2px;border-top:2px dashed #00e5a0;background:none"></span>Xuất hàng (→ buyer)</div>
+    <div class="legend-item" style="margin-top:4px"><span style="display:inline-block;width:20px;height:2.5px;margin-right:8px;border-radius:2px;border-top:2px dashed #f06090;background:none"></span>Nhập hàng (← supplier)</div>
+    <div class="legend-item" style="margin-top:6px"><span style="width:14px;height:14px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.6);display:inline-block;margin-right:8px;flex-shrink:0"></span>KEY player (vòng sáng)</div>
+    </div>
+  </div></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="file:///Users/macbookairm1/Downloads/photonic_supply_chain_map_1.html#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out leaflet-disabled" href="file:///Users/macbookairm1/Downloads/photonic_supply_chain_map_1.html#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="true"><span aria-hidden="true">−</span></a></div><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com/" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> © OSM</div></div></div></div>
+
+<script>
+// ── DATA ──
+const COMPANIES = [
+  // T0 — Materials
+  { id:'AXTI', tier:'T0', key:true,  lat:37.507, lng:-121.957, color:'#00e5a0', glow:'rgba(0,229,160,0.4)',
+    company:'AXT Inc.', loc:'Fremont, CA, USA', role:'InP · GaAs · Ge substrate',
+    exports:[{to:'LITE',what:'InP wafer → EML laser substrate'},{to:'COHR',what:'InP wafer → internal laser fab'},{to:'TSEM',what:'Ge substrate → SiPh photodetector'}],
+    imports:[] },
+  { id:'SOI', tier:'T0', key:true,  lat:45.262, lng:5.878, color:'#00e5a0', glow:'rgba(0,229,160,0.4)',
+    company:'Soitec S.A.', loc:'Bernin, France', role:'SOI wafer · Smart-cut IP',
+    exports:[{to:'TSEM',what:'SOI wafer → SiPh foundry process'},{to:'COHR',what:'SOI wafer → SiPh chip layer'}],
+    imports:[] },
+  { id:'GLW', tier:'T0', key:true,  lat:42.145, lng:-77.056, color:'#00e5a0', glow:'rgba(0,229,160,0.4)',
+    company:'Corning Inc.', loc:'Corning, NY, USA', role:'Fiber optic · CPO connector',
+    exports:[{to:'FN',what:'Fiber → precision CPO assembly'},{to:'COHR',what:'Optical connector → CPO interface'},{to:'ANET',what:'Fiber cable → switch interconnect'}],
+    imports:[] },
+
+  // T1 — Components
+  { id:'LITE', tier:'T1', key:true,  lat:37.384, lng:-121.902, color:'#a07df0', glow:'rgba(160,125,240,0.4)',
+    company:'Lumentum', loc:'San Jose, CA, USA', role:'EML laser · NVDA CPO partner',
+    exports:[{to:'COHR',what:'EML laser → CPO module source'},{to:'FN',what:'Laser component → assembly'},{to:'AAOI',what:'Laser source → transceiver module'}],
+    imports:[{from:'AXTI',what:'InP wafer → laser substrate'}] },
+  { id:'SMTC', tier:'T1', key:false, lat:34.218, lng:-119.021, color:'#a07df0', glow:'rgba(160,125,240,0.3)',
+    company:'Semtech', loc:'Camarillo, CA, USA', role:'CDR · FiberEdge · receive path',
+    exports:[{to:'COHR',what:'CDR IC → transceiver receive path'},{to:'AAOI',what:'FiberEdge → QSFP electronics'}],
+    imports:[] },
+  { id:'MTSI', tier:'T1', key:false, lat:42.636, lng:-71.316, color:'#a07df0', glow:'rgba(160,125,240,0.3)',
+    company:'MACOM Technology', loc:'Lowell, MA, USA', role:'TIA · laser driver · analog IC',
+    exports:[{to:'COHR',what:'TIA + driver → transceiver analog'},{to:'AAOI',what:'Laser driver → QSFP module'}],
+    imports:[] },
+  { id:'LWLG', tier:'T1', key:false, lat:39.559, lng:-104.867, color:'#a07df0', glow:'rgba(160,125,240,0.2)',
+    company:'Lightwave Logic', loc:'Englewood, CO, USA', role:'Polymer EO modulator (pre-rev.)',
+    exports:[], imports:[] },
+
+  // T2 — Foundry
+  { id:'TSEM', tier:'T2', key:true,  lat:32.689, lng:35.250, color:'#f0a04a', glow:'rgba(240,160,74,0.4)',
+    company:'Tower Semiconductor', loc:'Migdal HaEmek, Israel', role:'SiPh foundry · PDK · Ge epi',
+    exports:[{to:'COHR',what:'SiPh chip → CPO optical engine'},{to:'MRVL',what:'SiPh platform → DSP integration'},{to:'AAOI',what:'SiPh die → transceiver assembly'}],
+    imports:[{from:'SOI',what:'SOI wafer → foundry process input'},{from:'AXTI',what:'Ge substrate → photodetector epi'}] },
+  { id:'ALMU', tier:'T2', key:false, lat:34.433, lng:-119.865, color:'#f0a04a', glow:'rgba(240,160,74,0.2)',
+    company:'Aeluma', loc:'Goleta, CA, USA', role:'III-V on Si (alternative)',
+    exports:[], imports:[] },
+  { id:'AEHR', tier:'T2', key:false, lat:37.466, lng:-121.919, color:'#f0a04a', glow:'rgba(240,160,74,0.3)',
+    company:'Aehr Test Systems', loc:'Fremont, CA, USA', role:'Wafer-level test · quality gate',
+    exports:[{to:'FN',what:'Verified die → precision assembly'},{to:'COHR',what:'Tested SiPh → CPO integration'}],
+    imports:[{from:'TSEM',what:'Completed wafers → burn-in test'}] },
+
+  // T3 — Module/Integration
+  { id:'COHR', tier:'T3', key:true,  lat:40.732, lng:-79.818, color:'#f06090', glow:'rgba(240,96,144,0.4)',
+    company:'Coherent Corp.', loc:'Saxonburg, PA, USA', role:'Transceiver · CPO · vertical T1+T2+T3',
+    exports:[{to:'ANET',what:'CPO module → Spectrum-X switch'},{to:'MRVL',what:'SiPh chip → DSP integration'}],
+    imports:[{from:'AXTI',what:'InP wafer → internal laser fab'},{from:'SOI',what:'SOI wafer → SiPh chip'},{from:'GLW',what:'Optical connector → CPO interface'},{from:'LITE',what:'EML laser → CPO module'},{from:'AEHR',what:'Tested SiPh → CPO integration'}] },
+  { id:'AAOI', tier:'T3', key:false, lat:29.637, lng:-95.615, color:'#f06090', glow:'rgba(240,96,144,0.3)',
+    company:'Applied Optoelectronics', loc:'Sugar Land, TX, USA', role:'400G/800G QSFP transceiver',
+    exports:[{to:'ANET',what:'Pluggable transceiver → switch port'}],
+    imports:[{from:'LITE',what:'Laser source → transceiver module'},{from:'TSEM',what:'SiPh die → transceiver assembly'},{from:'SMTC',what:'FiberEdge → QSFP electronics'},{from:'MTSI',what:'Laser driver → QSFP module'}] },
+  { id:'FN', tier:'T3', key:true,  lat:14.050, lng:100.608, color:'#f06090', glow:'rgba(240,96,144,0.4)',
+    company:'Fabrinet', loc:'Pathum Thani, Thailand', role:'Contract precision assembly',
+    exports:[{to:'COHR',what:'Assembled module → product line'},{to:'LITE',what:'Assembled transceiver → OEM'}],
+    imports:[{from:'GLW',what:'Fiber → precision CPO attach'},{from:'LITE',what:'Laser + SiPh die → assembly'},{from:'AEHR',what:'Verified die → assembly'}] },
+  { id:'POET', tier:'T3', key:false, lat:43.650, lng:-79.384, color:'#f06090', glow:'rgba(240,96,144,0.2)',
+    company:'POET Technologies', loc:'Toronto, Canada', role:'Optical interposer (early stage)',
+    exports:[], imports:[] },
+
+  // T4 — DSP/ASIC
+  { id:'MRVL', tier:'T4', key:true,  lat:37.412, lng:-121.982, color:'#4ab4f0', glow:'rgba(74,180,240,0.4)',
+    company:'Marvell Technology', loc:'Santa Clara, CA, USA', role:'Optical DSP · NVDA $2B equity',
+    exports:[{to:'COHR',what:'DSP chip → CPO module signal processing'},{to:'ANET',what:'Optical engine DSP → switch integrity'}],
+    imports:[{from:'TSEM',what:'SiPh platform → DSP chip fab'},{from:'COHR',what:'SiPh chip → Marvell DSP integration'}] },
+  { id:'AVGO', tier:'T4', key:true,  lat:37.386, lng:-121.900, color:'#4ab4f0', glow:'rgba(74,180,240,0.4)',
+    company:'Broadcom Inc.', loc:'San Jose, CA, USA', role:'Custom ASIC · switching silicon',
+    exports:[{to:'ANET',what:'Switching ASIC → Ethernet fabric'}],
+    imports:[] },
+  { id:'CRDO', tier:'T4', key:false, lat:37.403, lng:-121.947, color:'#4ab4f0', glow:'rgba(74,180,240,0.3)',
+    company:'Credo Technology', loc:'San Jose, CA, USA', role:'SerDes IP · Active Electrical Cable',
+    exports:[{to:'ANET',what:'AEC/SerDes → in-rack connectivity'}],
+    imports:[] },
+
+  // T5 — System/Networking
+  { id:'ANET', tier:'T5', key:true,  lat:37.412, lng:-121.976, color:'#80e050', glow:'rgba(128,224,80,0.4)',
+    company:'Arista Networks', loc:'Santa Clara, CA, USA', role:'Ethernet switch · EOS software',
+    exports:[],
+    imports:[{from:'COHR',what:'CPO module → switch optical engine'},{from:'AVGO',what:'Switching ASIC → Ethernet fabric'},{from:'MRVL',what:'Optical DSP → switch signal processing'},{from:'GLW',what:'Fiber cable → switch port connectivity'},{from:'AAOI',what:'Pluggable transceiver → switch port'},{from:'CRDO',what:'AEC/SerDes → in-rack connectivity'}] },
+  { id:'CIEN', tier:'T5', key:false, lat:39.192, lng:-76.700, color:'#80e050', glow:'rgba(128,224,80,0.3)',
+    company:'Ciena Corp.', loc:'Hanover, MD, USA', role:'Coherent DCI · WDM transport',
+    exports:[],
+    imports:[{from:'GLW',what:'Long-haul fiber → DCI infrastructure'}] },
+
+  // T6 — Infrastructure
+  { id:'VRT', tier:'T6', key:true,  lat:40.114, lng:-82.989, color:'#f0d840', glow:'rgba(240,216,64,0.4)',
+    company:'Vertiv Holdings', loc:'Columbus, OH, USA', role:'Liquid cooling · power distribution',
+    exports:[], imports:[] },
+  { id:'VIAV', tier:'T6', key:false, lat:37.395, lng:-121.935, color:'#f0d840', glow:'rgba(240,216,64,0.3)',
+    company:'VIAVI Solutions', loc:'San Jose, CA, USA', role:'Optical test & measurement',
+    exports:[], imports:[] },
+  { id:'SIVE', tier:'T6', key:false, lat:59.410, lng:17.949, color:'#f0d840', glow:'rgba(240,216,64,0.2)',
+    company:'Sivers Semiconductors', loc:'Kista, Sweden', role:'InP laser chip (Photonics BU)',
+    exports:[],
+    imports:[{from:'AXTI',what:'InP wafer → laser chip substrate'}] },
+];
+
+const TIER_LABELS = {
+  T0:'Tầng 0 · Nguyên liệu', T1:'Tầng 1 · Linh kiện',
+  T2:'Tầng 2 · Foundry', T3:'Tầng 3 · Module',
+  T4:'Tầng 4 · DSP/ASIC', T5:'Tầng 5 · System', T6:'Tầng 6 · Infra'
+};
+
+// ── MAP INIT ──
+const map = L.map('map', {
+  center: [30, 0], zoom: 2,
+  zoomControl: false,
+  minZoom: 2, maxZoom: 10
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OSM',
+  maxZoom: 18,
+}).addTo(map);
+
+L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+// ── MARKERS ──
+const markers = {};
+const flowLines = [];
+let flowsVisible = false;
+let activeFilter = 'all';
+
+function createIcon(c) {
+  const size = c.key ? 32 : 26;
+  const div = document.createElement('div');
+  div.className = 'company-marker' + (c.key ? ' key-marker' : '');
+  div.style.cssText = `
+    width:${size}px;height:${size}px;border-radius:50%;
+    background:${c.color}22;border:2px solid ${c.color};
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Syne',sans-serif;font-size:${c.key?9:8}px;font-weight:700;
+    color:#fff;cursor:pointer;
+    box-shadow:0 0 12px ${c.glow},0 0 4px ${c.color}55;
+    letter-spacing:-0.02em;white-space:nowrap;
+  `;
+  div.textContent = c.id.replace('.PA','');
+  return L.divIcon({ html: div.outerHTML, className: '', iconSize: [size, size], iconAnchor: [size/2, size/2] });
+}
+
+function buildPopup(c) {
+  const tierLabel = TIER_LABELS[c.tier] || c.tier;
+  let flowsHTML = '';
+  if (c.exports.length > 0) {
+    flowsHTML += `<div class="popup-flows-title">🟢 Xuất hàng sang (supplier → buyer)</div>`;
+    c.exports.forEach(e => {
+      flowsHTML += `<div class="popup-flow-item">
+        <span class="popup-flow-dir dir-out">→ ${e.to}</span>
+        <span>${e.what}</span>
+      </div>`;
+    });
+  }
+  if (c.imports.length > 0) {
+    if (c.exports.length > 0) flowsHTML += '<hr class="popup-divider">';
+    flowsHTML += `<div class="popup-flows-title">🩷 Nhập hàng từ (supplier → công ty này)</div>`;
+    c.imports.forEach(i => {
+      flowsHTML += `<div class="popup-flow-item">
+        <span class="popup-flow-dir dir-in">← ${i.from}</span>
+        <span>${i.what}</span>
+      </div>`;
+    });
+  }
+  return `<div class="popup-inner">
+    <div class="popup-tier" style="background:${c.color}22;color:${c.color}">${tierLabel}</div>
+    <div class="popup-ticker">$${c.id.replace('.PA','')}</div>
+    <div class="popup-company">${c.company} · ${c.loc}</div>
+    <div class="popup-role" style="background:${c.color}18;color:${c.color}">${c.role}</div>
+    ${flowsHTML ? `<hr class="popup-divider">${flowsHTML}` : ''}
+  </div>`;
+}
+
+COMPANIES.forEach(c => {
+  const marker = L.marker([c.lat, c.lng], {
+    icon: createIcon(c),
+    zIndexOffset: c.key ? 100 : 0
+  });
+  marker.bindPopup(buildPopup(c), {
+    maxWidth: 280, className: 'custom-popup', offset: [0, -6]
+  });
+  marker.addTo(map);
+  marker._companyData = c;
+  markers[c.id] = marker;
+});
+
+// ── FLOW LINES ──
+function buildFlowLines() {
+  flowLines.forEach(l => map.removeLayer(l));
+  flowLines.length = 0;
+
+  COMPANIES.forEach(c => {
+    c.exports.forEach(exp => {
+      const target = COMPANIES.find(x => x.id === exp.to);
+      if (!target) return;
+
+      const isVisible = activeFilter === 'all' ||
+        c.tier === activeFilter || target.tier === activeFilter;
+
+      const latlngs = geodesicCurve([c.lat, c.lng], [target.lat, target.lng]);
+      const line = L.polyline(latlngs, {
+        color: '#00e5a0',
+        weight: c.key && target.key ? 2 : 1.2,
+        opacity: c.key && target.key ? 0.7 : 0.45,
+        dashArray: '6 5',
+        smoothFactor: 1,
+      });
+      if (flowsVisible && isVisible) line.addTo(map);
+      line._isVisible = isVisible;
+      line._fromTier = c.tier;
+      line._toTier = target.tier;
+      flowLines.push(line);
+    });
+  });
+}
+
+// Create geodesic curve between two points
+function geodesicCurve(from, to, steps = 60) {
+  const pts = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const lat = from[0] + (to[0] - from[0]) * t;
+    let lng = from[1] + (to[1] - from[1]) * t;
+    // Arc height proportional to distance
+    const dist = Math.sqrt(Math.pow(to[0]-from[0],2)+Math.pow(to[1]-from[1],2));
+    const arc = Math.sin(Math.PI * t) * dist * 0.12;
+    pts.push([lat + arc * 0.3, lng]);
+  }
+  return pts;
+}
+
+buildFlowLines();
+
+// ── FILTER ──
+function filterTier(tier, el) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeFilter = tier;
+
+  COMPANIES.forEach(c => {
+    const m = markers[c.id];
+    if (!m) return;
+    const visible = tier === 'all' || c.tier === tier;
+    const div = m.getElement();
+    if (div) div.style.opacity = visible ? '1' : '0.15';
+  });
+
+  if (flowsVisible) buildFlowLines();
+}
+
+// ── TOGGLE FLOWS ──
+function toggleFlows() {
+  flowsVisible = !flowsVisible;
+  const btn = document.getElementById('flowBtn');
+  btn.classList.toggle('on', flowsVisible);
+  btn.textContent = flowsVisible ? '■ Ẩn luồng hàng' : '▶ Bật luồng hàng (xanh=xuất · hồng=nhập)';
+  buildFlowLines();
+}
+
+// ── LEGEND ──
+const legend = L.control({ position: 'bottomleft' });
+legend.onAdd = function() {
+  const div = document.createElement('div');
+  div.className = 'map-legend';
+  div.innerHTML = `
+    <div class="legend-title">Chú thích</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#00e5a0;box-shadow:0 0 6px rgba(0,229,160,0.5)"></span>T0 · Nguyên liệu</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#a07df0"></span>T1 · Linh kiện quang</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f0a04a"></span>T2 · Foundry & Fab</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f06090"></span>T3 · Module / Assembly</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#4ab4f0"></span>T4 · DSP / ASIC</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#80e050"></span>T5 · System / Network</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f0d840"></span>T6 · Infrastructure</div>
+    <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px">
+    <div class="legend-item"><span style="display:inline-block;width:20px;height:2.5px;background:#00e5a0;margin-right:8px;border-radius:2px;border-top:2px dashed #00e5a0;background:none"></span>Xuất hàng (→ buyer)</div>
+    <div class="legend-item" style="margin-top:4px"><span style="display:inline-block;width:20px;height:2.5px;margin-right:8px;border-radius:2px;border-top:2px dashed #f06090;background:none"></span>Nhập hàng (← supplier)</div>
+    <div class="legend-item" style="margin-top:6px"><span style="width:14px;height:14px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.6);display:inline-block;margin-right:8px;flex-shrink:0"></span>KEY player (vòng sáng)</div>
+    </div>
+  `;
+  return div;
+};
+legend.addTo(map);
+
+// ── STATS ──
+const kCount = COMPANIES.filter(c=>c.key).length;
+const flowCount = COMPANIES.reduce((a,c)=>a+c.exports.length,0);
+const countries = [...new Set(COMPANIES.map(c=>c.loc.split(', ').pop()))].length;
+
+const stats = L.control({ position: 'topright' });
+stats.onAdd = function() {
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>${COMPANIES.length}</strong> công ty · <strong>${countries}</strong> quốc gia</div>
+      <div class="stat-pill"><strong>${kCount}</strong> KEY players · <strong>${flowCount}</strong> luồng hàng</div>
+    </div>
+  `;
+  return div;
+};
+stats.addTo(map);
+
+// Prevent Leaflet popup z-index issue
+map.on('popupopen', function(e) {
+  const px = map.project(e.popup._latlng);
+  map.panTo(map.unproject(px));
+});
+</script>
+
+
+</body></html>

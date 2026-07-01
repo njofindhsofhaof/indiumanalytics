@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///Users/macbookairm1/Downloads/photonic_value_chain.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photonic AI — Value Chain Dependency Analysis</title>
+<link href="./Photonic AI — Value Chain Dependency Analysis_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg:      #09090b;
+  --bg2:     #111116;
+  --bg3:     #18181f;
+  --bg4:     #1f1f28;
+  --line:    rgba(255,255,255,0.06);
+  --line2:   rgba(255,255,255,0.12);
+  --text:    #e4e4f0;
+  --muted:   #6b6b80;
+  --dimmed:  #3a3a48;
+
+  /* Tier colors */
+  --t0: #00e5a0;  --t0d: rgba(0,229,160,0.12);  --t0b: rgba(0,229,160,0.25);
+  --t1: #7c6af0;  --t1d: rgba(124,106,240,0.12); --t1b: rgba(124,106,240,0.25);
+  --t2: #f0a04a;  --t2d: rgba(240,160,74,0.12);  --t2b: rgba(240,160,74,0.25);
+  --t3: #f06090;  --t3d: rgba(240,96,144,0.12);  --t3b: rgba(240,96,144,0.25);
+  --t4: #4ab4f0;  --t4d: rgba(74,180,240,0.12);  --t4b: rgba(74,180,240,0.25);
+  --t5: #a0f060;  --t5d: rgba(160,240,96,0.12);  --t5b: rgba(160,240,96,0.25);
+  --t6: #f0e04a;  --t6d: rgba(240,224,74,0.12);  --t6b: rgba(240,224,74,0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+.hd {
+  padding: 56px 64px 48px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.hd::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--t0), transparent);
+  opacity: 0.4;
+}
+.hd-eyebrow {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--t0);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hd h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.hd h1 em { color: var(--t0); font-style: normal; }
+.hd-sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── LEGEND ── */
+.legend-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 20px 64px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg2);
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-family: 'Syne Mono', monospace;
+  color: var(--muted);
+  padding: 5px 12px;
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+}
+.leg-item:hover, .leg-item.active {
+  color: var(--text);
+  border-color: var(--tier-col);
+  background: var(--tier-bg);
+}
+.leg-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--tier-col);
+  flex-shrink: 0;
+}
+
+/* ── MAIN LAYOUT ── */
+.main { padding: 40px 64px 80px; }
+
+/* ── CHAIN VIEW ── */
+.chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* Vertical line connecting tiers */
+.chain::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  background: linear-gradient(180deg,
+    var(--t0) 0%, var(--t1) 16.6%, var(--t2) 33.3%,
+    var(--t3) 50%, var(--t4) 66.6%, var(--t5) 83.3%, var(--t6) 100%
+  );
+  opacity: 0.3;
+}
+
+/* ── TIER ROW ── */
+.tier {
+  display: grid;
+  grid-template-columns: 32px 280px 1fr;
+  gap: 0 24px;
+  align-items: start;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background 0.2s;
+}
+.tier:last-child { border-bottom: none; }
+.tier.dim .tier-header,
+.tier.dim .stock-grid { opacity: 0.15; }
+.tier.highlight { background: rgba(255,255,255,0.02); border-radius: 8px; }
+
+/* Node dot on vertical line */
+.tier-node {
+  width: 32px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.tier-node-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--tier-col);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.tier:hover .tier-node-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 20px var(--tier-col);
+}
+
+/* Header column */
+.tier-header {
+  padding-top: 0;
+}
+.tier-num {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tier-col);
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+.tier-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.tier-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 240px;
+}
+
+/* Dependency arrow */
+.dep-arrow {
+  position: absolute;
+  left: 15px;
+  bottom: -1px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 0 4px;
+  font-family: 'Syne Mono', monospace;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+/* Stock grid */
+.stock-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: start;
+}
+
+/* Stock card */
+.stock-card {
+  background: var(--bg3);
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  padding: 14px 16px;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.stock-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--tier-col);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.stock-card:hover {
+  border-color: var(--tier-col);
+  background: var(--bg4);
+  transform: translateY(-2px);
+}
+.stock-card:hover::before { opacity: 1; }
+.stock-card.selected {
+  border-color: var(--tier-col);
+  background: var(--tier-bg);
+}
+.stock-card.selected::before { opacity: 1; }
+.stock-card.is-critical {
+  border-color: var(--tier-col);
+}
+.stock-card.is-critical::after {
+  content: 'KEY';
+  position: absolute;
+  top: 8px; right: 8px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--tier-col);
+  background: var(--tier-bg);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.sc-ticker {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.sc-name {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.sc-role {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: var(--tier-col);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+/* Wide card for spanning tiers */
+.stock-card.wide { width: 100%; max-width: 380px; }
+
+/* ── DEPENDENCY PANEL ── */
+.dep-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 360px;
+  background: var(--bg2);
+  border-left: 1px solid var(--line2);
+  padding: 32px 28px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+.dep-panel.open { transform: translateX(0); }
+
+.dp-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 20px;
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.dp-close:hover { color: var(--text); border-color: var(--line2); background: var(--bg3); }
+
+.dp-tier-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.dp-ticker {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.dp-company {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.dp-role-badge {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: inline-block;
+  line-height: 1.4;
+}
+.dp-section-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.dp-body {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.dp-body strong { color: var(--text); font-weight: 500; }
+
+.dp-dep-list { margin-bottom: 20px; }
+.dp-dep-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+.dp-dep-item:last-child { border-bottom: none; }
+.dp-dep-ticker {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: #fff;
+  min-width: 50px;
+}
+.dp-dep-text { color: var(--muted); line-height: 1.5; }
+
+.dp-impact {
+  background: var(--bg3);
+  border-left: 2px solid var(--tier-col, #fff);
+  padding: 12px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.dp-impact strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 4px; }
+
+/* ── OVERLAY ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay.show { opacity: 1; pointer-events: all; }
+
+/* ── CHAIN ANALYSIS BOX ── */
+.chain-analysis {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+}
+.ca-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.ca-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media(max-width:900px){ .ca-grid { grid-template-columns: 1fr; } }
+.ca-box {
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+}
+.ca-box-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.ca-chain-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 0;
+}
+.ca-chain-item strong {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--text);
+}
+.ca-chain-arrow {
+  color: var(--dimmed);
+  font-size: 10px;
+}
+.ca-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  line-height: 1.6;
+  font-family: 'Syne Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+@media(max-width: 768px) {
+  .hd, .legend-bar, .main { padding-left: 20px; padding-right: 20px; }
+  .tier { grid-template-columns: 24px 1fr; grid-template-rows: auto auto; gap: 12px; }
+  .tier-header { grid-column: 2; }
+  .stock-grid { grid-column: 1 / -1; }
+  .dep-panel { width: 100%; }
+  .stock-card { width: 160px; }
+}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+
+<!-- PANEL -->
+<div class="dep-panel" id="depPanel">
+  <div class="dp-close" onclick="closePanel()">×</div>
+  <div id="panelContent"></div>
+</div>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-eyebrow">Indium Analytic · Value Chain Analysis</div>
+  <h1>Photonic AI — <em>Dependency Chain</em></h1>
+  <p class="hd-sub">Nếu không có Tầng 0 thì không có Tầng 1. 22 mã được re-map theo luồng nhân quả vật lý — không phải nhóm kinh doanh. Bấm vào mã để xem dependency analysis.</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="leg-item" style="--tier-col:var(--t0);--tier-bg:var(--t0d)" onclick="filterTier(0,this)">
+    <span class="leg-dot" style="background:var(--t0)"></span>T0 · Nguyên liệu
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t1);--tier-bg:var(--t1d)" onclick="filterTier(1,this)">
+    <span class="leg-dot" style="background:var(--t1)"></span>T1 · Linh kiện quang
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t2);--tier-bg:var(--t2d)" onclick="filterTier(2,this)">
+    <span class="leg-dot" style="background:var(--t2)"></span>T2 · Foundry &amp; Fab
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t3);--tier-bg:var(--t3d)" onclick="filterTier(3,this)">
+    <span class="leg-dot" style="background:var(--t3)"></span>T3 · Integration
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t4);--tier-bg:var(--t4d)" onclick="filterTier(4,this)">
+    <span class="leg-dot" style="background:var(--t4)"></span>T4 · Signal Processing
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t5);--tier-bg:var(--t5d)" onclick="filterTier(5,this)">
+    <span class="leg-dot" style="background:var(--t5)"></span>T5 · System
+  </div>
+  <div class="leg-item" style="--tier-col:var(--t6);--tier-bg:var(--t6d)" onclick="filterTier(6,this)">
+    <span class="leg-dot" style="background:var(--t6)"></span>T6 · Infrastructure
+  </div>
+  <div class="leg-item active" onclick="filterTier(-1,this)" style="margin-left:auto">
+    <span class="leg-dot" style="background:var(--muted)"></span>Tất cả
+  </div>
+</div>
+
+<!-- MAIN CHAIN -->
+<div class="main">
+<div class="chain" id="chain">
+
+<!-- T0 -->
+<div class="tier" id="tier-0" data-tier="0" style="--tier-col:var(--t0);--tier-bg:var(--t0d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t0)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 0 — Upstream</div>
+    <div class="tier-name">Nguyên liệu &amp; Substrate</div>
+    <div class="tier-desc">Không có tầng này → toàn bộ chuỗi sụp đổ. InP và SOI wafer không có substitute thương mại khả thi.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="AXTI" onclick="showPanel(&#39;AXTI&#39;)">
+      <div class="sc-ticker">$AXTI</div>
+      <div class="sc-name">AXT Inc.</div>
+      <div class="sc-role">InP / GaAs / Ge substrate</div>
+    </div>
+    <div class="stock-card is-critical" data-ticker="SOI" onclick="showPanel(&#39;SOI&#39;)">
+      <div class="sc-ticker">$SOI</div>
+      <div class="sc-name">Soitec S.A.</div>
+      <div class="sc-role">SOI wafer · Smart-cut IP</div>
+    </div>
+    <div class="stock-card is-critical" data-ticker="GLW" onclick="showPanel(&#39;GLW&#39;)">
+      <div class="sc-ticker">$GLW</div>
+      <div class="sc-name">Corning Inc.</div>
+      <div class="sc-role">Fiber optic · CPO connector</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T0 → T1, T2, T3 không khởi động được</div>
+</div>
+
+<!-- T1 -->
+<div class="tier" id="tier-1" data-tier="1" style="--tier-col:var(--t1);--tier-bg:var(--t1d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t1)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 1 — Components</div>
+    <div class="tier-name">Linh kiện quang học &amp; Laser</div>
+    <div class="tier-desc">Cần InP (T0) để làm laser. Cần SOI (T0) để làm modulator &amp; photodetector trên silicon.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="LITE" onclick="showPanel(&#39;LITE&#39;)">
+      <div class="sc-ticker">$LITE</div>
+      <div class="sc-name">Lumentum</div>
+      <div class="sc-role">EML laser · NVDA named partner</div>
+    </div>
+    <div class="stock-card" data-ticker="SMTC" onclick="showPanel(&#39;SMTC&#39;)">
+      <div class="sc-ticker">$SMTC</div>
+      <div class="sc-name">Semtech</div>
+      <div class="sc-role">CDR · receive path IC</div>
+    </div>
+    <div class="stock-card" data-ticker="MTSI" onclick="showPanel(&#39;MTSI&#39;)">
+      <div class="sc-ticker">$MTSI</div>
+      <div class="sc-name">MACOM</div>
+      <div class="sc-role">TIA · laser driver · analog IC</div>
+    </div>
+    <div class="stock-card" data-ticker="LWLG" onclick="showPanel(&#39;LWLG&#39;)">
+      <div class="sc-ticker">$LWLG</div>
+      <div class="sc-name">Lightwave Logic</div>
+      <div class="sc-role">Polymer EO modulator (pre-rev.)</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T1 laser → T3 module không có nguồn quang</div>
+</div>
+
+<!-- T2 -->
+<div class="tier" id="tier-2" data-tier="2" style="--tier-col:var(--t2);--tier-bg:var(--t2d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t2)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 2 — Foundry</div>
+    <div class="tier-name">SiPh Foundry &amp; Fab</div>
+    <div class="tier-desc">Nhận SOI wafer (T0) → biến thành SiPh chip có waveguide, modulator, photodetector. Không có fab → không có chip.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="TSEM" onclick="showPanel(&#39;TSEM&#39;)">
+      <div class="sc-ticker">$TSEM</div>
+      <div class="sc-name">Tower Semiconductor</div>
+      <div class="sc-role">SiPh foundry · PDK lock-in · Ge epi</div>
+    </div>
+    <div class="stock-card" data-ticker="ALMU" onclick="showPanel(&#39;ALMU&#39;)">
+      <div class="sc-ticker">$ALMU</div>
+      <div class="sc-name">Aeluma</div>
+      <div class="sc-role">III-V on Si (alternative approach)</div>
+    </div>
+    <div class="stock-card" data-ticker="AEHR" onclick="showPanel(&#39;AEHR&#39;)">
+      <div class="sc-ticker">$AEHR</div>
+      <div class="sc-name">Aehr Test Systems</div>
+      <div class="sc-role">Wafer-level test · quality gate T2→T3</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T2 fab → chip chỉ là thiết kế trên giấy</div>
+</div>
+
+<!-- T3 -->
+<div class="tier" id="tier-3" data-tier="3" style="--tier-col:var(--t3);--tier-bg:var(--t3d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t3)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 3 — Integration</div>
+    <div class="tier-name">Module &amp; Transceiver Assembly</div>
+    <div class="tier-desc">Kết hợp laser (T1) + SiPh chip (T2) + fiber (T0) thành module hoàn chỉnh. Đây là nơi CPO được tạo ra.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical wide" data-ticker="COHR" onclick="showPanel(&#39;COHR&#39;)">
+      <div class="sc-ticker">$COHR</div>
+      <div class="sc-name">Coherent Corp. — vertical integration T1+T2+T3</div>
+      <div class="sc-role">800G/1.6T transceiver · SiPh chip · InP laser · CPO module</div>
+    </div>
+    <div class="stock-card" data-ticker="AAOI" onclick="showPanel(&#39;AAOI&#39;)">
+      <div class="sc-ticker">$AAOI</div>
+      <div class="sc-name">Applied Optoelectronics</div>
+      <div class="sc-role">400G/800G QSFP transceiver</div>
+    </div>
+    <div class="stock-card is-critical" data-ticker="FN" onclick="showPanel(&#39;FN&#39;)">
+      <div class="sc-ticker">$FN</div>
+      <div class="sc-name">Fabrinet</div>
+      <div class="sc-role">Contract assembly · precision sub-micron</div>
+    </div>
+    <div class="stock-card" data-ticker="POET" onclick="showPanel(&#39;POET&#39;)">
+      <div class="sc-ticker">$POET</div>
+      <div class="sc-name">POET Technologies</div>
+      <div class="sc-role">Optical interposer platform</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T3 module → không có gì để cắm vào switch</div>
+</div>
+
+<!-- T4 -->
+<div class="tier" id="tier-4" data-tier="4" style="--tier-col:var(--t4);--tier-bg:var(--t4d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t4)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 4 — Signal Processing</div>
+    <div class="tier-name">DSP, ASIC &amp; Connectivity</div>
+    <div class="tier-desc">Chạy song song với T2, hội tụ tại T3. DSP xử lý tín hiệu quang → điện. Không có DSP → module không nói chuyện được với hệ thống.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="MRVL" onclick="showPanel(&#39;MRVL&#39;)">
+      <div class="sc-ticker">$MRVL</div>
+      <div class="sc-name">Marvell Technology</div>
+      <div class="sc-role">Optical DSP · NVDA $2B equity · NVLink Fusion</div>
+    </div>
+    <div class="stock-card is-critical" data-ticker="AVGO" onclick="showPanel(&#39;AVGO&#39;)">
+      <div class="sc-ticker">$AVGO</div>
+      <div class="sc-name">Broadcom</div>
+      <div class="sc-role">Custom ASIC · switching silicon · optical DSP</div>
+    </div>
+    <div class="stock-card" data-ticker="CRDO" onclick="showPanel(&#39;CRDO&#39;)">
+      <div class="sc-ticker">$CRDO</div>
+      <div class="sc-name">Credo Technology</div>
+      <div class="sc-role">SerDes IP · Active Electrical Cable</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T4 DSP → tín hiệu quang không decode được</div>
+</div>
+
+<!-- T5 -->
+<div class="tier" id="tier-5" data-tier="5" style="--tier-col:var(--t5);--tier-bg:var(--t5d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t5)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 5 — System</div>
+    <div class="tier-name">Optical Networking &amp; System</div>
+    <div class="tier-desc">Lắp T3 module vào switch/router. Kết nối toàn bộ AI cluster. Không có T3 module → switch chỉ là vỏ rỗng.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="ANET" onclick="showPanel(&#39;ANET&#39;)">
+      <div class="sc-ticker">$ANET</div>
+      <div class="sc-name">Arista Networks</div>
+      <div class="sc-role">Ethernet switch · AI cluster fabric · EOS software</div>
+    </div>
+    <div class="stock-card" data-ticker="CIEN" onclick="showPanel(&#39;CIEN&#39;)">
+      <div class="sc-ticker">$CIEN</div>
+      <div class="sc-name">Ciena Corp.</div>
+      <div class="sc-role">Coherent DCI transport · WDM</div>
+    </div>
+  </div>
+  <div class="dep-arrow">↓ Không có T5 → GPU không communicate được với nhau</div>
+</div>
+
+<!-- T6 -->
+<div class="tier" id="tier-6" data-tier="6" style="--tier-col:var(--t6);--tier-bg:var(--t6d)">
+  <div class="tier-node"><div class="tier-node-dot" style="background:var(--t6)"></div></div>
+  <div class="tier-header">
+    <div class="tier-num">Tầng 6 — Infrastructure</div>
+    <div class="tier-name">Power, Cooling &amp; Test</div>
+    <div class="tier-desc">Enabler vận hành — không nằm trong luồng chip nhưng không có thì AI cluster không thể hoạt động ở scale.</div>
+  </div>
+  <div class="stock-grid">
+    <div class="stock-card is-critical" data-ticker="VRT" onclick="showPanel(&#39;VRT&#39;)">
+      <div class="sc-ticker">$VRT</div>
+      <div class="sc-name">Vertiv Holdings</div>
+      <div class="sc-role">Liquid cooling · power distribution · 500MW/cluster</div>
+    </div>
+    <div class="stock-card" data-ticker="VIAV" onclick="showPanel(&#39;VIAV&#39;)">
+      <div class="sc-ticker">$VIAV</div>
+      <div class="sc-name">VIAVI Solutions</div>
+      <div class="sc-role">Optical network test &amp; measurement</div>
+    </div>
+    <div class="stock-card" data-ticker="SIVE" onclick="showPanel(&#39;SIVE&#39;)">
+      <div class="sc-ticker">$SIVE</div>
+      <div class="sc-name">Sivers Semiconductors</div>
+      <div class="sc-role">InP laser chip · mmWave 5G (Nasdaq First North)</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end chain -->
+
+<!-- CHAIN ANALYSIS -->
+<div class="chain-analysis">
+  <div class="ca-title">Critical dependency paths — Nếu X bị gián đoạn, Y sụp đổ</div>
+  <div class="ca-grid">
+    <div class="ca-box">
+      <div class="ca-box-title">Path 1 — InP bottleneck</div>
+      <div class="ca-chain-item"><strong>$AXTI</strong><span class="ca-chain-arrow">→</span><span>InP supply</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$LITE</strong><span class="ca-chain-arrow">→</span><span>EML laser</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$COHR</strong><span class="ca-chain-arrow">→</span><span>CPO module</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$ANET</strong><span class="ca-chain-arrow">→</span><span>AI switch</span></div>
+      <div class="ca-note">AXTI bị block export permit (như 2025) → toàn bộ CPO ramp delay</div>
+    </div>
+    <div class="ca-box">
+      <div class="ca-box-title">Path 2 — SOI wafer chain</div>
+      <div class="ca-chain-item"><strong>$SOI</strong><span class="ca-chain-arrow">→</span><span>SOI wafer</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$TSEM</strong><span class="ca-chain-arrow">→</span><span>SiPh chip (fab)</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$COHR/$MRVL</strong><span class="ca-chain-arrow">→</span><span>module/DSP</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$ANET</strong><span class="ca-chain-arrow">→</span><span>system</span></div>
+      <div class="ca-note">SOI uniformity miss (IPSR-I target) → yield penalty toàn chuỗi</div>
+    </div>
+    <div class="ca-box">
+      <div class="ca-box-title">Path 3 — Fiber attach gate</div>
+      <div class="ca-chain-item"><strong>$GLW</strong><span class="ca-chain-arrow">→</span><span>fiber + connector</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$FN</strong><span class="ca-chain-arrow">→</span><span>CPO assembly</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$COHR</strong><span class="ca-chain-arrow">→</span><span>CPO module</span></div>
+      <div class="ca-chain-item"><span class="ca-chain-arrow" style="margin-left:16px">↓</span></div>
+      <div class="ca-chain-item"><strong>$ANET</strong><span class="ca-chain-arrow">→</span><span>switch</span></div>
+      <div class="ca-note">IPSR-I: fiber attach "gates the entry of co-packaging" — bottleneck Critical</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main -->
+
+<!-- STOCK DATA -->
+<script>
+const STOCKS = {
+  AXTI: {
+    tier: 0, color: 'var(--t0)', bg: 'var(--t0d)',
+    company: 'AXT Inc. — Fremont, CA',
+    role: 'InP · GaAs · Ge substrate supplier',
+    conviction: 'High',
+    body: '<strong>$AXTI</strong> là nhà cung cấp InP wafer tier-1 tại Bắc Mỹ. InP là vật liệu bắt buộc cho EML laser trong mọi 800G/1.6T transceiver và CPO module — không có substitute thương mại khả thi. Record backlog $60M+ đã xác nhận Q1 2026. Công ty đang <strong>double capacity InP H2 2026</strong>.',
+    needs: [
+      { ticker: 'Khoáng sản', text: 'Indium, Phosphorus — khai thác từ mỏ' }
+    ],
+    feeds: [
+      { ticker: '$LITE', text: 'InP wafer → EML laser production' },
+      { ticker: '$COHR', text: 'InP substrate → vertical integration' },
+      { ticker: '$SIVE', text: 'InP wafer → laser chip Photonics BU' }
+    ],
+    impact: 'Nếu $AXTI bị disruption (export permit như 2025, hoặc yield drop): $LITE không có nguyên liệu → EML laser shortage → $COHR không assemble được CPO module → $ANET không có optical engine cho switch → AI cluster build-out delay.'
+  },
+  SOI: {
+    tier: 0, color: 'var(--t0)', bg: 'var(--t0d)',
+    company: 'Soitec S.A. — Bernin, France (SOI.PA)',
+    role: 'SOI wafer · Smart-cut technology',
+    conviction: 'High',
+    body: '<strong>$SOI</strong> là near-monopoly thực tế cho SOI wafer — nền vật lý bắt buộc của mọi silicon photonics chip. Smart-cut IP độc quyền, không ai replicate được. Mỗi SiPh chip = 1 SOI wafer = 1 đơn hàng cho Soitec. IPSR-I target: SOI layer uniformity từ ±0.5% (2024) → ±0.1% (2040).',
+    needs: [{ ticker: 'Quartz', text: 'Silicon dioxide → polysilicon → ingot Czochralski' }],
+    feeds: [
+      { ticker: '$TSEM', text: 'SOI wafer → SiPh foundry process' },
+      { ticker: '$COHR', text: 'SOI wafer → SiPh chip layer' }
+    ],
+    impact: 'Nếu Soitec miss uniformity target hoặc capacity constraint: $TSEM không có đủ SOI wafer chất lượng → yield SiPh chip giảm → $COHR thiếu SiPh engine → CPO production bottleneck.'
+  },
+  GLW: {
+    tier: 0, color: 'var(--t0)', bg: 'var(--t0d)',
+    company: 'Corning Inc. — Corning, NY',
+    role: 'Fiber optic cable · CPO fiber attach',
+    conviction: 'High',
+    body: '<strong>$GLW</strong> là nhà sản xuất fiber optic cable lớn nhất thế giới và là một trong 6 đối tác NVIDIA named trong CPO consortium (18/3/2025). Fiber attach cho CPO là bottleneck "Critical" theo IPSR-I: "gates the entry of co-packaging." Sub-micron precision ở scale hàng triệu unit.',
+    needs: [{ ticker: 'Silica', text: 'SiO₂ → drawn optical fiber → cable' }],
+    feeds: [
+      { ticker: '$FN', text: 'Fiber → precision CPO assembly' },
+      { ticker: '$COHR', text: 'Optical connector → CPO module interface' },
+      { ticker: '$ANET', text: 'Fiber cable → switch interconnect' }
+    ],
+    impact: 'Nếu fiber attach yield không đạt (hiện là bottleneck chưa giải quyết hoàn toàn): CPO mass production H2 2026 có thể trễ 6–12 tháng. Toàn bộ timeline từ $COHR → $ANET đều bị ảnh hưởng.'
+  },
+  LITE: {
+    tier: 1, color: 'var(--t1)', bg: 'var(--t1d)',
+    company: 'Lumentum Holdings — San Jose, CA',
+    role: 'InP EML laser · VCSEL · NVDA CPO partner',
+    conviction: 'High',
+    body: '<strong>$LITE</strong> là nhà sản xuất EML laser tier-1 duy nhất được NVIDIA chỉ đích danh trong CPO consortium. EML là trái tim của mọi transceiver 800G và CPO module. Số nhà cung cấp đủ tiêu chuẩn ở production scale đếm trên đầu ngón tay. Revenue ~$1.7B, đang trade premium vs lịch sử (Fwd P/E 50–60× vs avg 35–40×).',
+    needs: [
+      { ticker: '$AXTI', text: 'InP wafer → EML laser substrate' },
+      { ticker: '$TSEM', text: 'Process capability cho laser structure' }
+    ],
+    feeds: [
+      { ticker: '$COHR', text: 'EML laser → CPO module laser source' },
+      { ticker: '$FN', text: 'Laser component → assembly tại Fabrinet' },
+      { ticker: '$AAOI', text: 'Laser source → transceiver module' }
+    ],
+    impact: 'Nếu $LITE không đủ capacity hoặc yield III-V integration thấp: CPO "4× ít laser" không đủ để compensate volume thiếu hụt → pricing power tăng mạnh (bull case) hoặc ramp delay (bear case).'
+  },
+  SMTC: {
+    tier: 1, color: 'var(--t1)', bg: 'var(--t1d)',
+    company: 'Semtech Corp. — Camarillo, CA',
+    role: 'FiberEdge platform · CDR · receive path',
+    conviction: 'Medium',
+    body: '<strong>$SMTC</strong> xử lý phần receive path trong optical module — Clock-and-Data Recovery (CDR) và signal conditioning. Đang pivot từ LoRa/IoT sang datacom optical. Monitor tỷ trọng datacom trong revenue mix để track thesis execution.',
+    needs: [
+      { ticker: '$TSEM', text: 'Specialty analog process → IC fabrication' }
+    ],
+    feeds: [
+      { ticker: '$COHR', text: 'CDR IC → transceiver receive path' },
+      { ticker: '$AAOI', text: 'FiberEdge → QSFP module electronics' }
+    ],
+    impact: 'Nếu $SMTC không thành công pivot: datacom CDR segment bị MACOM hoặc Inphi (Marvell) lấy share. Enabler quan trọng nhưng có alternatives.'
+  },
+  MTSI: {
+    tier: 1, color: 'var(--t1)', bg: 'var(--t1d)',
+    company: 'MACOM Technology — Lowell, MA',
+    role: 'TIA · laser driver · analog semiconductor',
+    conviction: 'Medium',
+    body: '<strong>$MTSI</strong> cung cấp TIA (transimpedance amplifier) và laser driver — hai component thiết yếu trong mọi optical transceiver. "Infrastructure of infrastructure" — ít narrative nhưng là enabling technology thực sự. Defense diversification (~30%) là buffer ổn định.',
+    needs: [{ ticker: 'Analog process', text: 'GaAs / SiGe process cho high-freq analog' }],
+    feeds: [
+      { ticker: '$COHR', text: 'TIA + driver → transceiver analog front-end' },
+      { ticker: '$AAOI', text: 'Laser driver → QSFP optical module' }
+    ],
+    impact: 'TIA và laser driver không thể thiếu nhưng có nhiều suppliers — không phải single-point-of-failure như InP hay SOI wafer. Risk là commoditization khi volume tăng.'
+  },
+  LWLG: {
+    tier: 1, color: 'var(--t1)', bg: 'var(--t1d)',
+    company: 'Lightwave Logic — Englewood, CO',
+    role: 'Polymer EO modulator (pre-revenue)',
+    conviction: 'Watch',
+    body: '<strong>$LWLG</strong> phát triển polymer electro-optic modulator có thể nhanh hơn silicon modulator. Pre-revenue, pure speculation. Nếu thành công → disruptive; nếu không → cash burn. Cần trigger: foundry partnership hoặc tier-1 customer LOI.',
+    needs: [{ ticker: 'Polymer synthesis', text: 'Organic EO material — không dùng InP hay SOI' }],
+    feeds: [
+      { ticker: 'Future transceiver', text: 'Nếu commercial: thay Si modulator trong SiPh module' }
+    ],
+    impact: 'Binary outcome. Nếu thành công: disrupt tầng modulator của $TSEM (Si modulator). Nếu không: không ảnh hưởng gì đến chuỗi hiện tại vì Si modulator đã mature.'
+  },
+  TSEM: {
+    tier: 2, color: 'var(--t2)', bg: 'var(--t2d)',
+    company: 'Tower Semiconductor — Migdal HaEmek, Israel',
+    role: 'SiPh specialty foundry · Ge epitaxial · PDK',
+    conviction: 'High',
+    body: '<strong>$TSEM</strong> là specialty foundry làm những gì TSMC không muốn làm: SiPh với Ge epitaxial, SiGe, RF. PDK lock-in cực cao — customer chuyển foundry khác gần như không khả thi. Intel cố mua nhưng thất bại về regulatory — xác nhận giá trị chiến lược. Fab cho CPO optical chip.',
+    needs: [
+      { ticker: '$SOI', text: 'SOI wafer → SiPh process input' },
+      { ticker: '$AXTI', text: 'Ge substrate → photodetector epitaxial' }
+    ],
+    feeds: [
+      { ticker: '$COHR', text: 'SiPh chip → CPO module optical engine' },
+      { ticker: '$MRVL', text: 'SiPh platform → optical DSP integration' },
+      { ticker: '$AAOI', text: 'SiPh die → transceiver assembly' }
+    ],
+    impact: 'Nếu $TSEM capacity không tăng kịp demand: SiPh chip shortage → $COHR không có enough engine cho CPO → backlog kéo dài. TSMC SiPh alternative cần 3–5 năm để build equivalent PDK ecosystem.'
+  },
+  ALMU: {
+    tier: 2, color: 'var(--t2)', bg: 'var(--t2d)',
+    company: 'Aeluma Inc. — Santa Barbara, CA',
+    role: 'III-V on silicon (alternative foundry approach)',
+    conviction: 'Watch',
+    body: '<strong>$ALMU</strong> phát triển công nghệ đưa III-V materials lên silicon wafer — về lý thuyết giảm phụ thuộc vào InP substrate riêng. Pre-revenue significant. IPSR-I xác nhận III-V integration yield là bottleneck "High severity" ở production scale.',
+    needs: [{ ticker: 'Si wafer', text: 'Standard silicon wafer — không cần SOI đắt tiền' }],
+    feeds: [{ ticker: 'Future laser', text: 'Nếu commercial: thay InP wafer riêng cho laser manufacturing' }],
+    impact: 'Nếu thành công: giảm pricing power của $AXTI (InP monopoly). Nếu không: không ảnh hưởng gì. Timeline 2027–2029.'
+  },
+  AEHR: {
+    tier: 2, color: 'var(--t2)', bg: 'var(--t2d)',
+    company: 'Aehr Test Systems — Fremont, CA',
+    role: 'Wafer-level burn-in test · quality gate T2→T3',
+    conviction: 'Medium',
+    body: '<strong>$AEHR</strong> là quality gate bắt buộc giữa Fab (T2) và Integration (T3). Không có wafer-level test đủ throughput → defective die lọt vào assembly → yield CPO module thảm họa → cost không viable. Revenue là lagging indicator — đến sau khi fab volume tăng. IPSR-I: photonics test >110GHz chưa có automated equipment.',
+    needs: [{ ticker: '$TSEM output', text: 'Completed wafers → burn-in test input' }],
+    feeds: [
+      { ticker: '$FN', text: 'Verified good die → precision assembly' },
+      { ticker: '$COHR', text: 'Tested SiPh chip → CPO module integration' }
+    ],
+    impact: 'Nếu AEHR không scale throughput kịp CPO ramp: bottleneck test → production yield unknown → hyperscaler không dám commit volume. Test = enabler ẩn của toàn bộ T3.'
+  },
+  COHR: {
+    tier: 3, color: 'var(--t3)', bg: 'var(--t3d)',
+    company: 'Coherent Corp. — Saxonburg, PA',
+    role: 'Vertical integration T1+T2+T3 · NVDA CPO partner',
+    conviction: 'High',
+    body: '<strong>$COHR</strong> là công ty duy nhất trong danh sách có vertical integration đầy đủ: InP laser (T1) + SiPh chip (T2) + assembled CPO module (T3). NVDA named partner 18/3/2025. Đây là lead không tranh cãi được của Tầng 3. Risk chính: post-merger integration II-VI còn chậm hơn guidance.',
+    needs: [
+      { ticker: '$AXTI', text: 'InP wafer → internal laser fab' },
+      { ticker: '$SOI', text: 'SOI wafer → internal SiPh chip' },
+      { ticker: '$GLW', text: 'Fiber connector → CPO module interface' }
+    ],
+    feeds: [
+      { ticker: '$ANET', text: 'CPO module → Spectrum-X switch optical engine' },
+      { ticker: '$MRVL', text: 'SiPh chip → Marvell DSP integration' }
+    ],
+    impact: 'Coherent là single most important company trong CPO supply chain. Vertical integration means: nếu một tầng bottleneck, Coherent tự xử lý. Nếu Coherent bị disruption: không có T3 CPO module → không có AI switch với optical engine → NVDA Spectrum-X delay.'
+  },
+  AAOI: {
+    tier: 3, color: 'var(--t3)', bg: 'var(--t3d)',
+    company: 'Applied Optoelectronics — Sugar Land, TX',
+    role: '400G/800G QSFP transceiver · AWS supply',
+    conviction: 'Medium',
+    body: '<strong>$AAOI</strong> là pure-play transceiver maker cho hyperscaler, đặc biệt AWS. Beneficiary trực tiếp của AI capex cycle nhưng không có IP moat thực sự. Customer concentration risk cao. Chinese competitors (HiSilicon, Accelink) đang aggressive trong 400G/800G pluggable. Phù hợp trade theo AI capex news hơn là long-term hold.',
+    needs: [
+      { ticker: '$LITE', text: 'EML laser → transceiver optical source' },
+      { ticker: '$TSEM', text: 'SiPh chip → transceiver optical engine' }
+    ],
+    feeds: [
+      { ticker: 'Hyperscaler', text: 'QSFP transceiver → AWS/Meta/Google data center' }
+    ],
+    impact: 'Không phải single-point-of-failure. Nếu AAOI bị substitute: hyperscaler chuyển sang COHR hay Asian suppliers. Market bị impact nhưng CPO ramp không bị block.'
+  },
+  FN: {
+    tier: 3, color: 'var(--t3)', bg: 'var(--t3d)',
+    company: 'Fabrinet — Bangkok, Thailand',
+    role: 'Contract precision assembly · optical OEM',
+    conviction: 'High',
+    body: '<strong>$FN</strong> không làm IP — chỉ làm manufacturing. Nhưng fiber attach cho CPO cần sub-micron precision assembly ở scale hàng triệu unit — đây là specialty của Fabrinet mà ít ai match được. Toàn bộ ngành optical module dùng Fabrinet: LITE, COHR, và nhiều hãng khác. Risk-adjusted return tốt nhất trong Tầng 3.',
+    needs: [
+      { ticker: '$GLW', text: 'Fiber component → precision attach' },
+      { ticker: '$LITE', text: 'Laser + SiPh die → assembly input' },
+      { ticker: '$AEHR', text: 'Verified die → assembly (quality gate passed)' }
+    ],
+    feeds: [
+      { ticker: '$COHR', text: 'Assembled module → Coherent product line' },
+      { ticker: '$LITE', text: 'Assembled transceiver → Lumentum OEM' }
+    ],
+    impact: 'Nếu Fabrinet không scale precision assembly cho CPO: $LITE và $COHR có component nhưng không sản xuất được ở volume → CPO mass production bottleneck tại assembly step. Alternative: in-house assembly của COHR (nếu có capacity).'
+  },
+  POET: {
+    tier: 3, color: 'var(--t3)', bg: 'var(--t3d)',
+    company: 'POET Technologies — Toronto, CA',
+    role: 'Optical interposer platform (early stage)',
+    conviction: 'Watch',
+    body: '<strong>$POET</strong> phát triển Optical Interposer — platform tích hợp nhiều chip quang học trên cùng substrate. Nếu CPO adoption tăng tốc, POET có thể là platform đằng sau nhiều module. Cạnh tranh với TSMC CoWoS và SiPh integration roadmap của tier-1. Pre-revenue lớn.',
+    needs: [{ ticker: 'Multiple suppliers', text: 'Laser + modulator + detector chips → interposer integration' }],
+    feeds: [{ ticker: 'Future CPO', text: 'Nếu commercial: alternative CPO packaging platform' }],
+    impact: 'Binary outcome. Tier-1 customer announcement → re-rating mạnh. Không có announcement → cash burn, không ảnh hưởng chuỗi hiện tại.'
+  },
+  MRVL: {
+    tier: 4, color: 'var(--t4)', bg: 'var(--t4d)',
+    company: 'Marvell Technology — Santa Clara, CA',
+    role: 'Optical DSP · NVDA $2B equity · NVLink Fusion',
+    conviction: 'High',
+    body: '<strong>$MRVL</strong> là bộ não của mỗi optical transceiver — DSP xử lý tín hiệu analog/digital với tốc độ cực cao. NVIDIA đầu tư $2B equity (30/3/2026) để đảm bảo optical DSP supply cho CPO switch. CEO Matt Murphy confirmed: "optical DSP, silicon photonics và custom silicon" là core của partnership.',
+    needs: [
+      { ticker: '$TSEM', text: 'SiPh platform → optical DSP chip fabrication' },
+      { ticker: 'TSMC', text: 'Advanced node → digital DSP core' }
+    ],
+    feeds: [
+      { ticker: '$COHR', text: 'DSP chip → CPO module signal processing' },
+      { ticker: '$ANET', text: 'Optical engine DSP → switch signal integrity' }
+    ],
+    impact: 'Nếu $MRVL không có đủ optical DSP: CPO module không decode tín hiệu quang được → switch không hoạt động. NVDA $2B investment chính là để secure supply chain này.'
+  },
+  AVGO: {
+    tier: 4, color: 'var(--t4)', bg: 'var(--t4d)',
+    company: 'Broadcom Inc. — San Jose, CA',
+    role: 'Custom ASIC · switching silicon · optical DSP',
+    conviction: 'High',
+    body: '<strong>$AVGO</strong> là anchor của toàn hệ sinh thái AI networking. Custom ASIC cho Google (TPU network), Meta, Amazon; switching silicon cho Ethernet fabric; optical DSP trong transceiver. $68–70B revenue FY2026 consensus. Mọi hyperscaler đều phụ thuộc vào AVGO theo cách này hay cách khác.',
+    needs: [
+      { ticker: 'TSMC', text: 'Advanced node 3–5nm → custom ASIC fabrication' }
+    ],
+    feeds: [
+      { ticker: '$ANET', text: 'Switching silicon → Ethernet fabric ASIC' },
+      { ticker: 'Hyperscaler', text: 'Custom ASIC → Google TPU, Meta, Amazon network' }
+    ],
+    impact: 'AVGO là anchor — nếu bị disruption, hyperscaler AI spend không execute được. Nhưng vì large-cap và diversified, systemic risk thấp. Alpha ít hơn pure-play picks nhưng downside risk thấp nhất trong T4.'
+  },
+  CRDO: {
+    tier: 4, color: 'var(--t4)', bg: 'var(--t4d)',
+    company: 'Credo Technology — San Jose, CA',
+    role: 'SerDes IP · Active Electrical Cable',
+    conviction: 'Medium',
+    body: '<strong>$CRDO</strong> cung cấp SerDes IP và AEC — kết nối tốc độ cao trong cự ly ngắn (&lt;3m). AEC và optical không hoàn toàn substitute nhau: AEC wins &lt;3m, optical wins &gt;3m. CPO không eliminate AEC; nó thay optical pluggable ở longer distances.',
+    needs: [{ ticker: 'TSMC', text: 'Advanced node → SerDes IP chip fabrication' }],
+    feeds: [
+      { ticker: '$ANET', text: 'AEC/SerDes → in-rack GPU-to-switch connectivity' },
+      { ticker: 'Hyperscaler', text: 'High-speed cable → data center interconnect' }
+    ],
+    impact: 'Ít bị đe dọa bởi CPO hơn report gốc gợi ý. AEC và CPO phục vụ distance range khác nhau. Risk chính là SerDes IP commoditize khi high-speed SerDes thành standard.'
+  },
+  ANET: {
+    tier: 5, color: 'var(--t5)', bg: 'var(--t5d)',
+    company: 'Arista Networks — Santa Clara, CA',
+    role: 'Ethernet switch · AI cluster fabric · EOS software',
+    conviction: 'High',
+    body: '<strong>$ANET</strong> là lead rõ ràng của Tầng 5. EOS software moat là barrier cao nhất trong tầng này — switching cost cực cao khi hyperscaler đã deploy Arista. Ultra Ethernet Consortium đang nghiêng về Ethernet thay InfiniBand. Fwd P/E ~55× đang trade premium vs lịch sử 2 năm (~45–48×).',
+    needs: [
+      { ticker: '$COHR', text: 'CPO module → switch optical engine' },
+      { ticker: '$AVGO', text: 'Switching ASIC → Ethernet fabric chip' },
+      { ticker: '$MRVL', text: 'Optical DSP → signal processing trong switch' },
+      { ticker: '$GLW', text: 'Fiber cable → switch port connectivity' }
+    ],
+    feeds: [
+      { ticker: 'Hyperscaler', text: 'Ethernet switch → GPU cluster networking fabric' }
+    ],
+    impact: '$ANET là last mile trước hyperscaler. Tất cả T0→T4 deliver vào đây. Nếu $ANET không scale: GPU cluster không network được → AI compute bị bottleneck ở networking layer.'
+  },
+  CIEN: {
+    tier: 5, color: 'var(--t5)', bg: 'var(--t5d)',
+    company: 'Ciena Corp. — Hanover, MD',
+    role: 'Coherent DCI transport · WDM · inter-DC',
+    conviction: 'Medium',
+    body: '<strong>$CIEN</strong> là nhà cung cấp hàng đầu cho coherent optics và DCI — kết nối giữa các data center qua khoảng cách km đến nghìn km. Khi AI traffic giữa data centers tăng, DCI trở thành bottleneck. Telecom capex cycle là risk thực — có thể offset AI upside trong 12–18 tháng.',
+    needs: [
+      { ticker: '$GLW', text: 'Long-haul fiber → DCI infrastructure' },
+      { ticker: 'WaveLogic modem', text: 'Internal coherent optical engine' }
+    ],
+    feeds: [
+      { ticker: 'Hyperscaler', text: 'DCI bandwidth → inter-datacenter AI traffic' }
+    ],
+    impact: 'Nếu $CIEN bị disruption: inter-datacenter AI traffic bottleneck → distributed training slower. Nhưng trong-datacenter performance không bị ảnh hưởng (đó là $ANET territory).'
+  },
+  VRT: {
+    tier: 6, color: 'var(--t6)', bg: 'var(--t6d)',
+    company: 'Vertiv Holdings — Columbus, OH',
+    role: 'Liquid cooling · power distribution · thermal',
+    conviction: 'High',
+    body: '<strong>$VRT</strong> là lead của Tầng 6. IEA: data center điện 415 TWh 2024, tăng gấp đôi đến 2030. 100k GPU cluster cần ~500MW — tương đương thành phố nhỏ. Direct liquid cooling (DLC) là enabling technology cho high-density GPU rack. Photonics giảm interconnect power (3.5×) nhưng tổng compute power vẫn tăng.',
+    needs: [{ ticker: 'Power grid', text: 'Electrical infrastructure → data center power supply' }],
+    feeds: [
+      { ticker: '$ANET switch', text: 'Cooled data center → switch có thể vận hành' },
+      { ticker: 'AI cluster', text: 'Thermal management → GPU hoạt động ổn định' }
+    ],
+    impact: 'Nếu $VRT không scale: power và cooling trở thành bottleneck vật lý → data center không thể tăng GPU density → AI cluster build-out bị giới hạn bởi thermal, không phải chip.'
+  },
+  VIAV: {
+    tier: 6, color: 'var(--t6)', bg: 'var(--t6d)',
+    company: 'VIAVI Solutions — Milpitas, CA',
+    role: 'Optical test & measurement · network performance',
+    conviction: 'Medium',
+    body: '<strong>$VIAV</strong> cung cấp test equipment cho optical network sau khi deployed — network-level testing (khác với $AEHR là wafer-level). Khi CPO scale, số lượng optical link trong data center tăng exponentially → test & monitoring demand tăng theo.',
+    needs: [{ ticker: 'Deployed network', text: 'Operating optical links → test subject' }],
+    feeds: [
+      { ticker: 'Operations team', text: 'Test instruments → network troubleshooting' }
+    ],
+    impact: 'Support function, không phải critical path trong production. Nếu bị disruption: operations team dùng alternative vendors. Risk thấp hơn T0–T4 players.'
+  },
+  SIVE: {
+    tier: 6, color: 'var(--t6)', bg: 'var(--t6d)',
+    company: 'Sivers Semiconductors — Kista, Sweden (Nasdaq First North)',
+    role: 'InP laser chip (Photonics BU) · mmWave 5G (Wireless BU)',
+    conviction: 'Watch',
+    body: '<strong>$SIVE</strong> có hai mảng: Photonics (InP EML laser chip — fit trực tiếp với thesis) và Wireless (5G mmWave — không liên quan). Wireless BU dilute photonics thesis. Conglomerate discount sẽ tồn tại đến khi có restructuring catalyst. Liquidity thấp (Nasdaq First North Stockholm).',
+    needs: [
+      { ticker: '$AXTI', text: 'InP wafer → laser chip substrate' }
+    ],
+    feeds: [
+      { ticker: 'Transceiver makers', text: 'InP laser chip → 800G transceiver component' }
+    ],
+    impact: 'Alternative laser supplier cho thị trường châu Âu. Không phải single-point-of-failure. Trigger: Photonics BU spinoff announcement → re-rating. Không có trigger → watch only.'
+  }
+};
+
+const TIER_LABELS = {
+  0: 'Tầng 0 — Nguyên liệu',
+  1: 'Tầng 1 — Linh kiện',
+  2: 'Tầng 2 — Foundry',
+  3: 'Tầng 3 — Integration',
+  4: 'Tầng 4 — DSP/ASIC',
+  5: 'Tầng 5 — System',
+  6: 'Tầng 6 — Infrastructure'
+};
+
+function showPanel(ticker) {
+  const d = STOCKS[ticker];
+  if (!d) return;
+
+  const needsHTML = d.needs.map(n =>
+    `<div class="dp-dep-item"><span class="dp-dep-ticker">${n.ticker}</span><span class="dp-dep-text">${n.text}</span></div>`
+  ).join('');
+
+  const feedsHTML = d.feeds.map(f =>
+    `<div class="dp-dep-item"><span class="dp-dep-ticker">${f.ticker}</span><span class="dp-dep-text">${f.text}</span></div>`
+  ).join('');
+
+  document.getElementById('panelContent').innerHTML = `
+    <div class="dp-tier-tag" style="background:${d.bg};color:${d.color}">${TIER_LABELS[d.tier]}</div>
+    <div class="dp-ticker">$${ticker}</div>
+    <div class="dp-company">${d.company}</div>
+    <div class="dp-role-badge" style="background:${d.bg};color:${d.color}">${d.role}</div>
+
+    <div class="dp-section-title">Phân tích</div>
+    <div class="dp-body">${d.body}</div>
+
+    <div class="dp-section-title">Cần từ tầng trên (inputs)</div>
+    <div class="dp-dep-list">${needsHTML}</div>
+
+    <div class="dp-section-title">Cung cấp cho tầng dưới (outputs)</div>
+    <div class="dp-dep-list">${feedsHTML}</div>
+
+    <div class="dp-section-title">Kịch bản disruption</div>
+    <div class="dp-impact" style="border-color:${d.color}">
+      <strong>Nếu $${ticker} bị gián đoạn:</strong>${d.impact}
+    </div>
+  `;
+
+  document.getElementById('depPanel').style.setProperty('--tier-col', d.color);
+  document.getElementById('depPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+
+  // Highlight tier
+  document.querySelectorAll('.stock-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll(`[data-ticker="${ticker}"]`).forEach(c => c.classList.add('selected'));
+}
+
+function closePanel() {
+  document.getElementById('depPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  document.querySelectorAll('.stock-card').forEach(c => c.classList.remove('selected'));
+}
+
+function filterTier(tier, el) {
+  document.querySelectorAll('.leg-item').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+
+  if (tier === -1) {
+    document.querySelectorAll('.tier').forEach(t => {
+      t.classList.remove('dim');
+      t.classList.remove('highlight');
+    });
+    return;
+  }
+
+  document.querySelectorAll('.tier').forEach(t => {
+    const tNum = parseInt(t.dataset.tier);
+    if (tNum === tier) {
+      t.classList.remove('dim');
+      t.classList.add('highlight');
+    } else {
+      t.classList.add('dim');
+      t.classList.remove('highlight');
+    }
+  });
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,2755 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)file:///Users/macbookairm1/Downloads/semiconductor_photonics_all_in_one_1.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semiconductor &amp; Photonics AI — Tổng quan toàn diện</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F6F1;--bg-card:#FFFFFF;--bg-dim:#EFEDE7;
+  --tx0:#18181A;--tx1:#4A4A50;--tx2:#8A8A94;
+  --bd:rgba(0,0,0,0.10);--bd2:rgba(0,0,0,0.20);
+  --c-teal:#0F8A64;--c-teal-l:#E0F4EC;
+  --c-blue:#1A5FB4;--c-blue-l:#E4EFFC;
+  --c-amber:#9A6200;--c-amber-l:#FDF0D8;
+  --c-purple:#5340B0;--c-purple-l:#EEECFD;
+  --c-coral:#C0381A;--c-coral-l:#FAECE7;
+  --c-gray:#525258;--c-gray-l:#F0EEE8;
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --r:12px;--r-lg:20px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#141412;--bg-card:#1E1E1C;--bg-dim:#252523;
+    --tx0:#E8E6DE;--tx1:#A8A69E;--tx2:#686660;
+    --bd:rgba(255,255,255,0.09);--bd2:rgba(255,255,255,0.18);
+    --c-teal-l:#08352A;--c-blue-l:#0C2850;--c-amber-l:#3A2600;
+    --c-purple-l:#221A50;--c-coral-l:#3A1208;--c-gray-l:#282826;
+  }
+}
+body{font-family:var(--font-body);background:var(--bg);color:var(--tx0);font-size:15px;line-height:1.65}
+
+.portal-hero{padding:3.5rem 2rem 2rem;max-width:900px;margin:0 auto}
+.portal-eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2);margin-bottom:.75rem}
+.portal-h1{font-family:var(--font-display);font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:400;line-height:1.15;color:var(--tx0);margin-bottom:1rem}
+.portal-h1 em{font-style:italic;color:var(--c-teal)}
+.portal-lead{font-size:15px;color:var(--tx1);max-width:580px;line-height:1.7;margin-bottom:1.5rem}
+
+.portal-nav{max-width:900px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;gap:6px;flex-wrap:wrap}
+.nav-pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:.5px solid var(--bd2);background:var(--bg-card);color:var(--tx1);transition:all .15s}
+.nav-pill.active{background:var(--tx0);color:var(--bg);border-color:var(--tx0)}
+.nav-pill:hover:not(.active){background:var(--bg-dim);color:var(--tx0)}
+
+.portal-main{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.chapter-wrap{margin-bottom:1.5rem}
+.chapter-wrap.hidden{display:none}
+
+.ch-header{display:flex;align-items:center;gap:10px;padding:1rem 1.25rem;background:var(--bg-card);border:.5px solid var(--bd);border-radius:var(--r-lg) var(--r-lg) 0 0;border-bottom:.5px solid var(--bd);cursor:pointer;user-select:none;transition:background .12s}
+.ch-header:hover{background:var(--bg-dim)}
+.ch-badge{font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge-teal{background:var(--c-teal-l);color:var(--c-teal)}
+.badge-amber{background:var(--c-amber-l);color:var(--c-amber)}
+.badge-blue{background:var(--c-blue-l);color:var(--c-blue)}
+.badge-purple{background:var(--c-purple-l);color:var(--c-purple)}
+.badge-coral{background:var(--c-coral-l);color:var(--c-coral)}
+.badge-gray{background:var(--c-gray-l);color:var(--c-gray)}
+.ch-title{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:var(--tx0);flex:1}
+.ch-toggle{font-size:16px;color:var(--tx2);transition:transform .2s;flex-shrink:0}
+.ch-toggle.open{transform:rotate(180deg)}
+
+.ch-body{background:var(--bg-card);border:.5px solid var(--bd);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden}
+.ch-body.collapsed{display:none}
+
+.module-divider{height:1px;background:var(--bd);margin:0 1.5rem}
+.module-wrap{padding:1.25rem 1.5rem 1.5rem}
+.module-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:.5px solid var(--bd)}
+
+.connector{padding:.75rem 1.5rem;background:var(--bg-dim);font-size:12px;color:var(--tx1);line-height:1.6;border-top:.5px solid var(--bd)}
+.connector strong{color:var(--tx0);font-weight:500}
+
+.portal-footer{max-width:900px;margin:0 auto;padding:1.5rem 2rem 3rem;font-size:11px;color:var(--tx2);line-height:1.7;border-top:.5px solid var(--bd)}
+
+.module-wrap .container,.module-wrap .page,.module-wrap .wrap{max-width:none!important;margin:0!important;padding:0!important;background:transparent!important;border:none!important;border-radius:0!important}
+.module-wrap .page-title{font-size:16px}
+.module-wrap .page-sub{font-size:12px}
+
+/* === silicon === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+  font-family: var(--font);
+  background: var(--bg2);
+  color: var(--tx0);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+ }
+.module-silicon .page { 
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+ }
+.module-silicon /* Header */
+.page-header { 
+  background: var(--bg0);
+  border: 0.5px solid var(--bd0);
+  border-radius: var(--r-lg);
+  padding: 1.5rem 2rem 1.25rem;
+ }
+.module-silicon .page-header h1 {  font-size: 20px; font-weight: 500; color: var(--tx0); margin-bottom: 6px;  }
+.module-silicon .page-header p {  font-size: 13px; color: var(--tx1); line-height: 1.6;  }
+.module-silicon /* Section card */
+.section { 
+  background: var(--bg0);
+  border: 0.5px solid var(--bd0);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+ }
+.module-silicon .section-header { 
+  padding: 14px 20px 10px;
+  border-bottom: 0.5px solid var(--bd0);
+ }
+.module-silicon .section-num { 
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+ }
+.module-silicon .s1 .section-num {  background: #E1F5EE; color: #0F6E56;  }
+.module-silicon .s2 .section-num {  background: #FAEEDA; color: #854F0B;  }
+.module-silicon .s3 .section-num {  background: #EEEDFE; color: #534AB7;  }
+.module-silicon .section-header h2 {  font-size: 15px; font-weight: 500; color: var(--tx0); margin-bottom: 3px;  }
+.module-silicon .section-header p {  font-size: 12px; color: var(--tx1); line-height: 1.5;  }
+.module-silicon .section-body {  padding: 16px 20px 20px;  }
+.module-silicon /* SVG theming — pre-built classes */
+svg .t {  font-family: var(--font); font-size: 14px; font-weight: 400; fill: var(--tx0);  }
+.module-silicon svg .ts {  font-family: var(--font); font-size: 12px; font-weight: 400; fill: var(--tx1);  }
+.module-silicon svg .th {  font-family: var(--font); font-size: 14px; font-weight: 500; fill: var(--tx0);  }
+.module-silicon svg .c-teal   > rect, .module-silicon svg .c-teal   > ellipse {  fill: #E1F5EE; stroke: #1D9E75;  }
+.module-silicon svg .c-teal   > text.th {  fill: #085041;  }
+.module-silicon svg .c-teal   > text.ts {  fill: #0F6E56;  }
+.module-silicon svg .c-amber  > rect, .module-silicon svg .c-amber  > ellipse {  fill: #FAEEDA; stroke: #BA7517;  }
+.module-silicon svg .c-amber  > text.th {  fill: #633806;  }
+.module-silicon svg .c-amber  > text.ts {  fill: #854F0B;  }
+.module-silicon svg .c-gray   > rect, .module-silicon svg .c-gray   > ellipse {  fill: #F1EFE8; stroke: #888780;  }
+.module-silicon svg .c-gray   > text.th {  fill: #2C2C2A;  }
+.module-silicon svg .c-gray   > text.ts {  fill: #5F5E5A;  }
+.module-silicon svg .c-purple > rect, .module-silicon svg .c-purple > ellipse {  fill: #EEEDFE; stroke: #534AB7;  }
+.module-silicon svg .c-purple > text.th {  fill: #3C3489;  }
+.module-silicon svg .c-purple > text.ts {  fill: #534AB7;  }
+.module-silicon svg .c-blue   > rect, .module-silicon svg .c-blue   > ellipse {  fill: #E6F1FB; stroke: #185FA5;  }
+.module-silicon svg .c-blue   > text.th {  fill: #0C447C;  }
+.module-silicon svg .c-blue   > text.ts {  fill: #185FA5;  }
+.module-silicon svg .c-red    > rect, .module-silicon svg .c-red    > ellipse {  fill: #FCEBEB; stroke: #E24B4A;  }
+.module-silicon svg .c-red    > text.th {  fill: #501313;  }
+.module-silicon svg .c-red    > text.ts {  fill: #A32D2D;  }
+.module-silicon /* Key insight strip */
+.insight { 
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  font-size: 12px;
+  color: var(--tx1);
+  line-height: 1.6;
+  border-left: 3px solid var(--bd1);
+  background: var(--bg1);
+ }
+.module-silicon .insight strong {  color: var(--tx0); font-weight: 500;  }
+.module-silicon /* Source note */
+.source-note { 
+  font-size: 11px;
+  color: var(--tx2);
+  padding: 10px 14px;
+  background: var(--bg1);
+  border-radius: var(--r-md);
+  border: 0.5px solid var(--bd0);
+ }
+/* === mosfet === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+ }
+.module-mosfet .container { 
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+ }
+.module-mosfet .page-title {  font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;  }
+.module-mosfet .page-sub {  font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary);  }
+.module-mosfet /* STEP TABS */
+.steps {  display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap;  }
+.module-mosfet .step {  padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s;  }
+.module-mosfet .step:hover:not(.on) {  border-color: var(--color-border-secondary); color: var(--color-text-primary);  }
+.module-mosfet .step.on {  background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary);  }
+.module-mosfet /* PANELS */
+.panel {  display: none;  }
+.module-mosfet .panel.on {  display: block;  }
+.module-mosfet /* SVG THEME */
+svg .t {  font-family: var(--font-sans); font-size: 14px; font-weight: 400; fill: var(--color-text-primary);  }
+.module-mosfet svg .ts {  font-family: var(--font-sans); font-size: 12px; font-weight: 400; fill: var(--color-text-secondary);  }
+.module-mosfet svg .th {  font-family: var(--font-sans); font-size: 14px; font-weight: 500; fill: var(--color-text-primary);  }
+.module-mosfet svg .c-gray   > rect, .module-mosfet svg .c-gray   > ellipse {  fill: #F1EFE8; stroke: #888780;  }
+.module-mosfet svg .c-gray   > text.th {  fill: #2C2C2A;  }
+.module-mosfet svg .c-gray   > text.ts {  fill: #5F5E5A;  }
+.module-mosfet svg .c-blue   > rect, .module-mosfet svg .c-blue   > ellipse {  fill: #E6F1FB; stroke: #185FA5;  }
+.module-mosfet svg .c-blue   > text.th {  fill: #0C447C;  }
+.module-mosfet svg .c-blue   > text.ts {  fill: #185FA5;  }
+.module-mosfet svg .c-teal   > rect, .module-mosfet svg .c-teal   > ellipse {  fill: #E1F5EE; stroke: #1D9E75;  }
+.module-mosfet svg .c-teal   > text.th {  fill: #085041;  }
+.module-mosfet svg .c-teal   > text.ts {  fill: #0F6E56;  }
+.module-mosfet svg .c-amber  > rect, .module-mosfet svg .c-amber  > ellipse {  fill: #FAEEDA; stroke: #BA7517;  }
+.module-mosfet svg .c-amber  > text.th {  fill: #633806;  }
+.module-mosfet svg .c-amber  > text.ts {  fill: #854F0B;  }
+.module-mosfet svg .c-purple > rect, .module-mosfet svg .c-purple > ellipse {  fill: #EEEDFE; stroke: #534AB7;  }
+.module-mosfet svg .c-purple > text.th {  fill: #3C3489;  }
+.module-mosfet svg .c-purple > text.ts {  fill: #534AB7;  }
+.module-mosfet /* DESCRIPTION BOX */
+.desc { 
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  border-left: 3px solid var(--color-border-secondary);
+ }
+.module-mosfet .desc b {  color: var(--color-text-primary); font-weight: 500;  }
+.module-mosfet /* DOTS + NAV */
+.dots {  display: flex; gap: 8px; justify-content: center; margin-top: 1.25rem;  }
+.module-mosfet .dot {  width: 7px; height: 7px; border-radius: 50%; background: var(--color-border-secondary); transition: background 0.2s;  }
+.module-mosfet .dot.on {  background: var(--color-text-primary);  }
+.module-mosfet .nav {  display: flex; gap: 10px; margin-top: 12px; justify-content: center;  }
+.module-mosfet .nav button { 
+  padding: 7px 22px;
+  border-radius: var(--border-radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  transition: all 0.15s;
+ }
+.module-mosfet .nav button:hover {  background: var(--color-background-tertiary); color: var(--color-text-primary); border-color: var(--color-border-primary);  }
+.module-mosfet .nav button:active {  transform: scale(0.98);  }
+.module-mosfet .step-counter {  text-align: center; font-size: 12px; color: var(--color-text-tertiary); margin-top: 8px;  }
+.module-mosfet /* SOURCE */
+.source-note {  margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary);  }
+/* === supply === */
+* { box-sizing:border-box;margin:0;padding:0 }
+body { 
+  font-family:var(--font-sans);
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  min-height:100vh;
+  padding:2rem 1rem;
+ }
+.module-supply .container { 
+  max-width:900px;
+  margin:0 auto;
+  background:var(--color-background-primary);
+  border-radius:var(--border-radius-lg);
+  border:0.5px solid var(--color-border-tertiary);
+  padding:2rem;
+ }
+.module-supply .page-title { font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px }
+.module-supply .page-sub { font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary) }
+.module-supply /* NAV */
+.sc-nav { display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1.25rem }
+.module-supply .sc-tab { padding:5px 13px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;cursor:pointer;border:.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary);transition:all .15s }
+.module-supply .sc-tab.on { background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary) }
+.module-supply .sc-tab:hover:not(.on) { border-color:var(--color-border-secondary);color:var(--color-text-primary) }
+.module-supply .sc-view { display:none }
+.module-supply .sc-view.on { display:block }
+.module-supply /* STAGE CARD */
+.stage { margin-bottom:14px;border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden }
+.module-supply .stage-head { display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;background:var(--color-background-secondary);user-select:none }
+.module-supply .stage-head:hover { background:var(--color-background-tertiary) }
+.module-supply .stage-num { font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;white-space:nowrap }
+.module-supply .stage-title { font-size:14px;font-weight:500;color:var(--color-text-primary) }
+.module-supply .stage-meta { font-size:11px;color:var(--color-text-tertiary);text-align:right;line-height:1.5 }
+.module-supply .stage-body { display:none;padding:14px;border-top:.5px solid var(--color-border-tertiary) }
+.module-supply .stage-body.open { display:block }
+.module-supply .stage-toggle { font-size:12px;color:var(--color-text-tertiary);margin-left:4px;transition:transform .2s }
+.module-supply .stage-toggle.open { transform:rotate(180deg) }
+.module-supply /* COLOR BANDS */
+.s1 .stage-head { border-left:3px solid #1D9E75 }
+.module-supply .s1 .stage-num { background:#E1F5EE;color:#0F6E56 }
+.module-supply .s2 .stage-head { border-left:3px solid #EF9F27 }
+.module-supply .s2 .stage-num { background:#FAEEDA;color:#854F0B }
+.module-supply .s3 .stage-head { border-left:3px solid #378ADD }
+.module-supply .s3 .stage-num { background:#E6F1FB;color:#185FA5 }
+.module-supply .s4 .stage-head { border-left:3px solid #D4537E }
+.module-supply .s4 .stage-num { background:#FBEAF0;color:#993556 }
+.module-supply .s5 .stage-head { border-left:3px solid #7F77DD }
+.module-supply .s5 .stage-num { background:#EEEDFE;color:#534AB7 }
+.module-supply .s6 .stage-head { border-left:3px solid #D85A30 }
+.module-supply .s6 .stage-num { background:#FAECE7;color:#993C1D }
+.module-supply .s7 .stage-head { border-left:3px solid #5F5E5A }
+.module-supply .s7 .stage-num { background:#F1EFE8;color:#444441 }
+.module-supply /* GRID INSIDE STAGE */
+.two-col { display:grid;grid-template-columns:1fr 1fr;gap:12px }
+.module-supply .two-col { grid-template-columns:1fr }
+.module-supply .sec-label { font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px }
+.module-supply .co-grid { display:flex;flex-wrap:wrap;gap:6px }
+.module-supply .co { font-size:12px;padding:3px 9px;border-radius:6px;border:.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary) }
+.module-supply .co.us { border-color:#B5D4F4;background:#E6F1FB;color:#185FA5 }
+.module-supply .co.jp { border-color:#FAC775;background:#FAEEDA;color:#854F0B }
+.module-supply .co.tw { border-color:#9FE1CB;background:#E1F5EE;color:#0F6E56 }
+.module-supply .co.kr { border-color:#F4C0D1;background:#FBEAF0;color:#993556 }
+.module-supply .co.nl { border-color:#CECBF6;background:#EEEDFE;color:#534AB7 }
+.module-supply .co.cn { border-color:#D3D1C7;background:#F1EFE8;color:#5F5E5A }
+.module-supply .co.de { border-color:#F5C4B3;background:#FAECE7;color:#993C1D }
+.module-supply .co.uk { border-color:#C0DD97;background:#EAF3DE;color:#3B6D11 }
+.module-supply .note { font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-top:10px;padding:10px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md) }
+.module-supply .risk-badge { display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle }
+.module-supply .risk-hi { background:#FCEBEB;color:#A32D2D }
+.module-supply .risk-mid { background:#FAEEDA;color:#854F0B }
+.module-supply .risk-lo { background:#E1F5EE;color:#0F6E56 }
+.module-supply .divider { height:.5px;background:var(--color-border-tertiary);margin:12px 0 }
+.module-supply /* OVERVIEW TABLE */
+.ov-table { width:100%;border-collapse:collapse;font-size:12px }
+.module-supply .ov-table th { font-size:11px;font-weight:500;color:var(--color-text-tertiary);padding:7px 10px;text-align:left;border-bottom:.5px solid var(--color-border-tertiary) }
+.module-supply .ov-table td { padding:7px 10px;border-bottom:.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);vertical-align:top }
+.module-supply .ov-table tr:last-child td { border-bottom:none }
+.module-supply .ov-table td:first-child { font-weight:500;color:var(--color-text-primary);white-space:nowrap }
+.module-supply .ov-table th:nth-child(3), .module-supply .ov-table td:nth-child(3) { display:none }
+.module-supply /* FLOW */
+.flow-row { display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:8px }
+.module-supply .flow-box { background:var(--color-background-secondary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 12px }
+.module-supply .flow-box b { display:block;font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px }
+.module-supply .flow-box p { font-size:12px;color:var(--color-text-secondary) }
+.module-supply .flow-arrow { font-size:18px;color:var(--color-text-tertiary);text-align:center }
+.module-supply .flow-amount { font-size:11px;color:var(--color-text-secondary);text-align:center }
+.module-supply .flow-gap { height:6px }
+.module-supply .flow-step-label { text-align:center;font-size:11px;color:var(--color-text-tertiary);margin:4px 0 }
+.module-supply /* SOURCE */
+.source-note { margin-top:1.5rem;padding:10px 14px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:11px;color:var(--color-text-tertiary);border-left:3px solid var(--color-border-secondary) }
+/* === sme === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+    font-family: var(--font-sans);
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+   }
+.module-sme .container { 
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 2rem;
+   }
+.module-sme .page-title { 
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+   }
+.module-sme .page-sub { 
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+   }
+.module-sme /* TABS */
+  .tabs {  display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap;  }
+.module-sme .tab {  padding: 5px 14px; border-radius: var(--border-radius-md); font-size: 12px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s;  }
+.module-sme .tab.active {  background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary);  }
+.module-sme .tab:hover:not(.active) {  border-color: var(--color-border-secondary); color: var(--color-text-primary);  }
+.module-sme .view {  display: none;  }
+.module-sme .view.active {  display: block;  }
+.module-sme /* KPI */
+  .kpi-row {  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.25rem;  }
+.module-sme .kpi {  background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px;  }
+.module-sme .kpi-label {  font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px;  }
+.module-sme .kpi-val {  font-size: 20px; font-weight: 500; color: var(--color-text-primary);  }
+.module-sme .kpi-sub {  font-size: 11px; color: var(--color-text-secondary); margin-top: 2px;  }
+.module-sme /* STACKED BARS */
+  .bar-section {  margin-bottom: 1.25rem;  }
+.module-sme .bar-title {  font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase;  }
+.module-sme .bar-row {  margin-bottom: 10px;  }
+.module-sme .bar-label {  font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; display: flex; justify-content: space-between;  }
+.module-sme .bar-label span {  font-size: 11px; color: var(--color-text-tertiary);  }
+.module-sme .bar-track {  display: flex; height: 26px; border-radius: 4px; overflow: hidden;  }
+.module-sme .seg {  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; overflow: hidden; white-space: nowrap;  }
+.module-sme .seg-us {  background: #185FA5; color: #E6F1FB;  }
+.module-sme .seg-eu {  background: #0F6E56; color: #E1F5EE;  }
+.module-sme .seg-jp {  background: #854F0B; color: #FAEEDA;  }
+.module-sme .seg-kr {  background: #993556; color: #FBEAF0;  }
+.module-sme .seg-cn {  background: #888780; color: #F1EFE8;  }
+.module-sme .seg-ot {  background: #D3D1C7; color: #2C2C2A;  }
+.module-sme /* LEGEND */
+  .legend {  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.25rem;  }
+.module-sme .leg-item {  display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary);  }
+.module-sme .leg-dot {  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;  }
+.module-sme /* HEATMAP TABLE */
+  .heat-table {  width: 100%; border-collapse: collapse; font-size: 12px;  }
+.module-sme .heat-table th {  font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); padding: 6px 8px; text-align: left; border-bottom: 0.5px solid var(--color-border-tertiary);  }
+.module-sme .heat-table th.right {  text-align: right;  }
+.module-sme .heat-table td {  padding: 7px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: middle;  }
+.module-sme .heat-table td.right {  text-align: right;  }
+.module-sme .heat-table tr:last-child td {  border-bottom: none;  }
+.module-sme .heat-cell {  border-radius: 3px; padding: 3px 6px; font-size: 11px; font-weight: 500; text-align: center; display: inline-block; min-width: 36px;  }
+.module-sme .heat-vhi {  background: #185FA5; color: #E6F1FB;  }
+.module-sme .heat-hi {  background: #378ADD; color: #042C53;  }
+.module-sme .heat-mid {  background: #B5D4F4; color: #0C447C;  }
+.module-sme .heat-lo {  background: #E6F1FB; color: #185FA5;  }
+.module-sme .heat-vlo {  background: var(--color-background-secondary); color: var(--color-text-tertiary);  }
+.module-sme /* FLOW */
+  .flow-row {  display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-bottom: 8px;  }
+.module-sme .flow-box {  background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px;  }
+.module-sme .flow-box-label {  font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 2px;  }
+.module-sme .flow-box-val {  font-size: 14px; font-weight: 500; color: var(--color-text-primary);  }
+.module-sme .flow-arrow {  font-size: 16px; color: var(--color-text-tertiary); text-align: center;  }
+.module-sme .flow-amount {  font-size: 11px; color: var(--color-text-secondary); text-align: center;  }
+.module-sme /* INSIGHT CARDS */
+  .insight-grid {  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;  }
+.module-sme .insight-card {  background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 12px 14px;  }
+.module-sme .insight-card.warn {  border-color: #BA7517;  }
+.module-sme .insight-card.info {  border-color: #185FA5;  }
+.module-sme .insight-card.good {  border-color: #0F6E56;  }
+.module-sme .insight-icon {  font-size: 13px; margin-bottom: 6px;  }
+.module-sme .insight-title {  font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;  }
+.module-sme .insight-body {  font-size: 12px; color: var(--color-text-secondary); line-height: 1.5;  }
+.module-sme .section-sep {  height: 0.5px; background: var(--color-border-tertiary); margin: 1.25rem 0;  }
+.module-sme /* SOURCE NOTE */
+  .source-note { 
+    margin-top: 1.5rem;
+    padding: 10px 14px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    border-left: 3px solid var(--color-border-secondary);
+   }
+/* === photon_chip === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+    font-family: var(--font-sans);
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+   }
+.module-photon_chip .container { 
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 2rem;
+   }
+.module-photon_chip .page-title { 
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+   }
+.module-photon_chip .page-sub { 
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+   }
+.module-photon_chip /* SVG theme classes — matching the claude.ai widget system */
+  svg .t {  font-family: var(--font-sans); font-size: 14px; font-weight: 400; fill: var(--color-text-primary);  }
+.module-photon_chip svg .ts {  font-family: var(--font-sans); font-size: 12px; font-weight: 400; fill: var(--color-text-secondary);  }
+.module-photon_chip svg .th {  font-family: var(--font-sans); font-size: 14px; font-weight: 500; fill: var(--color-text-primary);  }
+.module-photon_chip /* c-amber */
+  svg .c-amber > rect, .module-photon_chip svg .c-amber > ellipse, .module-photon_chip svg .c-amber > circle {  fill: #FAEEDA; stroke: #BA7517;  }
+.module-photon_chip svg .c-amber > text.th {  fill: #633806;  }
+.module-photon_chip svg .c-amber > text.ts {  fill: #854F0B;  }
+.module-photon_chip svg .c-amber > text.t {  fill: #633806;  }
+.module-photon_chip /* c-gray */
+  svg .c-gray > rect, .module-photon_chip svg .c-gray > ellipse, .module-photon_chip svg .c-gray > circle {  fill: #F1EFE8; stroke: #888780;  }
+.module-photon_chip svg .c-gray > text.th {  fill: #2C2C2A;  }
+.module-photon_chip svg .c-gray > text.ts {  fill: #5F5E5A;  }
+.module-photon_chip /* c-teal */
+  svg .c-teal > rect, .module-photon_chip svg .c-teal > ellipse, .module-photon_chip svg .c-teal > circle {  fill: #E1F5EE; stroke: #1D9E75;  }
+.module-photon_chip svg .c-teal > text.th {  fill: #085041;  }
+.module-photon_chip svg .c-teal > text.ts {  fill: #0F6E56;  }
+.module-photon_chip /* c-purple */
+  svg .c-purple > rect, .module-photon_chip svg .c-purple > ellipse, .module-photon_chip svg .c-purple > circle {  fill: #EEEDFE; stroke: #534AB7;  }
+.module-photon_chip svg .c-purple > text.th {  fill: #3C3489;  }
+.module-photon_chip svg .c-purple > text.ts {  fill: #534AB7;  }
+.module-photon_chip .arr { 
+    stroke: var(--color-text-secondary);
+    stroke-width: 1.5px;
+    fill: none;
+   }
+.module-photon_chip .leader { 
+    stroke: var(--color-text-tertiary);
+    stroke-width: 0.5px;
+    stroke-dasharray: 4 3;
+    fill: none;
+   }
+.module-photon_chip /* Insight cards below diagram */
+  .insight-grid {  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 1.5rem;  }
+.module-photon_chip .insight-grid {  grid-template-columns: 1fr;  }
+.module-photon_chip .insight-card {  padding: 12px 14px; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary);  }
+.module-photon_chip .insight-card.role1 {  border-color: #BA7517;  }
+.module-photon_chip .insight-card.role2 {  border-color: #534AB7;  }
+.module-photon_chip .insight-card.role3 {  border-color: #0F6E56;  }
+.module-photon_chip .insight-title {  font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px;  }
+.module-photon_chip .insight-body {  font-size: 12px; color: var(--color-text-secondary); line-height: 1.55;  }
+.module-photon_chip .source-note {  margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary);  }
+/* === photon_analogy === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+ }
+.module-photon_analogy .container { 
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+ }
+.module-photon_analogy .page-title {  font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;  }
+.module-photon_analogy .page-sub {  font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary);  }
+.module-photon_analogy /* SUMMARY ROW */
+.summary-row {  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 1.5rem;  }
+.module-photon_analogy .summary-row {  grid-template-columns: 1fr;  }
+.module-photon_analogy .summary-card {  padding: 10px 14px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary);  }
+.module-photon_analogy .summary-card.c1 {  background: #E1F5EE; border-color: #9FE1CB;  }
+.module-photon_analogy .summary-card.c2 {  background: #E6F1FB; border-color: #B5D4F4;  }
+.module-photon_analogy .summary-card.c3 {  background: #FAEEDA; border-color: #FAC775;  }
+.module-photon_analogy .summary-label {  font-size: 11px; font-weight: 500; margin-bottom: 4px;  }
+.module-photon_analogy .c1 .summary-label {  color: #0F6E56;  }
+.module-photon_analogy .c2 .summary-label {  color: #185FA5;  }
+.module-photon_analogy .c3 .summary-label {  color: #854F0B;  }
+.module-photon_analogy .summary-analogy {  font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px;  }
+.module-photon_analogy .summary-desc {  font-size: 12px; color: var(--color-text-secondary); line-height: 1.4;  }
+.module-photon_analogy /* TABS */
+.tabs {  display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap;  }
+.module-photon_analogy .tab {  padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s;  }
+.module-photon_analogy .tab:hover:not(.on) {  border-color: var(--color-border-secondary); color: var(--color-text-primary);  }
+.module-photon_analogy .tab.on {  background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary);  }
+.module-photon_analogy /* VIEWS */
+.view {  display: none;  }
+.module-photon_analogy .view.on {  display: block;  }
+.module-photon_analogy /* ANALOGY CARDS */
+.analogy-card {  background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-bottom: 12px; border: 0.5px solid var(--color-border-tertiary);  }
+.module-photon_analogy .analogy-header {  font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px;  }
+.module-photon_analogy .analogy-body {  font-size: 13px; color: var(--color-text-secondary); line-height: 1.65;  }
+.module-photon_analogy .analogy-body b {  color: var(--color-text-primary); font-weight: 500;  }
+.module-photon_analogy .analogy-card.highlight-teal {  border-color: #9FE1CB;  }
+.module-photon_analogy .analogy-card.highlight-blue {  border-color: #B5D4F4;  }
+.module-photon_analogy .analogy-card.highlight-amber {  border-color: #FAC775;  }
+.module-photon_analogy /* BADGE */
+.badge {  display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-right: 6px; font-weight: 500; vertical-align: middle;  }
+.module-photon_analogy .b-real {  background: #E1F5EE; color: #0F6E56;  }
+.module-photon_analogy .b-soon {  background: #FAEEDA; color: #854F0B;  }
+.module-photon_analogy .b-future {  background: #F1EFE8; color: #5F5E5A;  }
+.module-photon_analogy /* VS ROW */
+.vs-row {  display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: start; margin-bottom: 12px;  }
+.module-photon_analogy .vs-row {  grid-template-columns: 1fr;  }
+.module-photon_analogy .vs-arrow {  display: none;  }
+.module-photon_analogy .vs-box {  padding: 10px 12px; border-radius: var(--border-radius-md); font-size: 12px; border: 0.5px solid var(--color-border-tertiary); line-height: 1.5;  }
+.module-photon_analogy .vs-box b {  display: block; font-size: 12px; font-weight: 500; margin-bottom: 4px; color: var(--color-text-primary);  }
+.module-photon_analogy .vs-arrow {  font-size: 18px; color: var(--color-text-tertiary); text-align: center; padding-top: 10px;  }
+.module-photon_analogy .old {  background: var(--color-background-secondary); color: var(--color-text-secondary);  }
+.module-photon_analogy .new-teal {  background: #E1F5EE; border-color: #9FE1CB; color: #0F6E56;  }
+.module-photon_analogy .new-blue {  background: #E6F1FB; border-color: #B5D4F4; color: #185FA5;  }
+.module-photon_analogy .new-amber {  background: #FAEEDA; border-color: #FAC775; color: #854F0B;  }
+.module-photon_analogy .new-teal b, .module-photon_analogy .new-blue b, .module-photon_analogy .new-amber b {  color: inherit;  }
+.module-photon_analogy /* SOURCE */
+.source-note {  margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary);  }
+/* === photon_stage === */
+*, *::before, *::after {  box-sizing: border-box; margin: 0; padding: 0;  }
+body { 
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+ }
+.module-photon_stage .container { 
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+ }
+.module-photon_stage .page-title {  font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;  }
+.module-photon_stage .page-sub {  font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary);  }
+.module-photon_stage /* TABS */
+.layer-tabs {  display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap;  }
+.module-photon_stage .lt {  padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s;  }
+.module-photon_stage .lt:hover:not(.on) {  border-color: var(--color-border-secondary); color: var(--color-text-primary);  }
+.module-photon_stage .lt.on {  color: var(--color-text-primary); border-color: var(--color-border-primary); background: var(--color-background-primary);  }
+.module-photon_stage .lt.on.l1 {  border-color: #1D9E75; color: #0F6E56;  }
+.module-photon_stage .lt.on.l2 {  border-color: #185FA5; color: #185FA5;  }
+.module-photon_stage .lt.on.l3 {  border-color: #854F0B; color: #854F0B;  }
+.module-photon_stage /* LAYER VIEWS */
+.layer-view {  display: none;  }
+.module-photon_stage .layer-view.on {  display: block;  }
+.module-photon_stage /* STATUS GRID */
+.status-grid {  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 1.25rem;  }
+.module-photon_stage .status-grid {  grid-template-columns: 1fr;  }
+.module-photon_stage .sc {  background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; border: 0.5px solid var(--color-border-tertiary);  }
+.module-photon_stage .sc-label {  font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px;  }
+.module-photon_stage .sc-val {  font-size: 18px; font-weight: 500; color: var(--color-text-primary);  }
+.module-photon_stage .sc-sub {  font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.4;  }
+.module-photon_stage /* TRL BARS */
+.trl-row {  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;  }
+.module-photon_stage .trl-label {  font-size: 11px; color: var(--color-text-tertiary); white-space: nowrap; min-width: 170px;  }
+.module-photon_stage .trl-track {  flex: 1; height: 10px; background: var(--color-background-secondary); border-radius: 5px; position: relative; border: 0.5px solid var(--color-border-tertiary); overflow: hidden;  }
+.module-photon_stage .trl-fill {  height: 100%; border-radius: 5px;  }
+.module-photon_stage .trl-fill.teal {  background: #1D9E75;  }
+.module-photon_stage .trl-fill.blue {  background: #185FA5;  }
+.module-photon_stage .trl-fill.amber {  background: #EF9F27;  }
+.module-photon_stage .trl-val {  font-size: 12px; font-weight: 500; min-width: 60px; text-align: right; color: var(--color-text-secondary);  }
+.module-photon_stage .trl-section-label {  font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin: 1rem 0 10px;  }
+.module-photon_stage /* TIMELINE */
+.timeline {  display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0;  }
+.module-photon_stage .tl-item {  display: grid; grid-template-columns: 110px 20px 1fr; gap: 0 12px; align-items: start;  }
+.module-photon_stage .tl-year {  font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-align: right; padding-top: 10px; line-height: 1.3;  }
+.module-photon_stage .tl-spine {  display: flex; flex-direction: column; align-items: center;  }
+.module-photon_stage .tl-dot {  width: 12px; height: 12px; border-radius: 50%; margin-top: 8px; flex-shrink: 0;  }
+.module-photon_stage .tl-line {  width: 2px; flex: 1; min-height: 24px;  }
+.module-photon_stage .tl-card {  background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; margin-bottom: 8px;  }
+.module-photon_stage .tl-card-title {  font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;  }
+.module-photon_stage .tl-card-body {  font-size: 12px; color: var(--color-text-secondary); line-height: 1.55;  }
+.module-photon_stage /* STATUS TAGS */
+.tl-tag {  display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-right: 6px; margin-bottom: 4px; font-weight: 500;  }
+.module-photon_stage .tag-done {  background: #E1F5EE; color: #0F6E56;  }
+.module-photon_stage .tag-wip {  background: #E6F1FB; color: #185FA5;  }
+.module-photon_stage .tag-soon {  background: #FAEEDA; color: #854F0B;  }
+.module-photon_stage .tag-future {  background: #F1EFE8; color: #5F5E5A;  }
+.module-photon_stage /* CHALLENGE BOX */
+.challenge-box {  background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-top: 1.25rem; border-left: 3px solid #BA7517;  }
+.module-photon_stage .challenge-box strong {  color: var(--color-text-primary); font-weight: 500;  }
+.module-photon_stage /* LEGEND */
+.legend {  display: flex; flex-wrap: wrap; gap: 10px; margin: 1rem 0 1.5rem;  }
+.module-photon_stage .leg {  display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-secondary);  }
+.module-photon_stage .leg-dot {  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;  }
+.module-photon_stage /* SOURCE */
+.source-note {  margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary);  }
+</style>
+</head>
+<body>
+
+<div class="portal-hero">
+  <p class="portal-eyebrow">Semiconductor &amp; Photonics AI · Bộ tài liệu học chuyên sâu</p>
+  <h1 class="portal-h1">Từ transistor đến<br><em>ánh sáng tính toán</em></h1>
+  <p class="portal-lead">7 tài liệu tương tác trong một trang — từ nền tảng vật lý silicon, chuỗi cung ứng &amp; địa chính trị chip, đến photonic AI đang định hình lại hạ tầng tính toán thế giới.</p>
+</div>
+
+<div class="portal-nav">
+  <div class="nav-pill active" onclick="filterChapters(&#39;all&#39;,this)">Tất cả</div>
+  <div class="nav-pill" onclick="filterChapters(&#39;foundation&#39;,this)">Nền tảng vật lý</div>
+  <div class="nav-pill" onclick="filterChapters(&#39;supply&#39;,this)">Chuỗi cung ứng</div>
+  <div class="nav-pill" onclick="filterChapters(&#39;photonics&#39;,this)">Photonic AI</div>
+</div>
+
+<div class="portal-main">
+
+<div class="chapter-wrap" id="ch1" data-filter="foundation">
+  <div class="ch-header" onclick="toggleCh(&#39;ch1&#39;)">
+    <span class="ch-badge badge-teal">Nền tảng vật lý</span>
+    <span class="ch-title">Tại sao Silicon? MOSFET là gì?</span>
+    <span class="ch-toggle open" id="tog_ch1">▾</span>
+  </div>
+  <div class="ch-body" id="body_ch1">
+    
+<div class="module-wrap module-silicon">
+  <div class="module-label">Tại sao Silicon thống trị — 3 sơ đồ (band gap, MOSFET, 5 lý do)</div>
+  
+<div class="page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Tại sao Silicon thống trị ngành bán dẫn?</h1>
+    <p>Silicon không tốt nhất về bất kỳ thông số vật lý đơn lẻ nào — nhưng là vật liệu duy nhất hội tụ đủ: band gap phù hợp + oxide tự nhiên chất lượng cao + pha tạp linh hoạt + quy trình wafer công nghiệp. Sau 60 năm, path dependency không thể phá vỡ. · Nguồn: Sze &amp; Ng (2006), OECD (2025), IPSR-I (2024), Streetman &amp; Banerjee (2014)</p>
+  </div>
+
+  <!-- DIAGRAM 1: BAND GAP -->
+  <div class="section s1">
+    <div class="section-header">
+      <span class="section-num">Lý do 1</span>
+      <h2>Band gap 1.12 eV — vùng "Goldilocks" của bán dẫn</h2>
+      <p>Germani (0.67 eV) có n_i cao hơn 1600 lần ở nhiệt độ phòng → mất kiểm soát ở 70°C. Kim cương (5.5 eV) cách điện quá. Silicon ở giữa: hoạt động ổn định đến ~150°C — nhiệt độ thực tế bên trong vi xử lý.</p>
+    </div>
+    <div class="section-body">
+      <svg width="100%" viewBox="0 0 680 290" role="img">
+        <title>Band gap — vùng Goldilocks của silicon</title>
+        <desc>So sánh band gap của kim loại, germani, silicon, SiC/GaN và kim cương trên thang eV</desc>
+        <defs>
+          <marker id="ns_silicon_arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+
+        <!-- Axis -->
+        <line x1="60" y1="200" x2="625" y2="200" stroke-width="1.5" stroke="#888780" fill="none" marker-end="url(#arr1)"></line>
+        <text class="ts" x="636" y="204" text-anchor="start">eV</text>
+
+        <!-- Tick labels -->
+        <text class="ts" x="60" y="218" text-anchor="middle">0</text>
+        <text class="ts" x="165" y="218" text-anchor="middle">0.67</text>
+        <text class="ts" x="270" y="218" text-anchor="middle">1.12</text>
+        <text class="ts" x="390" y="218" text-anchor="middle">~2–3</text>
+        <text class="ts" x="505" y="218" text-anchor="middle">5.5</text>
+
+        <!-- Ticks -->
+        <line x1="60" y1="196" x2="60" y2="204" stroke="#888780" stroke-width="1"></line>
+        <line x1="165" y1="196" x2="165" y2="204" stroke="#888780" stroke-width="1"></line>
+        <line x1="270" y1="196" x2="270" y2="204" stroke="#888780" stroke-width="1"></line>
+        <line x1="390" y1="196" x2="390" y2="204" stroke="#888780" stroke-width="1"></line>
+        <line x1="505" y1="196" x2="505" y2="204" stroke="#888780" stroke-width="1"></line>
+
+        <!-- Kim loại -->
+        <g class="c-gray">
+          <rect x="42" y="120" width="36" height="80" rx="4" stroke-width="0.5"></rect>
+          <text class="ts" x="60" y="106" text-anchor="middle">Kim loại</text>
+          <text class="ts" x="60" y="118" text-anchor="middle">(Cu, Al)</text>
+          <text class="th" x="60" y="164" text-anchor="middle" dominant-baseline="central">0 eV</text>
+        </g>
+
+        <!-- Germani -->
+        <g class="c-amber">
+          <rect x="138" y="108" width="54" height="92" rx="4" stroke-width="0.5"></rect>
+          <text class="ts" x="165" y="94" text-anchor="middle">Germani (Ge)</text>
+          <text class="th" x="165" y="158" text-anchor="middle" dominant-baseline="central">0.67 eV</text>
+        </g>
+
+        <!-- Silicon — Goldilocks highlight -->
+        <rect x="234" y="58" width="72" height="134" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"></rect>
+        <text class="ts" x="270" y="46" text-anchor="middle" fill="#085041">Goldilocks</text>
+        <g class="c-teal">
+          <rect x="242" y="66" width="56" height="120" rx="4" stroke-width="0.5"></rect>
+          <text class="th" x="270" y="122" text-anchor="middle" dominant-baseline="central">Si</text>
+          <text class="ts" x="270" y="140" text-anchor="middle">1.12 eV</text>
+          <text class="ts" x="270" y="156" text-anchor="middle">T_max ~150°C</text>
+        </g>
+
+        <!-- SiC / GaN -->
+        <g class="c-purple">
+          <rect x="350" y="100" width="80" height="90" rx="4" stroke-width="0.5"></rect>
+          <text class="ts" x="390" y="86" text-anchor="middle">SiC, GaN</text>
+          <text class="ts" x="390" y="98" text-anchor="middle">(power/RF)</text>
+          <text class="th" x="390" y="150" text-anchor="middle" dominant-baseline="central">2–3 eV</text>
+        </g>
+
+        <!-- Kim cương -->
+        <g class="c-gray">
+          <rect x="479" y="140" width="52" height="60" rx="4" stroke-width="0.5"></rect>
+          <text class="ts" x="505" y="126" text-anchor="middle">Kim cương</text>
+          <text class="th" x="505" y="173" text-anchor="middle" dominant-baseline="central">5.5 eV</text>
+        </g>
+
+        <!-- Annotations -->
+        <text class="ts" x="90" y="172" text-anchor="middle" fill="#854F0B">Quá thấp</text>
+        <text class="ts" x="90" y="184" text-anchor="middle" fill="#854F0B">→ mất kiểm soát</text>
+        <text class="ts" x="550" y="163" text-anchor="start" fill="#5F5E5A">Quá cao</text>
+        <text class="ts" x="550" y="175" text-anchor="start" fill="#5F5E5A">→ cách điện</text>
+
+        <!-- Formula strip -->
+        <rect x="60" y="238" width="560" height="38" rx="4" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"></rect>
+        <text class="ts" x="340" y="254" text-anchor="middle">n_i(Si) ≈ 1.5×10¹⁰ cm⁻³   |   n_i(Ge) ≈ 2.4×10¹³ cm⁻³  (cao hơn 1600×)</text>
+        <text class="ts" x="340" y="270" text-anchor="middle">Band gap càng nhỏ → n_i càng cao → càng khó kiểm soát dòng điện ở nhiệt độ cao</text>
+      </svg>
+      <div class="insight"><strong>Hệ quả thực tế:</strong> OECD (2025) xác nhận dù SiC và GaN vượt trội cho power chips, <em>silicon wafer vẫn tiếp tục thống trị logic và memory</em> nhờ cửa sổ nhiệt độ ổn định này.</div>
+    </div>
+  </div>
+
+  <!-- DIAGRAM 2: MOSFET / SiO₂ -->
+  <div class="section s2">
+    <div class="section-header">
+      <span class="section-num">Lý do 2</span>
+      <h2>Lớp SiO₂ tự nhiên — lợi thế không thể sao chép</h2>
+      <p>Si + O₂ → SiO₂ tự động, bền vững, band gap ~9 eV, bám dính nguyên tử với bề mặt Si. GaAs và InP không có oxide tự nhiên ổn định → không thể làm VLSI dù electron nhanh hơn 5×. Atalla &amp; Kahng phát minh MOSFET năm 1960 chính nhờ Si/SiO₂.</p>
+    </div>
+    <div class="section-body">
+      <svg width="100%" viewBox="0 0 680 330" role="img">
+        <title>Cross-section MOSFET — lớp SiO₂ là chìa khoá</title>
+        <desc>Sơ đồ cắt ngang MOSFET cho thấy lớp gate oxide SiO₂ giữa gate và silicon</desc>
+        <defs>
+          <marker id="ns_silicon_arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+
+        <!-- Silicon substrate -->
+        <g class="c-blue">
+          <rect x="60" y="218" width="320" height="78" rx="4" stroke-width="0.5"></rect>
+          <text class="th" x="220" y="252" text-anchor="middle" dominant-baseline="central">Silicon (Si) — đế bán dẫn</text>
+          <text class="ts" x="220" y="272" text-anchor="middle" dominant-baseline="central">p-type — band gap 1.12 eV</text>
+        </g>
+
+        <!-- Source N+ -->
+        <g class="c-blue">
+          <rect x="76" y="190" width="74" height="30" rx="3" stroke-width="0.5"></rect>
+          <text class="ts" x="113" y="209" text-anchor="middle" dominant-baseline="central">Source (N+)</text>
+        </g>
+
+        <!-- Drain N+ -->
+        <g class="c-blue">
+          <rect x="290" y="190" width="74" height="30" rx="3" stroke-width="0.5"></rect>
+          <text class="ts" x="327" y="209" text-anchor="middle" dominant-baseline="central">Drain (N+)</text>
+        </g>
+
+        <!-- SiO₂ gate oxide — highlighted -->
+        <rect x="150" y="172" width="140" height="20" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"></rect>
+        <text class="ts" x="220" y="186" text-anchor="middle" fill="#412402">SiO₂ gate oxide (~2–5 nm)</text>
+
+        <!-- Gate metal -->
+        <g class="c-gray">
+          <rect x="150" y="144" width="140" height="28" rx="3" stroke-width="0.5"></rect>
+          <text class="th" x="220" y="162" text-anchor="middle" dominant-baseline="central">Gate (kim loại)</text>
+        </g>
+
+        <!-- Channel dashed line -->
+        <line x1="150" y1="208" x2="290" y2="208" stroke="#1D9E75" stroke-width="2" stroke-dasharray="5 3" fill="none"></line>
+        <text class="ts" x="220" y="203" text-anchor="middle" fill="#085041">channel</text>
+
+        <!-- Gate voltage arrow -->
+        <line x1="220" y1="52" x2="220" y2="138" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#arr2)"></line>
+        <text class="ts" x="236" y="90" text-anchor="start">V_gate</text>
+        <text class="ts" x="236" y="104" text-anchor="start">(điện áp điều khiển)</text>
+
+        <!-- Leader to SiO₂ -->
+        <line x1="290" y1="182" x2="425" y2="134" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+        <circle cx="290" cy="182" r="2.5" fill="#888780"></circle>
+        <text class="th" x="430" y="126" text-anchor="start">SiO₂ — band gap ~9 eV</text>
+        <text class="ts" x="430" y="142" text-anchor="start">Cách điện gần hoàn hảo</text>
+        <text class="ts" x="430" y="157" text-anchor="start">Bám dính nguyên tử với Si</text>
+        <text class="ts" x="430" y="172" text-anchor="start">Interface trap density thấp</text>
+        <text class="ts" x="430" y="187" text-anchor="start">~10¹⁰ cm⁻²eV⁻¹</text>
+
+        <!-- GaAs warning -->
+        <rect x="60" y="308" width="320" height="14" rx="3" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"></rect>
+        <text class="ts" x="220" y="318" text-anchor="middle" fill="#791F1F">GaAs: oxide As₂O₃ không ổn định → không thể làm VLSI dù e⁻ nhanh hơn Si 5×</text>
+      </svg>
+      <div class="insight"><strong>Plummer, Deal &amp; Griffin (2000):</strong> Atalla &amp; Kahng (1960) chọn Si không phải vì Si tốt nhất — mà vì Si là vật liệu <em>duy nhất</em> có oxide tự nhiên đủ chất lượng làm gate dielectric. Quyết định đó định hình toàn bộ ngành chip 60 năm sau.</div>
+    </div>
+  </div>
+
+  <!-- DIAGRAM 3: 5 REASONS OVERVIEW -->
+  <div class="section s3">
+    <div class="section-header">
+      <span class="section-num">Tổng hợp</span>
+      <h2>5 lý do hội tụ — path dependency không thể phá vỡ</h2>
+      <p>Silicon thống trị không vì tối ưu về bất kỳ thông số đơn lẻ nào. GaAs có electron nhanh hơn 5×, c-BAs dẫn nhiệt tốt hơn 10×, nhưng không vật liệu nào hội tụ đủ cả 5 yếu tố cùng lúc — và 60 năm hệ sinh thái xây trên nền Si đã tạo ra một path dependency gần như không phá vỡ được.</p>
+    </div>
+    <div class="section-body">
+      <svg width="100%" viewBox="0 0 680 360" role="img">
+        <title>5 lý do silicon thống trị — sơ đồ nan hoa</title>
+        <desc>Silicon ở trung tâm, 5 lý do xung quanh: band gap, SiO₂, pha tạp, wafer, hệ sinh thái</desc>
+        <defs>
+          <marker id="ns_silicon_arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+
+        <!-- Spoke lines from center to each node -->
+        <line x1="293" y1="154" x2="192" y2="96" stroke="#1D9E75" stroke-width="1" fill="none"></line>
+        <line x1="387" y1="154" x2="488" y2="96" stroke="#1D9E75" stroke-width="1" fill="none"></line>
+        <line x1="262" y1="184" x2="168" y2="184" stroke="#1D9E75" stroke-width="1" fill="none"></line>
+        <line x1="293" y1="214" x2="192" y2="274" stroke="#1D9E75" stroke-width="1" fill="none"></line>
+        <line x1="387" y1="214" x2="488" y2="274" stroke="#1D9E75" stroke-width="1" fill="none"></line>
+
+        <!-- CENTER: Silicon -->
+        <g class="c-teal">
+          <rect x="262" y="148" width="156" height="68" rx="14" stroke-width="1.5"></rect>
+          <text class="th" x="340" y="176" text-anchor="middle" dominant-baseline="central">Silicon (Si)</text>
+          <text class="ts" x="340" y="196" text-anchor="middle" dominant-baseline="central">"Right material, right time"</text>
+        </g>
+
+        <!-- TOP LEFT: Band gap -->
+        <g class="c-teal">
+          <rect x="58" y="50" width="202" height="80" rx="8" stroke-width="0.5"></rect>
+          <text class="th" x="159" y="78" text-anchor="middle" dominant-baseline="central">Band gap 1.12 eV</text>
+          <text class="ts" x="159" y="98" text-anchor="middle" dominant-baseline="central">Goldilocks — T_max ~150°C</text>
+          <text class="ts" x="159" y="114" text-anchor="middle" dominant-baseline="central">n_i thấp, kiểm soát tốt</text>
+        </g>
+
+        <!-- TOP RIGHT: SiO₂ -->
+        <g class="c-amber">
+          <rect x="420" y="50" width="202" height="80" rx="8" stroke-width="0.5"></rect>
+          <text class="th" x="521" y="78" text-anchor="middle" dominant-baseline="central">Lớp SiO₂ tự nhiên</text>
+          <text class="ts" x="521" y="98" text-anchor="middle" dominant-baseline="central">Band gap ~9 eV, bám dính Si</text>
+          <text class="ts" x="521" y="114" text-anchor="middle" dominant-baseline="central">Nền tảng MOSFET / CMOS</text>
+        </g>
+
+        <!-- MIDDLE LEFT: Doping -->
+        <g class="c-purple">
+          <rect x="44" y="156" width="192" height="56" rx="8" stroke-width="0.5"></rect>
+          <text class="th" x="140" y="178" text-anchor="middle" dominant-baseline="central">Pha tạp linh hoạt</text>
+          <text class="ts" x="140" y="198" text-anchor="middle" dominant-baseline="central">8 bậc điện trở suất: 10⁻⁴ → 10⁴ Ω·cm</text>
+        </g>
+
+        <!-- BOTTOM LEFT: Wafer -->
+        <g class="c-gray">
+          <rect x="58" y="248" width="202" height="72" rx="8" stroke-width="0.5"></rect>
+          <text class="th" x="159" y="272" text-anchor="middle" dominant-baseline="central">Wafer 300mm — Czochralski</text>
+          <text class="ts" x="159" y="292" text-anchor="middle" dominant-baseline="central">Độ tinh khiết 11 nines</text>
+          <text class="ts" x="159" y="308" text-anchor="middle" dominant-baseline="central">Shin-Etsu + SUMCO &gt;50% TT</text>
+        </g>
+
+        <!-- BOTTOM RIGHT: Ecosystem -->
+        <g class="c-gray">
+          <rect x="420" y="248" width="202" height="72" rx="8" stroke-width="0.5"></rect>
+          <text class="th" x="521" y="272" text-anchor="middle" dominant-baseline="central">60 năm hệ sinh thái</text>
+          <text class="ts" x="521" y="292" text-anchor="middle" dominant-baseline="central">EDA · fab · PDK · ASML</text>
+          <text class="ts" x="521" y="308" text-anchor="middle" dominant-baseline="central">Path dependency bất khả xâm phạm</text>
+        </g>
+
+        <!-- Bottom note -->
+        <text class="ts" x="340" y="340" text-anchor="middle">Vật liệu tốt hơn về vật lý nhưng chưa thay thế được:</text>
+        <text class="ts" x="340" y="354" text-anchor="middle">GaAs (e⁻ nhanh 5×)  ·  SiC/GaN (power)  ·  c-BAs (nhiệt 10×)  ·  InP (photonics)</text>
+      </svg>
+      <div class="insight"><strong>Streetman &amp; Banerjee (2014)</strong> gọi đây là "the right material at the right time" — và OECD (2025) xác nhận: dù nhiều vật liệu thay thế hứa hẹn, không gì có thể phá vỡ path dependency của silicon trong logic và memory chip trong tương lai gần.</div>
+    </div>
+  </div>
+
+  <!-- Source note -->
+  <div class="source-note">
+    <strong>Tài liệu tham khảo:</strong> Sze &amp; Ng (2006) <em>Physics of Semiconductor Devices</em> · Streetman &amp; Banerjee (2014) <em>Solid State Electronic Devices</em> · Plummer, Deal &amp; Griffin (2000) <em>Silicon VLSI Technology</em> · OECD (2025) <em>Mapping the Semiconductor Value Chain</em> · IPSR-I (2024) <em>Silicon Photonics Roadmap</em> · Perplexity research compilation (2025)
+  </div>
+
+</div>
+
+
+
+</div><div class="module-divider"></div>
+<div class="module-wrap module-mosfet">
+  <div class="module-label">MOSFET là gì — 5 bước tương tác, từ công tắc điện đến GPU 80 tỷ transistor</div>
+  
+<div class="container">
+
+  <div class="page-title">MOSFET là gì?</div>
+  <div class="page-sub">Từ công tắc điện đơn giản → transistor nano → chip AI 80 tỷ transistor · 5 bước giải thích</div>
+
+  <div class="steps">
+    <div class="step" onclick="go_mosfet(0)">1 — MOSFET là gì</div>
+    <div class="step" onclick="go_mosfet(1)">2 — Cấu trúc bên trong</div>
+    <div class="step" onclick="go_mosfet(2)">3 — Cách hoạt động</div>
+    <div class="step" onclick="go_mosfet(3)">4 — Tắt / Mở = 0 / 1</div>
+    <div class="step on" onclick="go_mosfet(4)">5 — Trong chip thật</div>
+  </div>
+
+  <!-- ═══ PANEL 0: WHAT IS MOSFET ═══ -->
+  <div id="ns_mosfet_p0" class="panel">
+    <svg width="100%" viewBox="0 0 680 260" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET là gì — so sánh với công tắc điện</title>
+      <desc>MOSFET hoạt động như công tắc điện nhưng được điều khiển bằng điện áp thay vì ngón tay</desc>
+      <defs>
+        <marker id="ns_mosfet_a0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Left: light switch -->
+      <text class="th" x="160" y="30" text-anchor="middle">Công tắc điện (ví dụ quen)</text>
+      <g class="c-gray">
+        <rect x="80" y="50" width="160" height="90" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="74" text-anchor="middle" dominant-baseline="central">TAY nhấn công tắc</text>
+        <rect x="130" y="88" width="60" height="28" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="105" text-anchor="middle" dominant-baseline="central">ON / OFF</text>
+        <text class="ts" x="160" y="130" text-anchor="middle" dominant-baseline="central">→ Đèn bật / tắt</text>
+      </g>
+
+      <!-- VS -->
+      <text class="th" x="340" y="98" text-anchor="middle">≈</text>
+      <text class="ts" x="340" y="114" text-anchor="middle">nhưng</text>
+      <text class="ts" x="340" y="128" text-anchor="middle">nano-scale</text>
+
+      <!-- Right: MOSFET -->
+      <text class="th" x="505" y="30" text-anchor="middle">MOSFET (công tắc điện tử)</text>
+      <g class="c-teal">
+        <rect x="385" y="50" width="240" height="90" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="505" y="74" text-anchor="middle" dominant-baseline="central">ĐIỆN ÁP nhỏ điều khiển</text>
+        <rect x="455" y="88" width="100" height="28" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="505" y="105" text-anchor="middle" dominant-baseline="central">V_gate → ON / OFF</text>
+        <text class="ts" x="505" y="130" text-anchor="middle" dominant-baseline="central">→ Dòng điện lớn chạy / không</text>
+      </g>
+
+      <!-- Bottom key facts -->
+      <rect x="60" y="164" width="560" height="76" rx="6" fill="#E6F1FB" stroke="#B5D4F4" stroke-width="0.5"></rect>
+      <text class="th" x="340" y="188" text-anchor="middle" fill="#0C447C">Tại sao MOSFET thay đổi thế giới?</text>
+      <text class="ts" x="340" y="208" text-anchor="middle" fill="#185FA5">Kích thước: 2nm (2024) — nhỏ hơn virus cúm 50 lần</text>
+      <text class="ts" x="340" y="224" text-anchor="middle" fill="#185FA5">Tên đầy đủ: Metal-Oxide-Semiconductor Field-Effect Transistor</text>
+      <text class="ts" x="340" y="240" text-anchor="middle" fill="#185FA5">GPU H100: 80 tỷ MOSFET — nhiều hơn số tế bào não người</text>
+    </svg>
+    <div class="desc">MOSFET = <b>công tắc điện tử</b> được điều khiển bằng điện áp thay vì ngón tay. Khi điện áp đủ lớn → dòng điện chạy qua (ON = 1). Khi không có điện áp → không có dòng (OFF = 0). Đây chính là cơ chế tạo ra bit nhị phân 0 và 1 trong mọi con chip máy tính.</div>
+  </div>
+
+  <!-- ═══ PANEL 1: STRUCTURE ═══ -->
+  <div id="ns_mosfet_p1" class="panel">
+    <svg width="100%" viewBox="0 0 680 300" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>Cấu trúc bên trong MOSFET — cross-section</title>
+      <desc>Sơ đồ cắt ngang MOSFET cho thấy gate, SiO₂, source, drain và silicon</desc>
+      <defs>
+        <marker id="ns_mosfet_a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Silicon substrate -->
+      <g class="c-blue">
+        <rect x="80" y="210" width="340" height="70" rx="4" stroke-width="0.5"></rect>
+        <text class="th" x="250" y="242" text-anchor="middle" dominant-baseline="central">Silicon (Si) — đế bán dẫn (p-type)</text>
+        <text class="ts" x="250" y="264" text-anchor="middle" dominant-baseline="central">ít hạt tải tự do — không dẫn điện mặc định</text>
+      </g>
+
+      <!-- Source N+ -->
+      <g class="c-blue">
+        <rect x="96" y="180" width="90" height="32" rx="3" stroke-width="0.5"></rect>
+        <text class="th" x="141" y="200" text-anchor="middle" dominant-baseline="central">Source (N+)</text>
+      </g>
+
+      <!-- Drain N+ -->
+      <g class="c-blue">
+        <rect x="314" y="180" width="90" height="32" rx="3" stroke-width="0.5"></rect>
+        <text class="th" x="359" y="200" text-anchor="middle" dominant-baseline="central">Drain (N+)</text>
+      </g>
+
+      <!-- SiO₂ gate oxide -->
+      <rect x="186" y="162" width="128" height="20" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"></rect>
+      <text class="ts" x="250" y="176" text-anchor="middle" fill="#412402">SiO₂ oxide (~2–5 nm)</text>
+
+      <!-- Gate metal -->
+      <g class="c-gray">
+        <rect x="186" y="130" width="128" height="32" rx="4" stroke-width="0.5"></rect>
+        <text class="th" x="250" y="150" text-anchor="middle" dominant-baseline="central">Gate (kim loại)</text>
+      </g>
+
+      <!-- Channel dashed -->
+      <rect x="186" y="180" width="128" height="32" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 3"></rect>
+      <text class="ts" x="250" y="200" text-anchor="middle" fill="#085041">channel</text>
+
+      <!-- Gate voltage arrow -->
+      <line x1="250" y1="52" x2="250" y2="124" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a1)"></line>
+      <text class="ts" x="266" y="86" text-anchor="start">V_gate</text>
+      <text class="ts" x="266" y="102" text-anchor="start">(điện áp điều khiển)</text>
+
+      <!-- Leader: SiO₂ -->
+      <line x1="314" y1="172" x2="460" y2="128" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <circle cx="314" cy="172" r="2.5" fill="#888780"></circle>
+      <text class="th" x="466" y="122" text-anchor="start">SiO₂ — band gap ~9 eV</text>
+      <text class="ts" x="466" y="138" text-anchor="start">Cách điện gần hoàn hảo</text>
+      <text class="ts" x="466" y="154" text-anchor="start">Bám dính nguyên tử với Si</text>
+      <text class="ts" x="466" y="170" text-anchor="start">Interface trap thấp</text>
+
+      <!-- Leader: Source -->
+      <line x1="141" y1="212" x2="100" y2="260" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <text class="ts" x="52" y="270" text-anchor="start">Source = điện vào</text>
+
+      <!-- Leader: Drain -->
+      <line x1="359" y1="212" x2="430" y2="260" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <text class="ts" x="436" y="270" text-anchor="start">Drain = điện ra</text>
+    </svg>
+    <div class="desc">MOSFET có <b>4 thành phần cốt lõi:</b> (1) <b>Gate</b> — điện cực điều khiển bằng điện áp. (2) <b>SiO₂</b> — lớp oxide cách điện mỏng 2–5nm giữa gate và silicon. (3) <b>Source và Drain</b> — hai vùng N+ dẫn điện, là đầu vào và đầu ra. (4) <b>Channel</b> — vùng silicon giữa source và drain, được gate điều khiển. Lớp SiO₂ là lý do silicon thống trị — không vật liệu nào có oxide tự nhiên ổn định như vậy.</div>
+  </div>
+
+  <!-- ═══ PANEL 2: HOW IT WORKS ═══ -->
+  <div id="ns_mosfet_p2" class="panel">
+    <svg width="100%" viewBox="0 0 680 270" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET hoạt động — trường điện tạo kênh dẫn</title>
+      <desc>Trái: V_gate=0, không có dòng. Phải: V_gate đủ lớn, kênh hình thành, dòng chạy</desc>
+      <defs>
+        <marker id="ns_mosfet_a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- LEFT: OFF -->
+      <text class="th" x="160" y="22" text-anchor="middle">V_gate = 0 → TẮT (OFF)</text>
+
+      <g class="c-blue">
+        <rect x="60" y="158" width="200" height="50" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="186" text-anchor="middle" dominant-baseline="central">Silicon đế (p-type)</text>
+      </g>
+      <g class="c-blue">
+        <rect x="70" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="99" y="148" text-anchor="middle" dominant-baseline="central">S</text>
+      </g>
+      <g class="c-blue">
+        <rect x="192" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="221" y="148" text-anchor="middle" dominant-baseline="central">D</text>
+      </g>
+      <rect x="128" y="112" width="64" height="18" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"></rect>
+      <g class="c-gray">
+        <rect x="128" y="88" width="64" height="24" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="103" text-anchor="middle" dominant-baseline="central">Gate 0V</text>
+      </g>
+      <!-- Channel empty -->
+      <rect x="128" y="130" width="64" height="30" rx="2" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3"></rect>
+      <text class="ts" x="160" y="148" text-anchor="middle" fill="#888780">rỗng</text>
+      <!-- No current -->
+      <line x1="99" y1="220" x2="221" y2="220" stroke="#E24B4A" stroke-width="2" stroke-dasharray="6 4" fill="none"></line>
+      <text class="ts" x="160" y="240" text-anchor="middle" fill="#A32D2D">không có dòng điện</text>
+
+      <!-- VS -->
+      <text class="th" x="340" y="148" text-anchor="middle">VS</text>
+
+      <!-- RIGHT: ON -->
+      <text class="th" x="520" y="22" text-anchor="middle">V_gate &gt; V_th → BẬT (ON)</text>
+
+      <g class="c-blue">
+        <rect x="420" y="158" width="200" height="50" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="520" y="186" text-anchor="middle" dominant-baseline="central">Silicon đế</text>
+      </g>
+      <g class="c-blue">
+        <rect x="430" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="459" y="148" text-anchor="middle" dominant-baseline="central">S</text>
+      </g>
+      <g class="c-blue">
+        <rect x="552" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="581" y="148" text-anchor="middle" dominant-baseline="central">D</text>
+      </g>
+      <rect x="488" y="112" width="64" height="18" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"></rect>
+      <g class="c-teal">
+        <rect x="488" y="88" width="64" height="24" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="520" y="103" text-anchor="middle" dominant-baseline="central">Gate +V</text>
+      </g>
+      <!-- Channel formed -->
+      <rect x="488" y="130" width="64" height="30" rx="2" fill="#5DCAA5" stroke="#1D9E75" stroke-width="1"></rect>
+      <text class="ts" x="520" y="148" text-anchor="middle" fill="#04342C">e⁻ e⁻ e⁻</text>
+      <!-- Current arrow -->
+      <line x1="459" y1="226" x2="552" y2="226" stroke="#1D9E75" stroke-width="2.5" fill="none" marker-end="url(#a2)"></line>
+      <text class="ts" x="520" y="246" text-anchor="middle" fill="#085041">dòng điện chạy!</text>
+      <!-- E-field arrow -->
+      <line x1="520" y1="108" x2="520" y2="126" stroke="#EF9F27" stroke-width="2" fill="none" marker-end="url(#a2)"></line>
+      <text class="ts" x="562" y="116" text-anchor="start" fill="#854F0B">E-field hút e⁻</text>
+    </svg>
+    <div class="desc">Cơ chế vật lý: khi Gate nhận điện áp dương, nó tạo ra <b>trường điện (E-field)</b> xuyên qua lớp SiO₂. Trường điện hút electron tự do từ silicon lên sát bề mặt, tạo ra <b>kênh dẫn (inversion channel)</b> nối Source và Drain. Dòng điện có thể chạy. Điện áp tắt → kênh biến mất → dòng ngắt. Đây là <b>"field-effect"</b> trong tên MOSFET. Toàn bộ quá trình diễn ra ở tốc độ GHz — hàng tỷ lần mỗi giây.</div>
+  </div>
+
+  <!-- ═══ PANEL 3: 0 AND 1 ═══ -->
+  <div id="ns_mosfet_p3" class="panel">
+    <svg width="100%" viewBox="0 0 680 240" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET tắt mở = bit 0 và 1 — từ transistor đến GPU</title>
+      <desc>Chuỗi từ 1 MOSFET đến cổng logic, ALU, và GPU với 80 tỷ transistors</desc>
+      <defs>
+        <marker id="ns_mosfet_a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Step 1 -->
+      <g class="c-gray">
+        <rect x="42" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="107" y="82" text-anchor="middle" dominant-baseline="central">1 MOSFET</text>
+        <text class="ts" x="107" y="104" text-anchor="middle" dominant-baseline="central">OFF = 0</text>
+        <text class="ts" x="107" y="120" text-anchor="middle" dominant-baseline="central">ON  = 1</text>
+        <text class="ts" x="107" y="144" text-anchor="middle" dominant-baseline="central">= 1 bit</text>
+      </g>
+      <line x1="172" y1="106" x2="200" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 2 -->
+      <g class="c-teal">
+        <rect x="200" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="265" y="82" text-anchor="middle" dominant-baseline="central">Cổng logic</text>
+        <text class="ts" x="265" y="104" text-anchor="middle" dominant-baseline="central">2–4 MOSFETs</text>
+        <text class="ts" x="265" y="120" text-anchor="middle" dominant-baseline="central">NOT, AND, OR</text>
+        <text class="ts" x="265" y="144" text-anchor="middle" dominant-baseline="central">= phép tính cơ bản</text>
+      </g>
+      <line x1="330" y1="106" x2="358" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 3 -->
+      <g class="c-amber">
+        <rect x="358" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="423" y="82" text-anchor="middle" dominant-baseline="central">ALU / Register</text>
+        <text class="ts" x="423" y="104" text-anchor="middle" dominant-baseline="central">Hàng nghìn gates</text>
+        <text class="ts" x="423" y="120" text-anchor="middle" dominant-baseline="central">Cộng, trừ, nhân</text>
+        <text class="ts" x="423" y="144" text-anchor="middle" dominant-baseline="central">= khối tính toán</text>
+      </g>
+      <line x1="488" y1="106" x2="516" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 4 -->
+      <g class="c-purple">
+        <rect x="516" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="581" y="82" text-anchor="middle" dominant-baseline="central">GPU H100</text>
+        <text class="ts" x="581" y="104" text-anchor="middle" dominant-baseline="central">80 tỷ MOSFET</text>
+        <text class="ts" x="581" y="120" text-anchor="middle" dominant-baseline="central">Chạy AI model</text>
+        <text class="ts" x="581" y="144" text-anchor="middle" dominant-baseline="central">= LLM, image gen</text>
+      </g>
+
+      <!-- Bottom note -->
+      <rect x="42" y="178" width="604" height="46" rx="6" fill="#E6F1FB" stroke="#B5D4F4" stroke-width="0.5"></rect>
+      <text class="ts" x="344" y="198" text-anchor="middle" fill="#0C447C">Mỗi khi bạn dùng ChatGPT hay Gemini, hàng trăm nghìn tỷ lần đóng/mở MOSFET</text>
+      <text class="ts" x="344" y="216" text-anchor="middle" fill="#185FA5">diễn ra mỗi giây — tất cả bắt đầu từ 1 transistor đơn giản bật/tắt</text>
+    </svg>
+    <div class="desc">Từ 1 transistor → ghép thành cổng logic (NOT: 2 MOSFETs, NAND: 4 MOSFETs) → ghép thành ALU → ghép thành CPU/GPU. <b>80 tỷ MOSFET trong GPU H100 = 80 tỷ bit có thể được điều khiển song song</b> — đó là sức mạnh tính toán AI. Toàn bộ kiến trúc máy tính hiện đại được xây dựng từ một linh kiện bật/tắt đơn giản.</div>
+  </div>
+
+  <!-- ═══ PANEL 4: IN REAL CHIP ═══ -->
+  <div id="ns_mosfet_p4" class="panel on">
+    <svg width="100%" viewBox="0 0 680 270" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET trong chip thật — kích thước qua các thế hệ và giới hạn vật lý</title>
+      <desc>Kích thước MOSFET giảm từ 10µm (1971) xuống 2nm (2024), và giới hạn quantum tunneling</desc>
+
+      <!-- Title -->
+      <text class="th" x="200" y="22" text-anchor="middle">Kích thước MOSFET qua các thế hệ</text>
+
+      <!-- 1971: 10µm -->
+      <g class="c-gray">
+        <rect x="60" y="40" width="80" height="80" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="100" y="62" text-anchor="middle" dominant-baseline="central">1971</text>
+        <text class="th" x="100" y="84" text-anchor="middle" dominant-baseline="central">10µm</text>
+        <text class="ts" x="100" y="106" text-anchor="middle" dominant-baseline="central">2,300 TRs</text>
+      </g>
+
+      <!-- 2000: 180nm -->
+      <g class="c-gray">
+        <rect x="160" y="60" width="60" height="60" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="190" y="80" text-anchor="middle" dominant-baseline="central">2000</text>
+        <text class="th" x="190" y="100" text-anchor="middle" dominant-baseline="central">180nm</text>
+      </g>
+
+      <!-- 2012: 22nm -->
+      <g class="c-blue">
+        <rect x="240" y="80" width="44" height="40" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="262" y="94" text-anchor="middle" dominant-baseline="central">2012</text>
+        <text class="th" x="262" y="112" text-anchor="middle" dominant-baseline="central">22nm</text>
+      </g>
+
+      <!-- 2020: 5nm -->
+      <g class="c-teal">
+        <rect x="304" y="92" width="30" height="28" rx="2" stroke-width="0.5"></rect>
+        <text class="ts" x="319" y="102" text-anchor="middle" dominant-baseline="central">2020</text>
+        <text class="th" x="319" y="116" text-anchor="middle" dominant-baseline="central">5nm</text>
+      </g>
+
+      <!-- 2024: 2nm -->
+      <g class="c-amber">
+        <rect x="354" y="100" width="22" height="20" rx="2" stroke-width="0.5"></rect>
+        <text class="ts" x="365" y="108" text-anchor="middle" dominant-baseline="central">2024</text>
+        <text class="th" x="365" y="122" text-anchor="middle" dominant-baseline="central">2nm</text>
+      </g>
+
+      <!-- Scale baseline -->
+      <line x1="60" y1="138" x2="400" y2="138" stroke="#D3D1C7" stroke-width="0.5"></line>
+      <text class="ts" x="230" y="154" text-anchor="middle">Kích thước giảm 5000× trong 50 năm (Moore's Law)</text>
+
+      <!-- Right: density -->
+      <text class="th" x="545" y="22" text-anchor="middle">Mật độ trong chip 3nm</text>
+      <g class="c-teal">
+        <rect x="420" y="40" width="240" height="120" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="540" y="66" text-anchor="middle" dominant-baseline="central">1 mm² chip</text>
+        <text class="th" x="540" y="90" text-anchor="middle" dominant-baseline="central">~100 triệu</text>
+        <text class="ts" x="540" y="112" text-anchor="middle" dominant-baseline="central">transistors</text>
+        <text class="ts" x="540" y="132" text-anchor="middle" dominant-baseline="central">= diện tích hạt cát</text>
+      </g>
+
+      <!-- Bottom insight -->
+      <rect x="60" y="178" width="560" height="72" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"></rect>
+      <text class="th" x="340" y="200" text-anchor="middle" fill="#412402">Tại sao điều này liên quan đến photonics?</text>
+      <text class="ts" x="340" y="220" text-anchor="middle" fill="#633806">MOSFET không thể thu nhỏ mãi — quantum tunneling phá vỡ cơ chế tắt/mở khi &lt; 2nm</text>
+      <text class="ts" x="340" y="238" text-anchor="middle" fill="#854F0B">Electron "chui hầm" qua SiO₂ ngay cả khi transistor tắt → mất kiểm soát</text>
+      <text class="ts" x="340" y="254" text-anchor="middle" fill="#854F0B">→ Lý do photonic processor (photon thay transistor) được nghiên cứu gấp</text>
+    </svg>
+    <div class="desc">MOSFET hiện đại (3nm của TSMC, 2nm sắp ra) nhỏ đến mức chỉ vài chục nguyên tử silicon xếp ngang. <b>Giới hạn vật lý đang đến:</b> khi transistor quá nhỏ, electron "chui hầm" qua lớp SiO₂ (quantum tunneling) ngay cả khi transistor tắt — mất kiểm soát hoàn toàn. Đây chính là lý do ngành đang tìm hướng thay thế như <b>silicon photonics</b>, nơi photon thay thế electron làm đơn vị tính toán và không bị giới hạn bởi kích thước transistor.</div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="dots" id="ns_mosfet_dotRow">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot on"></div>
+  </div>
+  <div class="nav">
+    <button onclick="go_mosfet(cur-1)">← Trước</button>
+    <button onclick="go_mosfet(cur+1)">Tiếp →</button>
+  </div>
+  <div class="step-counter" id="ns_mosfet_stepCounter">Bước 5 / 5 — Trong chip thật</div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> Sze &amp; Ng (2006) <em>Physics of Semiconductor Devices</em> · Plummer, Deal &amp; Griffin (2000) <em>Silicon VLSI Technology</em> · Streetman &amp; Banerjee (2014) <em>Solid State Electronic Devices</em> · OECD (2025) <em>Mapping the Semiconductor Value Chain</em> · IPSR-I (2024) <em>Silicon Photonics Roadmap</em>
+  </div>
+
+</div>
+
+<script>
+let cur = 0;
+const total = 5;
+const stepNames = ['MOSFET là gì','Cấu trúc bên trong','Cách hoạt động','Tắt / Mở = 0 / 1','Trong chip thật'];
+
+function go_mosfet(n) {
+  n = Math.max(0, Math.min(total - 1, n));
+  (document.querySelector('.module-mosfet') || document).querySelectorAll('.panel').forEach((p, i) => p.classList.toggle('on', i === n));
+  (document.querySelector('.module-mosfet') || document).querySelectorAll('.step').forEach((s, i) => s.classList.toggle('on', i === n));
+  (document.querySelector('.module-mosfet') || document).querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === n));
+  document.getElementById('ns_mosfet_stepCounter').textContent = `Bước ${n+1} / ${total} — ${stepNames[n]}`;
+  cur = n;
+}
+</script>
+
+
+
+</div>
+    <div class="connector"><strong>Kết nối:</strong> MOSFET hoạt động nhờ lớp SiO₂ của silicon. Transistor thu nhỏ xuống &lt;2nm → quantum tunneling phá vỡ cơ chế → lý do photonic AI (photon thay electron) đang được nghiên cứu gấp.</div>
+  </div>
+</div>
+<div class="chapter-wrap" id="ch2" data-filter="supply">
+  <div class="ch-header" onclick="toggleCh(&#39;ch2&#39;)">
+    <span class="ch-badge badge-amber">Chuỗi cung ứng &amp; Địa chính trị</span>
+    <span class="ch-title">Ai làm gì — bản đồ quyền lực toàn cầu</span>
+    <span class="ch-toggle open" id="tog_ch2">▾</span>
+  </div>
+  <div class="ch-body" id="body_ch2">
+    
+<div class="module-wrap module-supply">
+  <div class="module-label">Chuỗi cung ứng 7 tầng, 70+ công ty — bản đồ chuỗi / tổng quan bảng / luồng vật chất</div>
+  
+<div class="container">
+  <div class="page-title">Chuỗi cung ứng Semiconductor — Từ nguyên liệu thô đến sản phẩm cuối</div>
+  <div class="page-sub">Bản đồ đầy đủ 7 tầng · 70+ công ty đại diện · Nguồn: OECD 2025, CSIS, BCG/SIA, McKinsey Q2 2025</div>
+
+  <div class="sc-nav">
+    <div class="sc-tab on" onclick="scTab_supply(&#39;map&#39;,this)">Bản đồ chuỗi</div>
+    <div class="sc-tab" onclick="scTab_supply(&#39;overview&#39;,this)">Tổng quan bảng</div>
+    <div class="sc-tab" onclick="scTab_supply(&#39;flow&#39;,this)">Luồng vật chất</div>
+  </div>
+
+  <!-- ═══ MAP VIEW ═══ -->
+  <div id="ns_supply_map" class="sc-view on">
+
+    <!-- STAGE 1 -->
+    <div class="stage s1">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 1</span>
+        <span class="stage-title">Nguyên liệu thô &amp; Khoáng sản <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$10B<br><span class="risk-badge risk-hi">Rủi ro cao</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Nguyên liệu chiến lược</div>
+            <div class="co-grid">
+              <span class="co cn">🇨🇳 Gallium (TQ &gt;80%)</span>
+              <span class="co cn">🇨🇳 Germanium (~60%)</span>
+              <span class="co cn">🇨🇳 Rare Earth (~85%)</span>
+              <span class="co">🇹🇷 Boron (Thổ Nhĩ Kỳ ~70%)</span>
+              <span class="co">Silicon cát thạch anh (Mỹ, Brazil, Úc)</span>
+              <span class="co">Neon gas (Ukraine chiếm lớn)</span>
+              <span class="co cn">🇨🇳 Tungsten, Magnesium</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Thiết bị tinh chế</div>
+            <div class="co-grid">
+              <span class="co de">🇩🇪 PVA TePla (lò mọc tinh thể)</span>
+              <span class="co jp">🇯🇵 Accretech, Disco, Okamoto (cắt wafer)</span>
+            </div>
+            <div class="note">⚠ Trung Quốc kiểm soát phần lớn nguyên liệu thô. Năm 2023 TQ hạn chế xuất khẩu Gallium và Germanium — 2 nguyên tố thiết yếu cho chip thế hệ mới và silicon photonics.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage s2">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 2</span>
+        <span class="stage-title">Wafer Silicon (tấm bán dẫn) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$14B<br><span class="risk-badge risk-hi">Tập trung cao</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Nhà sản xuất wafer lớn nhất</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Shin-Etsu (~27%)</span>
+              <span class="co jp">🇯🇵 SUMCO (~26%)</span>
+              <span class="co tw">🇹🇼 GlobalWafers (~17%)</span>
+              <span class="co de">🇩🇪 Siltronic (~12%)</span>
+              <span class="co kr">🇰🇷 SK Siltron (~9%)</span>
+            </div>
+            <div class="note">Shin-Etsu + SUMCO chiếm &gt;50% thị trường. Wafer 300mm cho chip tiên tiến còn tập trung hơn nữa.</div>
+          </div>
+          <div>
+            <div class="sec-label">Vật liệu wafer thay thế (tương lai)</div>
+            <div class="co-grid">
+              <span class="co">Silicon Carbide (SiC) — chip công suất</span>
+              <span class="co">Gallium Nitride (GaN) — RF, 5G</span>
+              <span class="co">Gallium Arsenide (GaAs) — quang điện</span>
+              <span class="co">InP — silicon photonics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage s3">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 3</span>
+        <span class="stage-title">Thiết kế chip — EDA, IP cores &amp; Fabless <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">EDA ~$8B · IP ~$5B · Design ~$200B+<br><span class="risk-badge risk-lo">Mỹ+UK thống trị</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">EDA Software (phần mềm vẽ chip)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Synopsys (~32%)</span>
+              <span class="co us">🇺🇸 Cadence (~28%)</span>
+              <span class="co us">🇺🇸 Siemens EDA (Mentor)</span>
+              <span class="co us">🇺🇸 Ansys, Keysight</span>
+              <span class="co cn">🇨🇳 Empyrean (nội địa TQ)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">IP Cores (khối thiết kế tái dụng)</div>
+            <div class="co-grid">
+              <span class="co uk">🇬🇧 ARM (SoftBank) — kiến trúc CPU</span>
+              <span class="co us">🇺🇸 Synopsys, Cadence IP</span>
+              <span class="co uk">🇬🇧 Imagination Technologies</span>
+              <span class="co us">🇺🇸 CEVA, Rambus</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Fabless — thiết kế không có fab</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 NVIDIA (GPU, AI)</span>
+              <span class="co us">🇺🇸 AMD (CPU, GPU)</span>
+              <span class="co us">🇺🇸 Qualcomm (mobile)</span>
+              <span class="co us">🇺🇸 Broadcom, Marvell</span>
+              <span class="co tw">🇹🇼 MediaTek</span>
+              <span class="co cn">🇨🇳 HiSilicon (Huawei)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">System companies (tự thiết kế chip)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Apple (A-series, M-series)</span>
+              <span class="co us">🇺🇸 Google (TPU)</span>
+              <span class="co us">🇺🇸 Amazon (Trainium, Inferentia)</span>
+              <span class="co us">🇺🇸 Tesla (D1, HW4)</span>
+              <span class="co cn">🇨🇳 Alibaba (T-Head)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage s4">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 4</span>
+        <span class="stage-title">Thiết bị sản xuất — SME <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$108B (2021)<br><span class="risk-badge risk-hi">Mỹ+Nhật+HÀ LAN độc quyền</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Lithography — nút thắt số 1</div>
+            <div class="co-grid">
+              <span class="co nl">🇳🇱 ASML (EUV độc quyền 100%; DUV ~80%)</span>
+              <span class="co jp">🇯🇵 Nikon (DUV ~10%)</span>
+              <span class="co jp">🇯🇵 Canon (DUV ~10%)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Deposition ($22.8B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Applied Materials (67%)</span>
+              <span class="co us">🇺🇸 Lam Research</span>
+              <span class="co jp">🇯🇵 Tokyo Electron (TEL)</span>
+              <span class="co nl">🇳🇱 ASM International</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Process Control / Metrology ($13.5B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 KLA Corporation (76%)</span>
+              <span class="co us">🇺🇸 Applied Materials</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Etching &amp; Cleaning ($30.5B — lớn nhất)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Lam Research (56%)</span>
+              <span class="co jp">🇯🇵 Tokyo Electron</span>
+              <span class="co us">🇺🇸 Applied Materials</span>
+              <span class="co jp">🇯🇵 Screen Holdings</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Ion Implant ($2.5B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Applied Materials (83%)</span>
+              <span class="co us">🇺🇸 Axcelis Technologies</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Photoresist Processing ($3.7B)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Tokyo Electron (92% thị phần)</span>
+              <span class="co jp">🇯🇵 Screen Holdings</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Manufacturing Automation ($4.2B)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Daifuku (64%)</span>
+              <span class="co jp">🇯🇵 Rorze</span>
+              <span class="co us">🇺🇸 Brooks Automation</span>
+            </div>
+          </div>
+        </div>
+        <div class="note">Ba công ty Mỹ — Applied Materials, Lam Research, KLA — cùng với Tokyo Electron (Nhật) và ASML (Hà Lan) kiểm soát phần lớn toàn bộ thiết bị sản xuất chip tiên tiến. Không có 5 công ty này, không có chip tiên tiến nào được làm ra.</div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage s5">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 5</span>
+        <span class="stage-title">Vật liệu hóa học &amp; Photomask <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$40B+ front-end<br><span class="risk-badge risk-mid">Nhật độc quyền nhiều phân khúc</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Photoresist (hóa chất in mạch)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 JSR Corporation</span>
+              <span class="co jp">🇯🇵 Shin-Etsu Chemical</span>
+              <span class="co jp">🇯🇵 Tokyo Ohka Kogyo (TOK)</span>
+              <span class="co jp">🇯🇵 Fujifilm</span>
+              <span class="co de">🇩🇪 Merck KGaA</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">CMP Slurries &amp; Pads</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Cabot Microelectronics</span>
+              <span class="co us">🇺🇸 Dow Chemical</span>
+              <span class="co jp">🇯🇵 Fujimi</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Photomasks (mặt nạ quang học)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Dai Nippon Printing</span>
+              <span class="co jp">🇯🇵 Hoya Corporation</span>
+              <span class="co us">🇺🇸 Photronics</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Electronic Specialty Gases</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Air Products</span>
+              <span class="co us">🇺🇸 Linde</span>
+              <span class="co jp">🇯🇵 Showa Denko</span>
+              <span class="co de">🇩🇪 Air Liquide</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Sputtering Targets</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Ulvac</span>
+              <span class="co us">🇺🇸 Plansee, Materion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage s6">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 6</span>
+        <span class="stage-title">Front-end Manufacturing — Wafer Fabrication (Fab) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$500B+ chips<br><span class="risk-badge risk-hi">Đài Loan chi phối chip tiên tiến</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Pure-Play Foundry (sản xuất thuê)</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 TSMC (~60% foundry, &gt;90% chip &lt;7nm)</span>
+              <span class="co kr">🇰🇷 Samsung Foundry (~15%)</span>
+              <span class="co us">🇺🇸 GlobalFoundries (mature node)</span>
+              <span class="co tw">🇹🇼 UMC (~7%)</span>
+              <span class="co cn">🇨🇳 SMIC (28nm+, ~5%)</span>
+              <span class="co cn">🇨🇳 Hua Hong (~2%)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">IDM — tự thiết kế + tự sản xuất</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Intel (fab riêng, đang chuyển đổi)</span>
+              <span class="co kr">🇰🇷 Samsung (logic + memory)</span>
+              <span class="co kr">🇰🇷 SK Hynix (DRAM, HBM)</span>
+              <span class="co us">🇺🇸 Micron (DRAM, NAND)</span>
+              <span class="co us">🇺🇸 Texas Instruments</span>
+              <span class="co de">🇩🇪 Infineon, STMicro</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Quy trình sản xuất (rút gọn)</div>
+            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.9">
+              <div>① Wafer được đưa vào fab sạch (cleanroom Class 1)</div>
+              <div>② Lithography: ASML chiếu tia EUV in mạch</div>
+              <div>③ Etching: loại bỏ vật liệu theo pattern</div>
+              <div>④ Deposition: phủ lớp vật liệu mới</div>
+              <div>⑤ Ion implant: cấy dopant tạo bán dẫn N/P</div>
+              <div>⑥ CMP: mài phẳng bề mặt</div>
+              <div>⑦ Lặp lại 500+ lần → wafer thành phẩm</div>
+            </div>
+            <div class="note">Toàn bộ quy trình mất 3–4 tháng, trong môi trường cleanroom siêu tinh khiết. Mỗi node mới (7nm→5nm→3nm→2nm) đòi hỏi hàng chục tỷ USD đầu tư mới.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 7 -->
+    <div class="stage s7">
+      <div class="stage-head" onclick="tog_supply(this)">
+        <span class="stage-num">Tầng 7</span>
+        <span class="stage-title">Back-end: Assembly, Test &amp; Packaging (ATP) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$95B<br><span class="risk-badge risk-mid">TQ + Đài Loan ~60%</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">OSAT — outsourced packaging</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 ASE Group (#1 toàn cầu, ~25%)</span>
+              <span class="co us">🇺🇸 Amkor Technology (#2)</span>
+              <span class="co cn">🇨🇳 JCET (#3)</span>
+              <span class="co cn">🇨🇳 Tongfu Microelectronics</span>
+              <span class="co cn">🇨🇳 Tianshui Huatian</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Advanced Packaging (TSMC + IDM)</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 TSMC CoWoS (chip-on-wafer-on-substrate)</span>
+              <span class="co kr">🇰🇷 Samsung 3D packaging</span>
+              <span class="co us">🇺🇸 Intel Foveros (3D stacking)</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Test Equipment</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Advantest (43% thị phần)</span>
+              <span class="co us">🇺🇸 Teradyne (35%)</span>
+              <span class="co kr">🇰🇷 KYEC</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Vật liệu packaging</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Showa Denko (lead frames)</span>
+              <span class="co jp">🇯🇵 Disco (dicing — độc quyền)</span>
+              <span class="co jp">🇯🇵 Accretech</span>
+            </div>
+            <div class="note">Vietnam ngày càng quan trọng trong ATP: Amkor đầu tư $1.6B tại Bắc Ninh — facility advanced packaging lớn nhất của Amkor. Intel cũng có fab assembly/test tại Bình Dương.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END PRODUCT -->
+    <div class="stage" style="border-color:var(--color-border-secondary)">
+      <div class="stage-head" onclick="tog_supply(this)" style="border-left:none">
+        <span class="stage-num" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">Đầu ra</span>
+        <span class="stage-title">Sản phẩm cuối — chips tích hợp vào thiết bị <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Điện thoại · Server · Ô tô · Y tế</span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">AI / Data center chips</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 NVIDIA H100/H200 (TSMC fab)</span>
+              <span class="co us">🇺🇸 Google TPU v5</span>
+              <span class="co us">🇺🇸 Amazon Trainium 2</span>
+              <span class="co us">🇺🇸 AMD MI300X</span>
+              <span class="co cn">🇨🇳 Huawei Ascend 910B</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Consumer / Mobile / Auto</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Apple A18 Pro (TSMC 3nm)</span>
+              <span class="co us">🇺🇸 Qualcomm Snapdragon 8 Gen 3</span>
+              <span class="co tw">🇹🇼 MediaTek Dimensity</span>
+              <span class="co de">🇩🇪 Infineon automotive MCU</span>
+              <span class="co kr">🇰🇷 Samsung HBM3E (AI memory)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end map view -->
+
+  <!-- ═══ OVERVIEW TABLE ═══ -->
+  <div id="ns_supply_overview" class="sc-view">
+    <table class="ov-table">
+      <thead>
+        <tr>
+          <th>Tầng</th>
+          <th>Vai trò</th>
+          <th>Quốc gia dẫn đầu</th>
+          <th>Công ty tiêu biểu</th>
+          <th>Tập trung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 · Nguyên liệu thô</td><td>Khai thác khoáng sản, luyện kim</td><td>🇨🇳 TQ, 🇹🇷 Thổ Nhĩ Kỳ</td><td>China Minmetals, Ucore</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>2 · Wafer silicon</td><td>Tinh chế, cắt tấm bán dẫn</td><td>🇯🇵 Nhật (~53%)</td><td>Shin-Etsu, SUMCO, GlobalWafers</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · EDA Software</td><td>Phần mềm thiết kế mạch</td><td>🇺🇸 Mỹ (~90%)</td><td>Synopsys, Cadence, Siemens EDA</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · IP Cores</td><td>Khối thiết kế tái dụng</td><td>🇬🇧🇺🇸 UK + Mỹ (&gt;90%)</td><td>ARM, Synopsys IP, Cadence IP</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · Chip Design</td><td>Thiết kế kiến trúc chip</td><td>🇺🇸 Mỹ (51% doanh thu)</td><td>NVIDIA, AMD, Qualcomm, Apple</td><td><span class="risk-badge risk-mid">Cao</span></td></tr>
+        <tr><td>4 · Lithography equip.</td><td>Máy in mạch điện tử</td><td>🇳🇱 Hà Lan (89% EUV)</td><td>ASML (EUV độc quyền), Nikon, Canon</td><td><span class="risk-badge risk-hi">Cực cao</span></td></tr>
+        <tr><td>4 · Deposition equip.</td><td>Máy phủ vật liệu</td><td>🇺🇸 Mỹ (67%)</td><td>Applied Materials, Lam Research, TEL</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>4 · Process control</td><td>Thiết bị đo lường, kiểm tra</td><td>🇺🇸 Mỹ (76%)</td><td>KLA, Applied Materials</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>5 · Hóa chất / vật liệu</td><td>Photoresist, gases, CMP slurries</td><td>🇯🇵 Nhật (photoresist 92%)</td><td>JSR, Shin-Etsu Chem, Tokyo Ohka</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>6 · Wafer Fabrication</td><td>Sản xuất chip (fab)</td><td>🇹🇼 Đài Loan (&gt;90% chip &lt;7nm)</td><td>TSMC, Samsung Foundry, GlobalFoundries</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>7 · ATP (back-end)</td><td>Lắp ráp, test, đóng gói</td><td>🇨🇳🇹🇼 TQ + Đài Loan (~60%)</td><td>ASE Group, Amkor, JCET</td><td><span class="risk-badge risk-mid">Cao</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ FLOW VIEW ═══ -->
+  <div id="ns_supply_flow" class="sc-view">
+    <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:14px">Cát thạch anh → Chip → Thiết bị: mỗi mũi tên đại diện cho một biên giới quốc gia bị vượt qua. Một chip trung bình vượt 70+ biên giới trước khi đến tay người dùng.</p>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #1D9E75">
+        <b>🌏 Khoáng sản &amp; Silicon thô</b>
+        <p>Gallium (CN), Silicon quartz (toàn cầu), Rare earth (CN), Neon (Ukraine)</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ tinh chế, Czochralski process</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #EF9F27">
+        <b>🇯🇵 Wafer silicon tinh khiết</b>
+        <p>Shin-Etsu + SUMCO sản xuất &gt;50% wafer thế giới tại Nhật Bản</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ ship đến fab (Đài Loan, Hàn, Mỹ)</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #378ADD">
+        <b>🇺🇸 EDA + IP (Mỹ, UK)</b>
+        <p>Synopsys, Cadence thiết kế; ARM cấp IP core</p>
+      </div>
+      <div style="text-align:center;font-size:18px;color:var(--color-text-tertiary)">+</div>
+      <div class="flow-box" style="border-left:3px solid #D4537E">
+        <b>🇳🇱🇺🇸🇯🇵 Thiết bị fab</b>
+        <p>ASML (lithography) · Applied Materials · Lam Research · KLA · TEL</p>
+      </div>
+    </div>
+    <div class="flow-step-label">↓ tất cả hội tụ tại fab</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #D85A30">
+        <b>🇹🇼 Wafer Fabrication — TSMC (Đài Loan)</b>
+        <p>500+ bước quy trình · 3–4 tháng · Cleanroom Class 1 · Chip 3nm/2nm</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ wafer thành phẩm → OSAT</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #5F5E5A">
+        <b>🇹🇼🇨🇳🇻🇳 Assembly, Test &amp; Packaging</b>
+        <p>ASE (TW) · Amkor (VN/Mỹ) · JCET (CN) · Disco dicing (JP) · CoWoS advanced packaging (TSMC)</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ chip đóng gói → OEM → người dùng</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid var(--color-border-secondary)">
+        <b>📦 Sản phẩm cuối</b>
+        <p>iPhone (Apple) · Data center GPU (NVIDIA) · Ô tô điện (Tesla, BYD) · Máy y tế · Thiết bị 5G</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="note" style="margin-top:14px">Toàn bộ hành trình từ cát → chip mất 4–6 tháng và chi phí đầu tư hàng chục tỷ USD cho mỗi thế hệ fab mới. Không một quốc gia nào có thể tự hoàn thành toàn bộ chuỗi này — đây chính là nguồn gốc của mọi cuộc tranh chấp địa chính trị liên quan đến chip.</div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn dữ liệu:</strong> OECD "Mapping the Semiconductor Value Chain" (2025) · BCG/SIA "Emerging Resilience in the Semiconductor Supply Chain" (2024) · CSIS "Mapping the Semiconductor Supply Chain" (2023) · McKinsey Semiconductor CaaS Q2 2025 · TechInsights Semiconductor Equipment Database (2023)
+  </div>
+</div>
+
+<script>
+function scTab_supply(id, el) {
+  (document.querySelector('.module-supply') || document).querySelectorAll('.sc-view').forEach(v => v.classList.remove('on'));
+  (document.querySelector('.module-supply') || document).querySelectorAll('.sc-tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('ns_supply_' + id).classList.add('on');
+  el.classList.add('on');
+}
+function tog_supply(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.stage-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (arrow) arrow.classList.toggle('open', !isOpen);
+}
+</script>
+
+
+
+</div><div class="module-divider"></div>
+<div class="module-wrap module-sme">
+  <div class="module-label">SME Market Share $108B — heatmap thiết bị fab, phân tích BCG/SIA theo 5 tab</div>
+  
+<div class="container">
+  <div class="page-title">Phân tích thị phần thiết bị sản xuất bán dẫn (SME)</div>
+  <div class="page-sub">Semiconductor Manufacturing Equipment · Nguồn: BCG/SIA Emerging Resilience + CSIS Mapping Semiconductor Supply Chain · Dữ liệu 2021</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="show_sme(&#39;overview&#39;,this)">Tổng quan SME</div>
+    <div class="tab" onclick="show_sme(&#39;bycat&#39;,this)">Phân tích theo phân khúc</div>
+    <div class="tab" onclick="show_sme(&#39;heatmap&#39;,this)">Heatmap BCG theo quy trình</div>
+    <div class="tab" onclick="show_sme(&#39;flow&#39;,this)">Luồng mua bán</div>
+    <div class="tab" onclick="show_sme(&#39;insights&#39;,this)">Phân tích chiến lược</div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="ns_sme_overview" class="view active">
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Tổng thị trường SME 2021</div><div class="kpi-val">$108.5B</div><div class="kpi-sub">Tăng mạnh từ $60B (2019)</div></div>
+      <div class="kpi"><div class="kpi-label">Mỹ + Nhật + Hà Lan</div><div class="kpi-val">~73%</div><div class="kpi-sub">Ba nước kiểm soát phần lớn</div></div>
+      <div class="kpi"><div class="kpi-label">Trung Quốc sản xuất</div><div class="kpi-val">2%</div><div class="kpi-sub">Dù mua 28% toàn cầu</div></div>
+    </div>
+
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot seg-us"></div> Mỹ</div>
+      <div class="leg-item"><div class="leg-dot seg-eu"></div> EU (Hà Lan chủ yếu)</div>
+      <div class="leg-item"><div class="leg-dot seg-jp"></div> Nhật Bản</div>
+      <div class="leg-item"><div class="leg-dot seg-kr"></div> Hàn Quốc</div>
+      <div class="leg-item"><div class="leg-dot seg-cn"></div> Trung Quốc</div>
+      <div class="leg-item"><div class="leg-dot seg-ot"></div> Rest of World</div>
+    </div>
+
+    <div class="bar-section">
+      <div class="bar-title">Thị phần SME tổng thể (theo HQ công ty, 2021) — Nguồn: CSIS / TechInsights</div>
+      <div class="bar-row">
+        <div class="bar-label">Toàn thị trường ($108.5B) <span>Mỹ 40.9% | Nhật 29.4% | HQ 4.8% | CN 2% | TW 0.4% | Rest 22.5%</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:40.9%" title="Mỹ 40.9%">40.9%</div>
+          <div class="seg seg-jp" style="width:29.4%" title="Nhật 29.4%">29.4%</div>
+          <div class="seg seg-kr" style="width:4.8%" title="HQ 4.8%">4.8</div>
+          <div class="seg seg-cn" style="width:2%" title="CN 2%">2</div>
+          <div class="seg seg-eu" style="width:0.4%; min-width:4px" title="TW 0.4%"></div>
+          <div class="seg seg-ot" style="width:22.5%" title="Rest 22.5%">22.5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-section">
+      <div class="bar-title">Phân tích theo 4 phân khúc — Nguồn: CSIS / TechInsights</div>
+      <div class="bar-row">
+        <div class="bar-label">Wafer Fabrication Equipment — $90.8B (lớn nhất, 84% tổng) <span>Phân khúc chiến lược nhất</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:44%">44%</div>
+          <div class="seg seg-jp" style="width:27.6%">27.6%</div>
+          <div class="seg seg-kr" style="width:4.2%">4.2</div>
+          <div class="seg seg-cn" style="width:0.1%; min-width:3px"></div>
+          <div class="seg seg-ot" style="width:22.5%">22.5%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Assembly Equipment — $6.5B <span>Nhật + EU thống trị</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:5%">5</div>
+          <div class="seg seg-jp" style="width:35%">35%</div>
+          <div class="seg seg-eu" style="width:6.4%">6.4</div>
+          <div class="seg seg-ot" style="width:50.6%">Rest 50.6%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Advanced Packaging — $2.5B <span>Mỹ dẫn đầu</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:40.4%">40.4%</div>
+          <div class="seg seg-jp" style="width:32.9%">32.9%</div>
+          <div class="seg seg-kr" style="width:1.3%; min-width:4px"></div>
+          <div class="seg seg-cn" style="width:1.5%; min-width:4px"></div>
+          <div class="seg seg-ot" style="width:16.3%">16.3%</div>
+          <div class="seg seg-eu" style="width:3.7%">3.7</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Test Equipment — $8.6B <span>Nhật dẫn đầu mạnh nhất</span></div>
+        <div class="bar-track">
+          <div class="seg seg-us" style="width:35.3%">35.3%</div>
+          <div class="seg seg-jp" style="width:43.3%">43.3%</div>
+          <div class="seg seg-kr" style="width:10.8%">10.8</div>
+          <div class="seg seg-cn" style="width:2.7%">2.7</div>
+          <div class="seg seg-ot" style="width:4.3%">4.3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BY CATEGORY -->
+  <div id="ns_sme_bycat" class="view">
+    <div class="bar-section">
+      <div class="bar-title">Phân tích từng quốc gia — điểm mạnh và điểm yếu theo phân khúc</div>
+      <div class="bar-row">
+        <div class="bar-label">🇺🇸 Mỹ — WFE $40B | Adv. Packaging $1B | Test $3B</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-us" style="width:44%; border-radius:0">WFE 44%</div>
+          <div class="seg" style="width:40.4%; background:var(--color-background-secondary); color:var(--color-text-secondary); border-radius:0;">Pkg 40%</div>
+          <div class="seg" style="width:5%; background:var(--color-background-tertiary); color:var(--color-text-tertiary); border-radius:0;">5%</div>
+          <div class="seg" style="width:10%; background:var(--color-background-secondary); color:var(--color-text-secondary); border-radius:0;">T35%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇯🇵 Nhật Bản — đều đặn mạnh TOÀN bộ 4 phân khúc</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-jp" style="width:27.6%; border-radius:0">WFE 28%</div>
+          <div class="seg" style="width:35%; background:#FAEEDA; color:#854F0B; border-radius:0;">Assy 35%</div>
+          <div class="seg" style="width:20%; background:#FAC775; color:#412402; border-radius:0;">Pkg 33%</div>
+          <div class="seg" style="width:17%; background:#EF9F27; color:#412402; border-radius:0;">T43%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇨🇳 Trung Quốc — gần như không có gì trong WFE tiên tiến</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-cn" style="width:0.1%; min-width:6px; border-radius:0"></div>
+          <div class="seg" style="width:94%; background:var(--color-background-secondary); color:var(--color-text-tertiary); font-size:11px; justify-content:flex-start; padding-left:10px; border-radius:0;">⚠ Mua 28% toàn cầu — sản xuất chỉ ~2% (chủ yếu phân khúc thấp)</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">🇳🇱 Hà Lan (EU) — nhỏ nhưng là nút thắt số 1: ASML EUV</div>
+        <div class="bar-track" style="border:0.5px solid var(--color-border-tertiary); border-radius:4px; overflow:hidden;">
+          <div class="seg seg-eu" style="width:89%; border-radius:0">Lithography: 89% thị phần toàn cầu (ASML EUV — độc quyền tuyệt đối)</div>
+          <div class="seg seg-ot" style="width:11%; border-radius:0">JP 10%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEATMAP -->
+  <div id="ns_sme_heatmap" class="view">
+    <div class="bar-section">
+      <div class="bar-title">BCG Exhibit 10 — Phân bổ thiết bị theo từng bước quy trình wafer fab (nguồn: Gartner + BCG)</div>
+    </div>
+    <table class="heat-table">
+      <thead>
+        <tr>
+          <th>Bước quy trình</th>
+          <th class="right">Mỹ</th>
+          <th class="right">EU (HÀ LAN)</th>
+          <th class="right">Nhật</th>
+          <th class="right">Hàn</th>
+          <th class="right">TQ</th>
+          <th class="right">Market $B</th>
+          <th>Đánh giá rủi ro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lithography</strong></td>
+          <td class="right"><span class="heat-cell heat-vlo">1%</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">89%</span></td>
+          <td class="right"><span class="heat-cell heat-lo">10%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$17.5B</td>
+          <td style="color:#D85A30; font-size:12px; font-weight:500;">ASML độc quyền EUV</td>
+        </tr>
+        <tr>
+          <td>Photoresist processing</td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">92%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">3%</span></td>
+          <td class="right">$3.7B</td>
+          <td style="color:#D85A30; font-size:12px; font-weight:500;">Nhật độc quyền 92%</td>
+        </tr>
+        <tr>
+          <td>Ion implant &amp; doping</td>
+          <td class="right"><span class="heat-cell heat-vhi">83%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-lo">17%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$2.5B</td>
+          <td style="color:#BA7517; font-size:12px;">Mỹ kiểm soát 83%</td>
+        </tr>
+        <tr>
+          <td>Thermal processes</td>
+          <td class="right"><span class="heat-cell heat-hi">57%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">4%</span></td>
+          <td class="right"><span class="heat-cell heat-mid">37%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">1%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">2%</span></td>
+          <td class="right">$2.9B</td>
+          <td style="color:#3B6D11; font-size:12px;">Mỹ + Nhật — phân tán tốt</td>
+        </tr>
+        <tr>
+          <td><strong>Deposition</strong></td>
+          <td class="right"><span class="heat-cell heat-vhi">67%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">15%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">2%</span></td>
+          <td class="right">$22.8B</td>
+          <td style="color:#BA7517; font-size:12px;">Lớn nhất, Mỹ 67%</td>
+        </tr>
+        <tr>
+          <td>Material removal &amp; cleaning</td>
+          <td class="right"><span class="heat-cell heat-hi">56%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">0%</span></td>
+          <td class="right"><span class="heat-cell heat-mid">35%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">4%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right">$30.5B</td>
+          <td style="color:#3B6D11; font-size:12px;">Lớn nhất, phân tán 2 nước</td>
+        </tr>
+        <tr>
+          <td>Manufacturing automation</td>
+          <td class="right"><span class="heat-cell heat-vlo">5%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right"><span class="heat-cell heat-vhi">64%</span></td>
+          <td class="right"><span class="heat-cell heat-lo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$4.2B</td>
+          <td style="color:#BA7517; font-size:12px;">Nhật 64% — đáng chú ý</td>
+        </tr>
+        <tr>
+          <td><strong>Process control</strong></td>
+          <td class="right"><span class="heat-cell heat-vhi">76%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">7%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">11%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">6%</span></td>
+          <td class="right"><span class="heat-cell heat-vlo">—</span></td>
+          <td class="right">$13.5B</td>
+          <td style="color:#BA7517; font-size:12px;">KLA/AMAT Mỹ 76%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; font-size:11px; color:var(--color-text-tertiary);">
+      <span>Thang màu:</span>
+      <span class="heat-cell heat-vhi" style="font-size:10px;">75–100%</span>
+      <span class="heat-cell heat-hi" style="font-size:10px;">51–75%</span>
+      <span class="heat-cell heat-mid" style="font-size:10px;">26–50%</span>
+      <span class="heat-cell heat-lo" style="font-size:10px;">11–25%</span>
+      <span class="heat-cell heat-vlo" style="font-size:10px;">&lt;11%</span>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div id="ns_sme_flow" class="view">
+    <div class="bar-title" style="margin-bottom:14px; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--color-text-tertiary);">Luồng mua bán SME 2021 — Nguồn: CSIS/TechInsights ($104B, không gồm advanced packaging)</div>
+    <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:14px;">→ Mỹ và Nhật bán cho toàn thế giới. Trung Quốc mua nhiều nhất nhưng hầu như không có khả năng bán.</div>
+
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Người bán lớn nhất</div><div class="flow-box-val">🇺🇸 Bắc Mỹ</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$43.5B (41.8%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua lớn nhất</div><div class="flow-box-val">🇨🇳 Trung Quốc</div><div style="font-size:11px;color:var(--color-text-tertiary);">$29B — 28% tổng mua</div></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Người bán lớn thứ 2</div><div class="flow-box-val">🇯🇵 Nhật Bản</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$28B (26.9%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua thứ 2</div><div class="flow-box-val">🇰🇷 Hàn Quốc</div><div style="font-size:11px;color:var(--color-text-tertiary);">$24.5B — 23.6%</div></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-box"><div class="flow-box-label">Rest of World (bán)</div><div class="flow-box-val">Rest</div></div>
+      <div style="text-align:center;"><div class="flow-arrow">→</div><div class="flow-amount">$9.3B (9%)</div></div>
+      <div class="flow-box"><div class="flow-box-label">Người mua thứ 3</div><div class="flow-box-val">🇹🇼 Đài Loan</div><div style="font-size:11px;color:var(--color-text-tertiary);">$24B — 23.2% (TSMC)</div></div>
+    </div>
+
+    <div class="section-sep"></div>
+
+    <div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:10px 14px; margin-top:4px;">
+      <div style="font-size:12px; font-weight:500; color:var(--color-text-primary); margin-bottom:6px;">Nghịch lý Trung Quốc</div>
+      <div style="font-size:12px; color:var(--color-text-secondary); line-height:1.6;">Trung Quốc là người mua thiết bị lớn nhất thế giới ($29B — 28%) nhưng chỉ sản xuất được 2% SME. Điều này tạo ra sự phụ thuộc cực kỳ lớn: 98% thiết bị chip của Trung Quốc phải nhập khẩu. Export controls của Mỹ–Nhật–Hà Lan nhắm chính xác vào điểm yếu này. Các thiết bị Trung Quốc tự sản xuất chủ yếu phục vụ nội địa (98% bán trong nước), chưa cạnh tranh được quốc tế.</div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div id="ns_sme_insights" class="view">
+    <div class="insight-grid">
+      <div class="insight-card warn">
+        <div class="insight-icon">⚠</div>
+        <div class="insight-title">Chokepoint #1: EUV Lithography</div>
+        <div class="insight-body">ASML (Hà Lan) chiếm 89% thị phần máy lithography và là công ty duy nhất trên thế giới sản xuất máy EUV. Không có EUV → không thể làm chip dưới 7nm. ASML phụ thuộc 5.000+ nhà cung ứng và tự làm chỉ 15% linh kiện.</div>
+      </div>
+      <div class="insight-card warn">
+        <div class="insight-icon">⚠</div>
+        <div class="insight-title">Chokepoint #2: Photoresist Nhật Bản</div>
+        <div class="insight-body">Nhật chiếm 92% thị trường photoresist processing. Tokyo Electron và Screen gần như độc chiếm phân khúc này. Đây là hóa chất cực kỳ tinh khiết để "in" mạch trên chip — thiếu photoresist đúng chuẩn, fab không thể hoạt động.</div>
+      </div>
+      <div class="insight-card info">
+        <div class="insight-icon">ℹ</div>
+        <div class="insight-title">Mỹ: bá chủ thiết bị wafer fab</div>
+        <div class="insight-body">Applied Materials + Lam Research + KLA kiểm soát deposition (67%), process control (76%), ion implant (83%). Tổng cộng Mỹ chiếm 40.9% toàn thị trường. Đây là lý do export controls Mỹ có sức mạnh cấm trực tiếp khả năng làm chip tiên tiến của đối thủ.</div>
+      </div>
+      <div class="insight-card info">
+        <div class="insight-icon">ℹ</div>
+        <div class="insight-title">Nhật Bản: thống trị âm thầm</div>
+        <div class="insight-body">29.4% tổng SME, nhưng ấn tượng hơn ở độ phân tán: mạnh đều cả 4 phân khúc. Đặc biệt test equipment (43%) và manufacturing automation (64%) — các phần ít được chú ý nhưng thiết yếu cho yield và throughput của fab.</div>
+      </div>
+      <div class="insight-card" style="border-color:var(--color-border-secondary);">
+        <div class="insight-icon">→</div>
+        <div class="insight-title">Trung Quốc: người mua, không phải người làm</div>
+        <div class="insight-body">Mua 28% tổng thiết bị toàn cầu nhưng chỉ sản xuất 2%. Gap này là điểm yếu chiến lược lớn nhất. Trung Quốc có thể tích trữ máy nhưng không thể bảo trì, nâng cấp, hay sản xuất mới khi bị cắt nguồn.</div>
+      </div>
+      <div class="insight-card good">
+        <div class="insight-icon">✓</div>
+        <div class="insight-title">Giới hạn của dữ liệu: HQ ≠ sản xuất thực</div>
+        <div class="insight-body">Số liệu dựa theo HQ công ty, không phải địa điểm sản xuất thực tế. ASML (Hà Lan) phụ thuộc 5.000+ suppliers toàn cầu. Khi tính theo chuỗi giá trị thực, "Made in USA" hay "Made in Netherlands" mờ nhạt hơn nhiều.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn dữ liệu:</strong> BCG/SIA "Emerging Resilience in the Semiconductor Supply Chain" (2024) · CSIS "Mapping the Semiconductor Supply Chain" (2023) · TechInsights Semiconductor Equipment Database (2023) · Gartner / BCG analysis · Dữ liệu tham chiếu năm 2021
+  </div>
+</div>
+
+<script>
+function show_sme(id, el) {
+  (document.querySelector('.module-sme') || document).querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  (document.querySelector('.module-sme') || document).querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ns_sme_' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+
+
+
+</div>
+    <div class="connector"><strong>Nút thắt số 1:</strong> ASML (Hà Lan) độc quyền 100% máy EUV — không có EUV, không thể làm chip &lt;7nm. Trung Quốc mua 28% thiết bị toàn cầu nhưng chỉ sản xuất được 2% — đây là điểm yếu mà export controls nhắm vào chính xác.</div>
+  </div>
+</div>
+<div class="chapter-wrap" id="ch3" data-filter="photonics">
+  <div class="ch-header" onclick="toggleCh(&#39;ch3&#39;)">
+    <span class="ch-badge badge-purple">Photonic AI</span>
+    <span class="ch-title">Photon trong fab → Photon là chip → Giai đoạn hiện tại</span>
+    <span class="ch-toggle open" id="tog_ch3">▾</span>
+  </div>
+  <div class="ch-body" id="body_ch3">
+    
+<div class="module-wrap module-photon_chip">
+  <div class="module-label">Photon trong sản xuất chip — 3 vai trò: lithography / metrology / silicon photonics</div>
+  
+<div class="container">
+  <div class="page-title">Photon trong quá trình sản xuất chip</div>
+  <div class="page-sub">3 vai trò — 2 đã thực tế ngay hôm nay, 1 đang đến · Nguồn: OECD 2025, China Semiconductors 2024 (ITIF), IPSR-I 2024</div>
+
+  <svg width="100%" viewBox="0 0 680 820" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>Photon xuất hiện ở đâu trong quá trình làm chip? — 3 vai trò</title>
+    <desc>Sơ đồ cho thấy photon xuất hiện ở 3 giai đoạn: lithography (in mạch), metrology (kiểm tra chất lượng), và silicon photonics chip (tương lai)</desc>
+    <defs>
+      <marker id="ns_photon_chip_arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </marker>
+    </defs>
+
+    <!-- ── TITLE ── -->
+    <text class="th" x="340" y="32" text-anchor="middle">Photon xuất hiện ở đâu trong quá trình làm chip?</text>
+    <text class="ts" x="340" y="50" text-anchor="middle">3 vai trò — 2 đã thực tế, 1 đang đến</text>
+
+    <!-- ══ ROLE 1: LITHOGRAPHY ══ -->
+    <g class="c-amber">
+      <rect x="40" y="68" width="300" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="190" y="91" text-anchor="middle" dominant-baseline="central">Vai trò 1 — Công cụ in mạch (ngay hôm nay)</text>
+    </g>
+    <text class="ts" x="360" y="82" text-anchor="start">EUV = 13.5nm · DUV = 193nm</text>
+    <text class="ts" x="360" y="97" text-anchor="start">Ánh sáng "khắc" transistor lên wafer</text>
+
+    <!-- Lithography: nguồn sáng -->
+    <g class="c-amber">
+      <rect x="50" y="120" width="120" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="110" y="138" text-anchor="middle" dominant-baseline="central">Nguồn sáng</text>
+      <text class="ts" x="110" y="155" text-anchor="middle" dominant-baseline="central">Laser / plasma tin</text>
+    </g>
+
+    <!-- Arrow + photon label -->
+    <line x1="170" y1="142" x2="218" y2="142" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+    <text class="ts" x="194" y="134" text-anchor="middle" fill="#BA7517">photon</text>
+
+    <!-- Photomask -->
+    <g class="c-gray">
+      <rect x="218" y="120" width="120" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="278" y="138" text-anchor="middle" dominant-baseline="central">Photomask</text>
+      <text class="ts" x="278" y="155" text-anchor="middle" dominant-baseline="central">Mặt nạ mạch</text>
+    </g>
+
+    <line x1="338" y1="142" x2="386" y2="142" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+    <text class="ts" x="362" y="134" text-anchor="middle" fill="#BA7517">chiếu qua</text>
+
+    <!-- Thấu kính -->
+    <g class="c-gray">
+      <rect x="386" y="120" width="100" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="436" y="138" text-anchor="middle" dominant-baseline="central">Thấu kính</text>
+      <text class="ts" x="436" y="155" text-anchor="middle" dominant-baseline="central">Thu nhỏ 4×</text>
+    </g>
+
+    <line x1="436" y1="164" x2="436" y2="198" class="arr" marker-end="url(#arrow)" stroke="#BA7517" stroke-width="2"></line>
+
+    <!-- Wafer + photoresist -->
+    <g class="c-teal">
+      <rect x="330" y="198" width="210" height="44" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="435" y="216" text-anchor="middle" dominant-baseline="central">Wafer + photoresist</text>
+      <text class="ts" x="435" y="233" text-anchor="middle" dominant-baseline="central">Hóa chất phản ứng với photon</text>
+    </g>
+
+    <text class="ts" x="330" y="262" text-anchor="start" fill="#0F6E56">→ Sau khi rửa: pattern mạch hiện ra trên bề mặt wafer</text>
+
+    <!-- Role 1 key insight -->
+    <rect x="40" y="274" width="600" height="36" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="291" text-anchor="middle" fill="#854F0B">EUV (13.5nm) — ASML là công ty duy nhất làm được. Bước sóng càng ngắn</text>
+    <text class="ts" x="340" y="304" text-anchor="middle" fill="#854F0B">→ in transistor càng nhỏ → chip càng mạnh. Không có photon, không có chip.</text>
+
+    <!-- ══ ROLE 2: METROLOGY ══ -->
+    <g class="c-purple">
+      <rect x="40" y="328" width="300" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="190" y="351" text-anchor="middle" dominant-baseline="central">Vai trò 2 — Kiểm tra &amp; đo lường (ngay hôm nay)</text>
+    </g>
+    <text class="ts" x="360" y="342" text-anchor="start">KLA dùng laser để soi lỗi</text>
+    <text class="ts" x="360" y="357" text-anchor="start">Không thể dùng mắt hay điện</text>
+
+    <!-- Three inspection types -->
+    <g class="c-purple">
+      <rect x="50" y="382" width="168" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="134" y="403" text-anchor="middle" dominant-baseline="central">Defect inspection</text>
+      <text class="ts" x="134" y="424" text-anchor="middle" dominant-baseline="central">Laser tìm hạt bụi, vết nứt</text>
+    </g>
+
+    <g class="c-purple">
+      <rect x="238" y="382" width="168" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="322" y="403" text-anchor="middle" dominant-baseline="central">Overlay metrology</text>
+      <text class="ts" x="322" y="424" text-anchor="middle" dominant-baseline="central">Đo sai lệch giữa các lớp</text>
+    </g>
+
+    <g class="c-purple">
+      <rect x="426" y="382" width="194" height="56" rx="6" stroke-width="0.5"></rect>
+      <text class="th" x="523" y="403" text-anchor="middle" dominant-baseline="central">CD-SEM inspection</text>
+      <text class="ts" x="523" y="424" text-anchor="middle" dominant-baseline="central">Đo chiều rộng transistor</text>
+    </g>
+
+    <!-- Role 2 key insight -->
+    <rect x="40" y="452" width="600" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="469" text-anchor="middle" fill="#3C3489">KLA Corporation (Mỹ) kiểm soát 76% phân khúc này. Mỗi wafer được quét hàng trăm lần</text>
+    <text class="ts" x="340" y="482" text-anchor="middle" fill="#3C3489">— không có bước này, fab không biết chip có lỗi không.</text>
+
+    <!-- ══ ROLE 3: SILICON PHOTONICS ══ -->
+    <g class="c-teal">
+      <rect x="40" y="506" width="340" height="36" rx="8" stroke-width="0.5"></rect>
+      <text class="th" x="210" y="529" text-anchor="middle" dominant-baseline="central">Vai trò 3 — Photon LÀ chip (đang đến, 2025–2030+)</text>
+    </g>
+    <text class="ts" x="400" y="520" text-anchor="start">Chip silicon photonics</text>
+    <text class="ts" x="400" y="535" text-anchor="start">Photon = tín hiệu xử lý thông tin</text>
+
+    <!-- SiPh chip cross-section -->
+    <rect x="50" y="558" width="580" height="180" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"></rect>
+    <text class="ts" x="340" y="576" text-anchor="middle" fill="#085041">Silicon Photonics chip — cross-section</text>
+
+    <!-- Layer: SiN waveguide -->
+    <rect x="70" y="586" width="540" height="28" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="605" text-anchor="middle" fill="#085041">SiN waveguide — dẫn ánh sáng thụ động</text>
+
+    <!-- Layer: Si active -->
+    <rect x="70" y="622" width="540" height="28" rx="4" fill="#5DCAA5" stroke="#0F6E56" stroke-width="0.5"></rect>
+    <text class="ts" x="200" y="641" text-anchor="middle" fill="#04342C">Si waveguide · Modulator · Ge photodetector</text>
+
+    <!-- Photon arrows inside chip -->
+    <line x1="82" y1="636" x2="160" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+    <line x1="230" y1="636" x2="310" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+    <line x1="380" y1="636" x2="460" y2="636" stroke="#0F6E56" stroke-width="2" marker-end="url(#arrow)"></line>
+
+    <!-- Layer: BOX -->
+    <rect x="70" y="658" width="540" height="28" rx="4" fill="#FAC775" stroke="#854F0B" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="677" text-anchor="middle" fill="#633806">BOX — Buried Oxide ~2µm (Soitec SOI wafer)</text>
+
+    <!-- Layer: Handle -->
+    <rect x="70" y="694" width="540" height="28" rx="4" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="713" text-anchor="middle" fill="#444441">Silicon handle wafer ~800µm</text>
+
+    <!-- Role 3 key insight -->
+    <rect x="40" y="750" width="600" height="50" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"></rect>
+    <text class="ts" x="340" y="770" text-anchor="middle" fill="#085041">Trong chip này, photon CHẠY qua waveguide và THỰC HIỆN tính toán —</text>
+    <text class="ts" x="340" y="788" text-anchor="middle" fill="#085041">thay vì electron chạy qua transistor. Chip Taichi đạt 160 TOPS/W nhờ cơ chế này.</text>
+  </svg>
+
+  <!-- Insight cards -->
+  <div class="insight-grid">
+    <div class="insight-card role1">
+      <div class="insight-title">Vai trò 1: Bút khắc mạch</div>
+      <div class="insight-body">Lithography dùng photon EUV (13.5nm) hoặc DUV (193nm) để "in" pattern transistor lên wafer qua photomask. Bước sóng ngắn hơn → transistor nhỏ hơn → chip mạnh hơn. ASML là công ty duy nhất làm được máy EUV.</div>
+    </div>
+    <div class="insight-card role2">
+      <div class="insight-title">Vai trò 2: Mắt kiểm tra</div>
+      <div class="insight-body">Sau mỗi lớp trong 500+ bước fab, laser quét toàn bộ wafer tìm lỗi nanometer. KLA Corporation (Mỹ) kiểm soát 76% thị trường này. Không thể dùng điện để đo — ánh sáng là cách duy nhất đọc bề mặt nanometer.</div>
+    </div>
+    <div class="insight-card role3">
+      <div class="insight-title">Vai trò 3: Bản thân chip</div>
+      <div class="insight-body">Silicon photonics chip dùng photon thay electron để xử lý thông tin. Photon chạy qua waveguide, modulator mã hóa data, photodetector đọc ra. Chip Taichi: 160 TOPS/W — gấp 50–160 lần GPU thông thường.</div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> OECD "Mapping the Semiconductor Value Chain" (2025) · ITIF "China Semiconductors" (2024) · IPSR-I Silicon Photonics Roadmap (2024) · BCG/SIA Emerging Resilience (2024) · arXiv 2504.01463 (LightIn, 2025)
+  </div>
+</div>
+
+
+
+</div><div class="module-divider"></div>
+<div class="module-wrap module-photon_analogy">
+  <div class="module-label">Photonic AI — giải thích bằng ví dụ thực tế: dây cáp / tổng đài / não bộ ánh sáng</div>
+  
+<div class="container">
+
+  <div class="page-title">Photonic AI — Giải thích bằng ví dụ thực tế</div>
+  <div class="page-sub">3 tầng công nghệ, 3 ví dụ quen thuộc · từ dây dẫn đến bộ não xử lý</div>
+
+  <!-- QUICK SUMMARY -->
+  <div class="summary-row">
+    <div class="summary-card c1">
+      <div class="summary-label">Tầng 1 — Thực tế ngay hôm nay</div>
+      <div class="summary-analogy">Dây cáp trong tường</div>
+      <div class="summary-desc">Thay dây đồng bằng sợi thủy tinh. Ánh sáng chạy thay vì điện giữa các server.</div>
+    </div>
+    <div class="summary-card c2">
+      <div class="summary-label">Tầng 2 — Đang phát triển 2025–2026</div>
+      <div class="summary-analogy">Tổng đài điện thoại</div>
+      <div class="summary-desc">Điều phối tín hiệu bằng ánh sáng, không cần chuyển đổi quang↔điện ở mỗi bước.</div>
+    </div>
+    <div class="summary-card c3">
+      <div class="summary-label">Tầng 3 — Còn trong phòng lab</div>
+      <div class="summary-analogy">Bộ não xử lý (CPU/GPU)</div>
+      <div class="summary-desc">Tính toán bằng ánh sáng qua waveguide, thay vì electron qua transistor.</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" onclick="show_photon_analogy(&#39;t1&#39;,this)">Tầng 1: Interconnect</div>
+    <div class="tab" onclick="show_photon_analogy(&#39;t2&#39;,this)">Tầng 2: Photonic switch</div>
+    <div class="tab" onclick="show_photon_analogy(&#39;t3&#39;,this)">Tầng 3: Photonic processor</div>
+  </div>
+
+  <!-- ═══ TẦNG 1 ═══ -->
+  <div id="ns_photon_analogy_t1" class="view on">
+    <div class="analogy-card">
+      <div class="analogy-header"><span class="badge b-real">Thực tế ngay hôm nay</span>Ví dụ quen thuộc nhất: dây cáp mạng trong tòa nhà</div>
+      <div class="analogy-body">Hình dung một tòa nhà văn phòng 100 tầng. Mỗi tầng có hàng chục phòng máy tính. Để các phòng nói chuyện được với nhau, bạn cần <b>dây dẫn chạy trong tường, trong trần, trong sàn</b> — đó chính là interconnect.<br><br>Trong data center AI, "tòa nhà" là một phòng chứa hàng trăm nghìn server. "Dây trong tường" là cáp quang sợi thủy tinh chạy giữa các server. Thay vì tín hiệu điện chạy qua đồng như cáp LAN thông thường, <b>photon (ánh sáng) chạy qua sợi thủy tinh</b> — nhanh hơn, lạnh hơn, ít mất tín hiệu hơn.</div>
+    </div>
+
+    <div class="analogy-card">
+      <div class="analogy-header">Vậy Co-Packaged Optics (CPO) là gì?</div>
+      <div class="analogy-body">Tưởng tượng dây điện thoại cũ: bạn cắm vào tường, qua một hộp chuyển đổi, rồi mới vào máy tính. <b>CPO = cắm sợi quang thẳng vào chip, bỏ hộp chuyển đổi đi.</b><br><br>Trước đây: tín hiệu điện từ chip → ra board → qua transceiver rời → chuyển thành ánh sáng → vào cáp quang. Mỗi bước chuyển đổi tốn điện và thời gian.<br><br>CPO (NVIDIA Spectrum-X, 3/2025): sợi quang kết nối thẳng vào chipset. Ít bước hơn → 3.5× tiết kiệm điện, signal nhanh hơn 63×.</div>
+    </div>
+
+    <div class="vs-row">
+      <div class="vs-box old">
+        <b>Cũ — điện tử thông thường</b>
+        Dây đồng giữa các server: nhiệt cao, giới hạn tốc độ ở khoảng cách ngắn, cần làm lạnh nhiều. Bandwidth tối đa bị giới hạn bởi điện trở.
+      </div>
+      <div class="vs-arrow">→</div>
+      <div class="vs-box new-teal">
+        <b>Mới — photonic interconnect</b>
+        Sợi quang + ánh sáng: 4 Tb/s, 5ns latency, 5pJ/bit. Gấp 10× hiệu quả hơn điện tử ở cùng tốc độ. Gần như không sinh nhiệt từ dây dẫn.
+      </div>
+    </div>
+
+    <div class="analogy-card highlight-teal">
+      <div class="analogy-header">Tóm lại: Interconnect = dây dẫn, nhưng thay đồng bằng ánh sáng</div>
+      <div class="analogy-body">Đây là lớp đã hoàn thiện và đang được triển khai đại trà. Hàng chục triệu SiPh transceiver đang hoạt động trong mọi data center AI lớn. Không còn là công nghệ tương lai — đây là hạ tầng hiện tại, chạy ngầm bên dưới mọi mô hình AI bạn đang dùng.</div>
+    </div>
+  </div>
+
+  <!-- ═══ TẦNG 2 ═══ -->
+  <div id="ns_photon_analogy_t2" class="view">
+    <div class="analogy-card">
+      <div class="analogy-header"><span class="badge b-soon">Đang phát triển 2025–2026</span>Ví dụ: tổng đài điện thoại (telephone exchange)</div>
+      <div class="analogy-body">Quay lại ví dụ tòa nhà 100 tầng: bạn đã có dây chạy khắp nơi (interconnect). Nhưng khi phòng 101 muốn gọi cho phòng 4205, tín hiệu cần đi qua <b>tổng đài — thứ điều phối ai gọi cho ai, tín hiệu nào đi đường nào.</b><br><br>Trong data center: đó là <b>switch</b>. Hàng nghìn server gửi/nhận dữ liệu đồng thời — switch quyết định: gói tin này đi từ GPU số 3847 đến GPU số 12091, qua đường nào, vào lúc nào.</div>
+    </div>
+
+    <div class="analogy-card">
+      <div class="analogy-header">Switch điện tử vs Photonic switch — sự khác biệt là gì?</div>
+      <div class="analogy-body">Switch điện tử hiện tại: ánh sáng từ cáp quang vào → <b>chuyển thành điện</b> → chip ASIC xử lý routing → <b>chuyển lại thành ánh sáng</b> → ra cáp quang. Mỗi lần chuyển đổi quang↔điện tốn năng lượng và thêm độ trễ.<br><br>Photonic switch (IPRONICS, Lumentum): ánh sáng từ cáp vào → <b>routing bằng ánh sáng luôn</b>, không chuyển đổi → ra cáp. Giống như tổng đài cũ dùng relay cơ học, còn tổng đài mới dùng mạch điện tử — ở đây là dùng quang học thay vì điện tử.</div>
+    </div>
+
+    <div class="vs-row">
+      <div class="vs-box old">
+        <b>Switch điện tử (hôm nay)</b>
+        Ánh sáng vào → chuyển điện → xử lý → chuyển quang → ra. Mỗi chuyển đổi tốn ~3–5 nanosecond và năng lượng. Chip ASIC nóng, cần làm lạnh.
+      </div>
+      <div class="vs-arrow">→</div>
+      <div class="vs-box new-blue">
+        <b>Photonic switch (sắp đến)</b>
+        Ánh sáng vào → routing bằng MZI (waveguide) → ra. Không chuyển đổi. Latency gần bằng không từ bước routing. Không sinh nhiệt từ bước này.
+      </div>
+    </div>
+
+    <div class="analogy-card">
+      <div class="analogy-header">MZI — Mach-Zehnder Interferometer là gì?</div>
+      <div class="analogy-body">Đây là linh kiện cốt lõi của photonic switch. Hiểu đơn giản: giống như một <b>ngã tư đường có đèn giao thông, nhưng dùng nguyên lý giao thoa ánh sáng</b> để điều hướng photon rẽ trái hay rẽ phải.<br><br>Bằng cách thay đổi điện áp vào một nhánh, bạn thay đổi phase của ánh sáng → ánh sáng "chọn" đường ra khác nhau. LightIn (arXiv 2025) dùng 40 MZI ghép lại thành một mạng lưới có thể lập trình để làm nhiều việc khác nhau trên cùng một chip.</div>
+    </div>
+
+    <div class="analogy-card highlight-blue">
+      <div class="analogy-header">Tóm lại: Photonic switch = tổng đài không cần phiên dịch viên</div>
+      <div class="analogy-body">Switch điện tử cần "phiên dịch viên" (converter) ở mỗi cửa: quang vào → điện → xử lý → điện → quang ra. Photonic switch bỏ phiên dịch viên đi — ánh sáng tự tìm đường qua waveguide. Ít bước hơn = nhanh hơn và ít điện hơn.</div>
+    </div>
+  </div>
+
+  <!-- ═══ TẦNG 3 ═══ -->
+  <div id="ns_photon_analogy_t3" class="view">
+    <div class="analogy-card">
+      <div class="analogy-header"><span class="badge b-future">Còn trong phòng lab</span>Ví dụ: CPU — bộ não xử lý, nhưng thay transistor bằng waveguide</div>
+      <div class="analogy-body">Trong chip điện tử thông thường, <b>transistor là đơn vị tính toán cơ bản</b>: đóng/mở để tạo ra 0 và 1. Một GPU H100 có 80 tỷ transistor hoạt động song song.<br><br>Photonic processor không dùng transistor. Thay vào đó, <b>waveguide + modulator là đơn vị tính toán</b>. Ánh sáng mang dữ liệu (dưới dạng biên độ hoặc phase của sóng), và phép nhân ma trận — xương sống của AI — được thực hiện bằng cách cho ánh sáng đi qua các MZI được căn chỉnh sẵn.</div>
+    </div>
+
+    <div class="analogy-card">
+      <div class="analogy-header">Tại sao nhân ma trận lại phù hợp đặc biệt với photonics?</div>
+      <div class="analogy-body">AI về bản chất là <b>nhân ma trận liên tục</b>: input × weight matrix = output, lặp đi lặp lại hàng tỷ lần khi chạy một mô hình.<br><br>Trong chip điện tử: mỗi phép nhân cần đọc số từ bộ nhớ → tính trong ALU → ghi kết quả. Tốn điện, tốn thời gian, và bộ nhớ thường là bottleneck (memory wall).<br><br>Trong photonic chip: bạn căn chỉnh các MZI một lần (encode weights), rồi <b>ánh sáng đi qua mạng lưới MZI = phép nhân ma trận xảy ra ở tốc độ ánh sáng</b>, tiêu thụ gần như không có năng lượng cho phần tính toán quang học. Chip Taichi đạt 160 TOPS/W vì lý do này.</div>
+    </div>
+
+    <div class="vs-row">
+      <div class="vs-box old">
+        <b>GPU điện tử (hôm nay)</b>
+        80 tỷ transistor. Đọc weight từ HBM memory → CUDA core nhân → ghi kết quả. Memory bandwidth là bottleneck. Tiêu thụ 700W. Hiệu suất ~1–3 TOPS/W.
+      </div>
+      <div class="vs-arrow">→</div>
+      <div class="vs-box new-amber">
+        <b>Photonic processor (tương lai)</b>
+        Waveguide mesh. Weight encode vào MZI angle một lần. Ánh sáng qua = nhân xong ngay lập tức. Không cần đọc memory liên tục. 160 TOPS/W (Taichi, lab 2024). Precision còn 7–8 bit.
+      </div>
+    </div>
+
+    <div class="analogy-card">
+      <div class="analogy-header">Vậy tại sao chưa thay thế GPU được?</div>
+      <div class="analogy-body">
+        <b>Vấn đề 1 — Precision:</b> GPU tính với 16–32 bit. Photonic chip hiện tại chỉ đạt 7–8 bit. Đủ cho inference (chạy mô hình đã train), chưa đủ cho training (dạy mô hình mới). Giống như máy tính bỏ túi 2 số thập phân — được nhiều việc nhưng chưa phải máy tính khoa học.<br><br>
+        <b>Vấn đề 2 — Noise:</b> Ánh sáng đi qua waveguide bị nhiễu nhỏ tích lũy qua nhiều lớp. Cần calibrate liên tục, khó tự động hóa ở quy mô lớn.<br><br>
+        <b>Vấn đề 3 — Chuyển đổi quang-điện:</b> Kết quả tính toán bằng quang vẫn phải convert về điện để đọc ra. Giống như dù tính siêu nhanh nhưng vẫn phải in ra giấy để đọc, mà máy in rất chậm — bước này ăn mất nhiều lợi thế năng lượng.
+      </div>
+    </div>
+
+    <div class="analogy-card highlight-amber">
+      <div class="analogy-header">Tóm lại: Photonic processor = não bộ tính toán bằng ánh sáng thay vì điện</div>
+      <div class="analogy-body">Đây là mục tiêu cuối cùng và khó nhất. Thay vì electron chạy qua transistor để đóng/mở tạo ra bit, photon chạy qua waveguide mesh để thực hiện phép nhân ma trận trực tiếp bằng vật lý. Cực kỳ hiệu quả năng lượng về lý thuyết — nhưng còn nhiều thách thức kỹ thuật cần giải quyết trước khi production.</div>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> Photonics for AI — TEMATYS/Photonics21 (2025) · IPSR-I Silicon Photonics Roadmap (2024) · arXiv 2504.01463 LightIn (2025) · Nature Photonics: MIT chip (12/2024) · Science: Taichi chip (2024) · Quantum Photonic vs Classical Photonic AI (2024–2025) · BCG/SIA Emerging Resilience (2024)
+  </div>
+
+</div>
+
+<script>
+function show_photon_analogy(id, el) {
+  (document.querySelector('.module-photon_analogy') || document).querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  (document.querySelector('.module-photon_analogy') || document).querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('ns_photon_analogy_' + id).classList.add('on');
+  el.classList.add('on');
+}
+</script>
+
+
+
+</div><div class="module-divider"></div>
+<div class="module-wrap module-photon_stage">
+  <div class="module-label">Giai đoạn phát triển 2024–2035 — TRL bars và timeline milestone theo năm</div>
+  
+<div class="container">
+
+  <div class="page-title">Photonic AI — Đang ở giai đoạn nào rồi?</div>
+  <div class="page-sub">Ba lớp phát triển song song với TRL và timeline khác nhau · Nguồn: TEMATYS, IPSR-I, arXiv 2025, Nature 2024–2025</div>
+
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div> Tầng 1: Interconnect</div>
+    <div class="leg"><div class="leg-dot" style="background:#185FA5"></div> Tầng 2: Photonic switch</div>
+    <div class="leg"><div class="leg-dot" style="background:#EF9F27"></div> Tầng 3: Photonic processor</div>
+    <span class="tl-tag tag-done">Thực tế</span>
+    <span class="tl-tag tag-wip">Đang triển khai</span>
+    <span class="tl-tag tag-soon">Sắp đến</span>
+    <span class="tl-tag tag-future">Tương lai</span>
+  </div>
+
+  <div class="layer-tabs">
+    <div class="lt l1" onclick="showL_photon_stage(&#39;l1&#39;,this)">Tầng 1: Interconnect</div>
+    <div class="lt l2" onclick="showL_photon_stage(&#39;l2&#39;,this)">Tầng 2: Photonic switch</div>
+    <div class="lt l3 on" onclick="showL_photon_stage(&#39;l3&#39;,this)">Tầng 3: Photonic processor</div>
+  </div>
+
+  <!-- ═══ LAYER 1 ═══ -->
+  <div id="ns_photon_stage_l1" class="layer-view">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#1D9E75">8–9 / 9</div><div class="sc-sub">Đang triển khai thương mại đại trà</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Commercial</div><div class="sc-sub">Hàng chục triệu transceiver/năm</div></div>
+      <div class="sc"><div class="sc-label">Đột phá gần nhất</div><div class="sc-val" style="font-size:13px">NVIDIA CPO</div><div class="sc-sub">3/2025 — 3.5× hiệu quả điện</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">Cáp quang rack-to-rack</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:100%"></div></div>
+      <span class="trl-val">TRL 9 ✓</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Co-packaged optics (CPO)</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:82%"></div></div>
+      <span class="trl-val">TRL 7–8</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Chip-to-chip optical</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:65%"></div></div>
+      <span class="trl-val">TRL 6–7</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Board-level optical</span>
+      <div class="trl-track"><div class="trl-fill teal" style="width:50%"></div></div>
+      <span class="trl-val">TRL 5–6</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Hôm nay</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#1D9E75"></div><div class="tl-line" style="background:#9FE1CB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Thực tế</span>Hàng chục triệu SiPh transceiver mỗi năm</div>
+          <div class="tl-card-body">Toàn bộ data center AI (NVIDIA, Google, Amazon) đã kết nối bằng sợi quang silicon photonics. Optical I/O đạt 4 Tb/s, 5ns latency, 5pJ/bit — hiệu quả gấp 10× điện tử cùng tốc độ.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">3/2025</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#1D9E75"></div><div class="tl-line" style="background:#9FE1CB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Đang triển khai</span>NVIDIA Spectrum-X Co-Packaged Optics</div>
+          <div class="tl-card-body">Ra mắt 18/3/2025 với consortium TSMC, Coherent, Corning, Foxconn, Lumentum, SENKO. Quang học kết nối thẳng vào chipset — 3.5× hiệu quả điện, 4× ít laser, 63× signal integrity tốt hơn.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025–2027</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-soon">Sắp đến</span>Lightmatter Passage + Celestial AI photonic fabric</div>
+          <div class="tl-card-body">Photonic interposer kết nối GPU clusters, giải quyết bandwidth bottleneck. Lightmatter tuyên bố Passage có thể thay thế majority of AI-class GPU interconnect "trong vài năm tới".</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Board-to-board optical inside servers</div>
+          <div class="tl-card-body">Quang học thay thế dây điện ngay bên trong server — không chỉ giữa các server. Mỗi CPU/GPU board kết nối trực tiếp bằng sợi quang.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LAYER 2 ═══ -->
+  <div id="ns_photon_stage_l2" class="layer-view">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#185FA5">5–7 / 9</div><div class="sc-sub">Prototype → pilot thương mại</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Pilot</div><div class="sc-sub">Một số đang đến thị trường</div></div>
+      <div class="sc"><div class="sc-label">Công ty dẫn đầu</div><div class="sc-val" style="font-size:13px">IPRONICS, Lumentum</div><div class="sc-sub">Spain, US — photonic-only switch</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">ASIC + CPO switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:78%"></div></div>
+      <span class="trl-val">TRL 7</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Fully photonic switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:55%"></div></div>
+      <span class="trl-val">TRL 5–6</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Photonic AI-optimized switch</span>
+      <div class="trl-track"><div class="trl-fill blue" style="width:33%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">Hôm nay</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#185FA5"></div><div class="tl-line" style="background:#85B7EB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Thực tế</span>Electronic switch + CPO (ASIC + quang)</div>
+          <div class="tl-card-body">Chip điện tử (ASIC) kết nối qua co-packaged optics. Switch hiện tại vẫn tính toán bằng electron — photon chỉ dùng để truyền dữ liệu ra/vào. NVIDIA, Arista, Cisco đang ở đây.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025–2026</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#185FA5"></div><div class="tl-line" style="background:#85B7EB"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Đang phát triển</span>IPRONICS ONE — fully photonic switch</div>
+          <div class="tl-card-body">Switch mà cả chip lẫn kết nối đều là photonic integrated circuit (PIC). IPRONICS (Tây Ban Nha) và Lumentum (Mỹ) đang ra sản phẩm. Photon routing thay vì electron routing — latency và năng lượng thấp hơn nhiều.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Photonic AI switch tiêu chuẩn trong hyperscale data center</div>
+          <div class="tl-card-body">Thay thế toàn bộ spine/leaf switch điện tử trong data center AI. Đây là bước đột phá làm giảm mạnh latency giữa các server và tiêu thụ điện của tầng network.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LAYER 3 ═══ -->
+  <div id="ns_photon_stage_l3" class="layer-view on">
+    <div class="status-grid">
+      <div class="sc"><div class="sc-label">TRL hiện tại</div><div class="sc-val" style="color:#854F0B">3–5 / 9</div><div class="sc-sub">Lab demo → early prototype</div></div>
+      <div class="sc"><div class="sc-label">Giai đoạn</div><div class="sc-val">Research</div><div class="sc-sub">Chưa có production chip</div></div>
+      <div class="sc"><div class="sc-label">Hiệu suất tốt nhất</div><div class="sc-val">160 TOPS/W</div><div class="sc-sub">Chip Taichi (Science 2024)</div></div>
+    </div>
+
+    <div class="trl-section-label">Mức độ trưởng thành theo phân khúc</div>
+    <div class="trl-row">
+      <span class="trl-label">Matrix multiply (ONN)</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:55%"></div></div>
+      <span class="trl-val">TRL 4–5</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Full DNN on single chip</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:40%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Programmable processor</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:35%"></div></div>
+      <span class="trl-val">TRL 3–4</span>
+    </div>
+    <div class="trl-row">
+      <span class="trl-label">Production-ready chip</span>
+      <div class="trl-track"><div class="trl-fill amber" style="width:10%"></div></div>
+      <span class="trl-val">TRL 1–2</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">12/2024</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Lab milestone</span>MIT — DNN hoàn toàn trong miền quang</div>
+          <div class="tl-card-body">Lần đầu chip đơn thực hiện deep neural network hoàn toàn bằng ánh sáng, không chuyển đổi sang điện ở giữa. Công bố Nature Photonics (Bandyopadhyay et al., 2024). Quy mô nhỏ nhưng là proof-of-concept quan trọng nhất thập kỷ.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-done">Lab milestone</span>Chip Taichi — 160 TOPS/W (Science 2024)</div>
+          <div class="tl-card-body">Large-scale photonic chiplet đạt 160 TOPS/W — gấp 50–160× GPU hiện tại. Chạy được image recognition. Vẫn là lab chip nhưng con số hiệu suất peer-reviewed và thực sự đáng kể.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Prototype</span>LightIn (arXiv 2025) — programmable photonic processor</div>
+          <div class="tl-card-body">40 MZI programmable unit cells, 3.8×3mm². Chạy được matrix multiply, image recognition, channel switching, và PUF security — tất cả trong một chip. Bước tiến về tính đa năng, nhưng vẫn cần điều chỉnh thủ công và hệ thống còn cồng kềnh.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025 (Nature)</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#EF9F27"></div><div class="tl-line" style="background:#FAC775"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-wip">Prototype</span>64×64 photonic accelerator — 1 GHz MAC, 7.61-bit precision</div>
+          <div class="tl-card-body">Nature 2025: chip 65nm SiPh + 28nm CMOS co-packaged, 16,000+ photonic components. Chạy max-cut optimization. Minh chứng hướng hybrid optoelectronic — không thuần quang nhưng tận dụng lợi thế photon cho phép tính nặng nhất.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027–2030</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div><div class="tl-line" style="background:#D3D1C7"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-soon">Kỳ vọng</span>First production photonic AI accelerators cho niche workloads</div>
+          <div class="tl-card-body">Inference-specific trước, training sau. Các task như image recognition và matrix multiply ở inference stage có thể thương mại hóa trước. Lightmatter và Celestial AI đang target giai đoạn này.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2030+</div>
+        <div class="tl-spine"><div class="tl-dot" style="background:#888780"></div></div>
+        <div class="tl-card">
+          <div class="tl-card-title"><span class="tl-tag tag-future">Tương lai</span>Photonic TPU trong AI data center — mục tiêu cuối cùng</div>
+          <div class="tl-card-body">Thay thế GPU/TPU hiện tại ở tầng compute. Silicon-photonics AI accelerators dự báo trở thành lựa chọn tiêu chuẩn trong hyperscale data center, đặc biệt cho bandwidth-bound training và inference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="challenge-box">
+      <strong>3 thách thức kỹ thuật còn lại chưa giải được ở production scale:</strong><br>
+      (1) <strong>Precision chỉ 7–8 bit</strong> so với GPU 16–32 bit — đủ cho inference, chưa đủ cho training LLM lớn.<br>
+      (2) <strong>Noise tích lũy</strong> qua nhiều lớp waveguide — cần calibration liên tục, khó tự động hóa.<br>
+      (3) <strong>Analog-digital conversion overhead</strong> — mỗi lần convert quang–điện tốn năng lượng, làm giảm lợi thế hiệu suất. Nhiều con số benchmark chỉ đo phần quang, không tính ADC, laser nguồn và điều khiển điện tử.
+    </div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> Photonics for AI — TEMATYS/Photonics21 (2025) · IPSR-I Silicon Photonics Roadmap (2024) · Nature Photonics: Bandyopadhyay et al. (12/2024) · Science: Taichi chip (2024) · arXiv 2504.01463 LightIn (2025) · Nature: 64×64 photonic accelerator (2025) · Quantum Photonic vs Classical Photonic AI (2024–2025)
+  </div>
+
+</div>
+
+<script>
+function showL_photon_stage(id, el) {
+  (document.querySelector('.module-photon_stage') || document).querySelectorAll('.layer-view').forEach(v => v.classList.remove('on'));
+  (document.querySelector('.module-photon_stage') || document).querySelectorAll('.lt').forEach(t => t.classList.remove('on'));
+  document.getElementById('ns_photon_stage_' + id).classList.add('on');
+  el.classList.add('on');
+}
+</script>
+
+
+
+</div>
+    <div class="connector"><strong>Phản biện:</strong> 160 TOPS/W (chip Taichi) chỉ đo phần quang học — chưa tính laser, ADC, điều khiển điện tử. Precision còn 7–8 bit (GPU: 16–32 bit). Đủ cho inference, chưa đủ cho training LLM lớn.</div>
+  </div>
+</div>
+</div>
+
+<div class="portal-footer">
+  <strong>Nguồn:</strong> OECD 2025 · BCG/SIA 2024 · CSIS 2023 · SIA 2024 · IPSR-I 2024 · TEMATYS/Photonics21 2025 · US Congress 2024 · IGCC/MERICS 2024 · ITIF 2024 · McKinsey Q2 2025 · arXiv 2504.01463 · Nature Photonics 12/2024 · Science: Taichi 2024 · Sze &amp; Ng (2006) · Streetman &amp; Banerjee (2014) · Plummer et al. (2000)
+</div>
+
+<script>
+
+function toggleCh(id) {
+  var body = document.getElementById('body_' + id);
+  var tog  = document.getElementById('tog_' + id);
+  var collapsed = body.classList.contains('collapsed');
+  body.classList.toggle('collapsed', !collapsed);
+  tog.classList.toggle('open', !collapsed);
+}
+function filterChapters(filter, el) {
+  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.chapter-wrap').forEach(ch => {
+    ch.classList.toggle('hidden', filter !== 'all' && ch.dataset.filter !== filter);
+  });
+}
+
+</script>
+
+</body></html>

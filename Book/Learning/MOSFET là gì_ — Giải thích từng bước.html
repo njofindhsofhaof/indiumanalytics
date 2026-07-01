@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///Users/macbookairm1/Downloads/mosfet_explainer.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOSFET là gì? — Giải thích từng bước</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f4ef;
+  --color-background-tertiary: #eeede8;
+  --color-text-primary: #1a1a18;
+  --color-text-secondary: #5a5955;
+  --color-text-tertiary: #8a8880;
+  --color-border-tertiary: rgba(0,0,0,0.12);
+  --color-border-secondary: rgba(0,0,0,0.25);
+  --color-border-primary: rgba(0,0,0,0.35);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #1e1e1c;
+    --color-background-secondary: #2a2a27;
+    --color-background-tertiary: #333330;
+    --color-text-primary: #e8e6de;
+    --color-text-secondary: #a8a69e;
+    --color-text-tertiary: #706e67;
+    --color-border-tertiary: rgba(255,255,255,0.1);
+    --color-border-secondary: rgba(255,255,255,0.2);
+    --color-border-primary: rgba(255,255,255,0.3);
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  padding: 2rem;
+}
+.page-title { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.page-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+
+/* STEP TABS */
+.steps { display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.step { padding: 6px 16px; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s; }
+.step:hover:not(.on) { border-color: var(--color-border-secondary); color: var(--color-text-primary); }
+.step.on { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+
+/* PANELS */
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* SVG THEME */
+svg .t  { font-family: var(--font-sans); font-size: 14px; font-weight: 400; fill: var(--color-text-primary); }
+svg .ts { font-family: var(--font-sans); font-size: 12px; font-weight: 400; fill: var(--color-text-secondary); }
+svg .th { font-family: var(--font-sans); font-size: 14px; font-weight: 500; fill: var(--color-text-primary); }
+
+svg .c-gray   > rect, svg .c-gray   > ellipse { fill: #F1EFE8; stroke: #888780; }
+svg .c-gray   > text.th { fill: #2C2C2A; } svg .c-gray   > text.ts { fill: #5F5E5A; }
+svg .c-blue   > rect, svg .c-blue   > ellipse { fill: #E6F1FB; stroke: #185FA5; }
+svg .c-blue   > text.th { fill: #0C447C; } svg .c-blue   > text.ts { fill: #185FA5; }
+svg .c-teal   > rect, svg .c-teal   > ellipse { fill: #E1F5EE; stroke: #1D9E75; }
+svg .c-teal   > text.th { fill: #085041; } svg .c-teal   > text.ts { fill: #0F6E56; }
+svg .c-amber  > rect, svg .c-amber  > ellipse { fill: #FAEEDA; stroke: #BA7517; }
+svg .c-amber  > text.th { fill: #633806; } svg .c-amber  > text.ts { fill: #854F0B; }
+svg .c-purple > rect, svg .c-purple > ellipse { fill: #EEEDFE; stroke: #534AB7; }
+svg .c-purple > text.th { fill: #3C3489; } svg .c-purple > text.ts { fill: #534AB7; }
+
+@media (prefers-color-scheme: dark) {
+  svg .c-gray   > rect, svg .c-gray   > ellipse { fill: #2C2C2A; stroke: #5F5E5A; }
+  svg .c-gray   > text.th { fill: #D3D1C7; } svg .c-gray   > text.ts { fill: #B4B2A9; }
+  svg .c-blue   > rect, svg .c-blue   > ellipse { fill: #042C53; stroke: #378ADD; }
+  svg .c-blue   > text.th { fill: #B5D4F4; } svg .c-blue   > text.ts { fill: #85B7EB; }
+  svg .c-teal   > rect, svg .c-teal   > ellipse { fill: #085041; stroke: #1D9E75; }
+  svg .c-teal   > text.th { fill: #9FE1CB; } svg .c-teal   > text.ts { fill: #5DCAA5; }
+  svg .c-amber  > rect, svg .c-amber  > ellipse { fill: #633806; stroke: #EF9F27; }
+  svg .c-amber  > text.th { fill: #FAC775; } svg .c-amber  > text.ts { fill: #EF9F27; }
+  svg .c-purple > rect, svg .c-purple > ellipse { fill: #26215C; stroke: #7F77DD; }
+  svg .c-purple > text.th { fill: #CECBF6; } svg .c-purple > text.ts { fill: #AFA9EC; }
+}
+
+/* DESCRIPTION BOX */
+.desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  border-left: 3px solid var(--color-border-secondary);
+}
+.desc b { color: var(--color-text-primary); font-weight: 500; }
+
+/* DOTS + NAV */
+.dots { display: flex; gap: 8px; justify-content: center; margin-top: 1.25rem; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-border-secondary); transition: background 0.2s; }
+.dot.on { background: var(--color-text-primary); }
+
+.nav { display: flex; gap: 10px; margin-top: 12px; justify-content: center; }
+.nav button {
+  padding: 7px 22px;
+  border-radius: var(--border-radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  transition: all 0.15s;
+}
+.nav button:hover { background: var(--color-background-tertiary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+.nav button:active { transform: scale(0.98); }
+
+.step-counter { text-align: center; font-size: 12px; color: var(--color-text-tertiary); margin-top: 8px; }
+
+/* SOURCE */
+.source-note { margin-top: 1.5rem; padding: 10px 14px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 11px; color: var(--color-text-tertiary); border-left: 3px solid var(--color-border-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-title">MOSFET là gì?</div>
+  <div class="page-sub">Từ công tắc điện đơn giản → transistor nano → chip AI 80 tỷ transistor · 5 bước giải thích</div>
+
+  <div class="steps">
+    <div class="step" onclick="go(0)">1 — MOSFET là gì</div>
+    <div class="step" onclick="go(1)">2 — Cấu trúc bên trong</div>
+    <div class="step" onclick="go(2)">3 — Cách hoạt động</div>
+    <div class="step" onclick="go(3)">4 — Tắt / Mở = 0 / 1</div>
+    <div class="step on" onclick="go(4)">5 — Trong chip thật</div>
+  </div>
+
+  <!-- ═══ PANEL 0: WHAT IS MOSFET ═══ -->
+  <div id="p0" class="panel">
+    <svg width="100%" viewBox="0 0 680 260" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET là gì — so sánh với công tắc điện</title>
+      <desc>MOSFET hoạt động như công tắc điện nhưng được điều khiển bằng điện áp thay vì ngón tay</desc>
+      <defs>
+        <marker id="a0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Left: light switch -->
+      <text class="th" x="160" y="30" text-anchor="middle">Công tắc điện (ví dụ quen)</text>
+      <g class="c-gray">
+        <rect x="80" y="50" width="160" height="90" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="74" text-anchor="middle" dominant-baseline="central">TAY nhấn công tắc</text>
+        <rect x="130" y="88" width="60" height="28" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="105" text-anchor="middle" dominant-baseline="central">ON / OFF</text>
+        <text class="ts" x="160" y="130" text-anchor="middle" dominant-baseline="central">→ Đèn bật / tắt</text>
+      </g>
+
+      <!-- VS -->
+      <text class="th" x="340" y="98" text-anchor="middle">≈</text>
+      <text class="ts" x="340" y="114" text-anchor="middle">nhưng</text>
+      <text class="ts" x="340" y="128" text-anchor="middle">nano-scale</text>
+
+      <!-- Right: MOSFET -->
+      <text class="th" x="505" y="30" text-anchor="middle">MOSFET (công tắc điện tử)</text>
+      <g class="c-teal">
+        <rect x="385" y="50" width="240" height="90" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="505" y="74" text-anchor="middle" dominant-baseline="central">ĐIỆN ÁP nhỏ điều khiển</text>
+        <rect x="455" y="88" width="100" height="28" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="505" y="105" text-anchor="middle" dominant-baseline="central">V_gate → ON / OFF</text>
+        <text class="ts" x="505" y="130" text-anchor="middle" dominant-baseline="central">→ Dòng điện lớn chạy / không</text>
+      </g>
+
+      <!-- Bottom key facts -->
+      <rect x="60" y="164" width="560" height="76" rx="6" fill="#E6F1FB" stroke="#B5D4F4" stroke-width="0.5"></rect>
+      <text class="th" x="340" y="188" text-anchor="middle" fill="#0C447C">Tại sao MOSFET thay đổi thế giới?</text>
+      <text class="ts" x="340" y="208" text-anchor="middle" fill="#185FA5">Kích thước: 2nm (2024) — nhỏ hơn virus cúm 50 lần</text>
+      <text class="ts" x="340" y="224" text-anchor="middle" fill="#185FA5">Tên đầy đủ: Metal-Oxide-Semiconductor Field-Effect Transistor</text>
+      <text class="ts" x="340" y="240" text-anchor="middle" fill="#185FA5">GPU H100: 80 tỷ MOSFET — nhiều hơn số tế bào não người</text>
+    </svg>
+    <div class="desc">MOSFET = <b>công tắc điện tử</b> được điều khiển bằng điện áp thay vì ngón tay. Khi điện áp đủ lớn → dòng điện chạy qua (ON = 1). Khi không có điện áp → không có dòng (OFF = 0). Đây chính là cơ chế tạo ra bit nhị phân 0 và 1 trong mọi con chip máy tính.</div>
+  </div>
+
+  <!-- ═══ PANEL 1: STRUCTURE ═══ -->
+  <div id="p1" class="panel">
+    <svg width="100%" viewBox="0 0 680 300" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>Cấu trúc bên trong MOSFET — cross-section</title>
+      <desc>Sơ đồ cắt ngang MOSFET cho thấy gate, SiO₂, source, drain và silicon</desc>
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Silicon substrate -->
+      <g class="c-blue">
+        <rect x="80" y="210" width="340" height="70" rx="4" stroke-width="0.5"></rect>
+        <text class="th" x="250" y="242" text-anchor="middle" dominant-baseline="central">Silicon (Si) — đế bán dẫn (p-type)</text>
+        <text class="ts" x="250" y="264" text-anchor="middle" dominant-baseline="central">ít hạt tải tự do — không dẫn điện mặc định</text>
+      </g>
+
+      <!-- Source N+ -->
+      <g class="c-blue">
+        <rect x="96" y="180" width="90" height="32" rx="3" stroke-width="0.5"></rect>
+        <text class="th" x="141" y="200" text-anchor="middle" dominant-baseline="central">Source (N+)</text>
+      </g>
+
+      <!-- Drain N+ -->
+      <g class="c-blue">
+        <rect x="314" y="180" width="90" height="32" rx="3" stroke-width="0.5"></rect>
+        <text class="th" x="359" y="200" text-anchor="middle" dominant-baseline="central">Drain (N+)</text>
+      </g>
+
+      <!-- SiO₂ gate oxide -->
+      <rect x="186" y="162" width="128" height="20" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"></rect>
+      <text class="ts" x="250" y="176" text-anchor="middle" fill="#412402">SiO₂ oxide (~2–5 nm)</text>
+
+      <!-- Gate metal -->
+      <g class="c-gray">
+        <rect x="186" y="130" width="128" height="32" rx="4" stroke-width="0.5"></rect>
+        <text class="th" x="250" y="150" text-anchor="middle" dominant-baseline="central">Gate (kim loại)</text>
+      </g>
+
+      <!-- Channel dashed -->
+      <rect x="186" y="180" width="128" height="32" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 3"></rect>
+      <text class="ts" x="250" y="200" text-anchor="middle" fill="#085041">channel</text>
+
+      <!-- Gate voltage arrow -->
+      <line x1="250" y1="52" x2="250" y2="124" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a1)"></line>
+      <text class="ts" x="266" y="86" text-anchor="start">V_gate</text>
+      <text class="ts" x="266" y="102" text-anchor="start">(điện áp điều khiển)</text>
+
+      <!-- Leader: SiO₂ -->
+      <line x1="314" y1="172" x2="460" y2="128" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <circle cx="314" cy="172" r="2.5" fill="#888780"></circle>
+      <text class="th" x="466" y="122" text-anchor="start">SiO₂ — band gap ~9 eV</text>
+      <text class="ts" x="466" y="138" text-anchor="start">Cách điện gần hoàn hảo</text>
+      <text class="ts" x="466" y="154" text-anchor="start">Bám dính nguyên tử với Si</text>
+      <text class="ts" x="466" y="170" text-anchor="start">Interface trap thấp</text>
+
+      <!-- Leader: Source -->
+      <line x1="141" y1="212" x2="100" y2="260" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <text class="ts" x="52" y="270" text-anchor="start">Source = điện vào</text>
+
+      <!-- Leader: Drain -->
+      <line x1="359" y1="212" x2="430" y2="260" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3" fill="none"></line>
+      <text class="ts" x="436" y="270" text-anchor="start">Drain = điện ra</text>
+    </svg>
+    <div class="desc">MOSFET có <b>4 thành phần cốt lõi:</b> (1) <b>Gate</b> — điện cực điều khiển bằng điện áp. (2) <b>SiO₂</b> — lớp oxide cách điện mỏng 2–5nm giữa gate và silicon. (3) <b>Source và Drain</b> — hai vùng N+ dẫn điện, là đầu vào và đầu ra. (4) <b>Channel</b> — vùng silicon giữa source và drain, được gate điều khiển. Lớp SiO₂ là lý do silicon thống trị — không vật liệu nào có oxide tự nhiên ổn định như vậy.</div>
+  </div>
+
+  <!-- ═══ PANEL 2: HOW IT WORKS ═══ -->
+  <div id="p2" class="panel">
+    <svg width="100%" viewBox="0 0 680 270" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET hoạt động — trường điện tạo kênh dẫn</title>
+      <desc>Trái: V_gate=0, không có dòng. Phải: V_gate đủ lớn, kênh hình thành, dòng chạy</desc>
+      <defs>
+        <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- LEFT: OFF -->
+      <text class="th" x="160" y="22" text-anchor="middle">V_gate = 0 → TẮT (OFF)</text>
+
+      <g class="c-blue">
+        <rect x="60" y="158" width="200" height="50" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="186" text-anchor="middle" dominant-baseline="central">Silicon đế (p-type)</text>
+      </g>
+      <g class="c-blue">
+        <rect x="70" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="99" y="148" text-anchor="middle" dominant-baseline="central">S</text>
+      </g>
+      <g class="c-blue">
+        <rect x="192" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="221" y="148" text-anchor="middle" dominant-baseline="central">D</text>
+      </g>
+      <rect x="128" y="112" width="64" height="18" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"></rect>
+      <g class="c-gray">
+        <rect x="128" y="88" width="64" height="24" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="160" y="103" text-anchor="middle" dominant-baseline="central">Gate 0V</text>
+      </g>
+      <!-- Channel empty -->
+      <rect x="128" y="130" width="64" height="30" rx="2" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3"></rect>
+      <text class="ts" x="160" y="148" text-anchor="middle" fill="#888780">rỗng</text>
+      <!-- No current -->
+      <line x1="99" y1="220" x2="221" y2="220" stroke="#E24B4A" stroke-width="2" stroke-dasharray="6 4" fill="none"></line>
+      <text class="ts" x="160" y="240" text-anchor="middle" fill="#A32D2D">không có dòng điện</text>
+
+      <!-- VS -->
+      <text class="th" x="340" y="148" text-anchor="middle">VS</text>
+
+      <!-- RIGHT: ON -->
+      <text class="th" x="520" y="22" text-anchor="middle">V_gate &gt; V_th → BẬT (ON)</text>
+
+      <g class="c-blue">
+        <rect x="420" y="158" width="200" height="50" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="520" y="186" text-anchor="middle" dominant-baseline="central">Silicon đế</text>
+      </g>
+      <g class="c-blue">
+        <rect x="430" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="459" y="148" text-anchor="middle" dominant-baseline="central">S</text>
+      </g>
+      <g class="c-blue">
+        <rect x="552" y="130" width="58" height="30" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="581" y="148" text-anchor="middle" dominant-baseline="central">D</text>
+      </g>
+      <rect x="488" y="112" width="64" height="18" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"></rect>
+      <g class="c-teal">
+        <rect x="488" y="88" width="64" height="24" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="520" y="103" text-anchor="middle" dominant-baseline="central">Gate +V</text>
+      </g>
+      <!-- Channel formed -->
+      <rect x="488" y="130" width="64" height="30" rx="2" fill="#5DCAA5" stroke="#1D9E75" stroke-width="1"></rect>
+      <text class="ts" x="520" y="148" text-anchor="middle" fill="#04342C">e⁻ e⁻ e⁻</text>
+      <!-- Current arrow -->
+      <line x1="459" y1="226" x2="552" y2="226" stroke="#1D9E75" stroke-width="2.5" fill="none" marker-end="url(#a2)"></line>
+      <text class="ts" x="520" y="246" text-anchor="middle" fill="#085041">dòng điện chạy!</text>
+      <!-- E-field arrow -->
+      <line x1="520" y1="108" x2="520" y2="126" stroke="#EF9F27" stroke-width="2" fill="none" marker-end="url(#a2)"></line>
+      <text class="ts" x="562" y="116" text-anchor="start" fill="#854F0B">E-field hút e⁻</text>
+    </svg>
+    <div class="desc">Cơ chế vật lý: khi Gate nhận điện áp dương, nó tạo ra <b>trường điện (E-field)</b> xuyên qua lớp SiO₂. Trường điện hút electron tự do từ silicon lên sát bề mặt, tạo ra <b>kênh dẫn (inversion channel)</b> nối Source và Drain. Dòng điện có thể chạy. Điện áp tắt → kênh biến mất → dòng ngắt. Đây là <b>"field-effect"</b> trong tên MOSFET. Toàn bộ quá trình diễn ra ở tốc độ GHz — hàng tỷ lần mỗi giây.</div>
+  </div>
+
+  <!-- ═══ PANEL 3: 0 AND 1 ═══ -->
+  <div id="p3" class="panel">
+    <svg width="100%" viewBox="0 0 680 240" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET tắt mở = bit 0 và 1 — từ transistor đến GPU</title>
+      <desc>Chuỗi từ 1 MOSFET đến cổng logic, ALU, và GPU với 80 tỷ transistors</desc>
+      <defs>
+        <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </marker>
+      </defs>
+
+      <!-- Step 1 -->
+      <g class="c-gray">
+        <rect x="42" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="107" y="82" text-anchor="middle" dominant-baseline="central">1 MOSFET</text>
+        <text class="ts" x="107" y="104" text-anchor="middle" dominant-baseline="central">OFF = 0</text>
+        <text class="ts" x="107" y="120" text-anchor="middle" dominant-baseline="central">ON  = 1</text>
+        <text class="ts" x="107" y="144" text-anchor="middle" dominant-baseline="central">= 1 bit</text>
+      </g>
+      <line x1="172" y1="106" x2="200" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 2 -->
+      <g class="c-teal">
+        <rect x="200" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="265" y="82" text-anchor="middle" dominant-baseline="central">Cổng logic</text>
+        <text class="ts" x="265" y="104" text-anchor="middle" dominant-baseline="central">2–4 MOSFETs</text>
+        <text class="ts" x="265" y="120" text-anchor="middle" dominant-baseline="central">NOT, AND, OR</text>
+        <text class="ts" x="265" y="144" text-anchor="middle" dominant-baseline="central">= phép tính cơ bản</text>
+      </g>
+      <line x1="330" y1="106" x2="358" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 3 -->
+      <g class="c-amber">
+        <rect x="358" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="423" y="82" text-anchor="middle" dominant-baseline="central">ALU / Register</text>
+        <text class="ts" x="423" y="104" text-anchor="middle" dominant-baseline="central">Hàng nghìn gates</text>
+        <text class="ts" x="423" y="120" text-anchor="middle" dominant-baseline="central">Cộng, trừ, nhân</text>
+        <text class="ts" x="423" y="144" text-anchor="middle" dominant-baseline="central">= khối tính toán</text>
+      </g>
+      <line x1="488" y1="106" x2="516" y2="106" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a3)"></line>
+
+      <!-- Step 4 -->
+      <g class="c-purple">
+        <rect x="516" y="52" width="130" height="108" rx="8" stroke-width="0.5"></rect>
+        <text class="th" x="581" y="82" text-anchor="middle" dominant-baseline="central">GPU H100</text>
+        <text class="ts" x="581" y="104" text-anchor="middle" dominant-baseline="central">80 tỷ MOSFET</text>
+        <text class="ts" x="581" y="120" text-anchor="middle" dominant-baseline="central">Chạy AI model</text>
+        <text class="ts" x="581" y="144" text-anchor="middle" dominant-baseline="central">= LLM, image gen</text>
+      </g>
+
+      <!-- Bottom note -->
+      <rect x="42" y="178" width="604" height="46" rx="6" fill="#E6F1FB" stroke="#B5D4F4" stroke-width="0.5"></rect>
+      <text class="ts" x="344" y="198" text-anchor="middle" fill="#0C447C">Mỗi khi bạn dùng ChatGPT hay Gemini, hàng trăm nghìn tỷ lần đóng/mở MOSFET</text>
+      <text class="ts" x="344" y="216" text-anchor="middle" fill="#185FA5">diễn ra mỗi giây — tất cả bắt đầu từ 1 transistor đơn giản bật/tắt</text>
+    </svg>
+    <div class="desc">Từ 1 transistor → ghép thành cổng logic (NOT: 2 MOSFETs, NAND: 4 MOSFETs) → ghép thành ALU → ghép thành CPU/GPU. <b>80 tỷ MOSFET trong GPU H100 = 80 tỷ bit có thể được điều khiển song song</b> — đó là sức mạnh tính toán AI. Toàn bộ kiến trúc máy tính hiện đại được xây dựng từ một linh kiện bật/tắt đơn giản.</div>
+  </div>
+
+  <!-- ═══ PANEL 4: IN REAL CHIP ═══ -->
+  <div id="p4" class="panel on">
+    <svg width="100%" viewBox="0 0 680 270" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>MOSFET trong chip thật — kích thước qua các thế hệ và giới hạn vật lý</title>
+      <desc>Kích thước MOSFET giảm từ 10µm (1971) xuống 2nm (2024), và giới hạn quantum tunneling</desc>
+
+      <!-- Title -->
+      <text class="th" x="200" y="22" text-anchor="middle">Kích thước MOSFET qua các thế hệ</text>
+
+      <!-- 1971: 10µm -->
+      <g class="c-gray">
+        <rect x="60" y="40" width="80" height="80" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="100" y="62" text-anchor="middle" dominant-baseline="central">1971</text>
+        <text class="th" x="100" y="84" text-anchor="middle" dominant-baseline="central">10µm</text>
+        <text class="ts" x="100" y="106" text-anchor="middle" dominant-baseline="central">2,300 TRs</text>
+      </g>
+
+      <!-- 2000: 180nm -->
+      <g class="c-gray">
+        <rect x="160" y="60" width="60" height="60" rx="4" stroke-width="0.5"></rect>
+        <text class="ts" x="190" y="80" text-anchor="middle" dominant-baseline="central">2000</text>
+        <text class="th" x="190" y="100" text-anchor="middle" dominant-baseline="central">180nm</text>
+      </g>
+
+      <!-- 2012: 22nm -->
+      <g class="c-blue">
+        <rect x="240" y="80" width="44" height="40" rx="3" stroke-width="0.5"></rect>
+        <text class="ts" x="262" y="94" text-anchor="middle" dominant-baseline="central">2012</text>
+        <text class="th" x="262" y="112" text-anchor="middle" dominant-baseline="central">22nm</text>
+      </g>
+
+      <!-- 2020: 5nm -->
+      <g class="c-teal">
+        <rect x="304" y="92" width="30" height="28" rx="2" stroke-width="0.5"></rect>
+        <text class="ts" x="319" y="102" text-anchor="middle" dominant-baseline="central">2020</text>
+        <text class="th" x="319" y="116" text-anchor="middle" dominant-baseline="central">5nm</text>
+      </g>
+
+      <!-- 2024: 2nm -->
+      <g class="c-amber">
+        <rect x="354" y="100" width="22" height="20" rx="2" stroke-width="0.5"></rect>
+        <text class="ts" x="365" y="108" text-anchor="middle" dominant-baseline="central">2024</text>
+        <text class="th" x="365" y="122" text-anchor="middle" dominant-baseline="central">2nm</text>
+      </g>
+
+      <!-- Scale baseline -->
+      <line x1="60" y1="138" x2="400" y2="138" stroke="#D3D1C7" stroke-width="0.5"></line>
+      <text class="ts" x="230" y="154" text-anchor="middle">Kích thước giảm 5000× trong 50 năm (Moore's Law)</text>
+
+      <!-- Right: density -->
+      <text class="th" x="545" y="22" text-anchor="middle">Mật độ trong chip 3nm</text>
+      <g class="c-teal">
+        <rect x="420" y="40" width="240" height="120" rx="8" stroke-width="0.5"></rect>
+        <text class="ts" x="540" y="66" text-anchor="middle" dominant-baseline="central">1 mm² chip</text>
+        <text class="th" x="540" y="90" text-anchor="middle" dominant-baseline="central">~100 triệu</text>
+        <text class="ts" x="540" y="112" text-anchor="middle" dominant-baseline="central">transistors</text>
+        <text class="ts" x="540" y="132" text-anchor="middle" dominant-baseline="central">= diện tích hạt cát</text>
+      </g>
+
+      <!-- Bottom insight -->
+      <rect x="60" y="178" width="560" height="72" rx="6" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"></rect>
+      <text class="th" x="340" y="200" text-anchor="middle" fill="#412402">Tại sao điều này liên quan đến photonics?</text>
+      <text class="ts" x="340" y="220" text-anchor="middle" fill="#633806">MOSFET không thể thu nhỏ mãi — quantum tunneling phá vỡ cơ chế tắt/mở khi &lt; 2nm</text>
+      <text class="ts" x="340" y="238" text-anchor="middle" fill="#854F0B">Electron "chui hầm" qua SiO₂ ngay cả khi transistor tắt → mất kiểm soát</text>
+      <text class="ts" x="340" y="254" text-anchor="middle" fill="#854F0B">→ Lý do photonic processor (photon thay transistor) được nghiên cứu gấp</text>
+    </svg>
+    <div class="desc">MOSFET hiện đại (3nm của TSMC, 2nm sắp ra) nhỏ đến mức chỉ vài chục nguyên tử silicon xếp ngang. <b>Giới hạn vật lý đang đến:</b> khi transistor quá nhỏ, electron "chui hầm" qua lớp SiO₂ (quantum tunneling) ngay cả khi transistor tắt — mất kiểm soát hoàn toàn. Đây chính là lý do ngành đang tìm hướng thay thế như <b>silicon photonics</b>, nơi photon thay thế electron làm đơn vị tính toán và không bị giới hạn bởi kích thước transistor.</div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="dots" id="dotRow">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot on"></div>
+  </div>
+  <div class="nav">
+    <button onclick="go(cur-1)">← Trước</button>
+    <button onclick="go(cur+1)">Tiếp →</button>
+  </div>
+  <div class="step-counter" id="stepCounter">Bước 5 / 5 — Trong chip thật</div>
+
+  <div class="source-note">
+    <strong>Nguồn:</strong> Sze &amp; Ng (2006) <em>Physics of Semiconductor Devices</em> · Plummer, Deal &amp; Griffin (2000) <em>Silicon VLSI Technology</em> · Streetman &amp; Banerjee (2014) <em>Solid State Electronic Devices</em> · OECD (2025) <em>Mapping the Semiconductor Value Chain</em> · IPSR-I (2024) <em>Silicon Photonics Roadmap</em>
+  </div>
+
+</div>
+
+<script>
+let cur = 0;
+const total = 5;
+const stepNames = ['MOSFET là gì','Cấu trúc bên trong','Cách hoạt động','Tắt / Mở = 0 / 1','Trong chip thật'];
+
+function go(n) {
+  n = Math.max(0, Math.min(total - 1, n));
+  document.querySelectorAll('.panel').forEach((p, i) => p.classList.toggle('on', i === n));
+  document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('on', i === n));
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === n));
+  document.getElementById('stepCounter').textContent = `Bước ${n+1} / ${total} — ${stepNames[n]}`;
+  cur = n;
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)file:///Users/macbookairm1/Downloads/semiconductor_supply_chain_full.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuỗi cung ứng Semiconductor — Từ nguyên liệu thô đến sản phẩm cuối</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f5f4ef;
+  --color-background-tertiary:#eeede8;
+  --color-text-primary:#1a1a18;
+  --color-text-secondary:#5a5955;
+  --color-text-tertiary:#8a8880;
+  --color-border-tertiary:rgba(0,0,0,0.12);
+  --color-border-secondary:rgba(0,0,0,0.25);
+  --color-border-primary:rgba(0,0,0,0.35);
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --color-background-primary:#1e1e1c;
+    --color-background-secondary:#2a2a27;
+    --color-background-tertiary:#333330;
+    --color-text-primary:#e8e6de;
+    --color-text-secondary:#a8a69e;
+    --color-text-tertiary:#706e67;
+    --color-border-tertiary:rgba(255,255,255,0.1);
+    --color-border-secondary:rgba(255,255,255,0.2);
+    --color-border-primary:rgba(255,255,255,0.3);
+  }
+}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  min-height:100vh;
+  padding:2rem 1rem;
+}
+.container{
+  max-width:900px;
+  margin:0 auto;
+  background:var(--color-background-primary);
+  border-radius:var(--border-radius-lg);
+  border:0.5px solid var(--color-border-tertiary);
+  padding:2rem;
+}
+.page-title{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.page-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+
+/* NAV */
+.sc-nav{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1.25rem}
+.sc-tab{padding:5px 13px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;cursor:pointer;border:.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary);transition:all .15s}
+.sc-tab.on{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+.sc-tab:hover:not(.on){border-color:var(--color-border-secondary);color:var(--color-text-primary)}
+
+.sc-view{display:none}.sc-view.on{display:block}
+
+/* STAGE CARD */
+.stage{margin-bottom:14px;border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.stage-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;background:var(--color-background-secondary);user-select:none}
+.stage-head:hover{background:var(--color-background-tertiary)}
+.stage-num{font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.stage-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.stage-meta{font-size:11px;color:var(--color-text-tertiary);text-align:right;line-height:1.5}
+.stage-body{display:none;padding:14px;border-top:.5px solid var(--color-border-tertiary)}
+.stage-body.open{display:block}
+.stage-toggle{font-size:12px;color:var(--color-text-tertiary);margin-left:4px;transition:transform .2s}
+.stage-toggle.open{transform:rotate(180deg)}
+
+/* COLOR BANDS */
+.s1 .stage-head{border-left:3px solid #1D9E75}.s1 .stage-num{background:#E1F5EE;color:#0F6E56}
+.s2 .stage-head{border-left:3px solid #EF9F27}.s2 .stage-num{background:#FAEEDA;color:#854F0B}
+.s3 .stage-head{border-left:3px solid #378ADD}.s3 .stage-num{background:#E6F1FB;color:#185FA5}
+.s4 .stage-head{border-left:3px solid #D4537E}.s4 .stage-num{background:#FBEAF0;color:#993556}
+.s5 .stage-head{border-left:3px solid #7F77DD}.s5 .stage-num{background:#EEEDFE;color:#534AB7}
+.s6 .stage-head{border-left:3px solid #D85A30}.s6 .stage-num{background:#FAECE7;color:#993C1D}
+.s7 .stage-head{border-left:3px solid #5F5E5A}.s7 .stage-num{background:#F1EFE8;color:#444441}
+@media(prefers-color-scheme:dark){
+  .s1 .stage-num{background:#085041;color:#9FE1CB}
+  .s2 .stage-num{background:#633806;color:#FAC775}
+  .s3 .stage-num{background:#0C447C;color:#B5D4F4}
+  .s4 .stage-num{background:#72243E;color:#F4C0D1}
+  .s5 .stage-num{background:#3C3489;color:#CECBF6}
+  .s6 .stage-num{background:#712B13;color:#F5C4B3}
+  .s7 .stage-num{background:#444441;color:#D3D1C7}
+}
+
+/* GRID INSIDE STAGE */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.sec-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.co-grid{display:flex;flex-wrap:wrap;gap:6px}
+.co{font-size:12px;padding:3px 9px;border-radius:6px;border:.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.co.us{border-color:#B5D4F4;background:#E6F1FB;color:#185FA5}
+.co.jp{border-color:#FAC775;background:#FAEEDA;color:#854F0B}
+.co.tw{border-color:#9FE1CB;background:#E1F5EE;color:#0F6E56}
+.co.kr{border-color:#F4C0D1;background:#FBEAF0;color:#993556}
+.co.nl{border-color:#CECBF6;background:#EEEDFE;color:#534AB7}
+.co.cn{border-color:#D3D1C7;background:#F1EFE8;color:#5F5E5A}
+.co.de{border-color:#F5C4B3;background:#FAECE7;color:#993C1D}
+.co.uk{border-color:#C0DD97;background:#EAF3DE;color:#3B6D11}
+@media(prefers-color-scheme:dark){
+  .co.us{border-color:#0C447C;background:#042C53;color:#85B7EB}
+  .co.jp{border-color:#633806;background:#412402;color:#FAC775}
+  .co.tw{border-color:#085041;background:#04342C;color:#5DCAA5}
+  .co.kr{border-color:#72243E;background:#4B1528;color:#F4C0D1}
+  .co.nl{border-color:#3C3489;background:#26215C;color:#CECBF6}
+  .co.cn{border-color:#444441;background:#2C2C2A;color:#B4B2A9}
+  .co.de{border-color:#712B13;background:#4A1B0C;color:#F5C4B3}
+  .co.uk{border-color:#27500A;background:#173404;color:#C0DD97}
+}
+.note{font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-top:10px;padding:10px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)}
+.risk-badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.risk-hi{background:#FCEBEB;color:#A32D2D}
+.risk-mid{background:#FAEEDA;color:#854F0B}
+.risk-lo{background:#E1F5EE;color:#0F6E56}
+@media(prefers-color-scheme:dark){
+  .risk-hi{background:#501313;color:#F09595}
+  .risk-mid{background:#412402;color:#FAC775}
+  .risk-lo{background:#04342C;color:#5DCAA5}
+}
+.divider{height:.5px;background:var(--color-border-tertiary);margin:12px 0}
+
+/* OVERVIEW TABLE */
+.ov-table{width:100%;border-collapse:collapse;font-size:12px}
+.ov-table th{font-size:11px;font-weight:500;color:var(--color-text-tertiary);padding:7px 10px;text-align:left;border-bottom:.5px solid var(--color-border-tertiary)}
+.ov-table td{padding:7px 10px;border-bottom:.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);vertical-align:top}
+.ov-table tr:last-child td{border-bottom:none}
+.ov-table td:first-child{font-weight:500;color:var(--color-text-primary);white-space:nowrap}
+@media(max-width:600px){
+  .ov-table th:nth-child(3),.ov-table td:nth-child(3){display:none}
+}
+
+/* FLOW */
+.flow-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:8px}
+.flow-box{background:var(--color-background-secondary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 12px}
+.flow-box b{display:block;font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.flow-box p{font-size:12px;color:var(--color-text-secondary)}
+.flow-arrow{font-size:18px;color:var(--color-text-tertiary);text-align:center}
+.flow-amount{font-size:11px;color:var(--color-text-secondary);text-align:center}
+.flow-gap{height:6px}
+.flow-step-label{text-align:center;font-size:11px;color:var(--color-text-tertiary);margin:4px 0}
+
+/* SOURCE */
+.source-note{margin-top:1.5rem;padding:10px 14px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:11px;color:var(--color-text-tertiary);border-left:3px solid var(--color-border-secondary)}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="page-title">Chuỗi cung ứng Semiconductor — Từ nguyên liệu thô đến sản phẩm cuối</div>
+  <div class="page-sub">Bản đồ đầy đủ 7 tầng · 70+ công ty đại diện · Nguồn: OECD 2025, CSIS, BCG/SIA, McKinsey Q2 2025</div>
+
+  <div class="sc-nav">
+    <div class="sc-tab on" onclick="scTab(&#39;map&#39;,this)">Bản đồ chuỗi</div>
+    <div class="sc-tab" onclick="scTab(&#39;overview&#39;,this)">Tổng quan bảng</div>
+    <div class="sc-tab" onclick="scTab(&#39;flow&#39;,this)">Luồng vật chất</div>
+  </div>
+
+  <!-- ═══ MAP VIEW ═══ -->
+  <div id="map" class="sc-view on">
+
+    <!-- STAGE 1 -->
+    <div class="stage s1">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 1</span>
+        <span class="stage-title">Nguyên liệu thô &amp; Khoáng sản <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$10B<br><span class="risk-badge risk-hi">Rủi ro cao</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Nguyên liệu chiến lược</div>
+            <div class="co-grid">
+              <span class="co cn">🇨🇳 Gallium (TQ &gt;80%)</span>
+              <span class="co cn">🇨🇳 Germanium (~60%)</span>
+              <span class="co cn">🇨🇳 Rare Earth (~85%)</span>
+              <span class="co">🇹🇷 Boron (Thổ Nhĩ Kỳ ~70%)</span>
+              <span class="co">Silicon cát thạch anh (Mỹ, Brazil, Úc)</span>
+              <span class="co">Neon gas (Ukraine chiếm lớn)</span>
+              <span class="co cn">🇨🇳 Tungsten, Magnesium</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Thiết bị tinh chế</div>
+            <div class="co-grid">
+              <span class="co de">🇩🇪 PVA TePla (lò mọc tinh thể)</span>
+              <span class="co jp">🇯🇵 Accretech, Disco, Okamoto (cắt wafer)</span>
+            </div>
+            <div class="note">⚠ Trung Quốc kiểm soát phần lớn nguyên liệu thô. Năm 2023 TQ hạn chế xuất khẩu Gallium và Germanium — 2 nguyên tố thiết yếu cho chip thế hệ mới và silicon photonics.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage s2">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 2</span>
+        <span class="stage-title">Wafer Silicon (tấm bán dẫn) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$14B<br><span class="risk-badge risk-hi">Tập trung cao</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Nhà sản xuất wafer lớn nhất</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Shin-Etsu (~27%)</span>
+              <span class="co jp">🇯🇵 SUMCO (~26%)</span>
+              <span class="co tw">🇹🇼 GlobalWafers (~17%)</span>
+              <span class="co de">🇩🇪 Siltronic (~12%)</span>
+              <span class="co kr">🇰🇷 SK Siltron (~9%)</span>
+            </div>
+            <div class="note">Shin-Etsu + SUMCO chiếm &gt;50% thị trường. Wafer 300mm cho chip tiên tiến còn tập trung hơn nữa.</div>
+          </div>
+          <div>
+            <div class="sec-label">Vật liệu wafer thay thế (tương lai)</div>
+            <div class="co-grid">
+              <span class="co">Silicon Carbide (SiC) — chip công suất</span>
+              <span class="co">Gallium Nitride (GaN) — RF, 5G</span>
+              <span class="co">Gallium Arsenide (GaAs) — quang điện</span>
+              <span class="co">InP — silicon photonics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage s3">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 3</span>
+        <span class="stage-title">Thiết kế chip — EDA, IP cores &amp; Fabless <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">EDA ~$8B · IP ~$5B · Design ~$200B+<br><span class="risk-badge risk-lo">Mỹ+UK thống trị</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">EDA Software (phần mềm vẽ chip)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Synopsys (~32%)</span>
+              <span class="co us">🇺🇸 Cadence (~28%)</span>
+              <span class="co us">🇺🇸 Siemens EDA (Mentor)</span>
+              <span class="co us">🇺🇸 Ansys, Keysight</span>
+              <span class="co cn">🇨🇳 Empyrean (nội địa TQ)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">IP Cores (khối thiết kế tái dụng)</div>
+            <div class="co-grid">
+              <span class="co uk">🇬🇧 ARM (SoftBank) — kiến trúc CPU</span>
+              <span class="co us">🇺🇸 Synopsys, Cadence IP</span>
+              <span class="co uk">🇬🇧 Imagination Technologies</span>
+              <span class="co us">🇺🇸 CEVA, Rambus</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Fabless — thiết kế không có fab</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 NVIDIA (GPU, AI)</span>
+              <span class="co us">🇺🇸 AMD (CPU, GPU)</span>
+              <span class="co us">🇺🇸 Qualcomm (mobile)</span>
+              <span class="co us">🇺🇸 Broadcom, Marvell</span>
+              <span class="co tw">🇹🇼 MediaTek</span>
+              <span class="co cn">🇨🇳 HiSilicon (Huawei)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">System companies (tự thiết kế chip)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Apple (A-series, M-series)</span>
+              <span class="co us">🇺🇸 Google (TPU)</span>
+              <span class="co us">🇺🇸 Amazon (Trainium, Inferentia)</span>
+              <span class="co us">🇺🇸 Tesla (D1, HW4)</span>
+              <span class="co cn">🇨🇳 Alibaba (T-Head)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage s4">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 4</span>
+        <span class="stage-title">Thiết bị sản xuất — SME <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$108B (2021)<br><span class="risk-badge risk-hi">Mỹ+Nhật+HÀ LAN độc quyền</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Lithography — nút thắt số 1</div>
+            <div class="co-grid">
+              <span class="co nl">🇳🇱 ASML (EUV độc quyền 100%; DUV ~80%)</span>
+              <span class="co jp">🇯🇵 Nikon (DUV ~10%)</span>
+              <span class="co jp">🇯🇵 Canon (DUV ~10%)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Deposition ($22.8B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Applied Materials (67%)</span>
+              <span class="co us">🇺🇸 Lam Research</span>
+              <span class="co jp">🇯🇵 Tokyo Electron (TEL)</span>
+              <span class="co nl">🇳🇱 ASM International</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Process Control / Metrology ($13.5B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 KLA Corporation (76%)</span>
+              <span class="co us">🇺🇸 Applied Materials</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Etching &amp; Cleaning ($30.5B — lớn nhất)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Lam Research (56%)</span>
+              <span class="co jp">🇯🇵 Tokyo Electron</span>
+              <span class="co us">🇺🇸 Applied Materials</span>
+              <span class="co jp">🇯🇵 Screen Holdings</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Ion Implant ($2.5B)</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Applied Materials (83%)</span>
+              <span class="co us">🇺🇸 Axcelis Technologies</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Photoresist Processing ($3.7B)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Tokyo Electron (92% thị phần)</span>
+              <span class="co jp">🇯🇵 Screen Holdings</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Manufacturing Automation ($4.2B)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Daifuku (64%)</span>
+              <span class="co jp">🇯🇵 Rorze</span>
+              <span class="co us">🇺🇸 Brooks Automation</span>
+            </div>
+          </div>
+        </div>
+        <div class="note">Ba công ty Mỹ — Applied Materials, Lam Research, KLA — cùng với Tokyo Electron (Nhật) và ASML (Hà Lan) kiểm soát phần lớn toàn bộ thiết bị sản xuất chip tiên tiến. Không có 5 công ty này, không có chip tiên tiến nào được làm ra.</div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage s5">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 5</span>
+        <span class="stage-title">Vật liệu hóa học &amp; Photomask <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$40B+ front-end<br><span class="risk-badge risk-mid">Nhật độc quyền nhiều phân khúc</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Photoresist (hóa chất in mạch)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 JSR Corporation</span>
+              <span class="co jp">🇯🇵 Shin-Etsu Chemical</span>
+              <span class="co jp">🇯🇵 Tokyo Ohka Kogyo (TOK)</span>
+              <span class="co jp">🇯🇵 Fujifilm</span>
+              <span class="co de">🇩🇪 Merck KGaA</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">CMP Slurries &amp; Pads</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Cabot Microelectronics</span>
+              <span class="co us">🇺🇸 Dow Chemical</span>
+              <span class="co jp">🇯🇵 Fujimi</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Photomasks (mặt nạ quang học)</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Dai Nippon Printing</span>
+              <span class="co jp">🇯🇵 Hoya Corporation</span>
+              <span class="co us">🇺🇸 Photronics</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Electronic Specialty Gases</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Air Products</span>
+              <span class="co us">🇺🇸 Linde</span>
+              <span class="co jp">🇯🇵 Showa Denko</span>
+              <span class="co de">🇩🇪 Air Liquide</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Sputtering Targets</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Ulvac</span>
+              <span class="co us">🇺🇸 Plansee, Materion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage s6">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 6</span>
+        <span class="stage-title">Front-end Manufacturing — Wafer Fabrication (Fab) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$500B+ chips<br><span class="risk-badge risk-hi">Đài Loan chi phối chip tiên tiến</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">Pure-Play Foundry (sản xuất thuê)</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 TSMC (~60% foundry, &gt;90% chip &lt;7nm)</span>
+              <span class="co kr">🇰🇷 Samsung Foundry (~15%)</span>
+              <span class="co us">🇺🇸 GlobalFoundries (mature node)</span>
+              <span class="co tw">🇹🇼 UMC (~7%)</span>
+              <span class="co cn">🇨🇳 SMIC (28nm+, ~5%)</span>
+              <span class="co cn">🇨🇳 Hua Hong (~2%)</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">IDM — tự thiết kế + tự sản xuất</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Intel (fab riêng, đang chuyển đổi)</span>
+              <span class="co kr">🇰🇷 Samsung (logic + memory)</span>
+              <span class="co kr">🇰🇷 SK Hynix (DRAM, HBM)</span>
+              <span class="co us">🇺🇸 Micron (DRAM, NAND)</span>
+              <span class="co us">🇺🇸 Texas Instruments</span>
+              <span class="co de">🇩🇪 Infineon, STMicro</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Quy trình sản xuất (rút gọn)</div>
+            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.9">
+              <div>① Wafer được đưa vào fab sạch (cleanroom Class 1)</div>
+              <div>② Lithography: ASML chiếu tia EUV in mạch</div>
+              <div>③ Etching: loại bỏ vật liệu theo pattern</div>
+              <div>④ Deposition: phủ lớp vật liệu mới</div>
+              <div>⑤ Ion implant: cấy dopant tạo bán dẫn N/P</div>
+              <div>⑥ CMP: mài phẳng bề mặt</div>
+              <div>⑦ Lặp lại 500+ lần → wafer thành phẩm</div>
+            </div>
+            <div class="note">Toàn bộ quy trình mất 3–4 tháng, trong môi trường cleanroom siêu tinh khiết. Mỗi node mới (7nm→5nm→3nm→2nm) đòi hỏi hàng chục tỷ USD đầu tư mới.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 7 -->
+    <div class="stage s7">
+      <div class="stage-head" onclick="tog(this)">
+        <span class="stage-num">Tầng 7</span>
+        <span class="stage-title">Back-end: Assembly, Test &amp; Packaging (ATP) <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Thị trường ~$95B<br><span class="risk-badge risk-mid">TQ + Đài Loan ~60%</span></span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">OSAT — outsourced packaging</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 ASE Group (#1 toàn cầu, ~25%)</span>
+              <span class="co us">🇺🇸 Amkor Technology (#2)</span>
+              <span class="co cn">🇨🇳 JCET (#3)</span>
+              <span class="co cn">🇨🇳 Tongfu Microelectronics</span>
+              <span class="co cn">🇨🇳 Tianshui Huatian</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Advanced Packaging (TSMC + IDM)</div>
+            <div class="co-grid">
+              <span class="co tw">🇹🇼 TSMC CoWoS (chip-on-wafer-on-substrate)</span>
+              <span class="co kr">🇰🇷 Samsung 3D packaging</span>
+              <span class="co us">🇺🇸 Intel Foveros (3D stacking)</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Test Equipment</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Advantest (43% thị phần)</span>
+              <span class="co us">🇺🇸 Teradyne (35%)</span>
+              <span class="co kr">🇰🇷 KYEC</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sec-label">Vật liệu packaging</div>
+            <div class="co-grid">
+              <span class="co jp">🇯🇵 Showa Denko (lead frames)</span>
+              <span class="co jp">🇯🇵 Disco (dicing — độc quyền)</span>
+              <span class="co jp">🇯🇵 Accretech</span>
+            </div>
+            <div class="note">Vietnam ngày càng quan trọng trong ATP: Amkor đầu tư $1.6B tại Bắc Ninh — facility advanced packaging lớn nhất của Amkor. Intel cũng có fab assembly/test tại Bình Dương.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END PRODUCT -->
+    <div class="stage" style="border-color:var(--color-border-secondary)">
+      <div class="stage-head" onclick="tog(this)" style="border-left:none">
+        <span class="stage-num" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">Đầu ra</span>
+        <span class="stage-title">Sản phẩm cuối — chips tích hợp vào thiết bị <span class="stage-toggle">▾</span></span>
+        <span class="stage-meta">Điện thoại · Server · Ô tô · Y tế</span>
+      </div>
+      <div class="stage-body open">
+        <div class="two-col">
+          <div>
+            <div class="sec-label">AI / Data center chips</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 NVIDIA H100/H200 (TSMC fab)</span>
+              <span class="co us">🇺🇸 Google TPU v5</span>
+              <span class="co us">🇺🇸 Amazon Trainium 2</span>
+              <span class="co us">🇺🇸 AMD MI300X</span>
+              <span class="co cn">🇨🇳 Huawei Ascend 910B</span>
+            </div>
+          </div>
+          <div>
+            <div class="sec-label">Consumer / Mobile / Auto</div>
+            <div class="co-grid">
+              <span class="co us">🇺🇸 Apple A18 Pro (TSMC 3nm)</span>
+              <span class="co us">🇺🇸 Qualcomm Snapdragon 8 Gen 3</span>
+              <span class="co tw">🇹🇼 MediaTek Dimensity</span>
+              <span class="co de">🇩🇪 Infineon automotive MCU</span>
+              <span class="co kr">🇰🇷 Samsung HBM3E (AI memory)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end map view -->
+
+  <!-- ═══ OVERVIEW TABLE ═══ -->
+  <div id="overview" class="sc-view">
+    <table class="ov-table">
+      <thead>
+        <tr>
+          <th>Tầng</th>
+          <th>Vai trò</th>
+          <th>Quốc gia dẫn đầu</th>
+          <th>Công ty tiêu biểu</th>
+          <th>Tập trung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 · Nguyên liệu thô</td><td>Khai thác khoáng sản, luyện kim</td><td>🇨🇳 TQ, 🇹🇷 Thổ Nhĩ Kỳ</td><td>China Minmetals, Ucore</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>2 · Wafer silicon</td><td>Tinh chế, cắt tấm bán dẫn</td><td>🇯🇵 Nhật (~53%)</td><td>Shin-Etsu, SUMCO, GlobalWafers</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · EDA Software</td><td>Phần mềm thiết kế mạch</td><td>🇺🇸 Mỹ (~90%)</td><td>Synopsys, Cadence, Siemens EDA</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · IP Cores</td><td>Khối thiết kế tái dụng</td><td>🇬🇧🇺🇸 UK + Mỹ (&gt;90%)</td><td>ARM, Synopsys IP, Cadence IP</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>3 · Chip Design</td><td>Thiết kế kiến trúc chip</td><td>🇺🇸 Mỹ (51% doanh thu)</td><td>NVIDIA, AMD, Qualcomm, Apple</td><td><span class="risk-badge risk-mid">Cao</span></td></tr>
+        <tr><td>4 · Lithography equip.</td><td>Máy in mạch điện tử</td><td>🇳🇱 Hà Lan (89% EUV)</td><td>ASML (EUV độc quyền), Nikon, Canon</td><td><span class="risk-badge risk-hi">Cực cao</span></td></tr>
+        <tr><td>4 · Deposition equip.</td><td>Máy phủ vật liệu</td><td>🇺🇸 Mỹ (67%)</td><td>Applied Materials, Lam Research, TEL</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>4 · Process control</td><td>Thiết bị đo lường, kiểm tra</td><td>🇺🇸 Mỹ (76%)</td><td>KLA, Applied Materials</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>5 · Hóa chất / vật liệu</td><td>Photoresist, gases, CMP slurries</td><td>🇯🇵 Nhật (photoresist 92%)</td><td>JSR, Shin-Etsu Chem, Tokyo Ohka</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>6 · Wafer Fabrication</td><td>Sản xuất chip (fab)</td><td>🇹🇼 Đài Loan (&gt;90% chip &lt;7nm)</td><td>TSMC, Samsung Foundry, GlobalFoundries</td><td><span class="risk-badge risk-hi">Rất cao</span></td></tr>
+        <tr><td>7 · ATP (back-end)</td><td>Lắp ráp, test, đóng gói</td><td>🇨🇳🇹🇼 TQ + Đài Loan (~60%)</td><td>ASE Group, Amkor, JCET</td><td><span class="risk-badge risk-mid">Cao</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ FLOW VIEW ═══ -->
+  <div id="flow" class="sc-view">
+    <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:14px">Cát thạch anh → Chip → Thiết bị: mỗi mũi tên đại diện cho một biên giới quốc gia bị vượt qua. Một chip trung bình vượt 70+ biên giới trước khi đến tay người dùng.</p>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #1D9E75">
+        <b>🌏 Khoáng sản &amp; Silicon thô</b>
+        <p>Gallium (CN), Silicon quartz (toàn cầu), Rare earth (CN), Neon (Ukraine)</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ tinh chế, Czochralski process</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #EF9F27">
+        <b>🇯🇵 Wafer silicon tinh khiết</b>
+        <p>Shin-Etsu + SUMCO sản xuất &gt;50% wafer thế giới tại Nhật Bản</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ ship đến fab (Đài Loan, Hàn, Mỹ)</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #378ADD">
+        <b>🇺🇸 EDA + IP (Mỹ, UK)</b>
+        <p>Synopsys, Cadence thiết kế; ARM cấp IP core</p>
+      </div>
+      <div style="text-align:center;font-size:18px;color:var(--color-text-tertiary)">+</div>
+      <div class="flow-box" style="border-left:3px solid #D4537E">
+        <b>🇳🇱🇺🇸🇯🇵 Thiết bị fab</b>
+        <p>ASML (lithography) · Applied Materials · Lam Research · KLA · TEL</p>
+      </div>
+    </div>
+    <div class="flow-step-label">↓ tất cả hội tụ tại fab</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #D85A30">
+        <b>🇹🇼 Wafer Fabrication — TSMC (Đài Loan)</b>
+        <p>500+ bước quy trình · 3–4 tháng · Cleanroom Class 1 · Chip 3nm/2nm</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ wafer thành phẩm → OSAT</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid #5F5E5A">
+        <b>🇹🇼🇨🇳🇻🇳 Assembly, Test &amp; Packaging</b>
+        <p>ASE (TW) · Amkor (VN/Mỹ) · JCET (CN) · Disco dicing (JP) · CoWoS advanced packaging (TSMC)</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="flow-step-label">↓ chip đóng gói → OEM → người dùng</div>
+
+    <div class="flow-row">
+      <div class="flow-box" style="border-left:3px solid var(--color-border-secondary)">
+        <b>📦 Sản phẩm cuối</b>
+        <p>iPhone (Apple) · Data center GPU (NVIDIA) · Ô tô điện (Tesla, BYD) · Máy y tế · Thiết bị 5G</p>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="note" style="margin-top:14px">Toàn bộ hành trình từ cát → chip mất 4–6 tháng và chi phí đầu tư hàng chục tỷ USD cho mỗi thế hệ fab mới. Không một quốc gia nào có thể tự hoàn thành toàn bộ chuỗi này — đây chính là nguồn gốc của mọi cuộc tranh chấp địa chính trị liên quan đến chip.</div>
+  </div>
+
+  <div class="source-note">
+    <strong>Nguồn dữ liệu:</strong> OECD "Mapping the Semiconductor Value Chain" (2025) · BCG/SIA "Emerging Resilience in the Semiconductor Supply Chain" (2024) · CSIS "Mapping the Semiconductor Supply Chain" (2023) · McKinsey Semiconductor CaaS Q2 2025 · TechInsights Semiconductor Equipment Database (2023)
+  </div>
+</div>
+
+<script>
+function scTab(id, el) {
+  document.querySelectorAll('.sc-view').forEach(v => v.classList.remove('on'));
+  document.querySelectorAll('.sc-tab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+function tog(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.stage-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (arrow) arrow.classList.toggle('open', !isOpen);
+}
+</script>
+
+
+</body></html>

@@ -4,12 +4,12 @@ import StockTable from "@/components/StockTable";
 
 export const metadata: Metadata = { title: "Stock Tracker" };
 
-// Recharts uses browser APIs (ResizeObserver, window) — must load client-side only
-const PriceChart = dynamic(() => import("@/components/PriceChart"), {
+// Leaflet uses browser APIs — must load client-side only
+const CompanyMap = dynamic(() => import("@/components/CompanyMap"), {
   ssr: false,
   loading: () => (
-    <div className="bg-surface border border-border rounded-lg p-4 h-[262px] flex items-center justify-center">
-      <span className="text-muted text-sm">Loading chart…</span>
+    <div className="bg-surface border border-border rounded-lg h-[536px] flex items-center justify-center">
+      <span className="text-muted text-sm">Loading map…</span>
     </div>
   ),
 });
@@ -29,12 +29,7 @@ export default function StocksPage() {
 
       <StockTable />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <PriceChart symbol="AVGO" defaultRange="3M" />
-        <PriceChart symbol="MRVL" defaultRange="3M" />
-        <PriceChart symbol="COHR" defaultRange="3M" />
-        <PriceChart symbol="FN" defaultRange="3M" />
-      </div>
+      <CompanyMap />
     </div>
   );
 }
