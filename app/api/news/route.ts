@@ -16,7 +16,7 @@ type Article = {
 const COMPANY_NEWS: Article[] = [
   { title: "Broadcom (AVGO) — Latest News & Press Releases", description: "Co-packaged optics, custom AI silicon, and photonic switch news from Broadcom investor relations.", url: "https://investors.broadcom.com/financial-information/financial-news-releases", source: { name: "Broadcom IR" }, publishedAt: new Date(Date.now() - 1 * 3600000).toISOString(), urlToImage: null, tag: "AVGO" },
   { title: "Marvell (MRVL) — Investor News", description: "CPO, Teralynx switch ASIC, and custom cloud silicon announcements from Marvell Technology.", url: "https://investor.marvell.com/news-releases", source: { name: "Marvell IR" }, publishedAt: new Date(Date.now() - 2 * 3600000).toISOString(), urlToImage: null, tag: "MRVL" },
-  { title: "Coherent Corp (COHR) — Press Releases", description: "InP laser, 800G/1.6T transceiver, and vertical integration news from Coherent Corp.", url: "https://www.coherent.com/news/press-releases", source: { name: "Coherent IR" }, publishedAt: new Date(Date.now() - 3 * 3600000).toISOString(), urlToImage: null, tag: "COHR" },
+  { title: "Coherent Corp (COHR) — Press Releases", description: "InP laser, 800G/1.6T transceiver, silicon photonics (incl. Intel SiPh assets), and vertical integration news from Coherent Corp.", url: "https://www.coherent.com/news/press-releases", source: { name: "Coherent IR" }, publishedAt: new Date(Date.now() - 3 * 3600000).toISOString(), urlToImage: null, tag: "COHR" },
   { title: "Lumentum (LITE) — News & Events", description: "EML pump lasers, ROADM, and photonic component news from Lumentum.", url: "https://investor.lumentum.com/news-releases", source: { name: "Lumentum IR" }, publishedAt: new Date(Date.now() - 4 * 3600000).toISOString(), urlToImage: null, tag: "LITE" },
   { title: "Fabrinet (FN) — Investor Relations", description: "Optical manufacturing capacity, customer program updates, and earnings from Fabrinet.", url: "https://investor.fabrinet.com/news-releases", source: { name: "Fabrinet IR" }, publishedAt: new Date(Date.now() - 5 * 3600000).toISOString(), urlToImage: null, tag: "FN" },
   { title: "MACOM Technology (MTSI) — Press Releases", description: "III-V compound semiconductor, analog photonics, and optical networking news from MACOM.", url: "https://investors.macom.com/news-releases", source: { name: "MACOM IR" }, publishedAt: new Date(Date.now() - 6 * 3600000).toISOString(), urlToImage: null, tag: "MTSI" },
@@ -24,6 +24,10 @@ const COMPANY_NEWS: Article[] = [
   { title: "Lightwave Logic (LWLG) — Press Releases", description: "Electro-optic polymer modulator technology updates and partnership announcements.", url: "https://lightwavelogic.com/news/press-releases", source: { name: "Lightwave Logic IR" }, publishedAt: new Date(Date.now() - 8 * 3600000).toISOString(), urlToImage: null, tag: "LWLG" },
   { title: "AXT Inc (AXTI) — Investor News", description: "InP and GaAs substrate production updates and supply chain news from AXT Inc.", url: "https://ir.axt.com/news-releases", source: { name: "AXT Inc IR" }, publishedAt: new Date(Date.now() - 9 * 3600000).toISOString(), urlToImage: null, tag: "AXTI" },
   { title: "Tower Semiconductor (TSEM) — News", description: "Silicon photonics foundry services, 300mm SiPh platform, and customer design wins.", url: "https://towersemi.com/about/news/", source: { name: "Tower Semiconductor" }, publishedAt: new Date(Date.now() - 10 * 3600000).toISOString(), urlToImage: null, tag: "TSEM" },
+  { title: "Applied Optoelectronics (AAOI) — Investor News", description: "400G/800G DWDM transceiver modules for hyperscaler datacenter deployments, revenue guidance, and manufacturing updates.", url: "https://ir.ao-inc.com/news-releases", source: { name: "AAOI IR" }, publishedAt: new Date(Date.now() - 11 * 3600000).toISOString(), urlToImage: null, tag: "AAOI" },
+  { title: "GlobalFoundries (GFS) — Newsroom", description: "Silicon photonics foundry platform, 300mm SiPh process technology, and photonic IC ecosystem partnerships.", url: "https://gf.com/newsroom/", source: { name: "GlobalFoundries" }, publishedAt: new Date(Date.now() - 12 * 3600000).toISOString(), urlToImage: null, tag: "GFS" },
+  { title: "Credo Technology (CRDO) — Press Releases", description: "HiWire Active Electrical Cables, SerDes IP, and co-packaged optics connectivity for AI datacenter fabric.", url: "https://ir.credosemi.com/news-releases", source: { name: "Credo Technology IR" }, publishedAt: new Date(Date.now() - 13 * 3600000).toISOString(), urlToImage: null, tag: "CRDO" },
+  { title: "Celestica (CLS) — Investor Relations", description: "Optical module manufacturing at scale, 800G/1.6T transceiver capacity, and hyperscaler supply chain announcements.", url: "https://investor.celestica.com/news-releases", source: { name: "Celestica IR" }, publishedAt: new Date(Date.now() - 14 * 3600000).toISOString(), urlToImage: null, tag: "CLS" },
 ];
 
 const COMMERCIAL_NEWS: Article[] = [
@@ -34,6 +38,8 @@ const COMMERCIAL_NEWS: Article[] = [
   { title: "EE Times — Photonic Integration", description: "Electronics Engineering Times coverage of silicon photonics IC design, packaging, and manufacturing.", url: "https://www.eetimes.com/category/photonics/", source: { name: "EE Times" }, publishedAt: new Date(Date.now() - 19 * 3600000).toISOString(), urlToImage: null, commercial: true },
   { title: "Photonics.com — Industry News", description: "Photonics industry news covering lasers, fiber optics, imaging, and silicon photonics components.", url: "https://www.photonics.com/Articles/Silicon_Photonics/a66966", source: { name: "Photonics.com" }, publishedAt: new Date(Date.now() - 21 * 3600000).toISOString(), urlToImage: null, commercial: true },
   { title: "WSJ — Optical Networking", description: "Wall Street Journal tech coverage of optical networking, hyperscaler capex, and photonic semiconductor stocks.", url: "https://www.wsj.com/search?query=co-packaged+optics", source: { name: "WSJ" }, publishedAt: new Date(Date.now() - 23 * 3600000).toISOString(), urlToImage: null, commercial: true },
+  { title: "Semiconductor Engineering — Photonics", description: "Technical analysis of silicon photonics IC design, chiplet integration, CPO architectures, and photonic process nodes.", url: "https://semiengineering.com/?s=silicon+photonics", source: { name: "Semiconductor Engineering" }, publishedAt: new Date(Date.now() - 25 * 3600000).toISOString(), urlToImage: null, commercial: true },
+  { title: "The Register — AI & Optical Interconnect", description: "News and analysis on AI datacenter infrastructure, optical networking buildout, and photonic chip investments.", url: "https://www.theregister.com/Tag/photonics/", source: { name: "The Register" }, publishedAt: new Date(Date.now() - 27 * 3600000).toISOString(), urlToImage: null, commercial: true },
 ];
 
 const TICKER_KEYWORDS: Record<string, string[]> = {
@@ -49,6 +55,9 @@ const TICKER_KEYWORDS: Record<string, string[]> = {
   LWLG: ["Lightwave Logic", "LWLG"],
   TSEM: ["Tower Semiconductor", "Tower Semi", "TSEM"],
   GFS: ["GlobalFoundries", "GFS"],
+  CRDO: ["Credo Technology", "Credo", "CRDO", "HiWire"],
+  CLS: ["Celestica", "CLS"],
+  NVDA: ["Nvidia", "NVDA", "NVLink"],
 };
 
 function detectTickers(text: string): string[] {
@@ -80,7 +89,7 @@ function parseRssBlock(block: string): { title: string; link: string; pubDate: s
 
 async function fetchGoogleNewsRSS(): Promise<Article[]> {
   const query = encodeURIComponent(
-    '"silicon photonics" OR "co-packaged optics" OR "photonic AI" OR "optical interconnect" OR Broadcom AVGO OR Marvell MRVL OR "Coherent Corp" OR Lumentum OR Fabrinet OR POET OR "Lightwave Logic"'
+    '"silicon photonics" OR "co-packaged optics" OR "optical interconnect" OR "optical compute" OR Broadcom OR Marvell OR "Coherent Corp" OR Lumentum OR Fabrinet OR POET OR "Lightwave Logic" OR "Credo Technology" OR Celestica OR "800G" OR "1.6T"'
   );
   const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`;
 
@@ -117,7 +126,7 @@ export async function GET() {
   const key = process.env.NEWSAPI_KEY;
   if (key) {
     const query = encodeURIComponent(
-      'photonics OR "silicon photonics" OR "co-packaged optics" OR CPO OR "optical interconnect" OR AVGO OR MRVL OR COHR OR LITE OR AXTI OR POET OR LWLG'
+      'photonics OR "silicon photonics" OR "co-packaged optics" OR CPO OR "optical interconnect" OR AVGO OR MRVL OR COHR OR LITE OR AXTI OR POET OR LWLG OR CRDO OR CLS OR "800G" OR "1.6T"'
     );
     try {
       const res = await fetch(
