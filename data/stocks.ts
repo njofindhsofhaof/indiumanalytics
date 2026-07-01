@@ -93,6 +93,47 @@ export const STOCK_METADATA: StockMeta[] = [
     thesis: "Leading SiPh production node in 45RFSOI/300mm",
     marketCapTier: "large",
   },
+  // Networking
+  {
+    symbol: "CRDO",
+    name: "Credo Technology",
+    sector: "Semiconductors",
+    thesis:
+      "Active electrical cables and SerDes IP for AI scale-out — bandwidth bridge before CPO matures",
+    marketCapTier: "small",
+  },
+  {
+    symbol: "CIEN",
+    name: "Ciena",
+    sector: "Networking",
+    thesis:
+      "Optical networking systems and WaveLogic coherent DSP — primary beneficiary of AI datacenter backbone buildout",
+    marketCapTier: "mid",
+  },
+  {
+    symbol: "ANET",
+    name: "Arista Networks",
+    sector: "Networking",
+    thesis:
+      "AI datacenter switching fabric — demand proxy for optical transceiver volume as port speeds migrate to 800G/1.6T",
+    marketCapTier: "large",
+  },
+  {
+    symbol: "GLW",
+    name: "Corning",
+    sector: "Materials",
+    thesis:
+      "Optical fiber and cable — structural beneficiary of AI datacenter and CPO rollout; validated by NVIDIA Spectrum-X CPO announcement (March 2025)",
+    marketCapTier: "large",
+  },
+  {
+    symbol: "SIVE",
+    name: "SiPhotonics",
+    sector: "Photonics",
+    thesis:
+      "Early-stage SiPh IP play — speculative, low liquidity, monitor only",
+    marketCapTier: "small",
+  },
 ];
 
 export const ALL_SYMBOLS = STOCK_METADATA.map((s) => s.symbol);
