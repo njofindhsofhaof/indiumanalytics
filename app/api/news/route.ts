@@ -95,7 +95,7 @@ async function fetchGoogleNewsRSS(): Promise<Article[]> {
 
   const res = await fetch(rssUrl, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; RSS reader)" },
-    next: { revalidate: 3600 },
+    next: { revalidate: 604800 },
   });
 
   if (!res.ok) throw new Error(`RSS ${res.status}`);
@@ -131,7 +131,7 @@ export async function GET() {
     try {
       const res = await fetch(
         `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=30&apiKey=${key}`,
-        { next: { revalidate: 43200 } }
+        { next: { revalidate: 604800 } }
       );
       const data = await res.json();
       if (data.status === "ok") {
