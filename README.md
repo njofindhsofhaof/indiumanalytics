@@ -31,6 +31,7 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 ## Changelog
 
 ### 2026-07-10 — Credibility fixes: citations, disclaimer, About page
+- About page translated to English; added Contact section with LinkedIn link
 - Added inline citation links (Nokia Bell Labs traffic report, IEA Energy and AI 2025, IPSR-I Roadmap 2024, AMD/Enosemi acquisition announcement) to Thesis page and Dashboard's Photonic AI Stages panel via new `[[label|url]]` syntax (`lib/richText.ts`)
 - Softened unverified figures instead of citing them: $3-5B TAM shift now flagged as an illustrative estimate; 70%+ InP shortage and 12-18mo Ge inventory reworded as industry-consensus estimates, not disclosed figures (also fixed in a mock news article that had attributed the InP shortage figure to a fake "Lightwave Online" headline)
 - Added reusable `Disclaimer` component, now shown on Dashboard, Materials, Supply Chain, and Stocks (previously only on Thesis, and only on desktop)
