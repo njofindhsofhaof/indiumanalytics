@@ -181,8 +181,8 @@ export default function PhotonicStages() {
 
               {/* Timeline */}
               <div className="space-y-3 border-t border-border/40 pt-3">
-                {layer.milestones.map((m) => (
-                  <div key={m.date} className="flex gap-2.5">
+                {layer.milestones.map((m, i) => (
+                  <div key={i} className="flex gap-2.5">
                     <span className={`text-xs font-mono font-bold flex-shrink-0 ${c.text} w-20`}>{m.date}</span>
                     <p
                       className="text-muted text-xs leading-relaxed"
