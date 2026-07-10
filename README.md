@@ -30,6 +30,10 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-07-10 — Merge News into Stocks page, remove standalone News nav item
+- Removed `/news` page and nav link; News section (header, tag pills, NewsFeed) now renders below the map on the Stocks page
+- Removed dead `revalidatePath("/news")` from the weekly revalidate cron
+
 ### 2026-07-10 — Credibility fixes: citations, disclaimer, About page
 - About page translated to English; added Contact section with LinkedIn link
 - Added inline citation links (Nokia Bell Labs traffic report, IEA Energy and AI 2025, IPSR-I Roadmap 2024, AMD/Enosemi acquisition announcement) to Thesis page and Dashboard's Photonic AI Stages panel via new `[[label|url]]` syntax (`lib/richText.ts`)

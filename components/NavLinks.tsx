@@ -10,7 +10,6 @@ const LINKS = [
   { href: "/supply-chain", label: "Supply Chain" },
   { href: "/materials", label: "Materials" },
   { href: "/thesis", label: "Thesis" },
-  { href: "/news", label: "News" },
   { href: "/experts", label: "Experts" },
   { href: "/about", label: "About" },
 ];

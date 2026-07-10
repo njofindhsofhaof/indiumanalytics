@@ -9,7 +9,6 @@ export async function GET(req: NextRequest) {
 
   revalidatePath("/");
   revalidatePath("/stocks");
-  revalidatePath("/news");
   revalidatePath("/materials");
 
   return NextResponse.json({ revalidated: true, at: new Date().toISOString() });
