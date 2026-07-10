@@ -33,6 +33,7 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 ### 2026-07-10 — News: fix stale/wrong company news links
 - Broadcom, Marvell, Lumentum, Applied Optoelectronics, Credo, Celestica: switched from investor-relations pages to each company's general newsroom/press page
 - Fabrinet, MACOM, AXT: fixed stale IR subdomain/path (each pointed at the wrong or dead URL)
+- Fabrinet, AAOI, MACOM, Tower Semiconductor, Celestica: corrected to exact URLs supplied by user (fabrinet.com/markets, newsroom.ao-inc.com, macom.com/updates/news, towersemi.com press-release page, celestica.com blog)
 
 ### 2026-04-16 — Dashboard: remove Top Movers panel
 - Removed Top Movers (1M) panel from dashboard
