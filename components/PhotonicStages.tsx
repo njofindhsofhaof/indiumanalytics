@@ -1,3 +1,5 @@
+import { renderRichText } from "@/lib/richText";
+
 const STATUS_COLORS = {
   teal:  { border: "border-teal-500/30",   bg: "bg-teal-500/5",   dot: "bg-teal-400",   text: "text-teal-400",   badge: "bg-teal-500/10 text-teal-400 border-teal-500/20",   bar: "bg-teal-400"   },
   blue:  { border: "border-blue-500/30",   bg: "bg-blue-500/5",   dot: "bg-blue-400",   text: "text-blue-400",   badge: "bg-blue-500/10 text-blue-400 border-blue-500/20",   bar: "bg-blue-400"   },
@@ -62,7 +64,7 @@ const LAYERS: Layer[] = [
     milestones: [
       {
         date: "2026 (Now)",
-        desc: "ASIC + CPO switches (Broadcom Tomahawk 5, Marvell Teralynx 10) in production deployments. 51.2 Tb/s ports with CPO now economically preferred over pluggables at hyperscale density. AMD acquired ENOSEMI (May 2025) to accelerate photonic interconnect manufacturing.",
+        desc: "ASIC + CPO switches (Broadcom Tomahawk 5, Marvell Teralynx 10) in production deployments. 51.2 Tb/s ports with CPO now economically preferred over pluggables at hyperscale density. [[AMD acquired Enosemi (May 2025)|https://www.amd.com/en/blogs/2025/amd-acquires-enosemi-to-accelerate-co-packaged-optics-innovation.html]] to accelerate photonic interconnect manufacturing.",
       },
       {
         date: "2025–2026",
@@ -182,7 +184,10 @@ export default function PhotonicStages() {
                 {layer.milestones.map((m) => (
                   <div key={m.date} className="flex gap-2.5">
                     <span className={`text-xs font-mono font-bold flex-shrink-0 ${c.text} w-20`}>{m.date}</span>
-                    <p className="text-muted text-xs leading-relaxed">{m.desc}</p>
+                    <p
+                      className="text-muted text-xs leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: renderRichText(m.desc) }}
+                    />
                   </div>
                 ))}
               </div>

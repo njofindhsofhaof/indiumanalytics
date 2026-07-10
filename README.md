@@ -30,6 +30,14 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-07-10 — Credibility fixes: citations, disclaimer, About page
+- Added inline citation links (Nokia Bell Labs traffic report, IEA Energy and AI 2025, IPSR-I Roadmap 2024, AMD/Enosemi acquisition announcement) to Thesis page and Dashboard's Photonic AI Stages panel via new `[[label|url]]` syntax (`lib/richText.ts`)
+- Softened unverified figures instead of citing them: $3-5B TAM shift now flagged as an illustrative estimate; 70%+ InP shortage and 12-18mo Ge inventory reworded as industry-consensus estimates, not disclosed figures (also fixed in a mock news article that had attributed the InP shortage figure to a fake "Lightwave Online" headline)
+- Added reusable `Disclaimer` component, now shown on Dashboard, Materials, Supply Chain, and Stocks (previously only on Thesis, and only on desktop)
+- Added About page (`/about`) with real author bio/methodology content, linked in nav
+- Added CIEN/ANET/GLW/SIVE to news ticker-keyword detection (previously only CRDO of the 5 new watchlist tickers)
+- Confirmed via Vercel API + live API checks: Stocks page 12-ticker/stuck-loading report and missing 5-ticker watchlist were both already fixed on production (stale browser tab, not a code or deploy issue) — no code change needed there
+
 ### 2026-07-10 — News: fix stale/wrong company news links
 - Broadcom, Marvell, Lumentum, Applied Optoelectronics, Credo, Celestica: switched from investor-relations pages to each company's general newsroom/press page
 - Fabrinet, MACOM, AXT: fixed stale IR subdomain/path (each pointed at the wrong or dead URL)

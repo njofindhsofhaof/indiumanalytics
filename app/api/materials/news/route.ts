@@ -33,7 +33,7 @@ const MOCK_ARTICLES: MaterialArticle[] = [
     formula: "InP",
     title: "InP Substrate Shortage Threatens 800G Transceiver Ramp Through 2026",
     description:
-      "Indium phosphide substrate supply remains critically constrained as AI datacenter demand for 800G and 1.6T transceivers accelerates. AXT Inc and Sumitomo Electric — the two dominant suppliers — are operating near capacity, with a 70%+ shortage projected by 2027 if new growth capacity is not commissioned by year-end.",
+      "Indium phosphide substrate supply remains critically constrained as AI datacenter demand for 800G and 1.6T transceivers accelerates. AXT Inc and Sumitomo Electric — the two dominant suppliers — are operating near capacity, with analysts warning of a meaningful supply gap by 2027 if new growth capacity is not commissioned by year-end.",
     url: "https://news.google.com/search?q=indium+phosphide+supply+shortage",
     source: "Lightwave Online",
     publishedAt: new Date(Date.now() - 5 * 3600000).toISOString(),

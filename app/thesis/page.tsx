@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { THESIS_SECTIONS } from "@/data/thesis";
+import { renderRichText } from "@/lib/richText";
+import Disclaimer from "@/components/Disclaimer";
 
 export const metadata: Metadata = { title: "Investment Thesis" };
 
@@ -34,10 +36,7 @@ export default function ThesisPage() {
                     key={i}
                     className="text-white/75 text-sm leading-relaxed"
                     dangerouslySetInnerHTML={{
-                      __html: para.replace(
-                        /\*\*(.*?)\*\*/g,
-                        '<strong class="text-white">$1</strong>'
-                      ),
+                      __html: renderRichText(para),
                     }}
                   />
                 ))}
@@ -64,15 +63,15 @@ export default function ThesisPage() {
               ))}
             </nav>
 
-            <div className="mt-4 pt-4 border-t border-border">
-              <p className="text-xs text-muted">
-                <strong className="text-white">Disclaimer:</strong> This is
-                research commentary, not financial advice. All investments
-                carry risk.
-              </p>
+            <div className="mt-4">
+              <Disclaimer />
             </div>
           </div>
         </aside>
+      </div>
+
+      <div className="lg:hidden">
+        <Disclaimer />
       </div>
     </div>
   );

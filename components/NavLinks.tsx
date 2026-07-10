@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/thesis", label: "Thesis" },
   { href: "/news", label: "News" },
   { href: "/experts", label: "Experts" },
+  { href: "/about", label: "About" },
 ];
 
 export default function NavLinks() {

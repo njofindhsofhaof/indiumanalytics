@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import StockTable from "@/components/StockTable";
+import Disclaimer from "@/components/Disclaimer";
 
 export const metadata: Metadata = { title: "Stock Tracker" };
 
@@ -30,6 +31,8 @@ export default function StocksPage() {
       <StockTable />
 
       <CompanyMap />
+
+      <Disclaimer />
     </div>
   );
 }

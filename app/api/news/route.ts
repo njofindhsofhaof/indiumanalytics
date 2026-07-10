@@ -57,6 +57,10 @@ const TICKER_KEYWORDS: Record<string, string[]> = {
   GFS: ["GlobalFoundries", "GFS"],
   CRDO: ["Credo Technology", "Credo", "CRDO", "HiWire"],
   CLS: ["Celestica", "CLS"],
+  CIEN: ["Ciena", "CIEN"],
+  ANET: ["Arista Networks", "Arista", "ANET"],
+  GLW: ["Corning", "GLW"],
+  SIVE: ["SiPhotonics", "SIVE"],
   NVDA: ["Nvidia", "NVDA", "NVLink"],
 };
 

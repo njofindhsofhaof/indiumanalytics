@@ -22,7 +22,7 @@ export const MATERIALS: MaterialData[] = [
     ],
     supplyRisk: "Critical",
     riskReason:
-      "Indium is a byproduct of zinc smelting — supply cannot be ramped independently. Top 3 producers are geographically concentrated; 70%+ shortage projected by 2027 as AI datacenter laser demand scales",
+      "Indium is a byproduct of zinc smelting — supply cannot be ramped independently. Top 3 producers are geographically concentrated, creating meaningful supply-gap risk as AI datacenter laser demand scales toward 2027 (an industry-consensus concern, not a disclosed or independently verified shortage figure)",
     usedIn: ["POET Technologies", "Coherent Corp", "Lumentum"],
   },
   {

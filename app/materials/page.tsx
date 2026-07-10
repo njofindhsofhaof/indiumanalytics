@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import MaterialsTable from "@/components/MaterialsTable";
 import dynamic from "next/dynamic";
+import Disclaimer from "@/components/Disclaimer";
 
 const MaterialNews = dynamic(() => import("@/components/MaterialNews"), {
   ssr: false,
@@ -53,6 +54,8 @@ export default function MaterialsPage() {
           thesis.
         </p>
       </div>
+
+      <Disclaimer />
     </div>
   );
 }
