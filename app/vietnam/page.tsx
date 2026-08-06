@@ -153,12 +153,7 @@ export default function VietnamPage() {
               ))}
             </div>
             <p className="text-muted text-sm leading-relaxed">
-              Groundbreaking July 2025. Led by Dr. Nguyễn Bích Yên.{" "}
-              <span className="text-amber-400">Financial risk:</span> ~80% debt-to-equity on a
-              pre-revenue R&amp;D-fab project is a high-risk structure if FOWLP/2.5D-3D
-              commercialization takes longer than planned. At lab-fab scale, VSAP functions as an
-              R&amp;D/training/pilot line — not yet an anchor large enough to pull a materials
-              supply chain into the region.
+              Groundbreaking July 2025. Led by Dr. Nguyễn Bích Yên.
             </p>
           </div>
 
@@ -193,11 +188,7 @@ export default function VietnamPage() {
             <p className="text-muted text-sm leading-relaxed">
               Ministry of National Defense (state-directed). Hòa Lạc Hi-Tech Park, Hanoi.{" "}
               <strong className="text-white">Distinct from ATP</strong> — Vietnam&apos;s first
-              front-end fabrication attempt, targeting defense/aerospace/telecom chips.{" "}
-              <span className="text-amber-400">Not commercial advanced-node logic.</span> The
-              official announcement acknowledges fabrication is &ldquo;not yet achievable
-              domestically.&rdquo; Even once operational, does not solve wafer supply for commercial
-              ATP players like VSAP Lab.
+              front-end fabrication attempt, targeting defense/aerospace/telecom chips.
             </p>
             <div className="mt-2 text-xs text-muted/60">
               Sources:{" "}
@@ -432,21 +423,6 @@ export default function VietnamPage() {
             gravitational pull without a billion-dollar-scale anchor investor.
           </p>
         </div>
-      </div>
-
-      {/* Corridor question */}
-      <div className="bg-surface border border-border rounded-lg p-4 max-w-4xl">
-        <p className="text-white text-sm font-medium mb-2">Open question: which corridor wins?</p>
-        <p className="text-muted text-sm leading-relaxed">
-          <strong className="text-white">Bắc Ninh</strong> (Samsung, Amkor, FPT) has a head start
-          from established anchor investors. The{" "}
-          <strong className="text-white">Đà Nẵng corridor</strong> (VSAP Lab) is building from
-          scratch — success depends on attracting a comparable anchor, not on land cost or
-          infrastructure alone.{" "}
-          <span className="text-amber-400">
-            Anchor investor commitment, not natural geography, is the determining variable.
-          </span>
-        </p>
       </div>
 
       {/* Facility map */}
