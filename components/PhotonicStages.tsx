@@ -43,7 +43,7 @@ const LAYERS: Layer[] = [
       },
       {
         date: "2026–2027",
-        desc: "Lightmatter Passage M1000 and Celestial AI photonic fabric entering customer evaluation. Photonic interposer connecting GPU clusters at rack scale — targeting 1 Pb/s aggregate bandwidth.",
+        desc: "Lightmatter Passage L200/L200X entering customer chip integration in 2026 via GlobalFoundries, ASE, and Amkor; production systems targeted for 2027. Celestial AI photonic fabric in customer evaluation. Photonic interposer connecting GPU clusters at rack scale — targeting 1 Pb/s aggregate bandwidth.",
       },
       {
         date: "2027–2030",
@@ -64,7 +64,7 @@ const LAYERS: Layer[] = [
     milestones: [
       {
         date: "2026 (Now)",
-        desc: "ASIC + CPO switches (Broadcom Tomahawk 5, Marvell Teralynx 10) in production deployments. 51.2 Tb/s ports with CPO now economically preferred over pluggables at hyperscale density. [[AMD acquired Enosemi (May 2025)|https://www.amd.com/en/blogs/2025/amd-acquires-enosemi-to-accelerate-co-packaged-optics-innovation.html]] to accelerate photonic interconnect manufacturing.",
+        desc: "ASIC + CPO switches now at third-generation CPO: Broadcom shipped **Tomahawk 6 – Davisson (102.4 Tb/s CPO)** in October 2025, doubling the bandwidth of Tomahawk 5 (51.2 Tb/s). Marvell Teralynx 10 remains in production deployment. CPO is now economically preferred over pluggables at hyperscale density. [[AMD acquired Enosemi (May 2025)|https://www.amd.com/en/blogs/2025/amd-acquires-enosemi-to-accelerate-co-packaged-optics-innovation.html]] to accelerate photonic interconnect manufacturing.",
       },
       {
         date: "2025–2026",
@@ -106,7 +106,7 @@ const LAYERS: Layer[] = [
       },
       {
         date: "2026 (Now)",
-        desc: "Lightmatter and Celestial AI in A/B customer tape-outs. No production silicon yet — still pre-revenue. EO polymer modulators (LWLG) and TFLN platforms at pilot-scale validation for 200Gbaud+ applications.",
+        desc: "Celestial AI in A/B customer tape-outs. No production silicon yet — still pre-revenue. EO polymer modulators (LWLG) and TFLN platforms at pilot-scale validation for 200Gbaud+ applications.",
       },
       {
         date: "2027–2030",
