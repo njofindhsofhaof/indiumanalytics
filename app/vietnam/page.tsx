@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { AlertTriangle, ExternalLink } from "lucide-react";
+import LastReviewed from "@/components/LastReviewed";
 
 export const metadata: Metadata = { title: "Vietnam" };
 
@@ -141,14 +142,27 @@ export default function VietnamPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
               {[
-                { label: "Investment", value: "~$69–72M" },
+                {
+                  label: "Investment",
+                  value: "~$69–72M",
+                  note: "reported, groundbreaking coverage",
+                },
                 { label: "Site", value: "5,700 m²" },
                 { label: "Technology", value: "FOWLP · 2.5D/3D" },
-                { label: "Scale", value: "~10M units/yr" },
+                {
+                  label: "Scale",
+                  value: "~10M units/yr",
+                  note: "mgmt-stated target, unverified",
+                },
               ].map((s) => (
                 <div key={s.label} className="bg-white/5 rounded p-2">
                   <p className="text-muted text-xs">{s.label}</p>
                   <p className="text-white text-sm font-medium mt-0.5">{s.value}</p>
+                  {s.note && (
+                    <p className="text-muted/60 text-[10px] leading-tight mt-0.5">
+                      {s.note}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -570,6 +584,8 @@ export default function VietnamPage() {
           entities profiled here has shipped a commercial product.
         </p>
       </div>
+
+      <LastReviewed date="August 2026" />
     </div>
   );
 }

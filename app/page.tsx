@@ -4,6 +4,7 @@ import { AlertTriangle } from "lucide-react";
 import { UPCOMING_CATALYSTS } from "@/data/thesis";
 import clsx from "clsx";
 import Disclaimer from "@/components/Disclaimer";
+import LastReviewed from "@/components/LastReviewed";
 
 export const metadata: Metadata = { title: "Dashboard" };
 export const revalidate = 300;
@@ -54,6 +55,7 @@ export default async function DashboardPage() {
       </div>
 
       <Disclaimer />
+      <LastReviewed date="August 2026" />
     </div>
   );
 }

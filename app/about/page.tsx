@@ -66,7 +66,14 @@ export default function AboutPage() {
               </strong>
               : every technology is placed somewhere from research (TRL 1 to
               3) to volume production (TRL 8 to 9). This avoids mixing up
-              &quot;coming soon&quot; with &quot;already here&quot;.
+              &quot;coming soon&quot; with &quot;already here&quot;. TRL
+              assignments follow the standard NASA/DoD 9-level scale, adapted
+              to a hardware-commercialization context — TRL 1-3
+              (lab/research demonstration), TRL 4-5 (prototype/pilot
+              validation), TRL 6-7 (early production, limited customer
+              deployment), TRL 8-9 (qualified, at-scale volume production).
+              Where a technology straddles two tiers, the range reflects
+              genuine ambiguity in public disclosure, not imprecision.
             </li>
             <li>
               <strong className="text-white">Source tracing</strong>: market
@@ -79,6 +86,24 @@ export default function AboutPage() {
               a catalyst calendar tracks real milestones such as earnings,
               conferences (OFC, ECOC), and volume ramps, instead of
               subjective commentary on trends.
+            </li>
+            <li>
+              <strong className="text-white">Source bias disclosure</strong>:
+              some cited commentary originates from paid/subscription
+              analyst platforms whose authors may hold positions in the
+              securities discussed. Where an author&apos;s position is
+              disclosed in the source, it is noted here; where undisclosed,
+              figures from that source are treated as directional rather
+              than verified, and cross-checked against primary filings or
+              company disclosures where possible.
+            </li>
+            <li>
+              <strong className="text-white">Revision policy</strong>: this
+              platform is corrected openly when errors are found — for
+              example, acquisition dates or TRL placements have been
+              revised after further verification. Material corrections are
+              noted on the relevant page; this is a living document, not a
+              static report.
             </li>
           </ul>
         </section>

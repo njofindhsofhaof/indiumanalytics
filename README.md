@@ -30,6 +30,12 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-08-06 — Citation links, methodology transparency, last-reviewed dates, confirmed-vs-estimate labeling
+- Added DOI/arXiv hyperlinks to the 4 Layer 3 (Photonic Processor) milestone citations on Dashboard (Nature Photonics, Science, arXiv, Nature), matching the existing `[[label|url]]` pattern used for the AMD/Enosemi link in Layer 2
+- About page Methodology: expanded the TRL bullet with the NASA/DoD 9-level scale mapping, and added new "Source bias disclosure" and "Revision policy" bullets
+- Added reusable `LastReviewed` component; shown at the bottom of Dashboard, Vietnam, Supply Chain, and Thesis pages
+- Vietnam page: labeled VSAP Lab's Investment and Scale stat tiles as "reported, groundbreaking coverage" and "mgmt-stated target, unverified" respectively, piloting confirmed-vs-estimate data labeling
+
 ### 2026-07-10 — Merge News into Stocks page, remove standalone News nav item
 - Removed `/news` page and nav link; News section (header, tag pills, NewsFeed) now renders below the map on the Stocks page
 - Removed dead `revalidatePath("/news")` from the weekly revalidate cron

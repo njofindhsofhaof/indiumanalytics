@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { THESIS_SECTIONS } from "@/data/thesis";
 import { renderRichText } from "@/lib/richText";
 import Disclaimer from "@/components/Disclaimer";
+import LastReviewed from "@/components/LastReviewed";
 
 export const metadata: Metadata = { title: "Investment Thesis" };
 
@@ -73,6 +74,7 @@ export default function ThesisPage() {
       <div className="lg:hidden">
         <Disclaimer />
       </div>
+      <LastReviewed date="August 2026" />
     </div>
   );
 }

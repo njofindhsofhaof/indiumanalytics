@@ -90,19 +90,19 @@ const LAYERS: Layer[] = [
     milestones: [
       {
         date: "Dec 2024",
-        desc: "MIT executes a full DNN entirely in the optical domain (Nature Photonics). First single chip running a deep neural network purely in light with no mid-layer electronic conversion — the most important proof-of-concept of the decade.",
+        desc: "MIT executes a full DNN entirely in the optical domain [[(Nature Photonics)|https://doi.org/10.1038/s41566-024-01567-z]]. First single chip running a deep neural network purely in light with no mid-layer electronic conversion — the most important proof-of-concept of the decade.",
       },
       {
         date: "2024",
-        desc: "Taichi chip — 160 TOPS/W (Science 2024). Large-scale photonic chiplet achieves 160 TOPS/W, 50–160× more efficient than current GPUs. Runs image recognition. Lab chip with peer-reviewed performance.",
+        desc: "Taichi chip — 160 TOPS/W [[(Science 2024)|https://doi.org/10.1126/science.adl1203]]. Large-scale photonic chiplet achieves 160 TOPS/W, 50–160× more efficient than current GPUs. Runs image recognition. Lab chip with peer-reviewed performance.",
       },
       {
         date: "2025",
-        desc: "LightIn — programmable photonic processor (arXiv). 40 MZI programmable unit cells, 3.8×3 mm². Runs matrix multiply, image recognition, channel switching, and PUF security on one chip.",
+        desc: "LightIn — programmable photonic processor [[(arXiv)|https://arxiv.org/abs/2504.01463]]. 40 MZI programmable unit cells, 3.8×3 mm². Runs matrix multiply, image recognition, channel switching, and PUF security on one chip.",
       },
       {
         date: "2025",
-        desc: "64×64 photonic accelerator — 1 GHz MAC, 7.61-bit precision (Nature). 65nm SiPh + 28nm CMOS co-packaged, 16,000+ photonic components. Runs max-cut optimization.",
+        desc: "64×64 photonic accelerator — 1 GHz MAC, 7.61-bit precision [[(Nature)|https://doi.org/10.1038/s41586-025-08786-6]]. 65nm SiPh + 28nm CMOS co-packaged, 16,000+ photonic components. Runs max-cut optimization.",
       },
       {
         date: "2026 (Now)",

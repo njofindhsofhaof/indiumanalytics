@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import SupplyChainDiagram from "@/components/SupplyChainDiagram";
 import { AlertTriangle } from "lucide-react";
 import Disclaimer from "@/components/Disclaimer";
+import LastReviewed from "@/components/LastReviewed";
 
 const SupplyChainLayers = dynamic(
   () => import("@/components/SupplyChainLayers"),
@@ -150,6 +151,7 @@ export default function SupplyChainPage() {
       </div>
 
       <Disclaimer />
+      <LastReviewed date="August 2026" />
     </div>
   );
 }
