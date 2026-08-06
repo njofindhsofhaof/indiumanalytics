@@ -7,12 +7,10 @@ type Article = {
   source: { name: string };
   publishedAt: string;
   urlToImage: null;
-  tag?: string;
-  commercial?: boolean;
-  tickers?: string[];
+  tag: string;
 };
 
-// Static IR links — always included
+// Company newsroom / investor relations links
 const COMPANY_NEWS: Article[] = [
   { title: "Broadcom (AVGO) — Newsroom", description: "Co-packaged optics, custom AI silicon, and photonic switch news from Broadcom's newsroom.", url: "https://www.broadcom.com/company/news", source: { name: "Broadcom Newsroom" }, publishedAt: new Date(Date.now() - 1 * 3600000).toISOString(), urlToImage: null, tag: "AVGO" },
   { title: "Marvell (MRVL) — Newsroom", description: "CPO, Teralynx switch ASIC, and custom cloud silicon announcements from Marvell Technology.", url: "https://www.marvell.com/company/newsroom.html", source: { name: "Marvell Newsroom" }, publishedAt: new Date(Date.now() - 2 * 3600000).toISOString(), urlToImage: null, tag: "MRVL" },
@@ -28,133 +26,12 @@ const COMPANY_NEWS: Article[] = [
   { title: "GlobalFoundries (GFS) — Newsroom", description: "Silicon photonics foundry platform, 300mm SiPh process technology, and photonic IC ecosystem partnerships.", url: "https://gf.com/newsroom/", source: { name: "GlobalFoundries" }, publishedAt: new Date(Date.now() - 12 * 3600000).toISOString(), urlToImage: null, tag: "GFS" },
   { title: "Credo Technology (CRDO) — Newsroom", description: "HiWire Active Electrical Cables, SerDes IP, and co-packaged optics connectivity for AI datacenter fabric.", url: "https://credosemi.com/newsroom/", source: { name: "Credo Newsroom" }, publishedAt: new Date(Date.now() - 13 * 3600000).toISOString(), urlToImage: null, tag: "CRDO" },
   { title: "Celestica (CLS) — Blog", description: "Optical module manufacturing at scale, 800G/1.6T transceiver capacity, and hyperscaler supply chain announcements.", url: "https://www.celestica.com/blog/main", source: { name: "Celestica Blog" }, publishedAt: new Date(Date.now() - 14 * 3600000).toISOString(), urlToImage: null, tag: "CLS" },
+  { title: "Ciena (CIEN) — Newsroom", description: "WaveLogic coherent DSP, optical networking systems, and AI datacenter backbone news from Ciena.", url: "https://www.ciena.com/about/newsroom", source: { name: "Ciena Newsroom" }, publishedAt: new Date(Date.now() - 15 * 3600000).toISOString(), urlToImage: null, tag: "CIEN" },
+  { title: "Arista Networks (ANET) — News", description: "AI datacenter switching fabric and 800G/1.6T networking announcements from Arista Networks.", url: "https://www.arista.com/en/company/news", source: { name: "Arista Networks" }, publishedAt: new Date(Date.now() - 16 * 3600000).toISOString(), urlToImage: null, tag: "ANET" },
+  { title: "Corning (GLW) — News & Events", description: "Optical fiber, cable, and CPO-related manufacturing news from Corning.", url: "https://www.corning.com/worldwide/en/about-us/news-events.html", source: { name: "Corning" }, publishedAt: new Date(Date.now() - 17 * 3600000).toISOString(), urlToImage: null, tag: "GLW" },
+  { title: "Sivers Semiconductors (SIVE) — Newsroom", description: "Silicon photonics IP and optical component updates from Sivers Semiconductors.", url: "https://www.sivers-semiconductors.com/sivers-newsroom/", source: { name: "Sivers Semiconductors" }, publishedAt: new Date(Date.now() - 18 * 3600000).toISOString(), urlToImage: null, tag: "SIVE" },
 ];
-
-const COMMERCIAL_NEWS: Article[] = [
-  { title: "Reuters — Silicon Photonics", description: "Reuters coverage of silicon photonics, AI optical infrastructure, and photonic semiconductor news.", url: "https://www.reuters.com/search/news?blob=silicon+photonics", source: { name: "Reuters" }, publishedAt: new Date(Date.now() - 11 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "Bloomberg — AI Optical Infrastructure", description: "Bloomberg Technology coverage of co-packaged optics, AI datacenter networking, and photonic stocks.", url: "https://www.bloomberg.com/search?query=silicon+photonics", source: { name: "Bloomberg" }, publishedAt: new Date(Date.now() - 13 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "IEEE Spectrum — Silicon Photonics", description: "IEEE Spectrum technical coverage of silicon photonics research, CPO advances, and photonic IC integration.", url: "https://spectrum.ieee.org/search?q=silicon+photonics", source: { name: "IEEE Spectrum" }, publishedAt: new Date(Date.now() - 15 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "Light Reading — Optical Networking", description: "Telecom and datacenter optical networking news — 400G/800G/1.6T deployments and CPO market coverage.", url: "https://www.lightreading.com/optical-networking", source: { name: "Light Reading" }, publishedAt: new Date(Date.now() - 17 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "EE Times — Photonic Integration", description: "Electronics Engineering Times coverage of silicon photonics IC design, packaging, and manufacturing.", url: "https://www.eetimes.com/category/photonics/", source: { name: "EE Times" }, publishedAt: new Date(Date.now() - 19 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "Photonics.com — Industry News", description: "Photonics industry news covering lasers, fiber optics, imaging, and silicon photonics components.", url: "https://www.photonics.com/Articles/Silicon_Photonics/a66966", source: { name: "Photonics.com" }, publishedAt: new Date(Date.now() - 21 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "WSJ — Optical Networking", description: "Wall Street Journal tech coverage of optical networking, hyperscaler capex, and photonic semiconductor stocks.", url: "https://www.wsj.com/search?query=co-packaged+optics", source: { name: "WSJ" }, publishedAt: new Date(Date.now() - 23 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "Semiconductor Engineering — Photonics", description: "Technical analysis of silicon photonics IC design, chiplet integration, CPO architectures, and photonic process nodes.", url: "https://semiengineering.com/?s=silicon+photonics", source: { name: "Semiconductor Engineering" }, publishedAt: new Date(Date.now() - 25 * 3600000).toISOString(), urlToImage: null, commercial: true },
-  { title: "The Register — AI & Optical Interconnect", description: "News and analysis on AI datacenter infrastructure, optical networking buildout, and photonic chip investments.", url: "https://www.theregister.com/Tag/photonics/", source: { name: "The Register" }, publishedAt: new Date(Date.now() - 27 * 3600000).toISOString(), urlToImage: null, commercial: true },
-];
-
-const TICKER_KEYWORDS: Record<string, string[]> = {
-  AVGO: ["Broadcom", "AVGO", "Tomahawk"],
-  MRVL: ["Marvell", "MRVL", "Teralynx"],
-  COHR: ["Coherent Corp", "COHR"],
-  LITE: ["Lumentum", "LITE"],
-  FN: ["Fabrinet"],
-  MTSI: ["MACOM", "MTSI"],
-  AAOI: ["Applied Optoelectronics", "AAOI"],
-  AXTI: ["AXT Inc", "AXTI"],
-  POET: ["POET Technologies", "POET"],
-  LWLG: ["Lightwave Logic", "LWLG"],
-  TSEM: ["Tower Semiconductor", "Tower Semi", "TSEM"],
-  GFS: ["GlobalFoundries", "GFS"],
-  CRDO: ["Credo Technology", "Credo", "CRDO", "HiWire"],
-  CLS: ["Celestica", "CLS"],
-  CIEN: ["Ciena", "CIEN"],
-  ANET: ["Arista Networks", "Arista", "ANET"],
-  GLW: ["Corning", "GLW"],
-  SIVE: ["SiPhotonics", "SIVE"],
-  NVDA: ["Nvidia", "NVDA", "NVLink"],
-};
-
-function detectTickers(text: string): string[] {
-  return Object.entries(TICKER_KEYWORDS)
-    .filter(([, kws]) => kws.some((kw) => text.toLowerCase().includes(kw.toLowerCase())))
-    .map(([ticker]) => ticker);
-}
-
-function stripHtml(html: string): string {
-  return html
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-    .replace(/<[^>]+>/g, "")
-    .trim();
-}
-
-function parseRssBlock(block: string): { title: string; link: string; pubDate: string; sourceName: string; description: string } {
-  const get = (tag: string) =>
-    block.match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/${tag}>`))?.[1]?.trim() ?? "";
-
-  return {
-    title: get("title"),
-    link: get("link"),
-    pubDate: get("pubDate"),
-    sourceName: get("source") || "Google News",
-    description: stripHtml(get("description")).slice(0, 300),
-  };
-}
-
-async function fetchGoogleNewsRSS(): Promise<Article[]> {
-  const query = encodeURIComponent(
-    '"silicon photonics" OR "co-packaged optics" OR "optical interconnect" OR "optical compute" OR Broadcom OR Marvell OR "Coherent Corp" OR Lumentum OR Fabrinet OR POET OR "Lightwave Logic" OR "Credo Technology" OR Celestica OR "800G" OR "1.6T"'
-  );
-  const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`;
-
-  const res = await fetch(rssUrl, {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; RSS reader)" },
-    next: { revalidate: 604800 },
-  });
-
-  if (!res.ok) throw new Error(`RSS ${res.status}`);
-
-  const xml = await res.text();
-  const blocks = Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/g)).map((m) => m[1]);
-
-  return blocks
-    .slice(0, 25)
-    .map((block) => {
-      const { title, link, pubDate, sourceName, description } = parseRssBlock(block);
-      if (!title || !link) return null;
-      return {
-        title,
-        description: description || null,
-        url: link,
-        source: { name: sourceName },
-        publishedAt: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
-        urlToImage: null,
-        tickers: detectTickers(title + " " + description),
-      } as Article;
-    })
-    .filter((a): a is Article => a !== null);
-}
 
 export async function GET() {
-  // NewsAPI if key is set
-  const key = process.env.NEWSAPI_KEY;
-  if (key) {
-    const query = encodeURIComponent(
-      'photonics OR "silicon photonics" OR "co-packaged optics" OR CPO OR "optical interconnect" OR AVGO OR MRVL OR COHR OR LITE OR AXTI OR POET OR LWLG OR CRDO OR CLS OR "800G" OR "1.6T"'
-    );
-    try {
-      const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=30&apiKey=${key}`,
-        { next: { revalidate: 604800 } }
-      );
-      const data = await res.json();
-      if (data.status === "ok") {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const tagged = (data.articles as any[]).map((a) => ({
-          ...a,
-          tickers: detectTickers((a.title ?? "") + " " + (a.description ?? "")),
-        }));
-        return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...tagged]);
-      }
-    } catch { /* fall through */ }
-  }
-
-  // Primary free source: Google News RSS
-  try {
-    const rssArticles = await fetchGoogleNewsRSS();
-    return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS, ...rssArticles]);
-  } catch {
-    // Last resort: static links only
-    return NextResponse.json([...COMPANY_NEWS, ...COMMERCIAL_NEWS]);
-  }
+  return NextResponse.json(COMPANY_NEWS);
 }

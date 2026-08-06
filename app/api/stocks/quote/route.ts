@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
+import YahooFinance from "yahoo-finance2";
 import { ALL_SYMBOLS } from "@/data/stocks";
 
-const YAHOO_HEADERS = {
-  "User-Agent":
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  Accept: "application/json",
-  "Accept-Language": "en-US,en;q=0.9",
-  Referer: "https://finance.yahoo.com/",
-};
+const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
+
+// Yahoo has no quote under the bare "SIVE" string for Sivers Semiconductors —
+// SIVEF is its US OTC-listed ticker. Query that, but report back as "SIVE" so
+// it still matches STOCK_METADATA.
+const YAHOO_SYMBOL_OVERRIDES: Record<string, string> = { SIVE: "SIVEF" };
+const DISPLAY_SYMBOL: Record<string, string> = Object.fromEntries(
+  Object.entries(YAHOO_SYMBOL_OVERRIDES).map(([display, yahoo]) => [yahoo, display])
+);
 
 function makeMockQuotes() {
   return ALL_SYMBOLS.map((symbol, i) => ({
@@ -23,35 +26,15 @@ function makeMockQuotes() {
 }
 
 export async function GET() {
-  const symbols = ALL_SYMBOLS.join(",");
-  const fields = [
-    "regularMarketPrice",
-    "regularMarketChangePercent",
-    "regularMarketVolume",
-    "fiftyTwoWeekHigh",
-    "fiftyTwoWeekLow",
-    "shortName",
-  ].join(",");
-
-  const quoteUrl = `https://query2.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=${fields}&formatted=false&corsDomain=finance.yahoo.com`;
-
   try {
-    const res = await fetch(quoteUrl, {
-      headers: YAHOO_HEADERS,
-      next: { revalidate: 300 },
-    });
+    const querySymbols = ALL_SYMBOLS.map((s) => YAHOO_SYMBOL_OVERRIDES[s] ?? s);
+    const results = await yahooFinance.quote(querySymbols, {}, { validateResult: false });
+    const list = Array.isArray(results) ? results : [results];
+    if (!list.length) throw new Error("Empty result");
 
-    if (!res.ok) throw new Error(`Yahoo v7/quote returned ${res.status}`);
-
-    const data = await res.json();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const results: any[] = data.quoteResponse?.result ?? [];
-    if (!results.length) throw new Error("Empty result");
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return NextResponse.json(results.map((r: any) => ({
-      symbol: String(r.symbol),
-      longName: String(r.shortName ?? r.symbol),
+    return NextResponse.json(list.map((r) => ({
+      symbol: DISPLAY_SYMBOL[String(r.symbol)] ?? String(r.symbol),
+      longName: String(r.shortName ?? r.longName ?? r.symbol),
       price: Number(r.regularMarketPrice ?? 0),
       changePct: +Number(r.regularMarketChangePercent ?? 0).toFixed(2),
       volume: Number(r.regularMarketVolume ?? 0),
@@ -60,37 +43,6 @@ export async function GET() {
       closes: [],
     })));
   } catch {
-    // Fallback: Spark API (returns 1-month range closes)
-    try {
-      const sparkUrl = `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${symbols}&range=1mo&interval=1d`;
-      const res2 = await fetch(sparkUrl, { headers: YAHOO_HEADERS, next: { revalidate: 300 } });
-      if (!res2.ok) throw new Error("Spark fallback failed");
-
-      const data2 = await res2.json();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const results2 = (data2.spark?.result ?? []).filter((r: any) => r?.response?.[0]);
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return NextResponse.json(results2.map((r: any) => {
-        const meta = r.response[0].meta ?? {};
-        const closes: number[] = (r.response[0].indicators?.quote?.[0]?.close ?? [])
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .filter((v: any) => v != null).map(Number);
-        const price = Number(meta.regularMarketPrice ?? closes[closes.length - 1] ?? 0);
-        const prev = Number(meta.chartPreviousClose ?? closes[closes.length - 2] ?? price);
-        return {
-          symbol: String(r.symbol),
-          longName: String(meta.longName ?? r.symbol),
-          price,
-          changePct: prev > 0 ? +((price / prev - 1) * 100).toFixed(2) : 0,
-          volume: Number(meta.regularMarketVolume ?? 0),
-          high52w: Number(meta.fiftyTwoWeekHigh ?? 0),
-          low52w: Number(meta.fiftyTwoWeekLow ?? 0),
-          closes: closes.slice(-5),
-        };
-      }));
-    } catch {
-      return NextResponse.json(makeMockQuotes());
-    }
+    return NextResponse.json(makeMockQuotes());
   }
 }

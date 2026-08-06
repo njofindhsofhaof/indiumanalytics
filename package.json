@@ -20,7 +20,8 @@
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",
     "recharts": "^3.8.1",
-    "swr": "^2.4.1"
+    "swr": "^2.4.1",
+    "yahoo-finance2": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

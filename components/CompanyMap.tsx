@@ -23,10 +23,15 @@ export default function CompanyMap() {
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
 
+    let cancelled = false;
     let map: ReturnType<typeof import("leaflet").map> | undefined;
 
     async function init() {
       const L = (await import("leaflet")).default;
+
+      // Strict Mode invokes effects twice in dev; bail if this run was
+      // cancelled or another invocation already created the map.
+      if (cancelled || mapRef.current || !containerRef.current) return;
 
       // Fix default icon paths broken by webpack
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +42,7 @@ export default function CompanyMap() {
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       });
 
-      map = L.map(containerRef.current!, {
+      map = L.map(containerRef.current, {
         center: [30, -30],
         zoom: 2,
         zoomControl: true,
@@ -90,6 +95,7 @@ export default function CompanyMap() {
     init();
 
     return () => {
+      cancelled = true;
       if (map) map.remove();
       mapRef.current = null;
     };

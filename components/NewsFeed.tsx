@@ -1,8 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { formatDistanceToNow } from "date-fns";
-import { ExternalLink, Building2 } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 type Article = {
   title: string;
@@ -11,9 +10,7 @@ type Article = {
   source: { name: string };
   publishedAt: string;
   urlToImage?: string | null;
-  tag?: string; // company ticker e.g. "AVGO"
-  commercial?: boolean; // commercial news source
-  tickers?: string[]; // detected related stock tickers
+  tag: string; // company ticker e.g. "AVGO"
 };
 
 async function fetchNews(): Promise<Article[]> {
@@ -45,124 +42,28 @@ export default function NewsFeed() {
     return <div className="text-center py-12 text-muted">No articles found.</div>;
   }
 
-  const companyNews = articles.filter((a) => a.tag);
-  const commercialNews = articles.filter((a) => a.commercial && !a.tag);
-  const sectorNews = articles.filter((a) => !a.tag && !a.commercial);
-
   return (
-    <div className="space-y-6">
-      {/* Company IR Links */}
-      {companyNews.length > 0 && (
-        <div>
-          <h2 className="text-white font-semibold text-sm mb-3 flex items-center gap-2">
-            <Building2 size={14} className="text-accent" />
-            Company Investor Relations
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {companyNews.map((article, i) => (
-              <a
-                key={i}
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-surface border border-border rounded-lg px-3 py-2.5 hover:border-accent/40 transition-colors group"
-              >
-                <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded flex-shrink-0">
-                  {article.tag}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-medium truncate group-hover:text-accent transition-colors">
-                    {article.source.name}
-                  </p>
-                  <p className="text-muted text-xs truncate">{article.description?.split(".")[0]}</p>
-                </div>
-                <ExternalLink size={12} className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            ))}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      {articles.map((article, i) => (
+        <a
+          key={i}
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 bg-surface border border-border rounded-lg px-3 py-2.5 hover:border-accent/40 transition-colors group"
+        >
+          <span className="font-mono text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded flex-shrink-0">
+            {article.tag}
+          </span>
+          <div className="flex-1 min-w-0">
+            <p className="text-white text-xs font-medium truncate group-hover:text-accent transition-colors">
+              {article.source.name}
+            </p>
+            <p className="text-muted text-xs truncate">{article.description?.split(".")[0]}</p>
           </div>
-        </div>
-      )}
-
-      {/* Commercial News Sources */}
-      {commercialNews.length > 0 && (
-        <div>
-          <h2 className="text-white font-semibold text-sm mb-3">
-            News Sources
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-            {commercialNews.map((article, i) => (
-              <a
-                key={i}
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-surface border border-border rounded-lg px-3 py-2 hover:border-accent/40 transition-colors group"
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="text-white text-xs font-medium truncate group-hover:text-accent transition-colors">
-                    {article.source.name}
-                  </p>
-                  <p className="text-muted text-xs truncate">{article.title.split("—")[0].trim()}</p>
-                </div>
-                <ExternalLink size={11} className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Sector News */}
-      {sectorNews.length > 0 && (
-        <div>
-          <h2 className="text-white font-semibold text-sm mb-3">
-            Sector News
-          </h2>
-          <div className="space-y-2">
-            {sectorNews.map((article, i) => (
-              <a
-                key={i}
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-surface border border-border rounded-lg p-4 hover:border-accent/40 transition-colors group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white text-sm font-medium group-hover:text-accent transition-colors line-clamp-2">
-                      {article.title}
-                    </p>
-                    {article.description && (
-                      <p className="text-muted text-xs mt-1.5 line-clamp-2">
-                        {article.description}
-                      </p>
-                    )}
-                    {article.tickers && article.tickers.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mt-1.5">
-                        {article.tickers.map((t) => (
-                          <span
-                            key={t}
-                            className="font-mono text-xs text-accent bg-accent/10 px-1.5 py-0.5 rounded"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 mt-2 text-xs text-muted">
-                      <span className="bg-border/60 px-1.5 py-0.5 rounded text-white/60">
-                        {article.source.name}
-                      </span>
-                      <span>·</span>
-                      <span>{formatDistanceToNow(new Date(article.publishedAt))} ago</span>
-                      <ExternalLink size={10} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+          <ExternalLink size={12} className="text-muted flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </a>
+      ))}
     </div>
   );
 }

@@ -141,8 +141,8 @@ export const STOCK_METADATA: StockMeta[] = [
       "Active electrical cables and SerDes IP for AI scale-out — bandwidth bridge before CPO matures",
     marketCapTier: "small",
     hq: "San Jose, CA, USA",
-    lat: 37.3382,
-    lng: -121.8863,
+    lat: 37.3229,
+    lng: -121.9147,
   },
   {
     symbol: "CIEN",
@@ -179,14 +179,14 @@ export const STOCK_METADATA: StockMeta[] = [
   },
   {
     symbol: "SIVE",
-    name: "SiPhotonics",
+    name: "Sivers Semiconductors",
     sector: "Photonics",
     thesis:
       "Early-stage SiPh IP play — speculative, low liquidity, monitor only",
     marketCapTier: "small",
-    hq: "Austin, TX, USA",
-    lat: 30.2672,
-    lng: -97.7431,
+    hq: "Kista, Stockholm, Sweden",
+    lat: 59.4033,
+    lng: 17.944,
   },
 ];
 
