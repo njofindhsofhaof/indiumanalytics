@@ -30,6 +30,11 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-08-06 — Upcoming Catalysts: verified real dates
+- Replaced quarter-bucket placeholders with confirmed dates for COHR (Aug 12), MRVL (Aug 27), AVGO (Sep 2), ECOC 2026 (Sep 20–24, Málaga), OFC 2027 (Mar 7–11, LA) — verified via web search
+- Reordered list chronologically; LITE Q1 FY2027 earnings marked as an estimate pending official announcement
+- Set up a monthly scheduled review to keep this section current (see Automation section)
+
 ### 2026-08-06 — Vietnam page: policy source links
 - Added source links to Resolution 57-NQ/TW, Decree 57/2021/NĐ-CP, and Circular 32/2025/TT-BKHCN in the Government Policy Framework table (previously text-only, no link)
 

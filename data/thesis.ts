@@ -39,32 +39,32 @@ export const THESIS_SECTIONS: ThesisSection[] = [
 
 export const UPCOMING_CATALYSTS = [
   {
-    date: "2026-Q3",
-    event: "AVGO Q3 FY2026 Earnings",
-    ticker: "AVGO",
-    type: "earnings" as const,
-    description: "AI ASIC revenue cadence, CPO deployment volumes, and 1.6T switch pipeline update",
-  },
-  {
-    date: "2026-Q3",
+    date: "Aug 12, 2026",
     event: "COHR Q4 FY2026 Earnings",
     ticker: "COHR",
     type: "earnings" as const,
     description: "800G/1.6T transceiver ramp and InP vertical integration margin update",
   },
   {
-    date: "2026-Q3",
+    date: "Aug 27, 2026",
     event: "MRVL Q2 FY2027 Earnings",
     ticker: "MRVL",
     type: "earnings" as const,
     description: "Teralynx 10 CPO volume shipments and Celestial AI custom silicon progress",
   },
   {
-    date: "2026-Q3",
+    date: "Sep 2, 2026",
+    event: "AVGO Q3 FY2026 Earnings",
+    ticker: "AVGO",
+    type: "earnings" as const,
+    description: "AI ASIC revenue cadence, CPO deployment volumes, and 1.6T switch pipeline update",
+  },
+  {
+    date: "Sep 20–24, 2026",
     event: "ECOC 2026 Conference",
     ticker: "SECTOR",
     type: "conference" as const,
-    description: "European Conference on Optical Communications — 1.6T/3.2T standards, TFLN commercialization updates",
+    description: "52nd European Conference on Optical Communications, Málaga, Spain — 1.6T/3.2T standards, TFLN commercialization updates",
   },
   {
     date: "2026-Q3",
@@ -74,11 +74,11 @@ export const UPCOMING_CATALYSTS = [
     description: "Hyperscaler volume deployments of 1.6T transceivers; key revenue inflection for optical manufacturers",
   },
   {
-    date: "2026-Q4",
+    date: "~Nov 2026",
     event: "LITE Q1 FY2027 Earnings",
     ticker: "LITE",
     type: "earnings" as const,
-    description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update",
+    description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update. Exact date not yet announced — estimated from prior-year cadence.",
   },
   {
     date: "2026-Q4",
@@ -95,10 +95,10 @@ export const UPCOMING_CATALYSTS = [
     description: "EO polymer commercialization agreement with Tier 1 component supplier expected",
   },
   {
-    date: "2027-Q1",
+    date: "Mar 7–11, 2027",
     event: "OFC 2027 Conference",
     ticker: "SECTOR",
     type: "conference" as const,
-    description: "Optical Fiber Conference — next-gen CPO architectures, EOP modulators, and fully photonic processor previews",
+    description: "Optical Fiber Conference, Los Angeles — next-gen CPO architectures, EOP modulators, and fully photonic processor previews",
   },
 ];
