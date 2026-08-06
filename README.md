@@ -30,6 +30,9 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-08-06 — About page: added "About the name" section
+- New top section explaining the indiumanalytics.xyz domain (Indium Phosphide/InP as the laser-enabling material) and why the site itself is branded "Photonic Analytics" (full-stack scope, not just indium)
+
 ### 2026-08-06 — Automated monthly catalyst expiry check
 - Added `until` (ISO date) field to each `UPCOMING_CATALYSTS` entry and a `getActiveCatalysts()` helper (`data/thesis.ts`) that filters out expired catalysts at render time
 - Dashboard now renders only active (non-expired) catalysts

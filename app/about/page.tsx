@@ -11,6 +11,27 @@ export default function AboutPage() {
 
       <div className="bg-surface border border-border rounded-lg p-6 space-y-6">
         <section>
+          <h2 className="text-white font-bold text-lg mb-3">About the name</h2>
+          <div className="space-y-3 text-white/75 text-sm leading-relaxed">
+            <p>
+              The domain, indiumanalytics.xyz, references Indium Phosphide
+              (InP), the material that does what silicon can&apos;t: emit
+              light. Silicon is an indirect bandgap semiconductor, so it
+              can&apos;t produce a laser on its own. InP based lasers and
+              photodetectors are what make silicon photonics work as an
+              optical technology, not just an electronic one.
+            </p>
+            <p>
+              The site itself goes under the name Photonic Analytics, since
+              the research scope spans the full stack: materials, photonic
+              switches, photonic processors, not just the indium layer. The
+              name stays as a nod to the material that makes the whole field
+              possible.
+            </p>
+          </div>
+        </section>
+
+        <section>
           <h2 className="text-white font-bold text-lg mb-3">
             What Photonic Analytics is
           </h2>
