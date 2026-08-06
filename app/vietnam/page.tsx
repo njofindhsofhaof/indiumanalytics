@@ -142,7 +142,7 @@ export default function VietnamPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
               {[
                 { label: "Investment", value: "~$69–72M" },
-                { label: "Financing", value: "~80% debt" },
+                { label: "Site", value: "5,700 m²" },
                 { label: "Technology", value: "FOWLP · 2.5D/3D" },
                 { label: "Scale", value: "~10M units/yr" },
               ].map((s) => (
@@ -153,7 +153,9 @@ export default function VietnamPage() {
               ))}
             </div>
             <p className="text-muted text-sm leading-relaxed">
-              Groundbreaking July 2025. Led by Dr. Nguyễn Bích Yên.
+              Groundbreaking July 2025. Founders and key leaders: Nguyễn Thị Bích Yên
+              (Founder and Chairwoman/President) and Nguyễn Bảo Anh (Co-Founder and
+              CEO/COO).
             </p>
           </div>
 
@@ -417,7 +419,7 @@ export default function VietnamPage() {
         <div className="mt-3 bg-surface border border-border rounded-lg p-3 max-w-4xl">
           <p className="text-muted text-sm leading-relaxed">
             <strong className="text-white">Core structural gap:</strong> VSAP Lab at lab-fab scale
-            (~10M units/year, ~80% debt-financed) functions as an R&amp;D/training/pilot line —
+            (~10M units/year, 5,700 m² site) functions as an R&amp;D/training/pilot line —
             not an anchor large enough to pull a materials supply chain into Vietnam. ATP&apos;s
             lower switching costs mean technological success won&apos;t automatically create
             gravitational pull without a billion-dollar-scale anchor investor.
@@ -531,7 +533,7 @@ export default function VietnamPage() {
                   <div>
                     <p className="text-white text-xs font-medium">VSAP Lab (Đà Nẵng)</p>
                     <p className="text-muted text-xs leading-relaxed">
-                      FOWLP / 2.5D-3D R&amp;D + pilot line. ~$70M, ~80% debt. Target Q4 2026.
+                      FOWLP / 2.5D-3D R&amp;D + pilot line. ~$70M, 5,700 m² site. Target Q4 2026.
                       Ecosystem still developing — no anchor investor yet.
                     </p>
                   </div>
