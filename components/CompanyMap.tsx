@@ -18,7 +18,8 @@ function getColor(sector: string) {
 
 export default function CompanyMap() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<unknown>(null);
+  const mapRef = useRef<import("leaflet").Map | null>(null);
+  const markersRef = useRef<Record<string, import("leaflet").Marker>>({});
 
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
@@ -88,7 +89,8 @@ export default function CompanyMap() {
           </div>
         `);
 
-        L.marker([stock.lat, stock.lng], { icon }).addTo(map!).bindPopup(popup);
+        const marker = L.marker([stock.lat, stock.lng], { icon }).addTo(map!).bindPopup(popup);
+        markersRef.current[stock.symbol] = marker;
       });
     }
 
@@ -98,15 +100,26 @@ export default function CompanyMap() {
       cancelled = true;
       if (map) map.remove();
       mapRef.current = null;
+      markersRef.current = {};
     };
   }, []);
+
+  function locate(symbol: string) {
+    const map = mapRef.current;
+    const marker = markersRef.current[symbol];
+    if (!map || !marker) return;
+    map.flyTo(marker.getLatLng(), 6, { duration: 0.8 });
+    marker.openPopup();
+  }
 
   return (
     <div className="bg-surface border border-border rounded-lg overflow-hidden">
       <div className="px-4 py-3 border-b border-border flex flex-col sm:flex-row sm:items-center gap-3">
         <div className="flex-1">
           <h2 className="text-sm font-semibold text-white">Company HQ Locations</h2>
-          <p className="text-xs text-muted mt-0.5">Click a marker to see details</p>
+          <p className="text-xs text-muted mt-0.5">
+            Click a marker, or a company below, to locate it
+          </p>
         </div>
         <div className="flex flex-wrap gap-x-4 gap-y-1.5">
           {Object.entries(SECTOR_COLORS).map(([sector, color]) => (
@@ -121,6 +134,25 @@ export default function CompanyMap() {
         </div>
       </div>
       <div ref={containerRef} style={{ height: 480 }} />
+      <div className="px-4 py-3 border-t border-border flex flex-wrap gap-1.5">
+        {STOCK_METADATA.map((stock: StockMeta) => (
+          <button
+            key={stock.symbol}
+            type="button"
+            onClick={() => locate(stock.symbol)}
+            className="flex items-center gap-1.5 bg-bg border border-border rounded-full pl-1.5 pr-2.5 py-1 text-xs hover:border-accent/40 transition-colors group"
+          >
+            <span
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{ backgroundColor: getColor(stock.sector) }}
+            />
+            <span className="font-mono font-bold text-accent">{stock.symbol}</span>
+            <span className="text-muted group-hover:text-white transition-colors">
+              {stock.name}
+            </span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
