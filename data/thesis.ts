@@ -37,68 +37,91 @@ export const THESIS_SECTIONS: ThesisSection[] = [
   },
 ];
 
-export const UPCOMING_CATALYSTS = [
+export type Catalyst = {
+  date: string;
+  until: string;
+  event: string;
+  ticker: string;
+  type: "earnings" | "conference" | "milestone";
+  description: string;
+};
+
+export const UPCOMING_CATALYSTS: Catalyst[] = [
   {
     date: "Aug 12, 2026",
+    until: "2026-08-12",
     event: "COHR Q4 FY2026 Earnings",
     ticker: "COHR",
-    type: "earnings" as const,
+    type: "earnings",
     description: "800G/1.6T transceiver ramp and InP vertical integration margin update",
   },
   {
     date: "Aug 27, 2026",
+    until: "2026-08-27",
     event: "MRVL Q2 FY2027 Earnings",
     ticker: "MRVL",
-    type: "earnings" as const,
+    type: "earnings",
     description: "Teralynx 10 CPO volume shipments and Celestial AI custom silicon progress",
   },
   {
     date: "Sep 2, 2026",
+    until: "2026-09-02",
     event: "AVGO Q3 FY2026 Earnings",
     ticker: "AVGO",
-    type: "earnings" as const,
+    type: "earnings",
     description: "AI ASIC revenue cadence, CPO deployment volumes, and 1.6T switch pipeline update",
   },
   {
     date: "Sep 20–24, 2026",
+    until: "2026-09-24",
     event: "ECOC 2026 Conference",
     ticker: "SECTOR",
-    type: "conference" as const,
+    type: "conference",
     description: "52nd European Conference on Optical Communications, Málaga, Spain — 1.6T/3.2T standards, TFLN commercialization updates",
   },
   {
     date: "2026-Q3",
+    until: "2026-09-30",
     event: "1.6T Transceiver Volume Ramp",
     ticker: "COHR/LITE/FN",
-    type: "milestone" as const,
+    type: "milestone",
     description: "Hyperscaler volume deployments of 1.6T transceivers; key revenue inflection for optical manufacturers",
   },
   {
     date: "~Nov 2026",
+    until: "2026-11-30",
     event: "LITE Q1 FY2027 Earnings",
     ticker: "LITE",
-    type: "earnings" as const,
+    type: "earnings",
     description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update. Exact date not yet announced — estimated from prior-year cadence.",
   },
   {
     date: "2026-Q4",
+    until: "2026-12-31",
     event: "POET Volume Production Milestone",
     ticker: "POET",
-    type: "milestone" as const,
+    type: "milestone",
     description: "POET optical interposer volume shipment ramp via DenseLight/POET Singapore partnership",
   },
   {
     date: "2026-Q4",
+    until: "2026-12-31",
     event: "LWLG Strategic Partnership",
     ticker: "LWLG",
-    type: "milestone" as const,
+    type: "milestone",
     description: "EO polymer commercialization agreement with Tier 1 component supplier expected",
   },
   {
     date: "Mar 7–11, 2027",
+    until: "2027-03-11",
     event: "OFC 2027 Conference",
     ticker: "SECTOR",
-    type: "conference" as const,
+    type: "conference",
     description: "Optical Fiber Conference, Los Angeles — next-gen CPO architectures, EOP modulators, and fully photonic processor previews",
   },
 ];
+
+export function getActiveCatalysts(now: Date = new Date()): Catalyst[] {
+  const today = now.toISOString().slice(0, 10);
+  return UPCOMING_CATALYSTS.filter((c) => c.until >= today);
+}

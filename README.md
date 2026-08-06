@@ -30,6 +30,12 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-08-06 — Automated monthly catalyst expiry check
+- Added `until` (ISO date) field to each `UPCOMING_CATALYSTS` entry and a `getActiveCatalysts()` helper (`data/thesis.ts`) that filters out expired catalysts at render time
+- Dashboard now renders only active (non-expired) catalysts
+- Added `/api/catalysts/check` route + monthly Vercel Cron (1st of month, 1am UTC) that revalidates the Dashboard and logs a warning when fewer than 3 active catalysts remain, signaling the list needs a manual data refresh
+- (Cloud routine for full auto web-search-based refresh was attempted but blocked — GitHub App connection wasn't completing; this cron-based expiry check is the fallback)
+
 ### 2026-08-06 — Upcoming Catalysts: verified real dates
 - Replaced quarter-bucket placeholders with confirmed dates for COHR (Aug 12), MRVL (Aug 27), AVGO (Sep 2), ECOC 2026 (Sep 20–24, Málaga), OFC 2027 (Mar 7–11, LA) — verified via web search
 - Reordered list chronologically; LITE Q1 FY2027 earnings marked as an estimate pending official announcement

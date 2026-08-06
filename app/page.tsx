@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import PhotonicStages from "@/components/PhotonicStages";
 import { AlertTriangle } from "lucide-react";
-import { UPCOMING_CATALYSTS } from "@/data/thesis";
+import { getActiveCatalysts } from "@/data/thesis";
 import clsx from "clsx";
 import Disclaimer from "@/components/Disclaimer";
 import LastReviewed from "@/components/LastReviewed";
@@ -10,6 +10,7 @@ export const metadata: Metadata = { title: "Dashboard" };
 export const revalidate = 300;
 
 export default async function DashboardPage() {
+  const catalysts = getActiveCatalysts();
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -30,7 +31,7 @@ export default async function DashboardPage() {
           Upcoming Catalysts
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {UPCOMING_CATALYSTS.map((c, i) => (
+          {catalysts.map((c, i) => (
             <div
               key={i}
               className="border border-border/60 rounded p-3 hover:border-accent/30 transition-colors"

@@ -6,6 +6,10 @@
     {
       "path": "/api/revalidate?secret=${REVALIDATE_SECRET}",
       "schedule": "0 6 * * 1"
+    },
+    {
+      "path": "/api/catalysts/check?secret=${REVALIDATE_SECRET}",
+      "schedule": "0 1 1 * *"
     }
   ]
 }
