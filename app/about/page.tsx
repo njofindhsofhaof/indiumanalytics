@@ -17,20 +17,20 @@ export default function AboutPage() {
           <div className="space-y-3 text-white/75 text-sm leading-relaxed">
             <p>
               Photonic Analytics is an independent research platform tracking
-              the Silicon Photonics and Photonic AI industry — from optical
-              interconnect (CPO, transceivers), to photonic switches, to
-              next-generation photonic processors. Content includes a TRL
-              tracker across technology layers, supply chain analysis
+              the Silicon Photonics and Photonic AI industry. This covers
+              optical interconnects (CPO, transceivers), photonic switches,
+              and next-generation photonic processors. The site includes a
+              TRL tracker across technology layers, supply chain analysis
               (materials, wafer, packaging), coverage of related stocks, and
-              upcoming catalysts (earnings, industry conferences, production
-              milestones).
+              upcoming catalysts like earnings, industry conferences, and
+              production milestones.
             </p>
             <p>
               This is not a news aggregator. Every thesis and every figure is
-              traced back to its source — clearly distinguishing between
-              &quot;published data&quot; and &quot;estimate/forecast&quot; —
-              so readers can judge reliability for themselves instead of
-              accepting ready-made conclusions.
+              traced back to its source. I clearly separate &quot;published
+              data&quot; from &quot;estimate/forecast&quot; so readers can
+              judge reliability for themselves instead of accepting
+              ready-made conclusions.
             </p>
           </div>
         </section>
@@ -43,16 +43,16 @@ export default function AboutPage() {
             <p>
               I come to the semiconductor industry from a non-technical
               background. My long-term goal is to move into Advanced
-              Packaging within the semiconductor value chain. Rather than
+              Packaging within the semiconductor value chain. Instead of
               studying theory in the abstract, I chose to force myself to
-              understand the industry deeply enough to write about it —
-              tracking which technologies are moving from the lab into real
-              production, who is winning in the supply chain, and why.
+              understand the industry deeply enough to write about it. That
+              means tracking which technologies are moving from the lab into
+              real production, who is winning in the supply chain, and why.
             </p>
             <p>
-              Photonic Analytics is a byproduct of that process: a personal
-              research tool made public, updated continuously as I read
-              industry reports, earnings calls, and technical news.
+              Photonic Analytics is a byproduct of that process. It&apos;s a
+              personal research tool made public, updated continuously as I
+              read industry reports, earnings calls, and technical news.
             </p>
           </div>
         </section>
@@ -64,38 +64,38 @@ export default function AboutPage() {
               <strong className="text-white">
                 TRL (Technology Readiness Level) tiering
               </strong>
-              : every technology is positioned from research (TRL 1-3) to
-              volume production (TRL 8-9), to avoid conflating &quot;coming
-              soon&quot; with &quot;already here&quot;.
+              : every technology is placed somewhere from research (TRL 1 to
+              3) to volume production (TRL 8 to 9). This avoids mixing up
+              &quot;coming soon&quot; with &quot;already here&quot;.
             </li>
             <li>
               <strong className="text-white">Source tracing</strong>: market
-              size, market share, and capacity figures are all sourced —
-              prioritizing company reports, earnings transcripts, and
-              industry analyst firms (TrendForce, IFP, Epoch AI...) over
-              speculation.
+              size, market share, and capacity figures are all sourced. I
+              prioritize company reports, earnings transcripts, and industry
+              analyst firms (TrendForce, IFP, Epoch AI) over speculation.
             </li>
             <li>
               <strong className="text-white">Event-driven updates</strong>:
-              a catalyst calendar tracks real-world milestones — earnings,
-              conferences (OFC, ECOC), volume ramps — instead of subjective
-              commentary on trends.
+              a catalyst calendar tracks real milestones such as earnings,
+              conferences (OFC, ECOC), and volume ramps, instead of
+              subjective commentary on trends.
             </li>
           </ul>
         </section>
 
         <section>
           <h2 className="text-white font-bold text-lg mb-3">About me</h2>
-          <p className="text-white/75 text-sm leading-relaxed">
-            I&apos;m Hiếu, based in Vietnam, currently working as a Business
-            Analyst / Automation Consultant, while also studying
-            Electrical-Electronics Engineering at the college level to build
-            the technical foundation for a career move into Advanced
-            Packaging. Outside of my main job, I spend my time researching
-            and investing in the semiconductor industry, with a long-term
-            goal of becoming a Process/Equipment Engineer at an OSAT
-            facility.
-          </p>
+          <div className="space-y-3 text-white/75 text-sm leading-relaxed">
+            <p>
+              I&apos;m Hiếu, based in Vietnam. I currently work as a Business
+              Analyst for SMEs and individuals.
+            </p>
+            <p>
+              I believe Vietnam has a real shot at becoming a meaningful
+              player in Advanced Packaging and Co-Packaged Optics (CPO).
+              This site is how I research and invest in that belief.
+            </p>
+          </div>
         </section>
 
         <section className="border-t border-border pt-4">
