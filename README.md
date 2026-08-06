@@ -30,6 +30,9 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-08-06 — Vietnam page: policy source links
+- Added source links to Resolution 57-NQ/TW, Decree 57/2021/NĐ-CP, and Circular 32/2025/TT-BKHCN in the Government Policy Framework table (previously text-only, no link)
+
 ### 2026-08-06 — Citation links, methodology transparency, last-reviewed dates, confirmed-vs-estimate labeling
 - Added DOI/arXiv hyperlinks to the 4 Layer 3 (Photonic Processor) milestone citations on Dashboard (Nature Photonics, Science, arXiv, Nature), matching the existing `[[label|url]]` pattern used for the AMD/Enosemi link in Layer 2
 - About page Methodology: expanded the TRL bullet with the NASA/DoD 9-level scale mapping, and added new "Source bias disclosure" and "Revision policy" bullets

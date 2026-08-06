@@ -30,13 +30,13 @@ const POLICIES: PolicyRow[] = [
     date: "Late 2024",
     content:
       "Politburo sets science/tech, innovation, and digital transformation as strategic national pillars.",
-    url: null,
+    url: "https://english.luatvietnam.vn/resolutionno57-nq-twdateddecember222024ofthepoliticalbureauonbreakthroughsinthedevelopmentofsciencetechnologyinnovationandna-381835-doc1.html",
   },
   {
     name: "Decree 57/2021/NĐ-CP",
     date: "2021",
     content: "Up to 15-year corporate income tax incentives for high-tech projects.",
-    url: null,
+    url: "https://vanban.chinhphu.vn/default.aspx?pageid=27160&docid=203379",
   },
   {
     name: "PM Self-Sufficiency Target",
@@ -50,7 +50,7 @@ const POLICIES: PolicyRow[] = [
     date: "Eff. Jan 1, 2026",
     content:
       'Packaging materials — sputtering targets, leadframes, substrates, bonding wire, die-attach — listed as "investment-encouraged" categories.',
-    url: null,
+    url: "https://thuvienphapluat.vn/van-ban/Dau-tu/Thong-tu-32-2025-TT-BKHCN-Danh-muc-cong-cu-cho-cong-nghiep-ban-dan-duoc-khuyen-khich-dau-tu-phat-trien-682308.aspx",
   },
 ];
 
