@@ -25,7 +25,6 @@ export default function StocksPage() {
         </h1>
         <p className="text-muted text-sm mt-1">
           Stocks across semiconductors, photonics, networking, materials, and foundries.
-          Prices update every 5 minutes via Yahoo Finance.
         </p>
       </div>
 

@@ -11,7 +11,7 @@ type Row = StockMeta & Partial<StockQuote>;
 export default function StockTable() {
   const { data: quotes, isLoading } = useSWR("all-quotes", fetchAllQuotes, {
     revalidateOnFocus: false,
-    refreshInterval: 300000,
+    refreshInterval: 86400000,
   });
 
   const rows: Row[] = STOCK_METADATA.map((meta) => {
