@@ -4,10 +4,7 @@ import { ALL_SYMBOLS } from "@/data/stocks";
 
 const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
 
-// Yahoo has no quote under the bare "SIVE" string for Sivers Semiconductors —
-// SIVEF is its US OTC-listed ticker. Query that, but report back as "SIVE" so
-// it still matches STOCK_METADATA.
-const YAHOO_SYMBOL_OVERRIDES: Record<string, string> = { SIVE: "SIVEF" };
+const YAHOO_SYMBOL_OVERRIDES: Record<string, string> = {};
 const DISPLAY_SYMBOL: Record<string, string> = Object.fromEntries(
   Object.entries(YAHOO_SYMBOL_OVERRIDES).map(([display, yahoo]) => [yahoo, display])
 );

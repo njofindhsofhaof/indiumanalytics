@@ -29,7 +29,6 @@ const COMPANY_NEWS: Article[] = [
   { title: "Ciena (CIEN) — Newsroom", description: "WaveLogic coherent DSP, optical networking systems, and AI datacenter backbone news from Ciena.", url: "https://www.ciena.com/about/newsroom", source: { name: "Ciena Newsroom" }, publishedAt: new Date(Date.now() - 15 * 3600000).toISOString(), urlToImage: null, tag: "CIEN" },
   { title: "Arista Networks (ANET) — News", description: "AI datacenter switching fabric and 800G/1.6T networking announcements from Arista Networks.", url: "https://www.arista.com/en/company/news", source: { name: "Arista Networks" }, publishedAt: new Date(Date.now() - 16 * 3600000).toISOString(), urlToImage: null, tag: "ANET" },
   { title: "Corning (GLW) — News & Events", description: "Optical fiber, cable, and CPO-related manufacturing news from Corning.", url: "https://www.corning.com/worldwide/en/about-us/news-events.html", source: { name: "Corning" }, publishedAt: new Date(Date.now() - 17 * 3600000).toISOString(), urlToImage: null, tag: "GLW" },
-  { title: "Sivers Semiconductors (SIVE) — Newsroom", description: "Silicon photonics IP and optical component updates from Sivers Semiconductors.", url: "https://www.sivers-semiconductors.com/sivers-newsroom/", source: { name: "Sivers Semiconductors" }, publishedAt: new Date(Date.now() - 18 * 3600000).toISOString(), urlToImage: null, tag: "SIVE" },
 ];
 
 export async function GET() {

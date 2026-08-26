@@ -178,15 +178,15 @@ export const STOCK_METADATA: StockMeta[] = [
     lng: -77.0547,
   },
   {
-    symbol: "SIVE",
-    name: "Sivers Semiconductors",
-    sector: "Photonics",
+    symbol: "CLS",
+    name: "Celestica",
+    sector: "Optical Manufacturing",
     thesis:
-      "Early-stage SiPh IP play — speculative, low liquidity, monitor only",
-    marketCapTier: "small",
-    hq: "Kista, Stockholm, Sweden",
-    lat: 59.4033,
-    lng: 17.944,
+      "Contract manufacturer scaling 800G/1.6T optical module production for hyperscaler networking programs",
+    marketCapTier: "mid",
+    hq: "Toronto, Canada",
+    lat: 43.7615,
+    lng: -79.4111,
   },
 ];
 

@@ -24,7 +24,7 @@ export default function StocksPage() {
           Silicon Photonics Watchlist
         </h1>
         <p className="text-muted text-sm mt-1">
-          17 stocks across semiconductors, photonics, networking, materials, and foundries.
+          Stocks across semiconductors, photonics, networking, materials, and foundries.
           Prices update every 5 minutes via Yahoo Finance.
         </p>
       </div>
