@@ -48,22 +48,6 @@ export type Catalyst = {
 
 export const UPCOMING_CATALYSTS: Catalyst[] = [
   {
-    date: "Aug 12, 2026",
-    until: "2026-08-12",
-    event: "COHR Q4 FY2026 Earnings",
-    ticker: "COHR",
-    type: "earnings",
-    description: "800G/1.6T transceiver ramp and InP vertical integration margin update",
-  },
-  {
-    date: "Aug 27, 2026",
-    until: "2026-08-27",
-    event: "MRVL Q2 FY2027 Earnings",
-    ticker: "MRVL",
-    type: "earnings",
-    description: "Teralynx 10 CPO volume shipments and Celestial AI custom silicon progress",
-  },
-  {
     date: "Sep 2, 2026",
     until: "2026-09-02",
     event: "AVGO Q3 FY2026 Earnings",

@@ -30,6 +30,12 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-09-01 — Monthly refresh of Upcoming Catalysts
+- Removed 2 expired entries: COHR Q4 FY2026 earnings (Aug 12) and MRVL Q2 FY2027 earnings (Aug 27), both already reported
+- Verified AVGO Q3 FY2026 earnings (Sep 2, 2026) and ECOC 2026 (Sep 20–24, Málaga) remain accurate per official/primary sources
+- Checked for confirmed replacement dates for COHR Q1 FY2027 and MRVL Q3 FY2027 earnings, and for LITE's placeholder "~Nov 2026" estimate — none have been officially announced yet, so no new entries were added and the LITE estimate was left as-is per the "don't guess" policy
+- 7 active catalyst entries remain, sorted chronologically through OFC 2027 (Mar 2027)
+
 ### 2026-08-06 — About page: added "About the name" section
 - New top section explaining the indiumanalytics.xyz domain (Indium Phosphide/InP as the laser-enabling material) and why the site itself is branded "Photonic Analytics" (full-stack scope, not just indium)
 
