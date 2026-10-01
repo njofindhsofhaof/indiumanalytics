@@ -48,28 +48,12 @@ export type Catalyst = {
 
 export const UPCOMING_CATALYSTS: Catalyst[] = [
   {
-    date: "Sep 2, 2026",
-    until: "2026-09-02",
-    event: "AVGO Q3 FY2026 Earnings",
-    ticker: "AVGO",
-    type: "earnings",
-    description: "AI ASIC revenue cadence, CPO deployment volumes, and 1.6T switch pipeline update",
-  },
-  {
-    date: "Sep 20–24, 2026",
-    until: "2026-09-24",
-    event: "ECOC 2026 Conference",
-    ticker: "SECTOR",
-    type: "conference",
-    description: "52nd European Conference on Optical Communications, Málaga, Spain — 1.6T/3.2T standards, TFLN commercialization updates",
-  },
-  {
-    date: "2026-Q3",
-    until: "2026-09-30",
-    event: "1.6T Transceiver Volume Ramp",
-    ticker: "COHR/LITE/FN",
+    date: "Oct 6, 2026",
+    until: "2026-10-06",
+    event: "MRVL Investor Day 2026",
+    ticker: "MRVL",
     type: "milestone",
-    description: "Hyperscaler volume deployments of 1.6T transceivers; key revenue inflection for optical manufacturers",
+    description: "NYC Investor Day focused on Custom Silicon growth strategy and AI/data center infrastructure roadmap, incl. Teralynx CPO switch co-design pipeline",
   },
   {
     date: "~Nov 2026",
@@ -78,6 +62,14 @@ export const UPCOMING_CATALYSTS: Catalyst[] = [
     ticker: "LITE",
     type: "earnings",
     description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update. Exact date not yet announced — estimated from prior-year cadence.",
+  },
+  {
+    date: "Dec 9, 2026",
+    until: "2026-12-09",
+    event: "AVGO Q4 FY2026 Earnings",
+    ticker: "AVGO",
+    type: "earnings",
+    description: "FY2026 close; guided to ~$34.8B Q4 revenue (+93% YoY) and $21.7B AI semiconductor revenue (+236% YoY). Tomahawk 6-Davisson CPO deployment volumes and 1.6T/3.2T pipeline update",
   },
   {
     date: "2026-Q4",

@@ -30,6 +30,14 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-10-01 — Monthly refresh of Upcoming Catalysts
+- Removed 3 expired entries: AVGO Q3 FY2026 earnings (Sep 2), ECOC 2026 (Sep 20–24, Málaga), and the 2026-Q3 "1.6T Transceiver Volume Ramp" milestone — all now past their `until` date
+- Added AVGO Q4 FY2026 Earnings (confirmed Dec 9, 2026, after close) — sourced from Broadcom's own Q3 FY2026 release, which named the date for its next report
+- Added MRVL Investor Day 2026 (confirmed Oct 6, 2026, NYC) — officially announced by Marvell alongside its Q2 FY2027 earnings release; focused on Custom Silicon strategy relevant to the Teralynx CPO roadmap
+- Checked for confirmed dates for COHR Q1 FY2027 and MRVL Q3 FY2027 earnings, and for LITE's placeholder "~Nov 2026" estimate — only forward guidance (not an actual report date) has been disclosed for any of the three, so no new earnings entries were added for COHR/MRVL and the LITE estimate was left as-is per the "don't guess" policy
+- Verified OFC 2027 (Mar 7–11, 2027, LA Convention Center) remains accurate per the official event site
+- 6 active catalyst entries remain, sorted chronologically through OFC 2027 (Mar 2027)
+
 ### 2026-09-01 — Monthly refresh of Upcoming Catalysts
 - Removed 2 expired entries: COHR Q4 FY2026 earnings (Aug 12) and MRVL Q2 FY2027 earnings (Aug 27), both already reported
 - Verified AVGO Q3 FY2026 earnings (Sep 2, 2026) and ECOC 2026 (Sep 20–24, Málaga) remain accurate per official/primary sources
