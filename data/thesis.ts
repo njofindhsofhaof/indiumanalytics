@@ -48,20 +48,20 @@ export type Catalyst = {
 
 export const UPCOMING_CATALYSTS: Catalyst[] = [
   {
-    date: "Oct 6, 2026",
-    until: "2026-10-06",
-    event: "MRVL Investor Day 2026",
-    ticker: "MRVL",
-    type: "milestone",
-    description: "NYC Investor Day focused on Custom Silicon growth strategy and AI/data center infrastructure roadmap, incl. Teralynx CPO switch co-design pipeline",
+    date: "Nov 4, 2026",
+    until: "2026-11-04",
+    event: "COHR Q1 FY2027 Earnings",
+    ticker: "COHR",
+    type: "earnings",
+    description: "First fiscal quarter close (ended Sep 30, 2026), reported after NYSE close; guided to $2.2–2.4B revenue and $1.85–2.05 non-GAAP EPS. Watch for InP capacity ramp and datacom/AI transceiver demand commentary.",
   },
   {
-    date: "~Nov 2026",
-    until: "2026-11-30",
+    date: "Nov 5, 2026",
+    until: "2026-11-05",
     event: "LITE Q1 FY2027 Earnings",
     ticker: "LITE",
     type: "earnings",
-    description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update. Exact date not yet announced — estimated from prior-year cadence.",
+    description: "ROADMs and pump laser shipment growth; 3.2T coherent design-win update. Company guided to $1.225–1.275B revenue and $4.05–4.35 adjusted EPS for the quarter.",
   },
   {
     date: "Dec 9, 2026",
@@ -77,15 +77,7 @@ export const UPCOMING_CATALYSTS: Catalyst[] = [
     event: "POET Volume Production Milestone",
     ticker: "POET",
     type: "milestone",
-    description: "POET optical interposer volume shipment ramp via DenseLight/POET Singapore partnership",
-  },
-  {
-    date: "2026-Q4",
-    until: "2026-12-31",
-    event: "LWLG Strategic Partnership",
-    ticker: "LWLG",
-    type: "milestone",
-    description: "EO polymer commercialization agreement with Tier 1 component supplier expected",
+    description: "POET optical interposer volume shipment ramp via DenseLight/POET Singapore partnership; $5M+ Infinity engine order shipping in 2H 2026",
   },
   {
     date: "Mar 7–11, 2027",
@@ -93,7 +85,7 @@ export const UPCOMING_CATALYSTS: Catalyst[] = [
     event: "OFC 2027 Conference",
     ticker: "SECTOR",
     type: "conference",
-    description: "Optical Fiber Conference, Los Angeles — next-gen CPO architectures, EOP modulators, and fully photonic processor previews",
+    description: "Optical Fiber Conference, Los Angeles Convention Center (exhibition Mar 9–11) — next-gen CPO architectures, EOP modulators, and fully photonic processor previews",
   },
 ];
 

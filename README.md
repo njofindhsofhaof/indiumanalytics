@@ -30,6 +30,14 @@ Next.js 14 · Tailwind CSS · Recharts · SWR · Yahoo Finance API · SEC EDGAR 
 
 ## Changelog
 
+### 2026-11-01 — Monthly refresh of Upcoming Catalysts
+- Removed 2 stale entries: MRVL Investor Day 2026 (Oct 6, 2026, now past its `until` date) and the speculative 2026-Q4 "LWLG Strategic Partnership" milestone — LWLG's EO-polymer commercialization push with a Tier 1 partner has already materialized differently via the Tower Semiconductor PH18 development agreement (Mar 2026) and the QPICs MOU (Jan 2026), so the placeholder no longer reflects an upcoming catalyst
+- Added COHR Q1 FY2027 Earnings (confirmed Nov 4, 2026, after NYSE close) — officially announced via Coherent's "Timing of FY2027 First Quarter Earnings Release" press release
+- Updated LITE Q1 FY2027 Earnings from the "~Nov 2026" placeholder to the confirmed date, Nov 5, 2026 after market close — per Lumentum's official reporting-date announcement
+- Verified AVGO Q4 FY2026 Earnings (Dec 9, 2026) and OFC 2027 (Mar 7–11, 2027, LA Convention Center, exhibition Mar 9–11) remain accurate; refined the OFC description with the official exhibition dates
+- Refreshed the POET Volume Production Milestone description with the $5M+ Infinity engine order shipping in 2H 2026
+- 5 active catalyst entries remain, sorted chronologically through OFC 2027 (Mar 2027)
+
 ### 2026-10-01 — Monthly refresh of Upcoming Catalysts
 - Removed 3 expired entries: AVGO Q3 FY2026 earnings (Sep 2), ECOC 2026 (Sep 20–24, Málaga), and the 2026-Q3 "1.6T Transceiver Volume Ramp" milestone — all now past their `until` date
 - Added AVGO Q4 FY2026 Earnings (confirmed Dec 9, 2026, after close) — sourced from Broadcom's own Q3 FY2026 release, which named the date for its next report
